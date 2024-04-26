@@ -1,0 +1,21 @@
+{
+    "name": "billwerk/sdk",
+    "description": "Api SDK for Billwerk+",
+    "autoload": {
+        "psr-4": {
+            "Billwerk\\Sdk\\": "src/",
+            "Billwerk\\Sdk\\Test\\": "tests/",
+            "Billwerk\\Sdk\\Stub\\": "stubs/"
+        }
+    },
+    "require": {
+        "ext-json": "*",
+        "php": ">=7.4.0",
+        "psr/http-factory": "^1.0",
+        "psr/http-client": "^1.0"
+    },
+    "require-dev": {
+        "guzzlehttp/guzzle": "^7.0",
+        "phpunit/phpunit": "^9.6.19"
+    }
+}
