@@ -1,0 +1,11 @@
+{
+  "code": 12,
+  "error": "Subscription not found",
+  "message": "string",
+  "path": "/v1/subscription/sub0019",
+  "timestamp": "2024-04-28T13:28:06.440Z",
+  "http_status": 404,
+  "http_reason": "Not Found",
+  "request_id": "f1988fc2374b4a26a51ebd876b478428",
+  "transaction_error": "credit_card_expired"
+}

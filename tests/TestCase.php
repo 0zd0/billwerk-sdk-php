@@ -2,12 +2,14 @@
 
 namespace Billwerk\Sdk\Test;
 
-class TestCase extends \PHPUnit\Framework\TestCase{
-	use HelperTrait;
-	
-	protected function setUp(): void {
-		parent::setUp();
-		
-		$this->setUpConfig();
-	}
+class TestCase extends \PHPUnit\Framework\TestCase
+{
+    use HelperTrait;
+    
+    protected function setUp(): void
+    {
+        parent::setUp();
+        
+        $this->setUpConfig();
+    }
 }

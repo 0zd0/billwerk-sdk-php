@@ -2,5 +2,6 @@
 
 namespace Billwerk\Sdk\Exception;
 
-class BillwerkRequestException extends BillwerkApiException {
+class BillwerkRequestException extends BillwerkApiException
+{
 }

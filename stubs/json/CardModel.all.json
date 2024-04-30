@@ -1,0 +1,21 @@
+{
+  "gateway": "nets",
+  "fingerprint": "cst_64e8a26cc0e85bc3f5ce7c5b366b4096",
+  "reactivated": "2015-05-14T00:00:00Z",
+  "gw_ref": "657e86162633415a9e6b715248c84da4",
+  "card_type": "visa_dk",
+  "transaction_card_type": "visa",
+  "card_agreement": "2b18c5d1f4dc640d9ff91bfbb2cbcce0",
+  "exp_date": "09-18",
+  "masked_card": "457111XXXXXX3777",
+  "last_success": "2015-05-14T00:00:00Z",
+  "last_failed": "2015-05-14T00:00:00Z",
+  "first_fail": "2015-05-14T00:00:00Z",
+  "error_code": "credit_card_expired",
+  "error_state": "hard_declined",
+  "declined_count": 2,
+  "strong_authentication_status": "secured_by_nets",
+  "three_d_secure_status": "Y",
+  "risk_rule": "string",
+  "card_country": "US"
+}
