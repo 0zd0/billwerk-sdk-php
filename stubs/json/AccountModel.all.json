@@ -1,0 +1,23 @@
+{
+  "handle": "test_account",
+  "currency": "DKK",
+  "name": "DK Account",
+  "address": "Amagerfaellevej 56",
+  "address2": "Room 1.0.1",
+  "city": "Copenhagen",
+  "locale": "da_DK",
+  "timezone": "Europe/Copenhagen",
+  "country": "DK",
+  "email": "robert@reepay.com",
+  "phone": "26777008",
+  "vat": "DK23123121",
+  "website": "http://www.example.com",
+  "logo": "http://reepay.com/images/logo.svg",
+  "id": "dafba2016614418f969fa5697383e47c",
+  "organisation": "Reepay",
+  "created": "2015-04-04T12:40:56.656Z",
+  "state": "live",
+  "postal_code": "2300",
+  "default_vat": 0.25,
+  "subscription_invoice_prefix": "inv"
+}

@@ -17,19 +17,21 @@ class MpsSubscriptionModel extends AbstractModel
     /**
      * @param string|null $externalId
      */
-    public function setExternalId(?string $externalId): void
+    public function setExternalId(?string $externalId): self
     {
         $this->externalId = $externalId;
+        
+        return $this;
     }
     
     public static function fromArray(array $response): self
     {
-        $mpsSubscription = new self();
+        $model = new self();
         
         if (isset($response["external_id"])) {
-            $mpsSubscription->setExternalId($response["external_id"]);
+            $model->setExternalId($response["external_id"]);
         }
         
-        return $mpsSubscription;
+        return $model;
     }
 }

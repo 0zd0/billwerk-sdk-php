@@ -19,7 +19,7 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     protected ?ApplePayModel        $applePay;
     protected ?string               $paymentType;
     protected ?MpsSubscriptionModel $mpsSubscription;
-    protected ?array               $vippsRecurringMandate;
+    protected ?array                $vippsRecurringMandate;
     protected ?SepaMandateModel     $sepaMandate;
     protected ?OfflineMandateModel  $offlineMandate;
     
@@ -122,105 +122,131 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     /**
      * @param ApplePayModel|null $applePay
      */
-    public function setApplePay(?ApplePayModel $applePay): void
+    public function setApplePay(?ApplePayModel $applePay): self
     {
         $this->applePay = $applePay;
+        
+        return $this;
     }
     
     /**
      * @param CardModel|null $card
      */
-    public function setCard(?CardModel $card): void
+    public function setCard(?CardModel $card): self
     {
         $this->card = $card;
+        
+        return $this;
     }
     
     /**
      * @param DateTime $created
      */
-    public function setCreated(DateTime $created): void
+    public function setCreated(DateTime $created): self
     {
         $this->created = $created;
+        
+        return $this;
     }
     
     /**
      * @param string $customer
      */
-    public function setCustomer(string $customer): void
+    public function setCustomer(string $customer): self
     {
         $this->customer = $customer;
+        
+        return $this;
     }
     
     /**
      * @param DateTime|null $failed
      */
-    public function setFailed(?DateTime $failed): void
+    public function setFailed(?DateTime $failed): self
     {
         $this->failed = $failed;
+        
+        return $this;
     }
     
     /**
      * @param string $id
      */
-    public function setId(string $id): void
+    public function setId(string $id): self
     {
         $this->id = $id;
+        
+        return $this;
     }
     
     /**
      * @param MpsSubscriptionModel|null $mpsSubscription
      */
-    public function setMpsSubscription(?MpsSubscriptionModel $mpsSubscription): void
+    public function setMpsSubscription(?MpsSubscriptionModel $mpsSubscription): self
     {
         $this->mpsSubscription = $mpsSubscription;
+        
+        return $this;
     }
     
     /**
      * @param OfflineMandateModel|null $offlineMandate
      */
-    public function setOfflineMandate(?OfflineMandateModel $offlineMandate): void
+    public function setOfflineMandate(?OfflineMandateModel $offlineMandate): self
     {
         $this->offlineMandate = $offlineMandate;
+        
+        return $this;
     }
     
     /**
      * @param string|null $paymentType
      */
-    public function setPaymentType(?string $paymentType): void
+    public function setPaymentType(?string $paymentType): self
     {
         $this->paymentType = $paymentType;
+        
+        return $this;
     }
     
     /**
      * @param string|null $reference
      */
-    public function setReference(?string $reference): void
+    public function setReference(?string $reference): self
     {
         $this->reference = $reference;
+        
+        return $this;
     }
     
     /**
      * @param SepaMandateModel|null $sepaMandate
      */
-    public function setSepaMandate(?SepaMandateModel $sepaMandate): void
+    public function setSepaMandate(?SepaMandateModel $sepaMandate): self
     {
         $this->sepaMandate = $sepaMandate;
+        
+        return $this;
     }
     
     /**
      * @param string $state
      */
-    public function setState(string $state): void
+    public function setState(string $state): self
     {
         $this->state = $state;
+        
+        return $this;
     }
     
     /**
      * @param array|null $vippsRecurringMandate
      */
-    public function setVippsRecurringMandate(?array $vippsRecurringMandate): void
+    public function setVippsRecurringMandate(?array $vippsRecurringMandate): self
     {
         $this->vippsRecurringMandate = $vippsRecurringMandate;
+        
+        return $this;
     }
     
     /**
@@ -228,53 +254,51 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
      */
     public static function fromArray(array $response): self
     {
-        $paymentMethod = new self();
+        $model = new self();
         
-        $paymentMethod->setId($response['id']);
+        $model
+            ->setId($response['id'])
+            ->setCustomer($response['customer'])
+            ->setCreated(new DateTime($response['created']))
+            ->setPaymentType($response['payment_type']);
         
         if (in_array($response['state'], StatePaymentMethodEnum::getAll(), true)) {
-            $paymentMethod->setState($response['state']);
+            $model->setState($response['state']);
         }
         
-        $paymentMethod->setCustomer($response['customer']);
-        
         if (isset($response['reference'])) {
-            $paymentMethod->setReference($response['reference']);
+            $model->setReference($response['reference']);
         }
         
         if (isset($response['failed'])) {
-            $paymentMethod->setFailed(new DateTime($response['failed']));
+            $model->setFailed(new DateTime($response['failed']));
         }
         
-        $paymentMethod->setCreated(new DateTime($response['created']));
-        
         if (isset($response['card'])) {
-            $paymentMethod->setCard(CardModel::fromArray($response['card']));
+            $model->setCard(CardModel::fromArray($response['card']));
         }
         
         if (isset($response['applepay'])) {
-            $paymentMethod->setApplePay(ApplePayModel::fromArray($response['applepay']));
+            $model->setApplePay(ApplePayModel::fromArray($response['applepay']));
         }
         
-        $paymentMethod->setPaymentType($response['payment_type']);
-        
         if (isset($response['mps_subscription'])) {
-            $paymentMethod->setMpsSubscription(MpsSubscriptionModel::fromArray($response['mps_subscription']));
+            $model->setMpsSubscription(MpsSubscriptionModel::fromArray($response['mps_subscription']));
         }
         
         if (isset($response['vipps_recurring_mandate'])) {
-            $paymentMethod->setVippsRecurringMandate($response['vipps_recurring_mandate']);
+            $model->setVippsRecurringMandate($response['vipps_recurring_mandate']);
         }
         
         if (isset($response['sepa_mandate'])) {
-            $paymentMethod->setSepaMandate(SepaMandateModel::fromArray($response['sepa_mandate']));
+            $model->setSepaMandate(SepaMandateModel::fromArray($response['sepa_mandate']));
         }
         
         if (isset($response['offline_mandate'])) {
-            $paymentMethod->setOfflineMandate(OfflineMandateModel::fromArray($response['offline_mandate']));
+            $model->setOfflineMandate(OfflineMandateModel::fromArray($response['offline_mandate']));
         }
         
-        return $paymentMethod;
+        return $model;
     }
     
     public function getId(): ?string

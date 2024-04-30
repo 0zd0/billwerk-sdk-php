@@ -2,6 +2,7 @@
 
 namespace Billwerk\Sdk;
 
+use Billwerk\Sdk\Service\AccountService;
 use Billwerk\Sdk\Service\PaymentMethodService;
 
 final class Sdk
@@ -36,5 +37,12 @@ final class Sdk
         $request = new BillwerkRequest($this->getApiKey(), $this->getClientFactory()->getClient(), $this->getClientFactory()->getRequestFactory());
         
         return new PaymentMethodService($request);
+    }
+    
+    public function account(): AccountService
+    {
+        $request = new BillwerkRequest($this->getApiKey(), $this->getClientFactory()->getClient(), $this->getClientFactory()->getRequestFactory());
+        
+        return new AccountService($request);
     }
 }

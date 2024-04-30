@@ -17,17 +17,19 @@ class OfflineMandateModel extends AbstractModel
     /**
      * @param string $offlineAgreementHandle
      */
-    public function setOfflineAgreementHandle(string $offlineAgreementHandle): void
+    public function setOfflineAgreementHandle(string $offlineAgreementHandle): self
     {
         $this->offlineAgreementHandle = $offlineAgreementHandle;
+        
+        return $this;
     }
     
     public static function fromArray(array $response): self
     {
-        $offlineMandate = new self();
+        $model = new self();
         
-        $offlineMandate->setOfflineAgreementHandle($response['offline_agreement_handle']);
+        $model->setOfflineAgreementHandle($response['offline_agreement_handle']);
         
-        return $offlineMandate;
+        return $model;
     }
 }

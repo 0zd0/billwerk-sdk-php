@@ -17,19 +17,21 @@ class SepaMandateModel extends AbstractModel
     /**
      * @param string|null $iban
      */
-    public function setIban(?string $iban): void
+    public function setIban(?string $iban): self
     {
         $this->iban = $iban;
+        
+        return $this;
     }
     
     public static function fromArray(array $response): self
     {
-        $sepaMandate = new self();
+        $model = new self();
         
         if (isset($response['iban'])) {
-            $sepaMandate->setIban($response['iban']);
+            $model->setIban($response['iban']);
         }
         
-        return $sepaMandate;
+        return $model;
     }
 }

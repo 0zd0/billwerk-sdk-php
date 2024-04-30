@@ -27,73 +27,91 @@ class ErrorModel extends AbstractModel
     /**
      * @param int $code
      */
-    public function setCode(int $code): void
+    public function setCode(int $code): self
     {
         $this->code = $code;
+        
+        return $this;
     }
     
     /**
      * @param string $error
      */
-    public function setError(string $error): void
+    public function setError(string $error): self
     {
         $this->error = $error;
+        
+        return $this;
     }
     
     /**
      * @param string $httpReason
      */
-    public function setHttpReason(string $httpReason): void
+    public function setHttpReason(string $httpReason): self
     {
         $this->httpReason = $httpReason;
+        
+        return $this;
     }
     
     /**
      * @param int $httpStatus
      */
-    public function setHttpStatus(int $httpStatus): void
+    public function setHttpStatus(int $httpStatus): self
     {
         $this->httpStatus = $httpStatus;
+        
+        return $this;
     }
     
     /**
      * @param string|null $message
      */
-    public function setMessage(?string $message): void
+    public function setMessage(?string $message): self
     {
         $this->message = $message;
+        
+        return $this;
     }
     
     /**
      * @param string $path
      */
-    public function setPath(string $path): void
+    public function setPath(string $path): self
     {
         $this->path = $path;
+        
+        return $this;
     }
     
     /**
      * @param string $requestId
      */
-    public function setRequestId(string $requestId): void
+    public function setRequestId(string $requestId): self
     {
         $this->requestId = $requestId;
+        
+        return $this;
     }
     
     /**
      * @param string $timestamp
      */
-    public function setTimestamp(string $timestamp): void
+    public function setTimestamp(string $timestamp): self
     {
         $this->timestamp = $timestamp;
+        
+        return $this;
     }
     
     /**
      * @param string|null $transactionError TransactionErrorInterface
      */
-    public function setTransactionError(?string $transactionError): void
+    public function setTransactionError(?string $transactionError): self
     {
         $this->transactionError = $transactionError;
+        
+        return $this;
     }
     
     /**
@@ -165,32 +183,32 @@ class ErrorModel extends AbstractModel
      */
     public static function fromArray(array $response): self
     {
-        $error = new self();
+        $model = new self();
         
-        $error->setCode($response['code']);
+        $model->setCode($response['code']);
         
-        $error->setError($response['error']);
+        $model->setError($response['error']);
         
         if (isset($response['message'])) {
-            $error->setMessage($response['message']);
+            $model->setMessage($response['message']);
         }
         
-        $error->setPath($response['path']);
+        $model->setPath($response['path']);
         
-        $error->setTimestamp($response['timestamp']);
+        $model->setTimestamp($response['timestamp']);
         
-        $error->setHttpStatus($response['http_status']);
+        $model->setHttpStatus($response['http_status']);
         
-        $error->setHttpReason($response['http_reason']);
+        $model->setHttpReason($response['http_reason']);
         
-        $error->setRequestId($response['request_id']);
+        $model->setRequestId($response['request_id']);
         
         if (isset($response['transaction_error'])) {
             if (in_array($response['transaction_error'], TransactionErrorEnum::getAll(), true)) {
-                $error->setTransactionError($response['transaction_error']);
+                $model->setTransactionError($response['transaction_error']);
             }
         }
         
-        return $error;
+        return $model;
     }
 }

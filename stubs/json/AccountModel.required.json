@@ -1,0 +1,13 @@
+{
+  "handle": "test_account",
+  "currency": "DKK",
+  "name": "DK Account",
+  "locale": "da_DK",
+  "timezone": "Europe/Copenhagen",
+  "country": "DK",
+  "id": "dafba2016614418f969fa5697383e47c",
+  "organisation": "Reepay",
+  "created": "2015-04-04T12:40:56.656Z",
+  "state": "live",
+  "default_vat": 0.25
+}
