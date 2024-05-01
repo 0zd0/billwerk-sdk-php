@@ -8,14 +8,14 @@ use Billwerk\Sdk\Service\PaymentMethodService;
 final class Sdk
 {
     private BillwerkClientFactory $clientFactory;
-    private string                $apiKey;
-    
+    private string $apiKey;
+
     public function __construct(BillwerkClientFactory $clientFactory, string $apiKey)
     {
         $this->clientFactory = $clientFactory;
         $this->apiKey        = $apiKey;
     }
-    
+
     /**
      * @return string
      */
@@ -23,7 +23,7 @@ final class Sdk
     {
         return $this->apiKey;
     }
-    
+
     /**
      * @return BillwerkClientFactory
      */
@@ -31,18 +31,37 @@ final class Sdk
     {
         return $this->clientFactory;
     }
-    
+
+    public function getRequestWithApiUrl(): BillwerkRequest
+    {
+        return new BillwerkRequest(
+            $this->getApiKey(),
+            $this->getClientFactory()->getClient(),
+            $this->getClientFactory()->getRequestFactory()
+        );
+    }
+
+    public function getRequestWithCheckoutUrl(): BillwerkRequest
+    {
+        return new BillwerkRequest(
+            $this->getApiKey(),
+            $this->getClientFactory()->getClient(),
+            $this->getClientFactory()->getRequestFactory(),
+            Billwerk::CHECKOUT_BASE
+        );
+    }
+
     public function paymentMethod(): PaymentMethodService
     {
-        $request = new BillwerkRequest($this->getApiKey(), $this->getClientFactory()->getClient(), $this->getClientFactory()->getRequestFactory());
-        
+        $request = $this->getRequestWithApiUrl();
+
         return new PaymentMethodService($request);
     }
-    
+
     public function account(): AccountService
     {
-        $request = new BillwerkRequest($this->getApiKey(), $this->getClientFactory()->getClient(), $this->getClientFactory()->getRequestFactory());
-        
+        $request = $this->getRequestWithApiUrl();
+
         return new AccountService($request);
     }
 }

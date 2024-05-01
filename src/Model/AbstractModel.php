@@ -12,7 +12,7 @@ abstract class AbstractModel
      * @return self
      */
     abstract public static function fromArray(array $response): self;
-    
+
     public static function getClassName(): string
     {
         return str_replace(__NAMESPACE__ . '\\', '', get_called_class());

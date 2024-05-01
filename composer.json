@@ -17,6 +17,13 @@
     "require-dev": {
         "guzzlehttp/guzzle": "^7.0",
         "phpunit/phpunit": "^9.6.19",
-        "yosymfony/toml": "^1.0"
+        "yosymfony/toml": "^1.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "squizlabs/php_codesniffer": "^3.9.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

@@ -10,23 +10,23 @@ use Exception;
 class OfflineMandateModelTest extends TestCase
 {
     use StubTrait;
-    
+
     /**
      * @throws Exception
      */
     public function testFromArrayMethodWithRequiredFields()
     {
-        $json = $this::getStubJsonModelWithRequiredFields(OfflineMandateModel::getClassName());
+        $json  = $this::getStubJsonModelWithRequiredFields(OfflineMandateModel::getClassName());
         $model = OfflineMandateModel::fromArray($json);
         $this::assertSame('string', $model->getOfflineAgreementHandle());
     }
-    
+
     /**
      * @throws Exception
      */
     public function testFromArrayMethodWithAllFields()
     {
-        $json = $this::getStubJsonModelWithAllFields(OfflineMandateModel::getClassName());
+        $json  = $this::getStubJsonModelWithAllFields(OfflineMandateModel::getClassName());
         $model = OfflineMandateModel::fromArray($json);
         $this::assertSame('string', $model->getOfflineAgreementHandle());
     }

@@ -12,7 +12,7 @@ use Exception;
 class AccountModelTest extends TestCase
 {
     use StubTrait;
-    
+
     /**
      * @throws Exception
      */
@@ -32,7 +32,7 @@ class AccountModelTest extends TestCase
         $this::assertSame(StateAccountEnum::LIVE, $model->getState());
         $this::assertSame(0.25, $model->getDefaultVat());
     }
-    
+
     /**
      * @throws Exception
      */

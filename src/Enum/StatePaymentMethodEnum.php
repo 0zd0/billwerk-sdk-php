@@ -9,7 +9,7 @@ class StatePaymentMethodEnum
     public const FAILED      = 'failed';
     public const PENDING     = 'pending';
     public const DELETED     = 'deleted';
-    
+
     public static function getAll(): array
     {
         return [

@@ -8,7 +8,7 @@ class ErrorStateEnum
     public const SOFT_DECLINED    = 'soft_declined';
     public const HARD_DECLINED    = 'hard_declined';
     public const PROCESSING_ERROR = 'processing_error';
-    
+
     public static function getAll(): array
     {
         return [

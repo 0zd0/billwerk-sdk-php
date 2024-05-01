@@ -9,12 +9,12 @@ use Throwable;
 
 class BillwerkApiException extends Exception
 {
-    protected int              $errorCode;
-    protected string           $title           = "";
+    protected int $errorCode;
+    protected string $title           = "";
     protected ?LastRequestInfo $lastRequestInfo = null;
-    protected ?ErrorModel      $errorApi        = null;
-    
-    
+    protected ?ErrorModel $errorApi        = null;
+
+
     public function __construct(
         $message = "",
         $code = 0,
@@ -23,14 +23,14 @@ class BillwerkApiException extends Exception
         Throwable $previous = null
     ) {
         parent::__construct($message, $code, $previous);
-        
+
         $this
             ->setTitle($message)
             ->setErrorCode($code)
             ->setLastRequestInfo($lastRequestInfo)
             ->setErrorApi($errorApi);
     }
-    
+
     /**
      * @return int
      */
@@ -38,7 +38,7 @@ class BillwerkApiException extends Exception
     {
         return $this->errorCode;
     }
-    
+
     /**
      * @param int $errorCode
      *
@@ -47,10 +47,10 @@ class BillwerkApiException extends Exception
     public function setErrorCode(int $errorCode): self
     {
         $this->errorCode = $errorCode;
-        
+
         return $this;
     }
-    
+
     /**
      * @return ErrorModel|null
      */
@@ -58,7 +58,7 @@ class BillwerkApiException extends Exception
     {
         return $this->errorApi;
     }
-    
+
     /**
      * @param ErrorModel|null $errorApi
      *
@@ -67,10 +67,10 @@ class BillwerkApiException extends Exception
     public function setErrorApi(?ErrorModel $errorApi): self
     {
         $this->errorApi = $errorApi;
-        
+
         return $this;
     }
-    
+
     /**
      * @return string
      */
@@ -78,7 +78,7 @@ class BillwerkApiException extends Exception
     {
         return $this->title;
     }
-    
+
     /**
      * @param string $title
      *
@@ -87,10 +87,10 @@ class BillwerkApiException extends Exception
     public function setTitle(string $title): self
     {
         $this->title = $title;
-        
+
         return $this;
     }
-    
+
     /**
      * @param LastRequestInfo|null $lastRequestInfo
      *
@@ -99,10 +99,10 @@ class BillwerkApiException extends Exception
     public function setLastRequestInfo(?LastRequestInfo $lastRequestInfo): self
     {
         $this->lastRequestInfo = $lastRequestInfo;
-        
+
         return $this;
     }
-    
+
     /**
      * @return LastRequestInfo|null
      */

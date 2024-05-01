@@ -12,7 +12,7 @@ class ThreeDSecureStatusEnum
      */
     public const Y = 'Y';
     public const A = 'A';
-    
+
     public static function getAll(): array
     {
         return [

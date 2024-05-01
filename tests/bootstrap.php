@@ -1,4 +1,5 @@
 <?php
+
 use Yosymfony\Toml\Toml;
 
 $loader = require __DIR__ . '/../vendor/autoload.php';

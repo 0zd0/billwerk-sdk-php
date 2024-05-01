@@ -7,9 +7,9 @@ use Psr\Http\Message\RequestFactoryInterface;
 
 class BillwerkClientFactory
 {
-    private ClientInterface         $client;
+    private ClientInterface $client;
     private RequestFactoryInterface $requestFactory;
-    
+
     public function __construct(
         ClientInterface $client,
         RequestFactoryInterface $requestFactory
@@ -17,7 +17,7 @@ class BillwerkClientFactory
         $this->client         = $client;
         $this->requestFactory = $requestFactory;
     }
-    
+
     /**
      * @return ClientInterface
      */
@@ -25,7 +25,7 @@ class BillwerkClientFactory
     {
         return $this->client;
     }
-    
+
     /**
      * @return RequestFactoryInterface
      */

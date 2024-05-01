@@ -4,14 +4,14 @@ namespace Billwerk\Sdk\Util;
 
 class LastRequestInfo
 {
-    private string  $httpMethod;
-    private string  $uri;
-    private array   $body;
-    private ?array  $queryParams;
+    private string $httpMethod;
+    private string $uri;
+    private array $body;
+    private ?array $queryParams;
     private ?string $response;
-    private ?int    $responseCode;
-    private int     $timestamp;
-    
+    private ?int $responseCode;
+    private int $timestamp;
+
     public function __construct(
         string $httpMethod,
         string $uri,
@@ -28,7 +28,7 @@ class LastRequestInfo
         $this->responseCode = $responseCode;
         $this->timestamp    = time();
     }
-    
+
     /**
      * @return array
      */
@@ -36,7 +36,7 @@ class LastRequestInfo
     {
         return $this->body;
     }
-    
+
     /**
      * @return string
      */
@@ -44,7 +44,7 @@ class LastRequestInfo
     {
         return $this->httpMethod;
     }
-    
+
     /**
      * @return string
      */
@@ -52,7 +52,7 @@ class LastRequestInfo
     {
         return $this->uri;
     }
-    
+
     /**
      * @return array|null
      */
@@ -60,7 +60,7 @@ class LastRequestInfo
     {
         return $this->queryParams;
     }
-    
+
     /**
      * @return string|null
      */
@@ -68,7 +68,7 @@ class LastRequestInfo
     {
         return $this->response;
     }
-    
+
     /**
      * @return int
      */
@@ -76,7 +76,7 @@ class LastRequestInfo
     {
         return $this->responseCode;
     }
-    
+
     /**
      * @return int
      */

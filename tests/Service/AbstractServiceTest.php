@@ -13,19 +13,19 @@ use Psr\Http\Message\StreamInterface;
 abstract class AbstractServiceTest extends TestCase
 {
     use StubTrait;
-    
+
     protected PaymentMethodService $paymentMethod;
-    protected AccountService       $account;
-    
+    protected AccountService $account;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->responseMock  = $this->createMock(ResponseInterface::class);
         $this->streamMock    = $this->createMock(StreamInterface::class);
         $this->paymentMethod = $this->sdkMock->paymentMethod();
-        $this->account        = $this->sdkMock->account();
+        $this->account       = $this->sdkMock->account();
     }
-    
+
     /**
      * @throws Exception
      */
@@ -35,19 +35,19 @@ abstract class AbstractServiceTest extends TestCase
         if ($allFields) {
             $json = $this::getStubJsonModelWithAllFields($className);
         }
-        
+
         $this->streamMock
             ->method('getContents')
             ->willReturn(json_encode($json));
-        
+
         $this->responseMock
             ->method('getBody')
             ->willReturn($this->streamMock);
-        
+
         $this->responseMock
             ->method('getStatusCode')
             ->willReturn(200);
-        
+
         $this->clientMock
             ->method('sendRequest')
             ->willReturn($this->responseMock);

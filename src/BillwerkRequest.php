@@ -25,38 +25,38 @@ class BillwerkRequest
     public const PATCH_REQUEST           = 'PATCH';
     public const DELETE_REQUEST          = 'DELETE';
     public const APPLICATION_JSON_HEADER = 'application/json';
-    
-    private int  $retryCount    = 0;
-    private int  $maxRetryCount = 5;
+
+    private int $retryCount    = 0;
+    private int $maxRetryCount = 5;
     private bool $needToRetry   = false;
-    
-    private string                  $_apiKey;
-    private string                  $baseUrl;
-    private ClientInterface         $client;
+
+    private string $apiKey;
+    private string $baseUrl;
+    private ClientInterface $client;
     private RequestFactoryInterface $requestFactory;
     private Sleep $sleepInstance;
-    
-    private string  $lastHttpMethod;
-    private string  $lastUri;
-    private array   $lastBody         = [];
-    private ?array  $lastQueryParams  = null;
+
+    private string $lastHttpMethod;
+    private string $lastUri;
+    private array $lastBody         = [];
+    private ?array $lastQueryParams  = null;
     private ?string $lastResponse     = null;
-    private ?int    $lastResponseCode = null;
-    
+    private ?int $lastResponseCode = null;
+
     public function __construct(
         string $apiKey,
         ClientInterface $client,
         RequestFactoryInterface $requestFactory,
         ?string $baseUrl = Billwerk::API_BASE
     ) {
-        $this->_apiKey        = $apiKey;
+        $this->apiKey         = $apiKey;
         $this->client         = $client;
         $this->baseUrl        = $baseUrl;
         $this->requestFactory = $requestFactory;
-        $this->sleepInstance = new Sleep;
+        $this->sleepInstance  = new Sleep();
     }
-    
-    private static function _getDefaultHeaders(
+
+    private static function getDefaultHeaders(
         string $apiKey
     ): array {
         return [
@@ -65,7 +65,7 @@ class BillwerkRequest
             'Authorization' => 'Basic ' . base64_encode($apiKey . ':')
         ];
     }
-    
+
     /**
      * @param string $baseUrl
      */
@@ -73,7 +73,7 @@ class BillwerkRequest
     {
         $this->baseUrl = $baseUrl;
     }
-    
+
     /**
      * @throws BillwerkNetworkException
      * @throws BillwerkRequestException
@@ -84,24 +84,23 @@ class BillwerkRequest
         string $route,
         array $queryParams = [],
         array $headers = [],
-        
         int $delayBetweenRetry = 1
     ): array {
         $this->setNeedToRetry(false);
-        $headers     = array_merge($headers, self::_getDefaultHeaders($this->_apiKey));
+        $headers     = array_merge($headers, self::getDefaultHeaders($this->apiKey));
         $queryString = ! empty($queryParams) ? '?' . http_build_query($queryParams) : '';
         $uri         = Billwerk::PROTOCOL . $this->baseUrl . $route . $queryString;
-        
+
         $request = $this->requestFactory->createRequest(self::GET_REQUEST, $uri);
         foreach ($headers as $header => $value) {
             $request->withAddedHeader($header, $value);
         }
-        
+
         $this->setLastHttpMethod(self::GET_REQUEST);
         $this->setLastUri($uri);
         $this->setLastBody([]);
         $this->setLastQueryParams($queryParams);
-        
+
         try {
             $response = $this->client->sendRequest($request);
         } catch (NetworkExceptionInterface $e) {
@@ -111,14 +110,14 @@ class BillwerkRequest
         } catch (ClientExceptionInterface $e) {
             throw new BillwerkClientException($e->getMessage(), $e->getCode(), $this->getLastRequestInfo());
         }
-        
+
         $parsedResponse = $this->parseResponse($response);
-        
+
         if ($this->getNeedToRetry()) {
             if ($this->getRetryCount() < $this->getMaxRetryCount()) {
                 $this->setRetryCount($this->getRetryCount() + 1);
                 $this->getSleepInstance()::start($delayBetweenRetry);
-                
+
                 return $this->get($route, $queryParams, $headers, $delayBetweenRetry * 2);
             } else {
                 $retryCount = $this->getRetryCount();
@@ -131,10 +130,10 @@ class BillwerkRequest
                 );
             }
         }
-        
+
         return $parsedResponse;
     }
-    
+
     /**
      * @throws BillwerkApiException
      */
@@ -143,9 +142,9 @@ class BillwerkRequest
         $stream             = $response->getBody();
         $bodyContents       = $stream->getContents();
         $this->lastResponse = $bodyContents;
-        
+
         $decodedBody = json_decode($bodyContents, true);
-        
+
         if (
             empty($bodyContents) || ! $decodedBody
         ) {
@@ -155,26 +154,26 @@ class BillwerkRequest
                 $this->getLastRequestInfo()
             );
         }
-        
+
         $this->checkHttpStatus($response, $decodedBody);
-        
+
         return $decodedBody;
     }
-    
+
     /**
      * @throws BillwerkApiException
      */
     public function checkHttpStatus(ResponseInterface $response, array $decodedBody): void
     {
-        $statusCode = $response->getStatusCode();
+        $statusCode             = $response->getStatusCode();
         $this->lastResponseCode = $statusCode;
-        
+
         if ($statusCode === HttpStatusCodeInterface::STATUS_TOO_MANY_REQUESTS) {
             $this->setNeedToRetry(true);
-            
+
             return;
         }
-        
+
         if ($statusCode !== HttpStatusCodeInterface::STATUS_OK) {
             throw new BillwerkApiException(
                 "Invalid http status",
@@ -184,7 +183,7 @@ class BillwerkRequest
             );
         }
     }
-    
+
     /**
      * @return LastRequestInfo
      */
@@ -199,7 +198,7 @@ class BillwerkRequest
             $this->getLastResponseCode()
         );
     }
-    
+
     /**
      * @param bool $needToRetry
      */
@@ -207,12 +206,12 @@ class BillwerkRequest
     {
         $this->needToRetry = $needToRetry;
     }
-    
+
     public function getNeedToRetry(): bool
     {
         return $this->needToRetry;
     }
-    
+
     /**
      * @param int $retryCount
      */
@@ -220,7 +219,7 @@ class BillwerkRequest
     {
         $this->retryCount = $retryCount;
     }
-    
+
     /**
      * @return int
      */
@@ -228,7 +227,7 @@ class BillwerkRequest
     {
         return $this->retryCount;
     }
-    
+
     /**
      * @return int
      */
@@ -236,7 +235,7 @@ class BillwerkRequest
     {
         return $this->maxRetryCount;
     }
-    
+
     /**
      * @return string
      */
@@ -244,7 +243,7 @@ class BillwerkRequest
     {
         return $this->lastHttpMethod;
     }
-    
+
     /**
      * @return array
      */
@@ -252,7 +251,7 @@ class BillwerkRequest
     {
         return $this->lastBody;
     }
-    
+
     /**
      * @return array|null
      */
@@ -260,7 +259,7 @@ class BillwerkRequest
     {
         return $this->lastQueryParams;
     }
-    
+
     /**
      * @return string|null
      */
@@ -268,7 +267,7 @@ class BillwerkRequest
     {
         return $this->lastResponse;
     }
-    
+
     /**
      * @return int|null
      */
@@ -276,7 +275,7 @@ class BillwerkRequest
     {
         return $this->lastResponseCode;
     }
-    
+
     /**
      * @return string
      */
@@ -284,7 +283,7 @@ class BillwerkRequest
     {
         return $this->lastUri;
     }
-    
+
     /**
      * @param string $lastHttpMethod
      */
@@ -292,7 +291,7 @@ class BillwerkRequest
     {
         $this->lastHttpMethod = $lastHttpMethod;
     }
-    
+
     /**
      * @param array $lastBody
      */
@@ -300,7 +299,7 @@ class BillwerkRequest
     {
         $this->lastBody = $lastBody;
     }
-    
+
     /**
      * @param array|null $lastQueryParams
      */
@@ -308,7 +307,7 @@ class BillwerkRequest
     {
         $this->lastQueryParams = $lastQueryParams;
     }
-    
+
     /**
      * @param string|null $lastResponse
      */
@@ -316,7 +315,7 @@ class BillwerkRequest
     {
         $this->lastResponse = $lastResponse;
     }
-    
+
     /**
      * @param int|null $lastResponseCode
      */
@@ -324,7 +323,7 @@ class BillwerkRequest
     {
         $this->lastResponseCode = $lastResponseCode;
     }
-    
+
     /**
      * @param string $lastUri
      */
@@ -332,7 +331,7 @@ class BillwerkRequest
     {
         $this->lastUri = $lastUri;
     }
-    
+
     /**
      * @param Sleep $sleepInstance
      */
@@ -340,7 +339,7 @@ class BillwerkRequest
     {
         $this->sleepInstance = $sleepInstance;
     }
-    
+
     /**
      * @return Sleep
      */

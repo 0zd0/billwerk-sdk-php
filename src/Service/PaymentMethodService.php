@@ -23,9 +23,9 @@ class PaymentMethodService extends AbstractService
     public function get(
         string $id
     ): PaymentMethodModel {
-        $url = $this::buildRoute(UrlPathInterface::PAYMENT_METHOD . "/$id");
+        $url      = $this::buildRoute(UrlPathInterface::PAYMENT_METHOD . "/$id");
         $response = $this->getRequest()->get($url);
-        
+
         return PaymentMethodModel::fromArray($response);
     }
 }

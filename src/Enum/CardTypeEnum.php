@@ -17,7 +17,7 @@ class CardTypeEnum
     public const DINERS    = 'diners';
     public const DISCOVER  = 'discover';
     public const JCB       = 'jcb';
-    
+
     public static function getAll(): array
     {
         return [

@@ -25,7 +25,7 @@ class TransactionErrorEnum
     public const ACQUIRER_AUTHENTICATION_ERROR = 'acquirer_authentication_error';
     public const ACQUIRER_CONFIGURATION_ERROR  = 'acquirer_configuration_error';
     public const ACQUIRER_REJECTED_ERROR       = 'acquirer_rejected_error';
-    
+
     public static function getAll(): array
     {
         return [

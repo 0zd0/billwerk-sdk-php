@@ -10,23 +10,23 @@ use Exception;
 class SepaMandateModelTest extends TestCase
 {
     use StubTrait;
-    
+
     /**
      * @throws Exception
      */
     public function testFromArrayMethodWithRequiredFields()
     {
-        $json = $this::getStubJsonModelWithRequiredFields(SepaMandateModel::getClassName());
+        $json  = $this::getStubJsonModelWithRequiredFields(SepaMandateModel::getClassName());
         $model = SepaMandateModel::fromArray($json);
         $this::assertSame(null, $model->getIban());
     }
-    
+
     /**
      * @throws Exception
      */
     public function testFromArrayMethodWithAllFields()
     {
-        $json = $this::getStubJsonModelWithAllFields(SepaMandateModel::getClassName());
+        $json  = $this::getStubJsonModelWithAllFields(SepaMandateModel::getClassName());
         $model = SepaMandateModel::fromArray($json);
         $this::assertSame('string', $model->getIban());
     }

@@ -7,7 +7,7 @@ class StrongAuthenticationStatusEnum
     public const THREED_SECURE              = 'threed_secure';
     public const THREED_SECURE_NOT_ENROLLED = 'threed_secure_not_enrolled';
     public const SECURED_BY_NETS            = 'secured_by_nets';
-    
+
     public static function getAll(): array
     {
         return [

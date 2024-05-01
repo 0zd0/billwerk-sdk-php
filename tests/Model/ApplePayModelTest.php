@@ -15,7 +15,7 @@ use Exception;
 class ApplePayModelTest extends TestCase
 {
     use StubTrait;
-    
+
     /**
      * @throws Exception
      */
@@ -28,7 +28,7 @@ class ApplePayModelTest extends TestCase
         $this::assertSame(CardTypeEnum::VISA_DK, $model->getCardType());
         $this::assertSame('2b18c5d1f4dc640d9ff91bfbb2cbcce0', $model->getCardAgreement());
     }
-    
+
     /**
      * @throws Exception
      */

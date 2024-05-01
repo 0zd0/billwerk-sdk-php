@@ -18,13 +18,13 @@ use Exception;
 class PaymentMethodModelTest extends TestCase
 {
     use StubTrait;
-    
+
     /**
      * @throws Exception
      */
     public function testFromArrayMethodWithRequiredFields()
     {
-        $json = $this::getStubJsonModelWithRequiredFields(PaymentMethodModel::getClassName());
+        $json  = $this::getStubJsonModelWithRequiredFields(PaymentMethodModel::getClassName());
         $model = PaymentMethodModel::fromArray($json);
         $this::assertSame('ca_fcfac2016614418f969fa5697383e47c', $model->getId());
         $this::assertSame(StatePaymentMethodEnum::ACTIVE, $model->getState());
@@ -32,13 +32,13 @@ class PaymentMethodModelTest extends TestCase
         $this::assertEquals(new DateTime('2015-04-04T12:40:56.656Z'), $model->getCreated());
         $this::assertSame(PaymentTypeEnum::CARD, $model->getPaymentType());
     }
-    
+
     /**
      * @throws Exception
      */
     public function testFromArrayMethodWithAllFields()
     {
-        $json = $this::getStubJsonModelWithAllFields(PaymentMethodModel::getClassName());
+        $json  = $this::getStubJsonModelWithAllFields(PaymentMethodModel::getClassName());
         $model = PaymentMethodModel::fromArray($json);
         $this::assertSame('ca_fcfac2016614418f969fa5697383e47c', $model->getId());
         $this::assertSame(StatePaymentMethodEnum::ACTIVE, $model->getState());

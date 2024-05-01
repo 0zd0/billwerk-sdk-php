@@ -11,7 +11,7 @@ use Exception;
 class ErrorModelTest extends TestCase
 {
     use StubTrait;
-    
+
     /**
      * @throws Exception
      */
@@ -27,7 +27,7 @@ class ErrorModelTest extends TestCase
         $this::assertSame('Not Found', $model->getHttpReason());
         $this::assertSame('f1988fc2374b4a26a51ebd876b478428', $model->getRequestId());
     }
-    
+
     /**
      * @throws Exception
      */

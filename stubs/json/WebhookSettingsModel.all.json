@@ -1,0 +1,14 @@
+{
+  "urls": [
+    "string"
+  ],
+  "username": "myuser",
+  "password": "mypassword",
+  "disabled": false,
+  "secret": "webhook_secret_dafba2016614418f969fa5697383e47c",
+  "alert_emails": [
+    "string"
+  ],
+  "alert_count": 0,
+  "event_types": "invoice_settled"
+}
