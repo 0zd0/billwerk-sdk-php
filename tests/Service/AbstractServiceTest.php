@@ -2,6 +2,9 @@
 
 namespace Billwerk\Sdk\Test\Service;
 
+use Billwerk\Sdk\Billwerk;
+use Billwerk\Sdk\Helper\UrlPathInterface;
+use Billwerk\Sdk\Service\AbstractService;
 use Billwerk\Sdk\Service\AccountService;
 use Billwerk\Sdk\Service\PaymentMethodService;
 use Billwerk\Sdk\Test\StubTrait;

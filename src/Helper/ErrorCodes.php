@@ -4,7 +4,7 @@ namespace Billwerk\Sdk\Helper;
 
 class ErrorCodes
 {
-    public const ERROR_CODES = array(
+    public const ALL = array(
         'Ok'                                                                => 0,
         'Invalid request'                                                   => 1,
         'Internal error'                                                    => 2,
