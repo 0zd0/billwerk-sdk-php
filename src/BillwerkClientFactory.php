@@ -4,18 +4,22 @@ namespace Billwerk\Sdk;
 
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 
 class BillwerkClientFactory
 {
     private ClientInterface $client;
     private RequestFactoryInterface $requestFactory;
+    private StreamFactoryInterface $streamFactory;
 
     public function __construct(
         ClientInterface $client,
-        RequestFactoryInterface $requestFactory
+        RequestFactoryInterface $requestFactory,
+        StreamFactoryInterface $streamFactory
     ) {
         $this->client         = $client;
         $this->requestFactory = $requestFactory;
+        $this->streamFactory  = $streamFactory;
     }
 
     /**
@@ -32,5 +36,13 @@ class BillwerkClientFactory
     public function getRequestFactory(): RequestFactoryInterface
     {
         return $this->requestFactory;
+    }
+
+    /**
+     * @return StreamFactoryInterface
+     */
+    public function getStreamFactory(): StreamFactoryInterface
+    {
+        return $this->streamFactory;
     }
 }

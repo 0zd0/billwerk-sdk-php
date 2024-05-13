@@ -26,6 +26,8 @@ class ErrorModel extends AbstractModel
 
     /**
      * @param int $code
+     *
+     * @return ErrorModel
      */
     public function setCode(int $code): self
     {
@@ -36,6 +38,8 @@ class ErrorModel extends AbstractModel
 
     /**
      * @param string $error
+     *
+     * @return ErrorModel
      */
     public function setError(string $error): self
     {
@@ -46,6 +50,8 @@ class ErrorModel extends AbstractModel
 
     /**
      * @param string $httpReason
+     *
+     * @return ErrorModel
      */
     public function setHttpReason(string $httpReason): self
     {
@@ -56,6 +62,8 @@ class ErrorModel extends AbstractModel
 
     /**
      * @param int $httpStatus
+     *
+     * @return ErrorModel
      */
     public function setHttpStatus(int $httpStatus): self
     {
@@ -66,6 +74,8 @@ class ErrorModel extends AbstractModel
 
     /**
      * @param string|null $message
+     *
+     * @return ErrorModel
      */
     public function setMessage(?string $message): self
     {
@@ -76,6 +86,8 @@ class ErrorModel extends AbstractModel
 
     /**
      * @param string $path
+     *
+     * @return ErrorModel
      */
     public function setPath(string $path): self
     {
@@ -86,6 +98,8 @@ class ErrorModel extends AbstractModel
 
     /**
      * @param string $requestId
+     *
+     * @return ErrorModel
      */
     public function setRequestId(string $requestId): self
     {
@@ -96,6 +110,8 @@ class ErrorModel extends AbstractModel
 
     /**
      * @param string $timestamp
+     *
+     * @return ErrorModel
      */
     public function setTimestamp(string $timestamp): self
     {

@@ -1,0 +1,8 @@
+{
+  "amount": 20000,
+  "text": "Some compensation",
+  "quantity": 1,
+  "vat": 0.25,
+  "order_line_id": "62",
+  "amount_incl_vat": true
+}

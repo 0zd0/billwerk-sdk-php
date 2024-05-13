@@ -2,7 +2,6 @@
 
 namespace Billwerk\Sdk\Model;
 
-use Billwerk\Sdk\Enum\PaymentTypeEnum;
 use Billwerk\Sdk\Enum\StatePaymentMethodEnum;
 use DateTime;
 use Exception;
@@ -12,16 +11,16 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     protected string $id;
     protected string $state;
     protected string $customer;
-    protected ?string $reference;
-    protected ?DateTime $failed;
+    protected ?string $reference = null;
+    protected ?DateTime $failed = null;
     protected DateTime $created;
-    protected ?CardModel $card;
-    protected ?ApplePayModel $applePay;
-    protected ?string $paymentType;
-    protected ?MpsSubscriptionModel $mpsSubscription;
-    protected ?array $vippsRecurringMandate;
-    protected ?SepaMandateModel $sepaMandate;
-    protected ?OfflineMandateModel $offlineMandate;
+    protected ?CardModel $card = null;
+    protected ?ApplePayModel $applePay = null;
+    protected ?string $paymentType = null;
+    protected ?MpsSubscriptionModel $mpsSubscription = null;
+    protected ?array $vippsRecurringMandate = null;
+    protected ?SepaMandateModel $sepaMandate = null;
+    protected ?OfflineMandateModel $offlineMandate = null;
 
     /**
      * @return ApplePayModel|null
@@ -121,6 +120,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param ApplePayModel|null $applePay
+     *
+     * @return PaymentMethodModel
      */
     public function setApplePay(?ApplePayModel $applePay): self
     {
@@ -131,6 +132,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param CardModel|null $card
+     *
+     * @return PaymentMethodModel
      */
     public function setCard(?CardModel $card): self
     {
@@ -141,6 +144,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param DateTime $created
+     *
+     * @return PaymentMethodModel
      */
     public function setCreated(DateTime $created): self
     {
@@ -151,6 +156,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $customer
+     *
+     * @return PaymentMethodModel
      */
     public function setCustomer(string $customer): self
     {
@@ -161,6 +168,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param DateTime|null $failed
+     *
+     * @return PaymentMethodModel
      */
     public function setFailed(?DateTime $failed): self
     {
@@ -171,6 +180,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $id
+     *
+     * @return PaymentMethodModel
      */
     public function setId(string $id): self
     {
@@ -181,6 +192,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param MpsSubscriptionModel|null $mpsSubscription
+     *
+     * @return PaymentMethodModel
      */
     public function setMpsSubscription(?MpsSubscriptionModel $mpsSubscription): self
     {
@@ -191,6 +204,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param OfflineMandateModel|null $offlineMandate
+     *
+     * @return PaymentMethodModel
      */
     public function setOfflineMandate(?OfflineMandateModel $offlineMandate): self
     {
@@ -201,6 +216,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $paymentType
+     *
+     * @return PaymentMethodModel
      */
     public function setPaymentType(?string $paymentType): self
     {
@@ -211,6 +228,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $reference
+     *
+     * @return PaymentMethodModel
      */
     public function setReference(?string $reference): self
     {
@@ -221,6 +240,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param SepaMandateModel|null $sepaMandate
+     *
+     * @return PaymentMethodModel
      */
     public function setSepaMandate(?SepaMandateModel $sepaMandate): self
     {
@@ -231,6 +252,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $state
+     *
+     * @return PaymentMethodModel
      */
     public function setState(string $state): self
     {
@@ -241,6 +264,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param array|null $vippsRecurringMandate
+     *
+     * @return PaymentMethodModel
      */
     public function setVippsRecurringMandate(?array $vippsRecurringMandate): self
     {

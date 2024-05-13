@@ -1,0 +1,16 @@
+{
+  "id": "aafba2016614418f969fa5697383e47c",
+  "state": "refunded",
+  "invoice": "order-0000213",
+  "amount": 10000,
+  "currency": "DKK",
+  "transaction": "dafba2016614418f969fa5697383e47c",
+  "error": "credit_card_expired",
+  "type": "card",
+  "created": "2015-04-04T12:40:56.656Z",
+  "credit_note_id": "a9cf80b4aec2d7bc12f85612f7a0f184",
+  "ref_transaction": "a7a7195c54f644369922d0dfe794dd0c",
+  "error_state": "hard_declined",
+  "acquirer_message": "Card expired",
+  "accounting_number": "2023/00005"
+}

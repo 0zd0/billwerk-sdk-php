@@ -16,6 +16,8 @@ class OfflineMandateModel extends AbstractModel
 
     /**
      * @param string $offlineAgreementHandle
+     *
+     * @return OfflineMandateModel
      */
     public function setOfflineAgreementHandle(string $offlineAgreementHandle): self
     {

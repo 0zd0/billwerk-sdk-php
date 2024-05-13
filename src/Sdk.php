@@ -4,6 +4,7 @@ namespace Billwerk\Sdk;
 
 use Billwerk\Sdk\Service\AccountService;
 use Billwerk\Sdk\Service\PaymentMethodService;
+use Billwerk\Sdk\Service\RefundService;
 
 final class Sdk
 {
@@ -37,7 +38,8 @@ final class Sdk
         return new BillwerkRequest(
             $this->getApiKey(),
             $this->getClientFactory()->getClient(),
-            $this->getClientFactory()->getRequestFactory()
+            $this->getClientFactory()->getRequestFactory(),
+            $this->getClientFactory()->getStreamFactory(),
         );
     }
 
@@ -47,6 +49,7 @@ final class Sdk
             $this->getApiKey(),
             $this->getClientFactory()->getClient(),
             $this->getClientFactory()->getRequestFactory(),
+            $this->getClientFactory()->getStreamFactory(),
             Billwerk::CHECKOUT_BASE
         );
     }
@@ -63,5 +66,12 @@ final class Sdk
         $request = $this->getRequestWithApiUrl();
 
         return new AccountService($request);
+    }
+
+    public function refund(): RefundService
+    {
+        $request = $this->getRequestWithApiUrl();
+
+        return new RefundService($request);
     }
 }

@@ -10,6 +10,7 @@ use Billwerk\Sdk\Exception\BillwerkRequestException;
 use Billwerk\Sdk\Helper\HttpStatusCodeInterface;
 use Billwerk\Sdk\Model\ErrorModel;
 use Billwerk\Sdk\Util\Sleep;
+use Exception;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
@@ -21,7 +22,7 @@ final class BillwerkRequestTest extends TestCase
 {
     use StubTrait;
 
-    const STUB_ROUTE = '/v1/sss';
+    protected const STUB_ROUTE = '/v1/sss';
 
     protected BillwerkRequest $requester;
 
@@ -29,7 +30,12 @@ final class BillwerkRequestTest extends TestCase
     {
         parent::setUp();
 
-        $this->requester    = new BillwerkRequest($this->apiKey, $this->clientMock, $this->requestFactoryMock);
+        $this->requester    = new BillwerkRequest(
+            $this->apiKey,
+            $this->clientMock,
+            $this->requestFactoryMock,
+            $this->streamFactoryMock
+        );
         $this->requestMock  = $this->createMock(RequestInterface::class);
         $this->responseMock = $this->createMock(ResponseInterface::class);
         $this->streamMock   = $this->createMock(StreamInterface::class);
@@ -83,6 +89,7 @@ final class BillwerkRequestTest extends TestCase
 
     /**
      * @return array
+     * @throws Exception
      */
     public function testGetTooManyRequests(): array
     {
@@ -151,6 +158,11 @@ final class BillwerkRequestTest extends TestCase
         );
     }
 
+    /**
+     * @throws BillwerkApiException
+     * @throws BillwerkRequestException
+     * @throws BillwerkClientException
+     */
     public function testGetConnectionExceptions()
     {
         $errorMessage = 'Connection error';
@@ -166,6 +178,11 @@ final class BillwerkRequestTest extends TestCase
         );
     }
 
+    /**
+     * @throws BillwerkNetworkException
+     * @throws BillwerkApiException
+     * @throws BillwerkClientException
+     */
     public function testGetRequestExceptions()
     {
         $errorMessage = 'Request error';
@@ -181,6 +198,11 @@ final class BillwerkRequestTest extends TestCase
         );
     }
 
+    /**
+     * @throws BillwerkNetworkException
+     * @throws BillwerkRequestException
+     * @throws BillwerkApiException
+     */
     public function testGetClientExceptions()
     {
         $errorMessage = 'Client error';

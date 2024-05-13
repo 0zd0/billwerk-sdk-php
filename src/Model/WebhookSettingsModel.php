@@ -84,6 +84,8 @@ class WebhookSettingsModel extends AbstractModel
 
     /**
      * @param int|null $alertCount
+     *
+     * @return WebhookSettingsModel
      */
     public function setAlertCount(?int $alertCount): self
     {
@@ -94,6 +96,8 @@ class WebhookSettingsModel extends AbstractModel
 
     /**
      * @param array|null $alertEmails
+     *
+     * @return WebhookSettingsModel
      */
     public function setAlertEmails(?array $alertEmails): self
     {
@@ -104,6 +108,8 @@ class WebhookSettingsModel extends AbstractModel
 
     /**
      * @param bool $disabled
+     *
+     * @return WebhookSettingsModel
      */
     public function setDisabled(bool $disabled): self
     {
@@ -124,6 +130,8 @@ class WebhookSettingsModel extends AbstractModel
 
     /**
      * @param string|null $password
+     *
+     * @return WebhookSettingsModel
      */
     public function setPassword(?string $password): self
     {
@@ -134,6 +142,8 @@ class WebhookSettingsModel extends AbstractModel
 
     /**
      * @param string $secret
+     *
+     * @return WebhookSettingsModel
      */
     public function setSecret(string $secret): self
     {
@@ -144,6 +154,8 @@ class WebhookSettingsModel extends AbstractModel
 
     /**
      * @param array $urls
+     *
+     * @return WebhookSettingsModel
      */
     public function setUrls(array $urls): self
     {
@@ -154,6 +166,8 @@ class WebhookSettingsModel extends AbstractModel
 
     /**
      * @param string|null $username
+     *
+     * @return WebhookSettingsModel
      */
     public function setUsername(?string $username): self
     {

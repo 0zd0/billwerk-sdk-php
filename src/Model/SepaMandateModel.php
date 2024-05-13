@@ -16,6 +16,8 @@ class SepaMandateModel extends AbstractModel
 
     /**
      * @param string|null $iban
+     *
+     * @return SepaMandateModel
      */
     public function setIban(?string $iban): self
     {

@@ -16,6 +16,8 @@ use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Http\Client\RequestExceptionInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\StreamInterface;
 
 class BillwerkRequest
 {
@@ -34,6 +36,7 @@ class BillwerkRequest
     private string $baseUrl;
     private ClientInterface $client;
     private RequestFactoryInterface $requestFactory;
+    private StreamFactoryInterface $streamFactory;
     private Sleep $sleepInstance;
 
     private string $lastHttpMethod;
@@ -47,12 +50,14 @@ class BillwerkRequest
         string $apiKey,
         ClientInterface $client,
         RequestFactoryInterface $requestFactory,
+        StreamFactoryInterface $streamFactory,
         ?string $baseUrl = Billwerk::API_BASE
     ) {
         $this->apiKey         = $apiKey;
         $this->client         = $client;
         $this->baseUrl        = $baseUrl;
         $this->requestFactory = $requestFactory;
+        $this->streamFactory  = $streamFactory;
         $this->sleepInstance  = new Sleep();
     }
 
@@ -86,20 +91,57 @@ class BillwerkRequest
         array $headers = [],
         int $delayBetweenRetry = 1
     ): array {
+        return $this->sendRequest(self::GET_REQUEST, $route, $queryParams, [], $headers, $delayBetweenRetry);
+    }
+
+    /**
+     * @throws BillwerkRequestException
+     * @throws BillwerkApiException
+     * @throws BillwerkNetworkException
+     * @throws BillwerkClientException
+     */
+    public function post(
+        string $route,
+        array $body = [],
+        array $headers = [],
+        int $delayBetweenRetry = 1
+    ): array {
+        return $this->sendRequest(self::POST_REQUEST, $route, [], $body, $headers, $delayBetweenRetry);
+    }
+
+    /**
+     * @throws BillwerkNetworkException
+     * @throws BillwerkRequestException
+     * @throws BillwerkClientException
+     * @throws BillwerkApiException
+     */
+    public function sendRequest(
+        string $method,
+        string $route,
+        array $queryParams = [],
+        array $body = [],
+        array $headers = [],
+        int $delayBetweenRetry = 1
+    ): array {
         $this->setNeedToRetry(false);
         $headers     = array_merge($headers, self::getDefaultHeaders($this->apiKey));
         $queryString = ! empty($queryParams) ? '?' . http_build_query($queryParams) : '';
         $uri         = Billwerk::PROTOCOL . $this->baseUrl . $route . $queryString;
 
-        $request = $this->requestFactory->createRequest(self::GET_REQUEST, $uri);
+        $request = $this->requestFactory->createRequest($method, $uri);
         foreach ($headers as $header => $value) {
             $request->withAddedHeader($header, $value);
         }
 
-        $this->setLastHttpMethod(self::GET_REQUEST);
+        $this->setLastHttpMethod($method);
         $this->setLastUri($uri);
-        $this->setLastBody([]);
+        $this->setLastBody($body);
         $this->setLastQueryParams($queryParams);
+
+        if ($method === self::POST_REQUEST) {
+            $bodyStream = $this->streamFactory->createStream(json_encode($body));
+            $request->withBody($bodyStream);
+        }
 
         try {
             $response = $this->client->sendRequest($request);
@@ -118,7 +160,7 @@ class BillwerkRequest
                 $this->setRetryCount($this->getRetryCount() + 1);
                 $this->getSleepInstance()::start($delayBetweenRetry);
 
-                return $this->get($route, $queryParams, $headers, $delayBetweenRetry * 2);
+                return $this->sendRequest($method, $route, $queryParams, $body, $headers, $delayBetweenRetry * 2);
             } else {
                 $retryCount = $this->getRetryCount();
                 $this->setRetryCount(0);

@@ -8,4 +8,5 @@ interface UrlPathInterface
     public const PAYMENT_METHOD   = 'payment_method';
     public const ACCOUNT          = 'account';
     public const WEBHOOK_SETTINGS = 'webhook_settings';
+    public const REFUND = 'refund';
 }

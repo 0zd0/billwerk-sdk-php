@@ -11,24 +11,24 @@ class AccountModel extends AbstractModel implements HasIdInterface
     protected string $handle;
     protected string $currency;
     protected string $name;
-    protected ?string $address;
-    protected ?string $address2;
-    protected ?string $city;
+    protected ?string $address                   = null;
+    protected ?string $address2                  = null;
+    protected ?string $city                      = null;
     protected string $locale;
     protected string $timezone;
     protected string $country;
-    protected ?string $email;
-    protected ?string $phone;
-    protected ?string $vat;
-    protected ?string $website;
-    protected ?string $logo;
+    protected ?string $email                     = null;
+    protected ?string $phone                     = null;
+    protected ?string $vat                       = null;
+    protected ?string $website                   = null;
+    protected ?string $logo                      = null;
     protected string $id;
     protected string $organisation;
     protected DateTime $created;
     protected string $state;
-    protected ?string $postalCode;
+    protected ?string $postalCode                = null;
     protected float $defaultVat;
-    protected ?string $subscriptionInvoicePrefix;
+    protected ?string $subscriptionInvoicePrefix = null;
 
     /**
      * @return string
@@ -208,6 +208,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $id
+     *
+     * @return AccountModel
      */
     public function setId(string $id): self
     {
@@ -218,6 +220,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param DateTime $created
+     *
+     * @return AccountModel
      */
     public function setCreated(DateTime $created): self
     {
@@ -228,6 +232,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $address
+     *
+     * @return AccountModel
      */
     public function setAddress(?string $address): self
     {
@@ -238,6 +244,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $address2
+     *
+     * @return AccountModel
      */
     public function setAddress2(?string $address2): self
     {
@@ -248,6 +256,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $city
+     *
+     * @return AccountModel
      */
     public function setCity(?string $city): self
     {
@@ -258,6 +268,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $country
+     *
+     * @return AccountModel
      */
     public function setCountry(string $country): self
     {
@@ -268,6 +280,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $currency
+     *
+     * @return AccountModel
      */
     public function setCurrency(string $currency): self
     {
@@ -278,6 +292,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param float $defaultVat
+     *
+     * @return AccountModel
      */
     public function setDefaultVat(float $defaultVat): self
     {
@@ -288,6 +304,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $email
+     *
+     * @return AccountModel
      */
     public function setEmail(?string $email): self
     {
@@ -298,6 +316,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $handle
+     *
+     * @return AccountModel
      */
     public function setHandle(string $handle): self
     {
@@ -308,6 +328,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $locale
+     *
+     * @return AccountModel
      */
     public function setLocale(string $locale): self
     {
@@ -318,6 +340,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $logo
+     *
+     * @return AccountModel
      */
     public function setLogo(?string $logo): self
     {
@@ -328,6 +352,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $name
+     *
+     * @return AccountModel
      */
     public function setName(string $name): self
     {
@@ -338,6 +364,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $organisation
+     *
+     * @return AccountModel
      */
     public function setOrganisation(string $organisation): self
     {
@@ -348,6 +376,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $phone
+     *
+     * @return AccountModel
      */
     public function setPhone(?string $phone): self
     {
@@ -358,6 +388,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $postalCode
+     *
+     * @return AccountModel
      */
     public function setPostalCode(?string $postalCode): self
     {
@@ -368,6 +400,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $subscriptionInvoicePrefix
+     *
+     * @return AccountModel
      */
     public function setSubscriptionInvoicePrefix(?string $subscriptionInvoicePrefix): self
     {
@@ -378,6 +412,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string $timezone
+     *
+     * @return AccountModel
      */
     public function setTimezone(string $timezone): self
     {
@@ -388,6 +424,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $vat
+     *
+     * @return AccountModel
      */
     public function setVat(?string $vat): self
     {
@@ -398,6 +436,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
 
     /**
      * @param string|null $website
+     *
+     * @return AccountModel
      */
     public function setWebsite(?string $website): self
     {

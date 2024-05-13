@@ -4,7 +4,7 @@ namespace Billwerk\Sdk\Model;
 
 class MpsSubscriptionModel extends AbstractModel
 {
-    protected ?string $externalId;
+    protected ?string $externalId = null;
 
     /**
      * @return string|null
@@ -16,6 +16,8 @@ class MpsSubscriptionModel extends AbstractModel
 
     /**
      * @param string|null $externalId
+     *
+     * @return MpsSubscriptionModel
      */
     public function setExternalId(?string $externalId): self
     {
