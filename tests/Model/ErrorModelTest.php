@@ -21,11 +21,13 @@ class ErrorModelTest extends TestCase
         $model = ErrorModel::fromArray($json);
         $this::assertSame(12, $model->getCode());
         $this::assertSame('Subscription not found', $model->getError());
+        $this::assertSame(null, $model->getMessage());
         $this::assertSame('/v1/subscription/sub0019', $model->getPath());
         $this::assertSame('2024-04-28T13:28:06.440Z', $model->getTimestamp());
         $this::assertSame(404, $model->getHttpStatus());
         $this::assertSame('Not Found', $model->getHttpReason());
         $this::assertSame('f1988fc2374b4a26a51ebd876b478428', $model->getRequestId());
+        $this::assertSame(null, $model->getTransactionError());
     }
 
     /**

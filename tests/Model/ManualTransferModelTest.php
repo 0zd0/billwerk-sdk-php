@@ -20,6 +20,8 @@ class ManualTransferModelTest extends TestCase
     {
         $json  = $this::getStubJsonModelWithRequiredFields(ManualTransferModel::getClassName());
         $model = ManualTransferModel::fromArray($json);
+        $this::assertSame(null, $model->getReference());
+        $this::assertSame(null, $model->getComment());
         $this::assertSame(ManualTransferMethodEnum::CHARGEBACK, $model->getMethod());
         $this::assertEquals(new DateTime('2016-07-10'), $model->getPaymentDate());
     }

@@ -7,24 +7,24 @@ use DateTime;
 abstract class AbstractCard extends AbstractModel
 {
     protected string $gateway;
-    protected ?string $fingerprint                = null;
-    protected ?DateTime $reactivated                = null;
+    protected ?string $fingerprint = null;
+    protected ?DateTime $reactivated = null;
     protected string $gwRef;
     protected string $cardType;
-    protected ?string $transactionCardType        = null;
+    protected ?string $transactionCardType = null;
     protected string $cardAgreement;
-    protected ?string $expDate                    = null;
-    protected ?string $maskedCard                 = null;
-    protected ?DateTime $lastSuccess                = null;
-    protected ?DateTime $lastFailed                 = null;
-    protected ?DateTime $firstFail                  = null;
-    protected ?string $errorCode                  = null;
-    protected ?string $errorState                 = null;
-    protected ?int $declinedCount              = null;
+    protected ?string $expDate = null;
+    protected ?string $maskedCard = null;
+    protected ?DateTime $lastSuccess = null;
+    protected ?DateTime $lastFailed = null;
+    protected ?DateTime $firstFail = null;
+    protected ?string $errorCode = null;
+    protected ?string $errorState = null;
+    protected ?int $declinedCount = null;
     protected ?string $strongAuthenticationStatus = null;
-    protected ?string $threeDSecureStatus         = null;
-    protected ?string $riskRule                   = null;
-    protected ?string $cardCountry                = null;
+    protected ?string $threeDSecureStatus = null;
+    protected ?string $riskRule = null;
+    protected ?string $cardCountry = null;
 
     /**
      * @return string
@@ -171,15 +171,17 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTransactionCardType(): string
+    public function getTransactionCardType(): ?string
     {
         return $this->transactionCardType;
     }
 
     /**
      * @param string|null $fingerprint
+     *
+     * @return AbstractCard
      */
     public function setFingerprint(?string $fingerprint): self
     {
@@ -190,6 +192,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string $cardAgreement
+     *
+     * @return AbstractCard
      */
     public function setCardAgreement(string $cardAgreement): self
     {
@@ -200,6 +204,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string|null $cardCountry
+     *
+     * @return AbstractCard
      */
     public function setCardCountry(?string $cardCountry): self
     {
@@ -210,6 +216,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string $cardType
+     *
+     * @return AbstractCard
      */
     public function setCardType(string $cardType): self
     {
@@ -220,6 +228,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param int|null $declinedCount
+     *
+     * @return AbstractCard
      */
     public function setDeclinedCount(?int $declinedCount): self
     {
@@ -230,6 +240,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string|null $errorCode
+     *
+     * @return AbstractCard
      */
     public function setErrorCode(?string $errorCode): self
     {
@@ -240,6 +252,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string|null $errorState
+     *
+     * @return AbstractCard
      */
     public function setErrorState(?string $errorState): self
     {
@@ -250,6 +264,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string|null $expDate
+     *
+     * @return AbstractCard
      */
     public function setExpDate(?string $expDate): self
     {
@@ -260,6 +276,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param DateTime|null $firstFail
+     *
+     * @return AbstractCard
      */
     public function setFirstFail(?DateTime $firstFail): self
     {
@@ -270,6 +288,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string $gateway
+     *
+     * @return AbstractCard
      */
     public function setGateway(string $gateway): self
     {
@@ -280,6 +300,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string $gwRef
+     *
+     * @return AbstractCard
      */
     public function setGwRef(string $gwRef): self
     {
@@ -290,6 +312,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param DateTime|null $lastFailed
+     *
+     * @return AbstractCard
      */
     public function setLastFailed(?DateTime $lastFailed): self
     {
@@ -300,6 +324,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param DateTime|null $lastSuccess
+     *
+     * @return AbstractCard
      */
     public function setLastSuccess(?DateTime $lastSuccess): self
     {
@@ -310,6 +336,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string|null $maskedCard
+     *
+     * @return AbstractCard
      */
     public function setMaskedCard(?string $maskedCard): self
     {
@@ -320,6 +348,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param DateTime|null $reactivated
+     *
+     * @return AbstractCard
      */
     public function setReactivated(?DateTime $reactivated): self
     {
@@ -330,6 +360,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string|null $riskRule
+     *
+     * @return AbstractCard
      */
     public function setRiskRule(?string $riskRule): self
     {
@@ -340,6 +372,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string|null $strongAuthenticationStatus
+     *
+     * @return AbstractCard
      */
     public function setStrongAuthenticationStatus(?string $strongAuthenticationStatus): self
     {
@@ -350,6 +384,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string|null $threeDSecureStatus
+     *
+     * @return AbstractCard
      */
     public function setThreeDSecureStatus(?string $threeDSecureStatus): self
     {
@@ -360,6 +396,8 @@ abstract class AbstractCard extends AbstractModel
 
     /**
      * @param string $transactionCardType
+     *
+     * @return AbstractCard
      */
     public function setTransactionCardType(string $transactionCardType): self
     {

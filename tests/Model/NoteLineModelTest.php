@@ -21,6 +21,9 @@ class NoteLineModelTest extends TestCase
         $this::assertSame(20000, $model->getAmount());
         $this::assertSame('Some compensation', $model->getText());
         $this::assertSame(1, $model->getQuantity());
+        $this::assertSame(null, $model->getVat());
+        $this::assertSame(null, $model->getOrderLineId());
+        $this::assertSame(null, $model->getAmountInclVat());
     }
 
     /**

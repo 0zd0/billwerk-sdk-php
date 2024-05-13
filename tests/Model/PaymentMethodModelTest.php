@@ -29,8 +29,16 @@ class PaymentMethodModelTest extends TestCase
         $this::assertSame('ca_fcfac2016614418f969fa5697383e47c', $model->getId());
         $this::assertSame(StatePaymentMethodEnum::ACTIVE, $model->getState());
         $this::assertSame('customer00069', $model->getCustomer());
+        $this::assertSame(null, $model->getReference());
+        $this::assertSame(null, $model->getFailed());
         $this::assertEquals(new DateTime('2015-04-04T12:40:56.656Z'), $model->getCreated());
+        $this::assertSame(null, $model->getCard());
+        $this::assertSame(null, $model->getApplePay());
         $this::assertSame(PaymentTypeEnum::CARD, $model->getPaymentType());
+        $this::assertSame(null, $model->getMpsSubscription());
+        $this::assertSame(null, $model->getVippsRecurringMandate());
+        $this::assertSame(null, $model->getSepaMandate());
+        $this::assertSame(null, $model->getOfflineMandate());
     }
 
     /**

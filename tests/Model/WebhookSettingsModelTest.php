@@ -21,8 +21,13 @@ class WebhookSettingsModelTest extends TestCase
         $model = WebhookSettingsModel::fromArray($json);
 
         $this::assertIsArray($model->getUrls());
+        $this::assertSame(null, $model->getUsername());
+        $this::assertSame(null, $model->getPassword());
         $this::assertSame(false, $model->getDisabled());
         $this::assertSame('webhook_secret_dafba2016614418f969fa5697383e47c', $model->getSecret());
+        $this::assertSame(null, $model->getAlertEmails());
+        $this::assertSame(null, $model->getAlertCount());
+        $this::assertSame(null, $model->getEventTypes());
     }
 
     /**
@@ -44,6 +49,6 @@ class WebhookSettingsModelTest extends TestCase
 
         $json['event_types'] = ['invoice_settled'];
         $model = WebhookSettingsModel::fromArray($json);
-        $this::assertIsArray($model->getAlertEmails());
+        $this::assertIsArray($model->getEventTypes());
     }
 }

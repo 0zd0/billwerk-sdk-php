@@ -203,7 +203,6 @@ class WebhookSettingsModel extends AbstractModel
         if (isset($response['event_types'])) {
             if (
                 is_array($response['event_types'])
-                && in_array(WebhookEventTypeEnum::getAll(), $response['event_types'], true)
                 || is_string($response['event_types'])
             ) {
                 $model->setEventTypes($response['event_types']);

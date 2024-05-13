@@ -6,6 +6,7 @@ use Billwerk\Sdk\Enum\CardTypeEnum;
 use Billwerk\Sdk\Enum\ErrorStateEnum;
 use Billwerk\Sdk\Enum\StrongAuthenticationStatusEnum;
 use Billwerk\Sdk\Enum\ThreeDSecureStatusEnum;
+use Billwerk\Sdk\Enum\TransactionErrorEnum;
 use Billwerk\Sdk\Model\ApplePayModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
@@ -24,9 +25,24 @@ class ApplePayModelTest extends TestCase
         $json  = $this::getStubJsonModelWithRequiredFields(ApplePayModel::getClassName());
         $model = ApplePayModel::fromArray($json);
         $this::assertSame('nets', $model->getGateway());
+        $this::assertSame(null, $model->getFingerprint());
+        $this::assertSame(null, $model->getReactivated());
         $this::assertSame('657e86162633415a9e6b715248c84da4', $model->getGwRef());
         $this::assertSame(CardTypeEnum::VISA_DK, $model->getCardType());
+        $this::assertSame(null, $model->getTransactionCardType());
         $this::assertSame('2b18c5d1f4dc640d9ff91bfbb2cbcce0', $model->getCardAgreement());
+        $this::assertSame(null, $model->getExpDate());
+        $this::assertSame(null, $model->getMaskedCard());
+        $this::assertSame(null, $model->getLastSuccess());
+        $this::assertSame(null, $model->getLastFailed());
+        $this::assertSame(null, $model->getFirstFail());
+        $this::assertSame(null, $model->getErrorCode());
+        $this::assertSame(null, $model->getErrorState());
+        $this::assertSame(null, $model->getDeclinedCount());
+        $this::assertSame(null, $model->getStrongAuthenticationStatus());
+        $this::assertSame(null, $model->getThreeDSecureStatus());
+        $this::assertSame(null, $model->getRiskRule());
+        $this::assertSame(null, $model->getCardCountry());
     }
 
     /**
@@ -48,7 +64,7 @@ class ApplePayModelTest extends TestCase
         $this::assertEquals(new DateTime('2015-05-14T00:00:00Z'), $model->getLastSuccess());
         $this::assertEquals(new DateTime('2015-05-14T00:00:00Z'), $model->getLastFailed());
         $this::assertEquals(new DateTime('2015-05-14T00:00:00Z'), $model->getFirstFail());
-        $this::assertSame('credit_card_expired', $model->getErrorCode());
+        $this::assertSame(TransactionErrorEnum::CREDIT_CARD_EXPIRED, $model->getErrorCode());
         $this::assertSame(ErrorStateEnum::HARD_DECLINED, $model->getErrorState());
         $this::assertSame(2, $model->getDeclinedCount());
         $this::assertSame(StrongAuthenticationStatusEnum::SECURED_BY_NETS, $model->getStrongAuthenticationStatus());

@@ -8,7 +8,7 @@ class ErrorModel extends AbstractModel
 {
     protected int $code;
     protected string $error;
-    protected ?string $message          = null;
+    protected ?string $message = null;
     protected string $path;
     protected string $timestamp;
     protected int $httpStatus;
