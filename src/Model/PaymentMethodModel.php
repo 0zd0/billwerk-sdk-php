@@ -8,18 +8,98 @@ use Exception;
 
 class PaymentMethodModel extends AbstractModel implements HasIdInterface
 {
+    /**
+     * Unique id for payment method
+     *
+     * @var string $id
+     */
     protected string $id;
+
+    /**
+     * State of the payment method: active, inactivated, failed, pending or deleted
+     *
+     * @var string $state
+     */
     protected string $state;
+
+    /**
+     * Customer by handle
+     *
+     * @var string $customer
+     */
     protected string $customer;
+
+    /**
+     * Optional reference provided when creating the payment method. For payment methods created
+     * with Reepay Checkout the reference will correspond to the session id for the Checkout session
+     * that created the payment method
+     *
+     * @var string|null $reference
+     */
     protected ?string $reference = null;
+
+    /**
+     * Date when the payment method failed. In ISO-8601 extended offset date-time format
+     *
+     * @var DateTime|null $failed
+     */
     protected ?DateTime $failed = null;
+
+    /**
+     * Date when the payment method was created. In ISO-8601 extended offset date-time format
+     *
+     * @var DateTime $created
+     */
     protected DateTime $created;
+
+    /**
+     * Card object in case of Apple Pay payment method
+     *
+     * @var CardModel|null $card
+     */
     protected ?CardModel $card = null;
+
+    /**
+     * Card object in case of Apple Pay payment method
+     *
+     * @var ApplePayModel|null $applePay
+     */
     protected ?ApplePayModel $applePay = null;
+
+    /**
+     * Payment type for saved payment method, either: card, emv_token, vipps_recurring, applepay,
+     * mobilepay_subscriptions, sepa, offline_cash, offline_bank_transfer or offline_other
+     *
+     * @var string|null $paymentType
+     */
     protected ?string $paymentType = null;
+
+    /**
+     * MPS subscription object in case of MPS payment method
+     *
+     * @var MpsSubscriptionModel|null $mpsSubscription
+     */
     protected ?MpsSubscriptionModel $mpsSubscription = null;
+
+    /**
+     * Vipps Recurring mandate object in case of Vipps Recurring payment method
+     *
+     * @var array|null $vippsRecurringMandate
+     */
     protected ?array $vippsRecurringMandate = null;
+
+    /**
+     * SEPA mandate object in case of SEPA payment method
+     *
+     * @var SepaMandateModel|null $sepaMandate
+     */
     protected ?SepaMandateModel $sepaMandate = null;
+
+    /**
+     * Offline mandate object in case of Offline payment method
+     *
+     * @var OfflineMandateModel|null $offlineMandate
+     */
     protected ?OfflineMandateModel $offlineMandate = null;
 
     /**

@@ -6,14 +6,59 @@ use Billwerk\Sdk\Enum\WebhookEventTypeEnum;
 
 class WebhookSettingsModel extends AbstractModel
 {
-    protected array $urls;
-    protected ?string $username    = null;
-    protected ?string $password    = null;
-    protected bool $disabled;
-    protected string $secret;
-    protected ?array $alertEmails = null;
-    protected ?int $alertCount  = null;
     /**
+     * Webhook urls
+     *
+     * @var array $urls
+     */
+    protected array $urls;
+
+    /**
+     * Optional HTTP Basic Auth username
+     *
+     * @var string|null $username
+     */
+    protected ?string $username = null;
+
+    /**
+     * Optional HTTP Basic Auth password
+     *
+     * @var string|null $password
+     */
+    protected ?string $password = null;
+
+    /**
+     * Webhook disabled
+     *
+     * @var bool $disabled
+     */
+    protected bool $disabled;
+
+    /**
+     * Webhook secret used for signature
+     *
+     * @var string $secret
+     */
+    protected string $secret;
+
+    /**
+     * Optional list of emails to send alert to if webhook fails
+     *
+     * @var array|null $alertEmails
+     */
+    protected ?array $alertEmails = null;
+
+    /**
+     * Number of requests to perform before alert email is sent, must be greater than or equal to four (1 hour)
+     *
+     * @var int|null $alertCount
+     */
+    protected ?int $alertCount = null;
+
+    /**
+     * List of event types to receive. See https://optimize-docs.billwerk.com/reference/event for valid event types
+     *
+     * @see WebhookEventTypeEnum
      * @var string[]|string|null
      */
     protected $event_types = null;

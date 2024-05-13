@@ -6,28 +6,160 @@ use Billwerk\Sdk\Enum\StateAccountEnum;
 use DateTime;
 use Exception;
 
+/**
+ * Account
+ *
+ * @see https://optimize-docs.billwerk.com/reference/getcurrentaccount
+ *
+ * @package Billwerk\Sdk\Model
+ */
 class AccountModel extends AbstractModel implements HasIdInterface
 {
+    /**
+     * Per organisation unique handle for the account
+     *
+     * @var string $handle
+     */
     protected string $handle;
+
+    /**
+     * Currency for the account in ISO 4217 three letter alpha code
+     *
+     * @var string $currency
+     */
     protected string $currency;
+
+    /**
+     * Account name
+     *
+     * @var string $name
+     */
     protected string $name;
-    protected ?string $address                   = null;
-    protected ?string $address2                  = null;
-    protected ?string $city                      = null;
+
+    /**
+     * Account address
+     *
+     * @var string|null $address
+     */
+    protected ?string $address = null;
+
+    /**
+     * Account address2
+     *
+     * @var string|null $address2
+     */
+    protected ?string $address2 = null;
+
+    /**
+     * Account city
+     *
+     * @var string|null $city
+     */
+    protected ?string $city = null;
+
+    /**
+     * Account locale on the form 'language_country'. E.g. da_DK. Most major locales are supported
+     *
+     * @var string $locale
+     */
     protected string $locale;
+
+    /**
+     * Account time zone ID as abbreviation or full name. E.g 'UTC' or 'Europe/Copenhagen'. See Wikipedia
+     *
+     * @var string $timezone
+     */
     protected string $timezone;
+
+    /**
+     * Account country in ISO 3166-1 alpha-2. E.g. DK
+     *
+     * @var string $country
+     */
     protected string $country;
-    protected ?string $email                     = null;
-    protected ?string $phone                     = null;
-    protected ?string $vat                       = null;
-    protected ?string $website                   = null;
-    protected ?string $logo                      = null;
+
+    /**
+     * Account email
+     *
+     * @var string|null $email
+     */
+    protected ?string $email = null;
+
+    /**
+     * Account phone
+     *
+     * @var string|null $phone
+     */
+    protected ?string $phone = null;
+
+    /**
+     * Account vat number
+     *
+     * @var string|null $vat
+     */
+    protected ?string $vat = null;
+
+    /**
+     * Account website
+     *
+     * @var string|null $website
+     */
+    protected ?string $website = null;
+
+    /**
+     * Account logo url
+     *
+     * @var string|null $logo
+     */
+    protected ?string $logo = null;
+
+    /**
+     * Account id assigned by Reepay
+     *
+     * @var string $id
+     */
     protected string $id;
+
+    /**
+     * Organisation by subdomain
+     *
+     * @var string $organisation
+     */
     protected string $organisation;
+
+    /**
+     * Date when the account was created. In ISO-8601 extended offset date-time format
+     *
+     * @var DateTime $created
+     */
     protected DateTime $created;
+
+    /**
+     * Status of the account one of the following test, live, closed
+     *
+     * @var string $state
+     */
     protected string $state;
-    protected ?string $postalCode                = null;
+
+    /**
+     * Account postal code
+     *
+     * @var string|null $postalCode
+     */
+    protected ?string $postalCode = null;
+
+    /**
+     * Vat to use as default for account
+     *
+     * @var float $defaultVat
+     */
     protected float $defaultVat;
+
+    /**
+     * Subscription invoice prefix
+     *
+     * @var string|null $subscriptionInvoicePrefix
+     */
     protected ?string $subscriptionInvoicePrefix = null;
 
     /**

@@ -5,6 +5,14 @@ namespace Billwerk\Sdk\Model;
 use Billwerk\Sdk\Enum\ManualTransferMethodEnum;
 use DateTime;
 
+/**
+ * Optional manual transfer. If given no refund will be performed on potential online settled
+ * transaction like card transaction
+ *
+ * @see https://optimize-docs.billwerk.com/reference/createrefund
+ *
+ * @package Billwerk\Sdk\Model
+ */
 class ManualTransferModel extends AbstractModel
 {
     /**

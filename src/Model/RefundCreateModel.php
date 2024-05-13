@@ -2,6 +2,13 @@
 
 namespace Billwerk\Sdk\Model;
 
+/**
+ * Create refund
+ *
+ * @see https://optimize-docs.billwerk.com/reference/createrefund
+ *
+ * @package Billwerk\Sdk\Model
+ */
 class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
 {
     /**

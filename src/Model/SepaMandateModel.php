@@ -2,6 +2,13 @@
 
 namespace Billwerk\Sdk\Model;
 
+/**
+ * Sepa mandate in payment method
+ *
+ * @see https://optimize-docs.billwerk.com/reference/getpaymentmethodv2
+ *
+ * @package Billwerk\Sdk\Model
+ */
 class SepaMandateModel extends AbstractModel
 {
     protected ?string $iban = null;

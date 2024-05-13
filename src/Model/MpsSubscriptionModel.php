@@ -2,8 +2,20 @@
 
 namespace Billwerk\Sdk\Model;
 
+/**
+ * MPS subscription in payment method
+ *
+ * @see https://optimize-docs.billwerk.com/reference/getpaymentmethodv2
+ *
+ * @package Billwerk\Sdk\Model
+ */
 class MpsSubscriptionModel extends AbstractModel
 {
+    /**
+     * Optional external id at MobilePay defined when creating the subscription
+     *
+     * @var string|null $externalId
+     */
     protected ?string $externalId = null;
 
     /**

@@ -2,6 +2,13 @@
 
 namespace Billwerk\Sdk\Model;
 
+/**
+ * Refund credit note lines
+ *
+ * @see https://optimize-docs.billwerk.com/reference/createrefund
+ *
+ * @package Billwerk\Sdk\Model
+ */
 class NoteLineModel extends AbstractModel
 {
     /**

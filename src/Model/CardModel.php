@@ -9,6 +9,13 @@ use Billwerk\Sdk\Enum\ThreeDSecureStatusEnum;
 use DateTime;
 use Exception;
 
+/**
+ * Card in payment method
+ *
+ * @see https://optimize-docs.billwerk.com/reference/getpaymentmethodv2
+ *
+ * @package Billwerk\Sdk\Model
+ */
 class CardModel extends AbstractCard
 {
     /**

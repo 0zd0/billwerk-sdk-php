@@ -2,8 +2,20 @@
 
 namespace Billwerk\Sdk\Model;
 
+/**
+ * Offline mandate in payment method
+ *
+ * @see https://optimize-docs.billwerk.com/reference/getpaymentmethodv2
+ *
+ * @package Billwerk\Sdk\Model
+ */
 class OfflineMandateModel extends AbstractModel
 {
+    /**
+     * Offline agreement handle
+     *
+     * @var string $offlineAgreementHandle
+     */
     protected string $offlineAgreementHandle;
 
     /**

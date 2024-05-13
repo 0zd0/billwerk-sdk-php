@@ -8,6 +8,13 @@ use Billwerk\Sdk\Enum\RefundTypeEnum;
 use DateTime;
 use Exception;
 
+/**
+ * Refund
+ *
+ * @see https://optimize-docs.billwerk.com/reference/createrefund
+ *
+ * @package Billwerk\Sdk\Model
+ */
 class RefundModel extends AbstractModel implements HasIdInterface
 {
     /**

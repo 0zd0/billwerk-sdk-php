@@ -4,16 +4,76 @@ namespace Billwerk\Sdk\Model;
 
 use Billwerk\Sdk\Enum\TransactionErrorEnum;
 
+/**
+ * Error Billwerk
+ *
+ * @see https://optimize-docs.billwerk.com/reference/getpaymentmethodv2
+ *
+ * @package Billwerk\Sdk\Model
+ */
 class ErrorModel extends AbstractModel
 {
+    /**
+     * Reepay API error codes
+     *
+     * @var int $code
+     */
     protected int $code;
+
+    /**
+     * Short error message
+     *
+     * @var string $error
+     */
     protected string $error;
+
+    /**
+     * Optional clarifying error message
+     *
+     * @var string|null $message
+     */
     protected ?string $message = null;
+
+    /**
+     * The path generating the error response
+     *
+     * @var string $path
+     */
     protected string $path;
+
+    /**
+     * Timestamp for the error response in ISO-8601 extended offset date-time format
+     *
+     * @var string $timestamp
+     */
     protected string $timestamp;
+
+    /**
+     * HTTP status code of the error
+     *
+     * @var int $httpStatus
+     */
     protected int $httpStatus;
+
+    /**
+     * HTTP reason of the error
+     *
+     * @var string $httpReason
+     */
     protected string $httpReason;
+
+    /**
+     * Request-Id for the failed request
+     *
+     * @var string $requestId
+     */
     protected string $requestId;
+
+    /**
+     * Optional transaction error in the case the request involved a transaction processing. See transaction errors
+     *
+     * @var string|null $transactionError
+     */
     protected ?string $transactionError = null;
 
     /**

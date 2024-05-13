@@ -4,26 +4,155 @@ namespace Billwerk\Sdk\Model;
 
 use DateTime;
 
+/**
+ * Card in payment method
+ *
+ * @see https://optimize-docs.billwerk.com/reference/getpaymentmethodv2
+ *
+ * @package Billwerk\Sdk\Model
+ */
 abstract class AbstractCard extends AbstractModel
 {
+    /**
+     * Card gateway tied to card
+     *
+     * @var string $gateway
+     */
     protected string $gateway;
+
+    /**
+     * Uniquely identifies this particular card number
+     *
+     * @var string|null $fingerprint
+     */
     protected ?string $fingerprint = null;
+
+    /**
+     * Date and time of reactivation if the card has been reactivated from failed state. In ISO-8601 extended
+     * offset date-time format
+     *
+     * @var DateTime|null $reactivated
+     */
     protected ?DateTime $reactivated = null;
+
+    /**
+     * Card gateway reference id
+     *
+     * @var string $gwRef
+     */
     protected string $gwRef;
+
+    /**
+     * Card type: unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @var string $cardType
+     */
     protected string $cardType;
+
+    /**
+     * Card type used in authentication and the card type used for subsequent MIT transactions. Will differ from
+     * card_type if co-branded card. unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex,
+     * diners, discover or jcb
+     *
+     * @var string|null $transactionCardType
+     */
     protected ?string $transactionCardType = null;
+
+    /**
+     * Card agreement id
+     *
+     * @var string $cardAgreement
+     */
     protected string $cardAgreement;
+
+    /**
+     * Card expire date on form MM-YY
+     *
+     * @var string|null $expDate
+     */
     protected ?string $expDate = null;
+
+    /**
+     * Masked card number
+     *
+     * @var string|null $maskedCard
+     */
     protected ?string $maskedCard = null;
+
+    /**
+     * Date and time of last successful use of the card. In ISO-8601 extended offset date-time format
+     *
+     * @var DateTime|null $lastSuccess
+     */
     protected ?DateTime $lastSuccess = null;
+
+    /**
+     * Date and time of last failed use of the card. In ISO-8601 extended offset date-time format
+     *
+     * @var DateTime|null $lastFailed
+     */
     protected ?DateTime $lastFailed = null;
+
+    /**
+     * Date and time of first successful use of the card. In ISO-8601 extended offset date-time format
+     *
+     * @var DateTime|null $firstFail
+     */
     protected ?DateTime $firstFail = null;
+
+    /**
+     * An error code from the last failed use of the card. See transaction errors
+     *
+     * @var string|null $errorCode
+     */
     protected ?string $errorCode = null;
+
+    /**
+     * Error state from last failed use of the card: pending, soft_declined, hard_declined or processing_error
+     *
+     * @var string|null $errorState
+     */
     protected ?string $errorState = null;
+
+    /**
+     * Number of soft and hard declined attempts for the card since created or since last successful transaction
+     *
+     * @var int|null $declinedCount
+     */
     protected ?int $declinedCount = null;
+
+    /**
+     * Status for strong customer authentication: threed_secure - 3D Secure authenticated,
+     * threed_secure_not_enrolled - 3D Secure authentication not performed as card not enrolled,
+     * secured_by_nets - Secure by Nets authenticated
+     *
+     * @var string|null $strongAuthenticationStatus
+     */
     protected ?string $strongAuthenticationStatus = null;
+
+    /**
+     * If 3D Secure authenticated the 3D status will either be Y (fully authenticated) or A (attempted
+     * authenticated). An attempted authentication means that card issuer (e.g. bank) does not support
+     * 3D Secure so no full authentication has been performed. Attempted authentication normally means
+     * liability shift, but this can differ between acquirers
+     *
+     * @var string|null $threeDSecureStatus
+     */
     protected ?string $threeDSecureStatus = null;
+
+    /**
+     * If this parameter is set the card has been flagged by Reepay Risk Filter with a flag rule. Special
+     * attention may be required before using the card for recurring payments or subscription sign-up
+     *
+     * @var string|null $riskRule
+     */
     protected ?string $riskRule = null;
+
+    /**
+     * Card issuing country in ISO 3166-1 alpha-2
+     *
+     * @var string|null $cardCountry
+     */
     protected ?string $cardCountry = null;
 
     /**
