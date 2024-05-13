@@ -2,7 +2,7 @@
 
 namespace Billwerk\Sdk\Test\Model;
 
-use Billwerk\Sdk\Model\NoteLineModel;
+use Billwerk\Sdk\Model\Refund\NoteLineModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use Exception;

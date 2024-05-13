@@ -2,8 +2,8 @@
 
 namespace Billwerk\Sdk\Test\Service;
 
-use Billwerk\Sdk\Model\RefundCreateModel;
-use Billwerk\Sdk\Model\RefundModel;
+use Billwerk\Sdk\Model\Refund\RefundCreateModel;
+use Billwerk\Sdk\Model\Refund\RefundModel;
 use Exception;
 
 class RefundServiceTest extends AbstractServiceTest

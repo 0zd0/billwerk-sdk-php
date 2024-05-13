@@ -1,8 +1,9 @@
 <?php
 
-namespace Billwerk\Sdk\Model;
+namespace Billwerk\Sdk\Model\Refund;
 
 use Billwerk\Sdk\Enum\ManualTransferMethodEnum;
+use Billwerk\Sdk\Model\AbstractModel;
 use DateTime;
 
 /**

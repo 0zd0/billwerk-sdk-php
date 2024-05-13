@@ -2,9 +2,8 @@
 
 namespace Billwerk\Sdk\Test\Model;
 
-use Billwerk\Sdk\Model\ManualTransferModel;
-use Billwerk\Sdk\Model\NoteLineModel;
-use Billwerk\Sdk\Model\RefundCreateModel;
+use Billwerk\Sdk\Model\Refund\ManualTransferModel;
+use Billwerk\Sdk\Model\Refund\RefundCreateModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use Exception;
@@ -44,7 +43,7 @@ class RefundCreateModelTest extends TestCase
         $this::assertSame(0.25, $model->getVat());
         $this::assertSame('Super Product', $model->getText());
         $this::assertSame(true, $model->getAmountInclVat());
-        $this::assertContainsOnlyInstancesOf(NoteLineModel::class, $model->getNoteLines());
+        $this::assertContainsOnlyInstancesOf(\Billwerk\Sdk\Model\Refund\NoteLineModel::class, $model->getNoteLines());
         $this::assertInstanceOf(ManualTransferModel::class, $model->getManuaTransfer());
         $this::assertSame('sdvsds', $model->getAcquirerReference());
     }

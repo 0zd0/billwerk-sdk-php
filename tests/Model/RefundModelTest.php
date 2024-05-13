@@ -6,7 +6,7 @@ use Billwerk\Sdk\Enum\ErrorStateEnum;
 use Billwerk\Sdk\Enum\RefundStateEnum;
 use Billwerk\Sdk\Enum\RefundTypeEnum;
 use Billwerk\Sdk\Enum\TransactionErrorEnum;
-use Billwerk\Sdk\Model\RefundModel;
+use Billwerk\Sdk\Model\Refund\RefundModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use DateTime;

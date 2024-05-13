@@ -2,7 +2,7 @@
 
 namespace Billwerk\Sdk\Test\Service;
 
-use Billwerk\Sdk\Model\PaymentMethodModel;
+use Billwerk\Sdk\Model\PaymentMethod\PaymentMethodModel;
 
 final class PaymentMethodTest extends AbstractServiceTest
 {

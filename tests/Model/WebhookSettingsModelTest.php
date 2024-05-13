@@ -3,7 +3,7 @@
 namespace Billwerk\Sdk\Test\Model;
 
 use Billwerk\Sdk\Enum\InvoiceEventEnum;
-use Billwerk\Sdk\Model\WebhookSettingsModel;
+use Billwerk\Sdk\Model\Account\WebhookSettingsModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use Exception;

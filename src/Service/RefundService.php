@@ -3,8 +3,8 @@
 namespace Billwerk\Sdk\Service;
 
 use Billwerk\Sdk\Helper\UrlPathInterface;
-use Billwerk\Sdk\Model\RefundCreateModel;
-use Billwerk\Sdk\Model\RefundModel;
+use Billwerk\Sdk\Model\Refund\RefundCreateModel;
+use Billwerk\Sdk\Model\Refund\RefundModel;
 use Exception;
 
 class RefundService extends AbstractService

@@ -7,7 +7,7 @@ use Billwerk\Sdk\Enum\ErrorStateEnum;
 use Billwerk\Sdk\Enum\StrongAuthenticationStatusEnum;
 use Billwerk\Sdk\Enum\ThreeDSecureStatusEnum;
 use Billwerk\Sdk\Enum\TransactionErrorEnum;
-use Billwerk\Sdk\Model\ApplePayModel;
+use Billwerk\Sdk\Model\PaymentMethod\ApplePayModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use DateTime;

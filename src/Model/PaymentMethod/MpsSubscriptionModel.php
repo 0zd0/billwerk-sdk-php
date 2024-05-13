@@ -1,6 +1,8 @@
 <?php
 
-namespace Billwerk\Sdk\Model;
+namespace Billwerk\Sdk\Model\PaymentMethod;
+
+use Billwerk\Sdk\Model\AbstractModel;
 
 /**
  * MPS subscription in payment method

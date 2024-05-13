@@ -7,8 +7,8 @@ use Billwerk\Sdk\Exception\BillwerkClientException;
 use Billwerk\Sdk\Exception\BillwerkNetworkException;
 use Billwerk\Sdk\Exception\BillwerkRequestException;
 use Billwerk\Sdk\Helper\UrlPathInterface;
-use Billwerk\Sdk\Model\AccountModel;
-use Billwerk\Sdk\Model\WebhookSettingsModel;
+use Billwerk\Sdk\Model\Account\AccountModel;
+use Billwerk\Sdk\Model\Account\WebhookSettingsModel;
 use Exception;
 
 class AccountService extends AbstractService

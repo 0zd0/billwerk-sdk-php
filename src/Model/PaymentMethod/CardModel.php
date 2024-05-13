@@ -1,11 +1,12 @@
 <?php
 
-namespace Billwerk\Sdk\Model;
+namespace Billwerk\Sdk\Model\PaymentMethod;
 
 use Billwerk\Sdk\Enum\CardTypeEnum;
 use Billwerk\Sdk\Enum\ErrorStateEnum;
 use Billwerk\Sdk\Enum\StrongAuthenticationStatusEnum;
 use Billwerk\Sdk\Enum\ThreeDSecureStatusEnum;
+use Billwerk\Sdk\Model\AbstractCard;
 use DateTime;
 use Exception;
 

@@ -3,7 +3,7 @@
 namespace Billwerk\Sdk\Test\Model;
 
 use Billwerk\Sdk\Enum\StateAccountEnum;
-use Billwerk\Sdk\Model\AccountModel;
+use Billwerk\Sdk\Model\Account\AccountModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use DateTime;

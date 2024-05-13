@@ -2,7 +2,7 @@
 
 namespace Billwerk\Sdk\Test\Model;
 
-use Billwerk\Sdk\Model\SepaMandateModel;
+use Billwerk\Sdk\Model\PaymentMethod\SepaMandateModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use Exception;

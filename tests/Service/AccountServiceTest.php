@@ -2,8 +2,8 @@
 
 namespace Billwerk\Sdk\Test\Service;
 
-use Billwerk\Sdk\Model\AccountModel;
-use Billwerk\Sdk\Model\WebhookSettingsModel;
+use Billwerk\Sdk\Model\Account\AccountModel;
+use Billwerk\Sdk\Model\Account\WebhookSettingsModel;
 
 final class AccountServiceTest extends AbstractServiceTest
 {

@@ -1,6 +1,8 @@
 <?php
 
-namespace Billwerk\Sdk\Model;
+namespace Billwerk\Sdk\Model\Refund;
+
+use Billwerk\Sdk\Model\AbstractModel;
 
 /**
  * Refund credit note lines

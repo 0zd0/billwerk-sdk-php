@@ -1,8 +1,10 @@
 <?php
 
-namespace Billwerk\Sdk\Model;
+namespace Billwerk\Sdk\Model\Account;
 
 use Billwerk\Sdk\Enum\StateAccountEnum;
+use Billwerk\Sdk\Model\AbstractModel;
+use Billwerk\Sdk\Model\HasIdInterface;
 use DateTime;
 use Exception;
 

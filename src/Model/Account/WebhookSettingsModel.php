@@ -1,8 +1,9 @@
 <?php
 
-namespace Billwerk\Sdk\Model;
+namespace Billwerk\Sdk\Model\Account;
 
 use Billwerk\Sdk\Enum\WebhookEventTypeEnum;
+use Billwerk\Sdk\Model\AbstractModel;
 
 class WebhookSettingsModel extends AbstractModel
 {

@@ -1,6 +1,9 @@
 <?php
 
-namespace Billwerk\Sdk\Model;
+namespace Billwerk\Sdk\Model\Refund;
+
+use Billwerk\Sdk\Model\AbstractModel;
+use Billwerk\Sdk\Model\HasRequestApiInterface;
 
 /**
  * Create refund

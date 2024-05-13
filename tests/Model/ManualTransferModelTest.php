@@ -3,7 +3,7 @@
 namespace Billwerk\Sdk\Test\Model;
 
 use Billwerk\Sdk\Enum\ManualTransferMethodEnum;
-use Billwerk\Sdk\Model\ManualTransferModel;
+use Billwerk\Sdk\Model\Refund\ManualTransferModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use DateTime;

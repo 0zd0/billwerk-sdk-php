@@ -1,10 +1,12 @@
 <?php
 
-namespace Billwerk\Sdk\Model;
+namespace Billwerk\Sdk\Model\Refund;
 
 use Billwerk\Sdk\Enum\ErrorStateEnum;
 use Billwerk\Sdk\Enum\RefundStateEnum;
 use Billwerk\Sdk\Enum\RefundTypeEnum;
+use Billwerk\Sdk\Model\AbstractModel;
+use Billwerk\Sdk\Model\HasIdInterface;
 use DateTime;
 use Exception;
 
