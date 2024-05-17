@@ -1,0 +1,7 @@
+{
+  "error": "credit_card_expired",
+  "ref_transaction": "a7a7195c54f644369922d0dfe794dd0c",
+  "error_state": "hard_declined",
+  "acquirer_message": "Rejected",
+  "satispay_id": "aa8400fd1245e991ce1ee20780168839"
+}

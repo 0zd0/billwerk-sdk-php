@@ -2,7 +2,7 @@
 
 namespace Billwerk\Sdk\Test\Model;
 
-use Billwerk\Sdk\Model\PaymentMethod\OfflineMandateModel;
+use Billwerk\Sdk\Model\OfflineMandateModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use Exception;

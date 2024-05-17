@@ -2,9 +2,10 @@
 
 namespace Billwerk\Sdk\Model\PaymentMethod;
 
-use Billwerk\Sdk\Enum\StatePaymentMethodEnum;
+use Billwerk\Sdk\Enum\PaymentMethodStateEnum;
 use Billwerk\Sdk\Model\AbstractModel;
 use Billwerk\Sdk\Model\HasIdInterface;
+use Billwerk\Sdk\Model\OfflineMandateModel;
 use DateTime;
 use Exception;
 
@@ -369,7 +370,7 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
             ->setCreated(new DateTime($response['created']))
             ->setPaymentType($response['payment_type']);
 
-        if (in_array($response['state'], StatePaymentMethodEnum::getAll(), true)) {
+        if (in_array($response['state'], PaymentMethodStateEnum::getAll(), true)) {
             $model->setState($response['state']);
         }
 

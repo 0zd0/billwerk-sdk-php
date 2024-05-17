@@ -1,0 +1,35 @@
+{
+  "id": "c33fbb06a00e4dc0b9055f6fb509c0ed",
+  "invoice": "inv-2021",
+  "transaction": "082ebeb1b5864e019b6bf13cad7c535b",
+  "credit": "credit-234",
+  "amount": 15000,
+  "created": "2015-04-04T12:40:56.656Z",
+  "currency": "DKK",
+  "customer": "customer006",
+  "subscription": "sub010",
+  "amount_vat": 2000,
+  "amount_ex_vat": 1323,
+  "credit_note_lines": [
+    {
+      "amount": 15000,
+      "text": "Refund product X",
+      "quantity": 1,
+      "vat": 0.25,
+      "created": "2015-04-04T12:40:56.656Z",
+      "order_line_id": "7f014d7f5d9e4ee89f1741a8cfe214d7",
+      "amount_incl_vat": 1230,
+      "amount_ex_vat": 1230,
+      "unit_amount": 230,
+      "unit_amount_vat": 230,
+      "unit_amount_ex_vat": 230,
+      "amount_incl_vat_defined": true,
+      "period_from": "2015-04-04T12:40:56.656Z",
+      "period_to": "2015-05-04T12:40:56.656Z"
+    }
+  ],
+  "accounting_number": "CN-2024-03-00005",
+  "debtor_id": 10001,
+  "download_url": "https://example.com/123",
+  "accounting_created_date": "2015-04-04T12:40:56.656Z"
+}

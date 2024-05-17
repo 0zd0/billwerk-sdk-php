@@ -1,0 +1,16 @@
+{
+  "amount": 15000,
+  "text": "Refund product X",
+  "quantity": 1,
+  "vat": 0.25,
+  "created": "2015-04-04T12:40:56.656Z",
+  "order_line_id": "7f014d7f5d9e4ee89f1741a8cfe214d7",
+  "amount_incl_vat": 1230,
+  "amount_ex_vat": 1230,
+  "unit_amount": 230,
+  "unit_amount_vat": 230,
+  "unit_amount_ex_vat": 230,
+  "amount_incl_vat_defined": true,
+  "period_from": "2015-04-04T12:40:56.656Z",
+  "period_to": "2015-05-04T12:40:56.656Z"
+}

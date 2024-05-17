@@ -1,0 +1,144 @@
+<?php
+
+namespace Billwerk\Sdk\Model\Invoice;
+
+use Billwerk\Sdk\Model\AbstractModel;
+use DateTime;
+use Exception;
+
+/**
+ * Credits applied to invoice
+ *
+ * @see https://optimize-docs.billwerk.com/reference/getinvoice
+ *
+ * @package Billwerk\Sdk\Model\Invoice
+ */
+class CreditModel extends AbstractModel
+{
+    /**
+     * Credit handle
+     *
+     * @var string $credit
+     */
+    protected string $credit;
+
+    /**
+     * The credit amount transferred to invoice
+     *
+     * @var int $amount
+     */
+    protected int $amount;
+
+    /**
+     * Date when credit was transferred to invoice. In ISO-8601 extended offset date-time format
+     *
+     * @var DateTime $created
+     */
+    protected DateTime $created;
+
+    /**
+     * Text describing the credit
+     *
+     * @var string $text
+     */
+    protected string $text;
+
+    /**
+     * @return int
+     */
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreated(): DateTime
+    {
+        return $this->created;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCredit(): string
+    {
+        return $this->credit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
+    /**
+     * @param DateTime $created
+     *
+     * @return CreditModel
+     */
+    public function setCreated(DateTime $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * @param int $amount
+     *
+     * @return CreditModel
+     */
+    public function setAmount(int $amount): self
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
+
+    /**
+     * @param string $credit
+     *
+     * @return CreditModel
+     */
+    public function setCredit(string $credit): self
+    {
+        $this->credit = $credit;
+
+        return $this;
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return CreditModel
+     */
+    public function setText(string $text): self
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * @param array $response
+     *
+     * @return self
+     * @throws Exception
+     */
+    public static function fromArray(array $response): self
+    {
+        $model = new self();
+        
+        $model
+            ->setCredit($response['credit'])
+            ->setAmount($response['amount'])
+            ->setCreated(new DateTime($response['created']))
+            ->setText($response['text']);
+
+        return $model;
+    }
+}

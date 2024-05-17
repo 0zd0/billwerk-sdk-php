@@ -2,10 +2,8 @@
 
 namespace Billwerk\Sdk\Test\Service;
 
-use Billwerk\Sdk\Billwerk;
-use Billwerk\Sdk\Helper\UrlPathInterface;
-use Billwerk\Sdk\Service\AbstractService;
 use Billwerk\Sdk\Service\AccountService;
+use Billwerk\Sdk\Service\InvoiceService;
 use Billwerk\Sdk\Service\PaymentMethodService;
 use Billwerk\Sdk\Service\RefundService;
 use Billwerk\Sdk\Test\StubTrait;
@@ -19,6 +17,7 @@ abstract class AbstractServiceTest extends TestCase
     use StubTrait;
 
     protected PaymentMethodService $paymentMethod;
+    protected InvoiceService $invoice;
     protected AccountService $account;
     protected RefundService $refund;
 
@@ -28,8 +27,9 @@ abstract class AbstractServiceTest extends TestCase
         $this->responseMock  = $this->createMock(ResponseInterface::class);
         $this->streamMock    = $this->createMock(StreamInterface::class);
         $this->paymentMethod = $this->sdkMock->paymentMethod();
-        $this->account        = $this->sdkMock->account();
+        $this->account       = $this->sdkMock->account();
         $this->refund        = $this->sdkMock->refund();
+        $this->invoice       = $this->sdkMock->invoice();
     }
 
     /**

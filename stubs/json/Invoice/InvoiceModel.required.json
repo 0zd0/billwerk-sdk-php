@@ -1,0 +1,57 @@
+{
+  "id": "dafba2016614418f969fa5697383e47c",
+  "handle": "inv-311",
+  "customer": "customer006",
+  "state": "pending",
+  "type": "ch",
+  "amount": 10000,
+  "currency": "DKK",
+  "due": "2015-04-04T12:40:56.656Z",
+  "credits": [
+    {
+      "credit": "credit002",
+      "amount": 10000,
+      "created": "2015-04-04T12:40:56.656Z",
+      "text": "Credit for lower bandwidth"
+    }
+  ],
+  "created": "2015-04-04T12:40:56.656Z",
+  "discount_amount": 20000,
+  "org_amount": 10000,
+  "amount_vat": 2000,
+  "amount_ex_vat": 8000,
+  "settled_amount": 50000,
+  "refunded_amount": 50000,
+  "order_lines": [
+    {
+      "id": "c33fbb06a00e4dc0b9055f6fb509c0ed",
+      "ordertext": "Product X",
+      "amount": 15000,
+      "vat": 0.25,
+      "quantity": 1,
+      "origin": "plan",
+      "timestamp": "2015-04-04T12:40:56.656Z",
+      "discounted_amount": 2000,
+      "amount_vat": 3000,
+      "amount_ex_vat": 12000,
+      "unit_amount": 15000,
+      "unit_amount_vat": 3000,
+      "unit_amount_ex_vat": 12000,
+      "amount_defined_incl_vat": true
+    }
+  ],
+  "additional_costs": [
+    "string"
+  ],
+  "transactions": [
+    {
+      "id": "dafba2016614418f969fa5697383e47c",
+      "state": "settled",
+      "invoice": "order-1234",
+      "type": "settle",
+      "amount": 10000,
+      "created": "2015-04-04T12:40:56.656Z",
+      "payment_type": "card"
+    }
+  ]
+}

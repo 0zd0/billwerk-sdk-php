@@ -9,4 +9,5 @@ interface UrlPathInterface
     public const ACCOUNT          = 'account';
     public const WEBHOOK_SETTINGS = 'webhook_settings';
     public const REFUND = 'refund';
+    public const INVOICE = 'invoice';
 }

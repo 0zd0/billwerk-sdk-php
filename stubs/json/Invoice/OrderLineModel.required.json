@@ -1,0 +1,15 @@
+{
+  "id": "c33fbb06a00e4dc0b9055f6fb509c0ed",
+  "ordertext": "Product X",
+  "amount": 15000,
+  "vat": 0.25,
+  "quantity": 1,
+  "origin": "plan",
+  "timestamp": "2015-04-04T12:40:56.656Z",
+  "amount_vat": 3000,
+  "amount_ex_vat": 12000,
+  "unit_amount": 15000,
+  "unit_amount_vat": 3000,
+  "unit_amount_ex_vat": 12000,
+  "amount_defined_incl_vat": true
+}

@@ -1,0 +1,7 @@
+{
+  "error": "credit_card_expired",
+  "ref_transaction": "a7a7195c54f644369922d0dfe794dd0c",
+  "error_state": "hard_declined",
+  "acquirer_message": "Rejected",
+  "twint_id": "c9f38076a13d1758b5d98e62dc601cc7"
+}

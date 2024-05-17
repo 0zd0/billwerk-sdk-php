@@ -2,7 +2,7 @@
 
 namespace Billwerk\Sdk\Model\Account;
 
-use Billwerk\Sdk\Enum\StateAccountEnum;
+use Billwerk\Sdk\Enum\AccountStateEnum;
 use Billwerk\Sdk\Model\AbstractModel;
 use Billwerk\Sdk\Model\HasIdInterface;
 use DateTime;
@@ -599,7 +599,7 @@ class AccountModel extends AbstractModel implements HasIdInterface
             ->setCreated(new DateTime($response['created']))
             ->setDefaultVat($response['default_vat']);
 
-        if (in_array($response['state'], StateAccountEnum::getAll(), true)) {
+        if (in_array($response['state'], AccountStateEnum::getAll(), true)) {
             $model->setState($response['state']);
         }
 

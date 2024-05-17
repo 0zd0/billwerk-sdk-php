@@ -1,0 +1,7 @@
+{
+  "error": "credit_card_expired",
+  "ref_transaction": "a7a7195c54f644369922d0dfe794dd0c",
+  "error_state": "hard_declined",
+  "acquirer_message": "Rejected",
+  "bancomatpay_id": "28fc559a229e4fd3a134297a478a0075"
+}

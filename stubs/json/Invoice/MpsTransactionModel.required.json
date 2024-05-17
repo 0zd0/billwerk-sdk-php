@@ -1,0 +1,10 @@
+{
+  "mps_id": "string",
+  "mps_subscription": {
+    "id": "ca_fcfac2016614418f969fa5697383e47c",
+    "state": "active",
+    "customer": "customer00069",
+    "created": "2015-04-04T12:40:56.656Z"
+  },
+  "mps_payment_type": "regular"
+}
