@@ -11,4 +11,5 @@ interface UrlPathInterface
     public const REFUND = 'refund';
     public const INVOICE = 'invoice';
     public const TRANSACTION = 'transaction';
+    public const CUSTOMER = 'customer';
 }

@@ -3,6 +3,7 @@
 namespace Billwerk\Sdk;
 
 use Billwerk\Sdk\Service\AccountService;
+use Billwerk\Sdk\Service\CustomerService;
 use Billwerk\Sdk\Service\InvoiceService;
 use Billwerk\Sdk\Service\PaymentMethodService;
 use Billwerk\Sdk\Service\RefundService;
@@ -83,11 +84,18 @@ final class Sdk
 
         return new InvoiceService($request);
     }
-    
+
     public function transaction(): TransactionService
     {
         $request = $this->getRequestWithApiUrl();
-        
+
         return new TransactionService($request);
+    }
+
+    public function customer(): CustomerService
+    {
+        $request = $this->getRequestWithApiUrl();
+
+        return new CustomerService($request);
     }
 }

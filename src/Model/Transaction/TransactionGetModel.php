@@ -4,9 +4,8 @@ namespace Billwerk\Sdk\Model\Transaction;
 
 use Billwerk\Sdk\Model\AbstractModel;
 use Billwerk\Sdk\Model\HasIdInterface;
-use Billwerk\Sdk\Model\HasRequestApiInterface;
 
-class TransactionGetModel extends AbstractModel implements HasIdInterface, HasRequestApiInterface
+class TransactionGetModel extends AbstractModel implements HasIdInterface
 {
     /**
      * Invoice id or handle
@@ -76,13 +75,5 @@ class TransactionGetModel extends AbstractModel implements HasIdInterface, HasRe
             ->setTransaction($response['transaction']);
 
         return $model;
-    }
-
-    public function toApi(): array
-    {
-        return [
-            'id'          => $this->getId(),
-            'transaction' => $this->getTransaction()
-        ];
     }
 }
