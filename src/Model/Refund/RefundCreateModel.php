@@ -273,38 +273,38 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
             'invoice' => $this->getInvoice(),
         ];
 
-        if (! is_null($this->getKey())) {
+        if ( ! is_null($this->getKey())) {
             $result['key'] = $this->getKey();
         }
 
-        if (! is_null($this->getAmount())) {
+        if ( ! is_null($this->getAmount())) {
             $result['amount'] = $this->getAmount();
         }
 
-        if (! is_null($this->getVat())) {
+        if ( ! is_null($this->getVat())) {
             $result['vat'] = $this->getVat();
         }
 
-        if (! is_null($this->getText())) {
+        if ( ! is_null($this->getText())) {
             $result['text'] = $this->getText();
         }
 
-        if (! is_null($this->getAmountInclVat())) {
+        if ( ! is_null($this->getAmountInclVat())) {
             $result['amount_incl_vat'] = $this->getAmountInclVat();
         }
 
-        if (! is_null($this->getNoteLines())) {
+        if ( ! is_null($this->getNoteLines())) {
             $result['note_lines'] = [];
             foreach ($this->getNoteLines() as $noteLine) {
                 $result['note_lines'][] = $noteLine->toArray();
             }
         }
 
-        if (! is_null($this->getManuaTransfer())) {
+        if ( ! is_null($this->getManuaTransfer())) {
             $result['manual_transfer'] = $this->getManuaTransfer()->toArray();
         }
 
-        if (! is_null($this->getAcquirerReference())) {
+        if ( ! is_null($this->getAcquirerReference())) {
             $result['acquirer_reference'] = $this->getAcquirerReference();
         }
 
