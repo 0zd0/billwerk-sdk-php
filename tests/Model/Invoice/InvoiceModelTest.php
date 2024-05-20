@@ -9,7 +9,7 @@ use Billwerk\Sdk\Model\CreditNoteModel;
 use Billwerk\Sdk\Model\Invoice\CreditModel;
 use Billwerk\Sdk\Model\Invoice\InvoiceModel;
 use Billwerk\Sdk\Model\Invoice\OrderLineModel;
-use Billwerk\Sdk\Model\Invoice\TransactionModel;
+use Billwerk\Sdk\Model\Transaction\TransactionModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use DateTime;

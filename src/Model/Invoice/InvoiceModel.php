@@ -8,6 +8,7 @@ use Billwerk\Sdk\Model\AbstractModel;
 use Billwerk\Sdk\Model\AddressModel;
 use Billwerk\Sdk\Model\CreditNoteModel;
 use Billwerk\Sdk\Model\HasIdInterface;
+use Billwerk\Sdk\Model\Transaction\TransactionModel;
 use DateTime;
 use Exception;
 

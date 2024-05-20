@@ -6,6 +6,7 @@ use Billwerk\Sdk\Service\AccountService;
 use Billwerk\Sdk\Service\InvoiceService;
 use Billwerk\Sdk\Service\PaymentMethodService;
 use Billwerk\Sdk\Service\RefundService;
+use Billwerk\Sdk\Service\TransactionService;
 
 final class Sdk
 {
@@ -81,5 +82,12 @@ final class Sdk
         $request = $this->getRequestWithApiUrl();
 
         return new InvoiceService($request);
+    }
+    
+    public function transaction(): TransactionService
+    {
+        $request = $this->getRequestWithApiUrl();
+        
+        return new TransactionService($request);
     }
 }
