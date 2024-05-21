@@ -12,4 +12,5 @@ interface UrlPathInterface
     public const INVOICE = 'invoice';
     public const TRANSACTION = 'transaction';
     public const CUSTOMER = 'customer';
+    public const CHARGE = 'charge';
 }

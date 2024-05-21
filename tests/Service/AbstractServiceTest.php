@@ -3,6 +3,7 @@
 namespace Billwerk\Sdk\Test\Service;
 
 use Billwerk\Sdk\Service\AccountService;
+use Billwerk\Sdk\Service\ChargeService;
 use Billwerk\Sdk\Service\CustomerService;
 use Billwerk\Sdk\Service\InvoiceService;
 use Billwerk\Sdk\Service\PaymentMethodService;
@@ -20,6 +21,7 @@ abstract class AbstractServiceTest extends TestCase
 
     protected PaymentMethodService $paymentMethod;
     protected InvoiceService $invoice;
+    protected ChargeService $charge;
     protected CustomerService $customer;
     protected TransactionService $transaction;
     protected AccountService $account;
@@ -36,6 +38,7 @@ abstract class AbstractServiceTest extends TestCase
         $this->invoice       = $this->sdkMock->invoice();
         $this->transaction   = $this->sdkMock->transaction();
         $this->customer      = $this->sdkMock->customer();
+        $this->charge        = $this->sdkMock->charge();
     }
 
     /**

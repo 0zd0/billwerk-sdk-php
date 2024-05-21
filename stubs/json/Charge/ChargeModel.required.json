@@ -1,0 +1,37 @@
+{
+  "handle": "order-0000213",
+  "state": "authorized",
+  "customer": "customer006",
+  "amount": 10000,
+  "currency": "DKK",
+  "created": "2015-04-04T12:40:56.656Z",
+  "source": {
+    "type": "card",
+    "card": "ca_80437fbb75cc5ec47aee09ff160e9cb9",
+    "mps": "ms_4f3b975246e6acb7f569297d67830d64",
+    "iban": "DK9520000123456789",
+    "fingerprint": "cst_64e8a26cc0e85bc3f5ce7c5b366b4096",
+    "provider": "clearhaus",
+    "frictionless": true,
+    "vipps_recurring": "vr_4f3b975246e6acb7f569297d67830d64",
+    "sepa_mandate": "sr_4f3b975246e6acb7f569297d67830d64",
+    "offline_agreement_handle": "offline-cash-123",
+    "auth_transaction": "4f3b975246e6acb7f569297d67830d64",
+    "card_type": "visa_dk",
+    "transaction_card_type": "visa",
+    "exp_date": "09-18",
+    "masked_card": "457111XXXXXX3777",
+    "card_country": "US",
+    "strong_authentication_status": "secured_by_nets",
+    "three_d_secure_status": "Y",
+    "risk_rule": "non_eu_card",
+    "acquirer_code": "40135",
+    "acquirer_message": "Card expired",
+    "acquirer_reference": "Card expired",
+    "text_on_statement": "myshop.com 123",
+    "surcharge_fee": 123
+  },
+  "order_lines": [
+  ],
+  "refunded_amount": 5000
+}

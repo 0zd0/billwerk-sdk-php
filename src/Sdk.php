@@ -3,6 +3,7 @@
 namespace Billwerk\Sdk;
 
 use Billwerk\Sdk\Service\AccountService;
+use Billwerk\Sdk\Service\ChargeService;
 use Billwerk\Sdk\Service\CustomerService;
 use Billwerk\Sdk\Service\InvoiceService;
 use Billwerk\Sdk\Service\PaymentMethodService;
@@ -97,5 +98,12 @@ final class Sdk
         $request = $this->getRequestWithApiUrl();
 
         return new CustomerService($request);
+    }
+
+    public function charge(): ChargeService
+    {
+        $request = $this->getRequestWithApiUrl();
+
+        return new ChargeService($request);
     }
 }
