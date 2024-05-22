@@ -10,6 +10,7 @@ use Billwerk\Sdk\Helper\UrlPathInterface;
 use Billwerk\Sdk\Model\Charge\ChargeCreateModel;
 use Billwerk\Sdk\Model\Charge\ChargeGetModel;
 use Billwerk\Sdk\Model\Charge\ChargeModel;
+use Billwerk\Sdk\Model\Charge\ChargeSettleModel;
 use Exception;
 
 class ChargeService extends AbstractService
@@ -30,10 +31,31 @@ class ChargeService extends AbstractService
         return ChargeModel::fromArray($response);
     }
 
+    /**
+     * @throws BillwerkNetworkException
+     * @throws BillwerkRequestException
+     * @throws BillwerkClientException
+     * @throws BillwerkApiException
+     */
     public function create(
         ChargeCreateModel $data
     ): ChargeModel {
         $url      = $this::buildRoute(UrlPathInterface::CHARGE);
+        $response = $this->getRequest()->post($url, $data->toApi());
+
+        return ChargeModel::fromArray($response);
+    }
+
+    /**
+     * @throws BillwerkNetworkException
+     * @throws BillwerkRequestException
+     * @throws BillwerkClientException
+     * @throws BillwerkApiException
+     */
+    public function settle(
+        ChargeSettleModel $data
+    ): ChargeModel {
+        $url      = $this::buildRoute(UrlPathInterface::CHARGE . "/{$data->getHandle()}/" . UrlPathInterface::SETTLE);
         $response = $this->getRequest()->post($url, $data->toApi());
 
         return ChargeModel::fromArray($response);

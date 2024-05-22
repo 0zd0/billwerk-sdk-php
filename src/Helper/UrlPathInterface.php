@@ -13,4 +13,5 @@ interface UrlPathInterface
     public const TRANSACTION = 'transaction';
     public const CUSTOMER = 'customer';
     public const CHARGE = 'charge';
+    public const SETTLE = 'settle';
 }

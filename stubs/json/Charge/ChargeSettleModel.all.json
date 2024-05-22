@@ -1,0 +1,20 @@
+{
+  "acquirer_reference": "wd",
+  "ordertext": "Super product",
+  "amount": 20000,
+  "key": "5ee00b2b-effb-453e-a246-c3cc26acaeb9",
+  "order_lines": [
+    {
+      "ordertext": "Soda",
+      "amount": 20000,
+      "vat": 0.25,
+      "quantity": 1,
+      "amount_incl_vat": true,
+      "tax_policy": "default_tax_policy_handle"
+    },
+    {
+      "ordertext": "Soda",
+      "amount": 20000
+    }
+  ]
+}
