@@ -7,6 +7,7 @@ use Billwerk\Sdk\Exception\BillwerkClientException;
 use Billwerk\Sdk\Exception\BillwerkNetworkException;
 use Billwerk\Sdk\Exception\BillwerkRequestException;
 use Billwerk\Sdk\Helper\UrlPathInterface;
+use Billwerk\Sdk\Model\Charge\ChargeCreateModel;
 use Billwerk\Sdk\Model\Charge\ChargeGetModel;
 use Billwerk\Sdk\Model\Charge\ChargeModel;
 use Exception;
@@ -25,6 +26,15 @@ class ChargeService extends AbstractService
     ): ChargeModel {
         $url      = $this::buildRoute(UrlPathInterface::CHARGE . "/{$data->getHandle()}");
         $response = $this->getRequest()->get($url);
+
+        return ChargeModel::fromArray($response);
+    }
+
+    public function create(
+        ChargeCreateModel $data
+    ): ChargeModel {
+        $url      = $this::buildRoute(UrlPathInterface::CHARGE);
+        $response = $this->getRequest()->post($url, $data->toApi());
 
         return ChargeModel::fromArray($response);
     }

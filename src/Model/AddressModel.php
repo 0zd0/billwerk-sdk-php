@@ -2,7 +2,7 @@
 
 namespace Billwerk\Sdk\Model;
 
-class AddressModel extends AbstractModel
+class AddressModel extends AbstractModel implements HasRequestApiInterface
 {
     /**
      * Company name
@@ -416,5 +416,64 @@ class AddressModel extends AbstractModel
         }
 
         return $model;
+    }
+
+    public function toApi(): array
+    {
+        $result = [];
+
+        if ( ! is_null($this->getCompany())) {
+            $result['company'] = $this->getCompany();
+        }
+
+        if ( ! is_null($this->getVat())) {
+            $result['vat'] = $this->getVat();
+        }
+
+        if ( ! is_null($this->getAttention())) {
+            $result['attention'] = $this->getAttention();
+        }
+
+        if ( ! is_null($this->getAddress())) {
+            $result['address'] = $this->getAddress();
+        }
+
+        if ( ! is_null($this->getAddress2())) {
+            $result['address2'] = $this->getAddress2();
+        }
+
+        if ( ! is_null($this->getCity())) {
+            $result['city'] = $this->getCity();
+        }
+
+        if ( ! is_null($this->getCountry())) {
+            $result['country'] = $this->getCountry();
+        }
+
+        if ( ! is_null($this->getEmail())) {
+            $result['email'] = $this->getEmail();
+        }
+
+        if ( ! is_null($this->getPhone())) {
+            $result['phone'] = $this->getPhone();
+        }
+
+        if ( ! is_null($this->getFirstName())) {
+            $result['first_name'] = $this->getFirstName();
+        }
+
+        if ( ! is_null($this->getLastName())) {
+            $result['last_name'] = $this->getLastName();
+        }
+
+        if ( ! is_null($this->getPostalCode())) {
+            $result['postal_code'] = $this->getPostalCode();
+        }
+
+        if ( ! is_null($this->getStateOrProvince())) {
+            $result['state_or_province'] = $this->getStateOrProvince();
+        }
+
+        return $result;
     }
 }

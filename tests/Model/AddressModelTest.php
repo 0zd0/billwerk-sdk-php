@@ -53,5 +53,8 @@ class AddressModelTest extends TestCase
         $this::assertSame('Johnson', $model->getLastName());
         $this::assertSame('4531', $model->getPostalCode());
         $this::assertSame('WA', $model->getStateOrProvince());
+
+        $toApi = $model->toApi();
+        $this::assertEqualsCanonicalizing(sort($toApi), sort($json));
     }
 }

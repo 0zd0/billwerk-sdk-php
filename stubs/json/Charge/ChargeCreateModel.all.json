@@ -1,0 +1,115 @@
+{
+  "customer": {
+    "metadata": {
+      "newKey": {
+        "newKey": "New Value",
+        "newKey-1": "New Value",
+        "newKey-2": "New Value",
+        "newKey-3": "New Value",
+        "newKey-4": "New Value"
+      },
+      "newKey-4": {
+        "newKey": "New Value",
+        "newKey-1": "New Value"
+      }
+    },
+    "email": "carl@leone.com",
+    "address": "Grove Street 12",
+    "address2": "Ganton",
+    "city": "Los Santos",
+    "country": "US",
+    "phone": "555-gotcars",
+    "company": "Leones Cars",
+    "vat": "US123456789",
+    "language": "en",
+    "handle": "customer006",
+    "test": true,
+    "first_name": "Carl",
+    "last_name": "Johnson",
+    "postal_code": "4531",
+    "debtor_id": 10001,
+    "generate_handle": true
+  },
+  "metadata": {
+    "newKey": {
+      "newKey": "New Value",
+      "newKey-1": "New Value"
+    }
+  },
+  "parameters": {
+    "mps_ttl": "P1D",
+    "offline_agreement_handle": "offline_cash_handle_123",
+    "offline_payment_instructions": "Transfer to account 1234"
+  },
+  "billing_address": {
+    "company": "Leones Cars",
+    "vat": "US123456789",
+    "attention": "Mary Schmidt",
+    "address": "Grove Street 12",
+    "address2": "Ganton",
+    "city": "Los Santos",
+    "country": "US",
+    "email": "carl@leone.com",
+    "phone": "555-gotcars",
+    "first_name": "Carl",
+    "last_name": "Johnson",
+    "postal_code": "4531",
+    "state_or_province": "WA"
+  },
+  "shipping_address": {
+    "company": "Leones Cars",
+    "vat": "US123456789",
+    "attention": "Mary Schmidt",
+    "address": "Grove Street 12",
+    "address2": "Ganton",
+    "city": "Los Santos",
+    "country": "US",
+    "email": "carl@leone.com",
+    "phone": "555-gotcars",
+    "first_name": "Carl",
+    "last_name": "Johnson",
+    "postal_code": "4531",
+    "state_or_province": "WA"
+  },
+  "account_funding_information": {
+    "sender_account_number": "1",
+    "sender_reference": "2",
+    "sender_first_name": "3",
+    "sender_last_name": "4",
+    "sender_address": "5",
+    "sender_city": "6",
+    "sender_postal_code": "7",
+    "sender_state": "US",
+    "sender_country": "DK",
+    "sender_date_of_birth": "1990-07-01"
+  },
+  "order_lines": [
+    {
+      "ordertext": "Soda",
+      "amount": 20000,
+      "vat": 0.25,
+      "quantity": 1,
+      "amount_incl_vat": true,
+      "tax_policy": "default_tax_policy_handle"
+    },
+    {
+      "ordertext": "Soda",
+      "amount": 20000
+    }
+  ],
+  "account_funding": true,
+  "acquirer_reference": "wd",
+  "async": true,
+  "payment_method_reference": "cs_6be90a4babc3c57ef7e6e477ac97ed3b",
+  "text_on_statement": "myshop.com 23",
+  "use_pm_for_subscription": true,
+  "customer_handle": "cust-0022",
+  "ordertext": "Super product",
+  "recurring": false,
+  "settle": false,
+  "source": "ca_f96004cae4308473c92bea0638b5b688",
+  "currency": "USD",
+  "amount": 20000,
+  "key": "5ee00b2b-effb-453e-a246-c3cc26acaeb9",
+  "handle": "order-0000213"
+}

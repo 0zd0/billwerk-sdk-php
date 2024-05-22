@@ -1,0 +1,5 @@
+{
+  "mps_ttl": "P1D",
+  "offline_agreement_handle": "offline_cash_handle_123",
+  "offline_payment_instructions": "Transfer to account 1234"
+}
