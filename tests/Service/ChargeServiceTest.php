@@ -2,6 +2,7 @@
 
 namespace Billwerk\Sdk\Test\Service;
 
+use Billwerk\Sdk\Model\Charge\ChargeCancelModel;
 use Billwerk\Sdk\Model\Charge\ChargeCreateModel;
 use Billwerk\Sdk\Model\Charge\ChargeGetModel;
 use Billwerk\Sdk\Model\Charge\ChargeModel;
@@ -37,7 +38,7 @@ final class ChargeServiceTest extends AbstractServiceTest
         $this::assertSame($handle, $charge->getHandle());
     }
 
-    public function testSettleInvoice()
+    public function testSettleCharge()
     {
         $this->setMockJsonModel(ChargeModel::getClassName());
 
@@ -45,6 +46,21 @@ final class ChargeServiceTest extends AbstractServiceTest
 
         $charge = $this->charge->settle(
             (new ChargeSettleModel())
+                ->setHandle($handle)
+        );
+
+        $this::assertInstanceOf(ChargeModel::class, $charge);
+        $this::assertSame($handle, $charge->getHandle());
+    }
+
+    public function testCancelCharge()
+    {
+        $this->setMockJsonModel(ChargeModel::getClassName());
+
+        $handle = 'order-0000213';
+
+        $charge = $this->charge->cancel(
+            (new ChargeCancelModel())
                 ->setHandle($handle)
         );
 
