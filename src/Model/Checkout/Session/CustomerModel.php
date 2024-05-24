@@ -1,6 +1,6 @@
 <?php
 
-namespace Billwerk\Sdk\Model\Charge;
+namespace Billwerk\Sdk\Model\Checkout\Session;
 
 use Billwerk\Sdk\Model\AbstractModel;
 use Billwerk\Sdk\Model\HasRequestApiInterface;
@@ -599,7 +599,13 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
         }
 
         if ( ! is_null($this->getMetadata())) {
-            $result['metadata'] = MetaDataModel::fromObjects($this->getMetadata());
+            foreach ($this->getMetadata() as $metadata) {
+                $values = [];
+                foreach ($metadata->getValue() as $item) {
+                    $values[$item->getKey()] = $item->getValue();
+                }
+                $result['metadata'][$metadata->getKey()] = $values;
+            }
         }
 
         if ( ! is_null($this->getFirstName())) {

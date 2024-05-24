@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "newKey": {
+      "newKey": "New Value"
+    },
+    "newKey-1": {
+      "newKey": "New Value",
+      "newKey-1": "New Value"
+    }
+  },
+  "email": "carl@leone.com",
+  "address": "Grove Street 12",
+  "address2": "Ganton",
+  "city": "Los Santos",
+  "country": "US",
+  "phone": "555-gotcars",
+  "company": "Leones Cars",
+  "vat": "US123456789",
+  "language": "en",
+  "handle": "customer006",
+  "test": true,
+  "first_name": "Carl",
+  "last_name": "Johnson",
+  "postal_code": "4531",
+  "debtor_id": 10001,
+  "generate_handle": true
+}

@@ -1,8 +1,8 @@
 <?php
 
-namespace Billwerk\Sdk\Test\Model\Charge;
+namespace Billwerk\Sdk\Test\Model;
 
-use Billwerk\Sdk\Model\Charge\AccountFundingInformationModel;
+use Billwerk\Sdk\Model\AccountFundingInformationModel;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
 use Exception;

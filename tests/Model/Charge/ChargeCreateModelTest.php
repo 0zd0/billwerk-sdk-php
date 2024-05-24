@@ -2,8 +2,8 @@
 
 namespace Billwerk\Sdk\Test\Model\Charge;
 
+use Billwerk\Sdk\Model\AccountFundingInformationModel;
 use Billwerk\Sdk\Model\AddressModel;
-use Billwerk\Sdk\Model\Charge\AccountFundingInformationModel;
 use Billwerk\Sdk\Model\Charge\ChargeCreateModel;
 use Billwerk\Sdk\Model\Charge\CustomerModel;
 use Billwerk\Sdk\Model\Charge\OrderLineModel;

@@ -1,0 +1,233 @@
+{
+  "payment_methods": [
+    "iojhijhioj"
+  ],
+  "sca_data": {
+    "risk_indicator": {
+      "delivery_email": "mail@example.com",
+      "delivery_timeframe": "same_day_shipping",
+      "gift_card_amount": 123,
+      "gift_card_count": 5,
+      "gift_card_currency": "USD",
+      "pre_order_date": "2020-11-05",
+      "pre_order_purchase_indicator": "merchandise_available",
+      "reorder_items_indicator": "reordered",
+      "shipping_indicator": "verified"
+    },
+    "account_info": {
+      "created": "2020-11-03",
+      "changed": "2020-11-03",
+      "age_indicator": "this_transaction",
+      "change_indicator": "from_30_to_60_days",
+      "password_change": "2020-11-03",
+      "password_change_indicator": "less_than_30_days",
+      "purchase_count": 2,
+      "add_card_attempts": 0,
+      "transactions_day": 2,
+      "transactions_year": 32,
+      "card_age": "2020-10-02",
+      "card_age_indicator": "from_30_to_60_days",
+      "shipping_address_usage": "2020-09-21",
+      "shipping_address_usage_indicator": "less_than_30_days",
+      "shipping_name_indicator": false,
+      "suspicious_activity": true
+    },
+    "shipping_address": {
+      "address1": "Grove Street 12",
+      "address2": "Ganton",
+      "address3": "Apartment 10",
+      "city": "Los Santos",
+      "country": "US",
+      "postal_code": "4531",
+      "state_or_province": "WA"
+    },
+    "work_phone": {
+      "cc": "45",
+      "subscriber": "56565656"
+    },
+    "name": "John Doe",
+    "email": "mail@example.com",
+    "home_phone": {
+      "cc": "45",
+      "subscriber": "56565656"
+    },
+    "mobile_phone": {
+      "cc": "45",
+      "subscriber": "56565656"
+    },
+    "billing_address": {
+      "address1": "Grove Street 12",
+      "address2": "Ganton",
+      "address3": "Apartment 10",
+      "city": "Los Santos",
+      "postal_code": "4531",
+      "state_or_province": "WA",
+      "country": "US"
+    },
+    "address_match": true,
+    "account_id": "123456",
+    "challenge_indicator": "mandate"
+  },
+  "agreement_filter": [
+    "3",
+    "4"
+  ],
+  "session_data": {
+    "ssn": "200519903345",
+    "account_holder_name": "John Doe",
+    "mps_amount": 20000,
+    "mps_plan": "Premium Subscription",
+    "mps_description": "Free access",
+    "mps_frequency": "biyearly",
+    "mps_external_id": "sub-0021",
+    "mps_payment_description": "Welcome package",
+    "mps_cancel_redirect_url": "https://merchant.com/my-mps-cancel-page.html",
+    "mpo_flow": "single",
+    "alternative_return_url": "e",
+    "applepay_recurring_payment_start_date": "2022-06-01",
+    "applepay_recurring_payment_end_date": "2022-12-01",
+    "applepay_recurring_payment_interval_unit": "month",
+    "applepay_recurring_payment_interval_count": 12,
+    "applepay_recurring_label": "Premium Subscription",
+    "applepay_recurring_amount": 20000,
+    "sepa_debtor_name": "Michael Schmidt",
+    "sepa_debtor_address": "Mainzer Landstrasse 51",
+    "sepa_debtor_postal_code": "60329",
+    "sepa_debtor_city": "Frankfurt am Main",
+    "sepa_debtor_country": "DE",
+    "sepa_debtor_iban": "DE12345678901234567890",
+    "sepa_mandate_amount": 20000,
+    "vipps_recurring_amount": 20000,
+    "vipps_recurring_product_name": "Premier subscription",
+    "vipps_recurring_pricing_type": "variable",
+    "vipps_recurring_product_description": "Access to all games",
+    "vipps_recurring_interval_count": 12,
+    "vipps_recurring_interval_unit": "year",
+    "vipps_recurring_initial_payment_description": "Welcome package",
+    "vipps_recurring_merchant_cancel_url": "https://www.reepay.com/vipps-recurring-cancel-page.html",
+    "vipps_recurring_campaign_amount": 20000,
+    "vipps_recurring_campaign_interval_count": 30,
+    "vipps_recurring_campaign_end_date": "2024-05-14T05:03:56.656Z",
+    "anyday_webshop_url": "https://www.mywebshop.com",
+    "vipps_recurring_campaign_interval_unit": "day",
+    "mpo_minimum_user_age": 22
+  },
+  "recurring_optional_text": "Save payment method for later use",
+  "recurring_optional": true,
+  "acquirer_reference": "dwqd",
+  "text_on_statement": "myshop.com 23",
+  "allowed_ip": "1.2.3.4",
+  "offline_agreement_filter": [
+    "1",
+    "2"
+  ],
+  "account_funding_information": {
+    "sender_account_number": "22",
+    "sender_reference": "sffwe",
+    "sender_first_name": "aaa",
+    "sender_last_name": "sss",
+    "sender_address": "ddd",
+    "sender_city": "fff",
+    "sender_postal_code": "ggg",
+    "sender_state": "U",
+    "sender_country": "DK",
+    "sender_date_of_birth": "1990-07-01"
+  },
+  "account_funding": true,
+  "payment_method_reference": "order-3424",
+  "recurring_average_amount": 10000,
+  "button_text": "pay",
+  "card_on_file_require_exp_date": true,
+  "card_on_file_require_cvv": false,
+  "card_on_file": "ca_xxx",
+  "cancel_url": "https://myshow.com/cancel/order-343",
+  "accept_url": "https://myshow.com/success/order-343",
+  "recurring": true,
+  "order": {
+    "handle": "order-0000213",
+    "key": "5ee00b2b-effb-453e-a246-c3cc26acaeb9",
+    "amount": 20000,
+    "currency": "USD",
+    "customer": {
+      "email": "carl@leone.com",
+      "address": "Grove Street 12",
+      "address2": "Ganton",
+      "city": "Los Santos",
+      "country": "US",
+      "phone": "555-gotcars",
+      "company": "Leones Cars",
+      "vat": "US123456789",
+      "language": "en",
+      "handle": "customer006",
+      "test": true,
+      "metadata": {
+        "newKey": {
+          "newKey": "New Value",
+          "newKey-1": "New Value"
+        },
+        "newKey-1": {
+          "newKey": "New Value"
+        }
+      },
+      "first_name": "Carl",
+      "last_name": "Johnson",
+      "postal_code": "4531",
+      "debtor_id": 10001,
+      "generate_handle": false
+    },
+    "metadata": {
+      "newKey": {
+        "newKey": "New Value",
+        "newKey-1": "New Value"
+      }
+    },
+    "ordertext": "Super product",
+    "order_lines": [
+      {
+        "ordertext": "Soda",
+        "amount": 20000,
+        "vat": 0.25,
+        "quantity": 1,
+        "amount_incl_vat": false,
+        "tax_policy": "default_tax_policy_handle"
+      }
+    ],
+    "customer_handle": "cust-0022",
+    "billing_address": {
+      "company": "Leones Cars",
+      "vat": "US123456789",
+      "attention": "Mary Schmidt",
+      "address": "Grove Street 12",
+      "address2": "Ganton",
+      "city": "Los Santos",
+      "country": "US",
+      "email": "carl@leone.com",
+      "phone": "555-gotcars",
+      "first_name": "Carl",
+      "last_name": "Johnson",
+      "postal_code": "4531",
+      "state_or_province": "WA"
+    },
+    "shipping_address": {
+      "company": "Leones Cars",
+      "vat": "US123456789",
+      "attention": "Mary Schmidt",
+      "address": "Grove Street 12",
+      "address2": "Ganton",
+      "city": "Los Santos",
+      "country": "US",
+      "email": "carl@leone.com",
+      "phone": "555-gotcars",
+      "first_name": "Carl",
+      "last_name": "Johnson",
+      "postal_code": "4531",
+      "state_or_province": "WA"
+    }
+  },
+  "settle": false,
+  "invoice": "order",
+  "phone": "+4531313131",
+  "ttl": "PT3H",
+  "locale": "en_US",
+  "configuration": "ses"
+}

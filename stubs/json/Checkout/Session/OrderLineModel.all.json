@@ -1,0 +1,8 @@
+{
+  "ordertext": "Soda",
+  "amount": 20000,
+  "vat": 0.25,
+  "quantity": 1,
+  "amount_incl_vat": true,
+  "tax_policy": "default_tax_policy_handle"
+}

@@ -1,0 +1,66 @@
+{
+  "risk_indicator": {
+    "delivery_email": "mail@example.com",
+    "delivery_timeframe": "same_day_shipping",
+    "gift_card_amount": 123,
+    "gift_card_count": 5,
+    "gift_card_currency": "USD",
+    "pre_order_date": "2020-11-05",
+    "pre_order_purchase_indicator": "merchandise_available",
+    "reorder_items_indicator": "reordered",
+    "shipping_indicator": "verified"
+  },
+  "account_info": {
+    "created": "2020-11-03",
+    "changed": "2020-11-03",
+    "age_indicator": "this_transaction",
+    "change_indicator": "from_30_to_60_days",
+    "password_change": "2020-11-03",
+    "password_change_indicator": "less_than_30_days",
+    "purchase_count": 2,
+    "add_card_attempts": 0,
+    "transactions_day": 2,
+    "transactions_year": 32,
+    "card_age": "2020-10-02",
+    "card_age_indicator": "from_30_to_60_days",
+    "shipping_address_usage": "2020-09-21",
+    "shipping_address_usage_indicator": "less_than_30_days",
+    "shipping_name_indicator": false,
+    "suspicious_activity": true
+  },
+  "shipping_address": {
+    "address1": "Grove Street 12",
+    "address2": "Ganton",
+    "address3": "Apartment 10",
+    "city": "Los Santos",
+    "country": "US",
+    "postal_code": "4531",
+    "state_or_province": "WA"
+  },
+  "work_phone": {
+    "cc": "45",
+    "subscriber": "56565656"
+  },
+  "name": "John Doe",
+  "email": "mail@example.com",
+  "home_phone": {
+    "cc": "45",
+    "subscriber": "56565656"
+  },
+  "mobile_phone": {
+    "cc": "45",
+    "subscriber": "56565656"
+  },
+  "billing_address": {
+    "address1": "Grove Street 12",
+    "address2": "Ganton",
+    "address3": "Apartment 10",
+    "city": "Los Santos",
+    "postal_code": "4531",
+    "state_or_province": "WA",
+    "country": "US"
+  },
+  "address_match": true,
+  "account_id": "123456",
+  "challenge_indicator": "mandate"
+}

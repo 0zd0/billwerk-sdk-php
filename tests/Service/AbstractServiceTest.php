@@ -8,6 +8,7 @@ use Billwerk\Sdk\Service\CustomerService;
 use Billwerk\Sdk\Service\InvoiceService;
 use Billwerk\Sdk\Service\PaymentMethodService;
 use Billwerk\Sdk\Service\RefundService;
+use Billwerk\Sdk\Service\SessionService;
 use Billwerk\Sdk\Service\TransactionService;
 use Billwerk\Sdk\Test\StubTrait;
 use Billwerk\Sdk\Test\TestCase;
@@ -22,6 +23,7 @@ abstract class AbstractServiceTest extends TestCase
     protected PaymentMethodService $paymentMethod;
     protected InvoiceService $invoice;
     protected ChargeService $charge;
+    protected SessionService $session;
     protected CustomerService $customer;
     protected TransactionService $transaction;
     protected AccountService $account;
@@ -39,6 +41,7 @@ abstract class AbstractServiceTest extends TestCase
         $this->transaction   = $this->sdkMock->transaction();
         $this->customer      = $this->sdkMock->customer();
         $this->charge        = $this->sdkMock->charge();
+        $this->session        = $this->sdkMock->session();
     }
 
     /**

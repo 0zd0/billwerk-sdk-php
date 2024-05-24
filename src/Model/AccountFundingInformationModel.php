@@ -1,9 +1,6 @@
 <?php
 
-namespace Billwerk\Sdk\Model\Charge;
-
-use Billwerk\Sdk\Model\AbstractModel;
-use Billwerk\Sdk\Model\HasRequestApiInterface;
+namespace Billwerk\Sdk\Model;
 
 class AccountFundingInformationModel extends AbstractModel implements HasRequestApiInterface
 {

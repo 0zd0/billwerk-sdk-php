@@ -1,0 +1,11 @@
+{
+  "delivery_email": "mail@example.com",
+  "delivery_timeframe": "electronic",
+  "gift_card_amount": 123,
+  "gift_card_count": 5,
+  "gift_card_currency": "USD",
+  "pre_order_date": "2020-11-05",
+  "pre_order_purchase_indicator": "merchandise_available",
+  "reorder_items_indicator": "first_time_ordered",
+  "shipping_indicator": "verified"
+}

@@ -8,6 +8,7 @@ use Billwerk\Sdk\Service\CustomerService;
 use Billwerk\Sdk\Service\InvoiceService;
 use Billwerk\Sdk\Service\PaymentMethodService;
 use Billwerk\Sdk\Service\RefundService;
+use Billwerk\Sdk\Service\SessionService;
 use Billwerk\Sdk\Service\TransactionService;
 
 final class Sdk
@@ -105,5 +106,12 @@ final class Sdk
         $request = $this->getRequestWithApiUrl();
 
         return new ChargeService($request);
+    }
+
+    public function session(): SessionService
+    {
+        $request = $this->getRequestWithCheckoutUrl();
+
+        return new SessionService($request);
     }
 }

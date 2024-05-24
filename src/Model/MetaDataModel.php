@@ -58,6 +58,24 @@ class MetaDataModel extends AbstractModel
     }
 
     /**
+     * @param MetaDataModel[] $data
+     *
+     * @return array
+     */
+    public static function fromObjects(array $data): array
+    {
+        $result = [];
+        foreach ($data as $metadata) {
+            $values = [];
+            foreach ($metadata->getValue() as $item) {
+                $values[$item->getKey()] = $item->getValue();
+            }
+            $result[$metadata->getKey()] = $values;
+        }
+        return $result;
+    }
+
+    /**
      * @param string $key
      * @param array $object
      *

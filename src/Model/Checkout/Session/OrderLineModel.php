@@ -1,10 +1,9 @@
 <?php
 
-namespace Billwerk\Sdk\Model\Charge;
+namespace Billwerk\Sdk\Model\Checkout\Session;
 
 use Billwerk\Sdk\Model\AbstractModel;
 use Billwerk\Sdk\Model\HasRequestApiInterface;
-use Exception;
 
 class OrderLineModel extends AbstractModel implements HasRequestApiInterface
 {
@@ -174,7 +173,6 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
      * @param array $response
      *
      * @return self
-     * @throws Exception
      */
     public static function fromArray(array $response): self
     {

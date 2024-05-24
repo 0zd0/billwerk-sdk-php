@@ -3,6 +3,7 @@
 namespace Billwerk\Sdk\Model\Charge;
 
 use Billwerk\Sdk\Model\AbstractModel;
+use Billwerk\Sdk\Model\AccountFundingInformationModel;
 use Billwerk\Sdk\Model\AddressModel;
 use Billwerk\Sdk\Model\HasRequestApiInterface;
 use Billwerk\Sdk\Model\MetaDataModel;
@@ -776,13 +777,7 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
         }
 
         if ( ! is_null($this->getMetadata())) {
-            foreach ($this->getMetadata() as $metadata) {
-                $values = [];
-                foreach ($metadata->getValue() as $item) {
-                    $values[$item->getKey()] = $item->getValue();
-                }
-                $result['metadata'][$metadata->getKey()] = $values;
-            }
+            $result['metadata'] = MetaDataModel::fromObjects($this->getMetadata());
         }
 
         $result['source'] = $this->getSource();

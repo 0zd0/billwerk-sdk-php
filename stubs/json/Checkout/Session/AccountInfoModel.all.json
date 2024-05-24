@@ -1,0 +1,18 @@
+{
+  "created": "2020-11-03",
+  "changed": "2020-11-03",
+  "age_indicator": "this_transaction",
+  "change_indicator": "less_than_30_days",
+  "password_change": "2020-11-03",
+  "password_change_indicator": "this_transaction",
+  "purchase_count": 2,
+  "add_card_attempts": 0,
+  "transactions_day": 2,
+  "transactions_year": 32,
+  "card_age": "2020-10-02",
+  "card_age_indicator": "from_30_to_60_days",
+  "shipping_address_usage": "2020-09-21",
+  "shipping_address_usage_indicator": "from_30_to_60_days",
+  "shipping_name_indicator": false,
+  "suspicious_activity": true
+}
