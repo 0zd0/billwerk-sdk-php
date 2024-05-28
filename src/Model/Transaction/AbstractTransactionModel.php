@@ -136,4 +136,16 @@ abstract class AbstractTransactionModel extends AbstractModel
             $this->setAcquirerMessage($response['acquirer_message']);
         }
     }
+
+    public function toArrayDefault()
+    {
+        return array_filter([
+            'error' => $this->getError(),
+            'ref_transaction' => $this->getRefTransaction(),
+            'error_state' => $this->getErrorState(),
+            'acquirer_message' => $this->getAcquirerMessage(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

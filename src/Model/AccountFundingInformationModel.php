@@ -330,48 +330,24 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
 
     public function toApi(): array
     {
-        $result = [];
+        return $this->toArray();
+    }
 
-        if ( ! is_null($this->getSenderAccountNumber())) {
-            $result['sender_account_number'] = $this->getSenderAccountNumber();
-        }
-
-        if ( ! is_null($this->getSenderReference())) {
-            $result['sender_reference'] = $this->getSenderReference();
-        }
-
-        if ( ! is_null($this->getSenderFirstName())) {
-            $result['sender_first_name'] = $this->getSenderFirstName();
-        }
-
-        if ( ! is_null($this->getSenderLastName())) {
-            $result['sender_last_name'] = $this->getSenderLastName();
-        }
-
-        if ( ! is_null($this->getSenderAddress())) {
-            $result['sender_address'] = $this->getSenderAddress();
-        }
-
-        if ( ! is_null($this->getSenderCity())) {
-            $result['sender_city'] = $this->getSenderCity();
-        }
-
-        if ( ! is_null($this->getSenderPostalCode())) {
-            $result['sender_postal_code'] = $this->getSenderPostalCode();
-        }
-
-        if ( ! is_null($this->getSenderState())) {
-            $result['sender_state'] = $this->getSenderState();
-        }
-
-        if ( ! is_null($this->getSenderCountry())) {
-            $result['sender_country'] = $this->getSenderCountry();
-        }
-
-        if ( ! is_null($this->getSenderDateOfBirth())) {
-            $result['sender_date_of_birth'] = $this->getSenderDateOfBirth();
-        }
-
-        return $result;
+    public function toArray(): array
+    {
+        return array_filter([
+            'sender_account_number' => $this->getSenderAccountNumber(),
+            'sender_reference' => $this->getSenderReference(),
+            'sender_first_name' => $this->getSenderFirstName(),
+            'sender_last_name' => $this->getSenderLastName(),
+            'sender_address' => $this->getSenderAddress(),
+            'sender_city' => $this->getSenderCity(),
+            'sender_postal_code' => $this->getSenderPostalCode(),
+            'sender_state' => $this->getSenderState(),
+            'sender_country' => $this->getSenderCountry(),
+            'sender_date_of_birth' => $this->getSenderDateOfBirth(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

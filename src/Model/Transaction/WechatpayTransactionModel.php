@@ -48,4 +48,13 @@ class WechatpayTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'wechatpay_id' => $this->getWechatpayId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

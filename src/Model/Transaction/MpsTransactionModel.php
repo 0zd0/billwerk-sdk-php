@@ -112,4 +112,14 @@ class MpsTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'mps_id' => $this->getMpsId(),
+            'mps_payment_type' => $this->getMpsPaymentType(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

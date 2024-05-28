@@ -257,4 +257,20 @@ class WebhookSettingsModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'urls' => $this->getUrls(),
+            'disabled' => $this->getDisabled(),
+            'secret' => $this->getSecret(),
+            'username' => $this->getUsername(),
+            'password' => $this->getPassword(),
+            'alert_emails' => $this->getAlertEmails(),
+            'alert_count' => $this->getAlertCount(),
+            'event_types' => $this->getEventTypes(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

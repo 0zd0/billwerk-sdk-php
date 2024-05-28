@@ -51,4 +51,9 @@ class MetaDataValueModel extends AbstractModel
     {
         return new self();
     }
+
+    public function toArray(): array
+    {
+        return [''];
+    }
 }

@@ -114,20 +114,17 @@ class ParametersModel extends AbstractModel implements HasRequestApiInterface
 
     public function toApi(): array
     {
-        $result = [];
+        return $this->toArray();
+    }
 
-        if ( ! is_null($this->getMpsTtl())) {
-            $result['mps_ttl'] = $this->getMpsTtl();
-        }
-
-        if ( ! is_null($this->getOfflineAgreementHandle())) {
-            $result['offline_agreement_handle'] = $this->getOfflineAgreementHandle();
-        }
-
-        if ( ! is_null($this->getOfflinePaymentInstructions())) {
-            $result['offline_payment_instructions'] = $this->getOfflinePaymentInstructions();
-        }
-
-        return $result;
+    public function toArray(): array
+    {
+        return array_filter([
+            'mps_ttl' => $this->getMpsTtl(),
+            'offline_agreement_handle' => $this->getOfflineAgreementHandle(),
+            'offline_payment_instructions' => $this->getOfflinePaymentInstructions(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

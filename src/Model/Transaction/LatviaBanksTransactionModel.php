@@ -48,4 +48,13 @@ class LatviaBanksTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'latvia_banks_id' => $this->getLatviaBanksId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

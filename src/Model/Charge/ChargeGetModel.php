@@ -46,4 +46,12 @@ class ChargeGetModel extends AbstractModel
 
         return $model;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [];
+    }
 }

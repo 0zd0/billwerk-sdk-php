@@ -123,24 +123,6 @@ class ManualTransferModel extends AbstractModel
         return $this;
     }
 
-    public function toArray(): array
-    {
-        $result = [
-            'method'       => $this->getMethod(),
-            'payment_date' => $this->getPaymentDate()->format('Y-m-d\TH:i:s'),
-        ];
-
-        if (! is_null($this->getComment())) {
-            $result['comment'] = $this->getComment();
-        }
-
-        if (! is_null($this->getReference())) {
-            $result['reference'] = $this->getReference();
-        }
-
-        return $result;
-    }
-
     public static function fromArray(array $response): self
     {
         $model = new self();
@@ -165,5 +147,17 @@ class ManualTransferModel extends AbstractModel
         }
 
         return $model;
+    }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'comment' => $this->getComment(),
+            'reference' => $this->getReference(),
+            'method' => $this->getMethod(),
+            'payment_date' => $this->getPaymentDate()->format('Y-m-d\TH:i:s.v'),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

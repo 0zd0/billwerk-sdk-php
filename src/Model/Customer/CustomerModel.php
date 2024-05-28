@@ -1346,4 +1346,56 @@ class CustomerModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'email' => $this->getEmail(),
+            'address' => $this->getAddress(),
+            'address2' => $this->getAddress2(),
+            'city' => $this->getCity(),
+            'country' => $this->getCountry(),
+            'phone' => $this->getPhone(),
+            'company' => $this->getCompany(),
+            'vat' => $this->getVat(),
+            'language' => $this->getLanguage(),
+            'handle' => $this->getHandle(),
+            'test' => $this->getTest(),
+            'subscriptions' => $this->getSubscriptions(),
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'deleted' => $this->getDeleted() ? $this->getDeleted()->format('Y-m-d\TH:i:s.v') : null,
+            'first_name' => $this->getFirstName(),
+            'last_name' => $this->getLastName(),
+            'postal_code' => $this->getPostalCode(),
+            'debtor_id' => $this->getDebtorId(),
+            'active_subscriptions' => $this->getActiveSubscriptions(),
+            'trial_active_subscriptions' => $this->getTrialActiveSubscriptions(),
+            'trial_cancelled_subscriptions' => $this->getTrialCancelledSubscriptions(),
+            'expired_subscriptions' => $this->getExpiredSubscriptions(),
+            'on_hold_subscriptions' => $this->getOnHoldSubscriptions(),
+            'cancelled_subscriptions' => $this->getCancelledSubscriptions(),
+            'non_renewing_subscriptions' => $this->getNonRenewingSubscriptions(),
+            'failed_invoices' => $this->getFailedInvoices(),
+            'failed_amount' => $this->getFailedAmount(),
+            'cancelled_invoices' => $this->getCancelledInvoices(),
+            'cancelled_amount' => $this->getCancelledAmount(),
+            'pending_invoices' => $this->getPendingInvoices(),
+            'pending_amount' => $this->getPendingAmount(),
+            'dunning_invoices' => $this->getDunningInvoices(),
+            'dunning_amount' => $this->getDunningAmount(),
+            'settled_invoices' => $this->getSettledInvoices(),
+            'settled_amount' => $this->getSettledAmount(),
+            'refunded_amount' => $this->getRefundedAmount(),
+            'pending_additional_costs' => $this->getPendingAdditionalCosts(),
+            'pending_additional_cost_amount' => $this->getPendingAdditionalCostAmount(),
+            'transferred_additional_costs' => $this->getTransferredAdditionalCosts(),
+            'transferred_additional_cost_amount' => $this->getTransferredAdditionalCostAmount(),
+            'pending_credits' => $this->getPendingCredits(),
+            'pending_credit_amount' => $this->getPendingCreditAmount(),
+            'transferred_credits' => $this->getTransferredCredits(),
+            'transferred_credit_amount' => $this->getTransferredCreditAmount(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

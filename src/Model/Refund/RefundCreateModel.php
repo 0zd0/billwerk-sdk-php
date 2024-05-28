@@ -146,7 +146,7 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     /**
      * @return ManualTransferModel|null
      */
-    public function getManuaTransfer(): ?ManualTransferModel
+    public function getManualTransfer(): ?ManualTransferModel
     {
         return $this->manualTransfer;
     }
@@ -269,46 +269,7 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
 
     public function toApi(): array
     {
-        $result = [
-            'invoice' => $this->getInvoice(),
-        ];
-
-        if ( ! is_null($this->getKey())) {
-            $result['key'] = $this->getKey();
-        }
-
-        if ( ! is_null($this->getAmount())) {
-            $result['amount'] = $this->getAmount();
-        }
-
-        if ( ! is_null($this->getVat())) {
-            $result['vat'] = $this->getVat();
-        }
-
-        if ( ! is_null($this->getText())) {
-            $result['text'] = $this->getText();
-        }
-
-        if ( ! is_null($this->getAmountInclVat())) {
-            $result['amount_incl_vat'] = $this->getAmountInclVat();
-        }
-
-        if ( ! is_null($this->getNoteLines())) {
-            $result['note_lines'] = [];
-            foreach ($this->getNoteLines() as $noteLine) {
-                $result['note_lines'][] = $noteLine->toArray();
-            }
-        }
-
-        if ( ! is_null($this->getManuaTransfer())) {
-            $result['manual_transfer'] = $this->getManuaTransfer()->toArray();
-        }
-
-        if ( ! is_null($this->getAcquirerReference())) {
-            $result['acquirer_reference'] = $this->getAcquirerReference();
-        }
-
-        return $result;
+        return $this->toArray();
     }
 
     public static function fromArray(array $response): self
@@ -356,5 +317,23 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
         }
 
         return $model;
+    }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'invoice' => $this->getInvoice(),
+            'key' => $this->getKey(),
+            'amount' => $this->getAmount(),
+            'vat' => $this->getVat(),
+            'text' => $this->getText(),
+            'amount_incl_vat' => $this->getAmountInclVat(),
+            'note_lines' =>
+                $this->getNoteLines() ? array_map(fn($noteLine) => $noteLine->toArray(), $this->getNoteLines()) : null,
+            'manual_transfer' => $this->getManualTransfer() ? $this->getManualTransfer()->toArray() : null,
+            'acquirer_reference' => $this->getAcquirerReference(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

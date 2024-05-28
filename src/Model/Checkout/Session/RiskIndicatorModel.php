@@ -322,46 +322,25 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
         return $model;
     }
 
+    public function toArray(): array
+    {
+        return array_filter([
+            'delivery_email' => $this->getDeliveryEmail(),
+            'delivery_timeframe' => $this->getDeliveryTimeframe(),
+            'gift_card_amount' => $this->getGiftCardAmount(),
+            'gift_card_count' => $this->getGiftCardCount(),
+            'gift_card_currency' => $this->getGiftCardCurrency(),
+            'pre_order_date' => $this->getPreOrderDate(),
+            'pre_order_purchase_indicator' => $this->getPreOrderPurchaseIndicator(),
+            'reorder_items_indicator' => $this->getReorderItemsIndicator(),
+            'shipping_indicator' => $this->getShippingIndicator(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
+
     public function toApi(): array
     {
-        $result = [];
-
-        if ( ! is_null($this->getDeliveryEmail())) {
-            $result['delivery_email'] = $this->getDeliveryEmail();
-        }
-
-        if ( ! is_null($this->getDeliveryTimeframe())) {
-            $result['delivery_timeframe'] = $this->getDeliveryTimeframe();
-        }
-
-        if ( ! is_null($this->getGiftCardAmount())) {
-            $result['gift_card_amount'] = $this->getGiftCardAmount();
-        }
-
-        if ( ! is_null($this->getGiftCardCount())) {
-            $result['gift_card_count'] = $this->getGiftCardCount();
-        }
-
-        if ( ! is_null($this->getGiftCardCurrency())) {
-            $result['gift_card_currency'] = $this->getGiftCardCurrency();
-        }
-
-        if ( ! is_null($this->getPreOrderDate())) {
-            $result['pre_order_date'] = $this->getPreOrderDate();
-        }
-
-        if ( ! is_null($this->getPreOrderPurchaseIndicator())) {
-            $result['pre_order_purchase_indicator'] = $this->getPreOrderPurchaseIndicator();
-        }
-
-        if ( ! is_null($this->getReorderItemsIndicator())) {
-            $result['reorder_items_indicator'] = $this->getReorderItemsIndicator();
-        }
-
-        if ( ! is_null($this->getShippingIndicator())) {
-            $result['shipping_indicator'] = $this->getShippingIndicator();
-        }
-
-        return $result;
+        return $this->toArray();
     }
 }

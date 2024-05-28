@@ -112,4 +112,15 @@ class OfflineTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'offline_payment_instructions' => $this->getOfflinePaymentInstructions(),
+            'offline_agreement_handle' => $this->getOfflineAgreementHandle(),
+            'offline_mandate' => $this->getOfflineMandate()->toArray(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

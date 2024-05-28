@@ -499,4 +499,31 @@ class CreditNoteModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'id' => $this->getId(),
+            'invoice' => $this->getInvoice(),
+            'transaction' => $this->getTransaction(),
+            'credit' => $this->getCredit(),
+            'amount' => $this->getAmount(),
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'currency' => $this->getCurrency(),
+            'customer' => $this->getCustomer(),
+            'subscription' => $this->getSubscription(),
+            'amount_vat' => $this->getAmountVat(),
+            'amount_ex_vat' => $this->getAmountExVat(),
+            'credit_note_lines' => array_map(function ($creditNoteLine) {
+                return $creditNoteLine->toArray();
+            }, $this->getCreditNoteLines()),
+            'accounting_number' => $this->getAccountingNumber(),
+            'debtor_id' => $this->getDebtorId(),
+            'download_url' => $this->getDownloadUrl(),
+            'accounting_created_date' =>
+                $this->getAccountingCreatedDate() ? $this->getAccountingCreatedDate()->format('Y-m-d\TH:i:s.v') : null,
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

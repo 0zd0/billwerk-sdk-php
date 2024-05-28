@@ -50,10 +50,15 @@ class InvoiceGetModel extends AbstractModel implements HasIdInterface, HasReques
         return $model;
     }
 
-    public function toApi(): array
+    public function toArray(): array
     {
         return [
             'id' => $this->getId(),
         ];
+    }
+
+    public function toApi(): array
+    {
+        return $this->toArray();
     }
 }

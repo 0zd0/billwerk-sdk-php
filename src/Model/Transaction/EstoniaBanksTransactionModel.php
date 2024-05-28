@@ -48,4 +48,13 @@ class EstoniaBanksTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'estonia_banks_id' => $this->getEstoniaBanksId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

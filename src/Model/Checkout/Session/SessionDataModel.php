@@ -1196,158 +1196,55 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
         return $model;
     }
 
+    public function toArray(): array
+    {
+        return array_filter([
+            'ssn' => $this->getSsn(),
+            'account_holder_name' => $this->getAccountHolderName(),
+            'mps_amount' => $this->getMpsAmount(),
+            'mps_plan' => $this->getMpsPlan(),
+            'mps_description' => $this->getMpsDescription(),
+            'mps_frequency' => $this->getMpsFrequency(),
+            'mps_external_id' => $this->getMpsExternalId(),
+            'mps_payment_description' => $this->getMpsPaymentDescription(),
+            'mps_cancel_redirect_url' => $this->getMpsCancelRedirectUrl(),
+            'alternative_return_url' => $this->getAlternativeReturnUrl(),
+            'applepay_recurring_payment_start_date' => $this->getApplepayRecurringPaymentStartDate(),
+            'applepay_recurring_payment_end_date' => $this->getApplepayRecurringPaymentEndDate(),
+            'applepay_recurring_payment_interval_unit' => $this->getApplepayRecurringPaymentIntervalUnit(),
+            'applepay_recurring_payment_interval_count' => $this->getApplepayRecurringPaymentIntervalCount(),
+            'applepay_recurring_label' => $this->getApplepayRecurringLabel(),
+            'applepay_recurring_amount' => $this->getApplepayRecurringAmount(),
+            'sepa_debtor_name' => $this->getSepaDebtorName(),
+            'sepa_debtor_address' => $this->getSepaDebtorAddress(),
+            'sepa_debtor_postal_code' => $this->getSepaDebtorPostalCode(),
+            'sepa_debtor_city' => $this->getSepaDebtorCity(),
+            'sepa_debtor_country' => $this->getSepaDebtorCountry(),
+            'sepa_debtor_iban' => $this->getSepaDebtorIban(),
+            'sepa_mandate_amount' => $this->getSepaMandateAmount(),
+            'vipps_recurring_amount' => $this->getVippsRecurringAmount(),
+            'vipps_recurring_product_name' => $this->getVippsRecurringProductName(),
+            'vipps_recurring_pricing_type' => $this->getVippsRecurringPricingType(),
+            'vipps_recurring_product_description' => $this->getVippsRecurringProductDescription(),
+            'vipps_recurring_interval_count' => $this->getVippsRecurringIntervalCount(),
+            'vipps_recurring_interval_unit' => $this->getVippsRecurringIntervalUnit(),
+            'vipps_recurring_initial_payment_description' => $this->getVippsRecurringInitialPaymentDescription(),
+            'vipps_recurring_merchant_cancel_url' => $this->getVippsRecurringMerchantCancelUrl(),
+            'vipps_recurring_campaign_amount' => $this->getVippsRecurringCampaignAmount(),
+            'vipps_recurring_campaign_interval_count' => $this->getVippsRecurringCampaignIntervalCount(),
+            'vipps_recurring_campaign_interval_unit' => $this->getVippsRecurringCampaignIntervalUnit(),
+            'vipps_recurring_campaign_end_date' =>
+                $this->getVippsRecurringCampaignEndDate()
+                    ? $this->getVippsRecurringCampaignEndDate()->format('Y-m-d\TH:i:s.v') : null,
+            'anyday_webshop_url' => $this->getAnydayWebshopUrl(),
+            'mpo_minimum_user_age' => $this->getMpoMinimumUserAge(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
+
     public function toApi(): array
     {
-        $result = [];
-
-        if ( ! is_null($this->getSsn())) {
-            $result['ssn'] = $this->getSsn();
-        }
-
-        if ( ! is_null($this->getAccountHolderName())) {
-            $result['account_holder_name'] = $this->getAccountHolderName();
-        }
-
-        if ( ! is_null($this->getMpsAmount())) {
-            $result['mps_amount'] = $this->getMpsAmount();
-        }
-
-        if ( ! is_null($this->getMpsPlan())) {
-            $result['mps_plan'] = $this->getMpsPlan();
-        }
-
-        if ( ! is_null($this->getMpsDescription())) {
-            $result['mps_description'] = $this->getMpsDescription();
-        }
-
-        if ( ! is_null($this->getMpsFrequency())) {
-            $result['mps_frequency'] = $this->getMpsFrequency();
-        }
-
-        if ( ! is_null($this->getMpsExternalId())) {
-            $result['mps_external_id'] = $this->getMpsExternalId();
-        }
-
-        if ( ! is_null($this->getMpsPaymentDescription())) {
-            $result['mps_payment_description'] = $this->getMpsPaymentDescription();
-        }
-
-        if ( ! is_null($this->getMpsCancelRedirectUrl())) {
-            $result['mps_cancel_redirect_url'] = $this->getMpsCancelRedirectUrl();
-        }
-
-        if ( ! is_null($this->getAlternativeReturnUrl())) {
-            $result['alternative_return_url'] = $this->getAlternativeReturnUrl();
-        }
-        if ( ! is_null($this->getApplepayRecurringPaymentStartDate())) {
-            $result['applepay_recurring_payment_start_date'] = $this->getApplepayRecurringPaymentStartDate();
-        }
-
-        if ( ! is_null($this->getApplepayRecurringPaymentEndDate())) {
-            $result['applepay_recurring_payment_end_date'] = $this->getApplepayRecurringPaymentEndDate();
-        }
-
-        if ( ! is_null($this->getApplepayRecurringPaymentIntervalUnit())) {
-            $result['applepay_recurring_payment_interval_unit'] = $this->getApplepayRecurringPaymentIntervalUnit();
-        }
-
-        if ( ! is_null($this->getApplepayRecurringPaymentIntervalCount())) {
-            $result['applepay_recurring_payment_interval_count'] = $this->getApplepayRecurringPaymentIntervalCount();
-        }
-
-        if ( ! is_null($this->getApplepayRecurringLabel())) {
-            $result['applepay_recurring_label'] = $this->getApplepayRecurringLabel();
-        }
-
-        if ( ! is_null($this->getApplepayRecurringAmount())) {
-            $result['applepay_recurring_amount'] = $this->getApplepayRecurringAmount();
-        }
-
-        if ( ! is_null($this->getSepaDebtorName())) {
-            $result['sepa_debtor_name'] = $this->getSepaDebtorName();
-        }
-
-        if ( ! is_null($this->getSepaDebtorAddress())) {
-            $result['sepa_debtor_address'] = $this->getSepaDebtorAddress();
-        }
-
-        if ( ! is_null($this->getSepaDebtorPostalCode())) {
-            $result['sepa_debtor_postal_code'] = $this->getSepaDebtorPostalCode();
-        }
-
-        if ( ! is_null($this->getSepaDebtorCity())) {
-            $result['sepa_debtor_city'] = $this->getSepaDebtorCity();
-        }
-
-        if ( ! is_null($this->getSepaDebtorCountry())) {
-            $result['sepa_debtor_country'] = $this->getSepaDebtorCountry();
-        }
-
-        if ( ! is_null($this->getSepaDebtorIban())) {
-            $result['sepa_debtor_iban'] = $this->getSepaDebtorIban();
-        }
-
-        if ( ! is_null($this->getSepaMandateAmount())) {
-            $result['sepa_mandate_amount'] = $this->getSepaMandateAmount();
-        }
-
-        if ( ! is_null($this->getVippsRecurringAmount())) {
-            $result['vipps_recurring_amount'] = $this->getVippsRecurringAmount();
-        }
-
-        if ( ! is_null($this->getVippsRecurringProductName())) {
-            $result['vipps_recurring_product_name'] = $this->getVippsRecurringProductName();
-        }
-
-        if ( ! is_null($this->getVippsRecurringPricingType())) {
-            $result['vipps_recurring_pricing_type'] = $this->getVippsRecurringPricingType();
-        }
-
-        if ( ! is_null($this->getVippsRecurringProductDescription())) {
-            $result['vipps_recurring_product_description'] = $this->getVippsRecurringProductDescription();
-        }
-
-        if ( ! is_null($this->getVippsRecurringIntervalCount())) {
-            $result['vipps_recurring_interval_count'] = $this->getVippsRecurringIntervalCount();
-        }
-
-        if ( ! is_null($this->getVippsRecurringIntervalUnit())) {
-            $result['vipps_recurring_interval_unit'] = $this->getVippsRecurringIntervalUnit();
-        }
-
-        if ( ! is_null($this->getVippsRecurringInitialPaymentDescription())) {
-            $result['vipps_recurring_initial_payment_description']
-                = $this->getVippsRecurringInitialPaymentDescription();
-        }
-
-        if ( ! is_null($this->getVippsRecurringMerchantCancelUrl())) {
-            $result['vipps_recurring_merchant_cancel_url'] = $this->getVippsRecurringMerchantCancelUrl();
-        }
-
-        if ( ! is_null($this->getVippsRecurringCampaignAmount())) {
-            $result['vipps_recurring_campaign_amount'] = $this->getVippsRecurringCampaignAmount();
-        }
-
-        if ( ! is_null($this->getVippsRecurringCampaignIntervalCount())) {
-            $result['vipps_recurring_campaign_interval_count'] = $this->getVippsRecurringCampaignIntervalCount();
-        }
-
-        if ( ! is_null($this->getSsn())) {
-            $result['vipps_recurring_campaign_interval_unit'] = $this->getSsn();
-        }
-
-        if ( ! is_null($this->getVippsRecurringCampaignEndDate())) {
-            $result['vipps_recurring_campaign_end_date'] = $this->getVippsRecurringCampaignEndDate()->format('Y-m-d\TH:i:s.v\Z');
-        }
-
-        if ( ! is_null($this->getAnydayWebshopUrl())) {
-            $result['anyday_webshop_url'] = $this->getAnydayWebshopUrl();
-        }
-
-        if ( ! is_null($this->getMpoMinimumUserAge())) {
-            $result['mpo_minimum_user_age'] = $this->getMpoMinimumUserAge();
-        }
-
-        return $result;
+        return $this->toArray();
     }
 }

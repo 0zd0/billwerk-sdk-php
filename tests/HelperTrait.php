@@ -5,10 +5,12 @@ namespace Billwerk\Sdk\Test;
 use Billwerk\Sdk\BillwerkClientFactory;
 use Billwerk\Sdk\Sdk;
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\HttpFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use Yosymfony\Toml\Toml;
 
 trait HelperTrait
 {
@@ -30,12 +32,22 @@ trait HelperTrait
     protected string $apiKey;
 
     protected BillwerkClientFactory $clientFactoryMock;
+    protected BillwerkClientFactory $clientFactory;
 
     protected Sdk $sdkMock;
+    protected Sdk $sdk;
+
+    /**
+     * Config from config.dev.toml
+     *
+     * @var array $devConfig
+     */
+    protected array $devConfig;
 
     protected function setUpConfig()
     {
-        $this->apiKey = getenv('API_KEY');
+        $this->devConfig = Toml::ParseFile('config.dev.toml');
+        $this->apiKey = $this->devConfig['api']['key'];
 
         $this->clientMock         = $this->createMock(ClientInterface::class);
         $this->requestFactoryMock = $this->createMock(RequestFactoryInterface::class);
@@ -49,6 +61,17 @@ trait HelperTrait
 
         $this->sdkMock = new Sdk(
             $this->clientFactoryMock,
+            $this->apiKey
+        );
+
+        $this->clientFactory = new BillwerkClientFactory(
+            new Client(),
+            new HttpFactory(),
+            new HttpFactory(),
+        );
+
+        $this->sdk = new Sdk(
+            $this->clientFactory,
             $this->apiKey
         );
     }

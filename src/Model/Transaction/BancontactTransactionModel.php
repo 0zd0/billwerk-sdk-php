@@ -48,4 +48,13 @@ class BancontactTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'bancontact_id' => $this->getBancontactId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

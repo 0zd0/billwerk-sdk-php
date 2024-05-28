@@ -230,30 +230,20 @@ class ChargeSettleModel extends AbstractModel implements HasRequestApiInterface
 
     public function toApi(): array
     {
-        $result = [];
+        return $this->toArray();
+    }
 
-        if ( ! is_null($this->getKey())) {
-            $result['key'] = $this->getKey();
-        }
-
-        if ( ! is_null($this->getAmount())) {
-            $result['amount'] = $this->getAmount();
-        }
-
-        if ( ! is_null($this->getOrdertext())) {
-            $result['ordertext'] = $this->getOrdertext();
-        }
-
-        if ( ! is_null($this->getOrderLines())) {
-            foreach ($this->getOrderLines() as $orderLine) {
-                $result['order_lines'][] = $orderLine->toApi();
-            }
-        }
-
-        if ( ! is_null($this->getAcquirerReference())) {
-            $result['acquirer_reference'] = $this->getAcquirerReference();
-        }
-
-        return $result;
+    public function toArray(): array
+    {
+        return array_filter([
+            'key' => $this->getKey(),
+            'amount' => $this->getAmount(),
+            'ordertext' => $this->getOrdertext(),
+            'acquirer_reference' => $this->getAcquirerReference(),
+            'order_lines' =>
+                $this->getOrderLines() ? array_map(fn($orderLine) => $orderLine->toApi(), $this->getOrderLines()) : null
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

@@ -110,4 +110,14 @@ class BillwerkApiException extends Exception
     {
         return $this->lastRequestInfo;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'errorCode' => $this->getErrorCode(),
+            'title' => $this->getTitle(),
+            'lastRequestInfo' => $this->getLastRequestInfo()->toArray(),
+            'errorApi' => $this->getErrorApi(),
+        ];
+    }
 }

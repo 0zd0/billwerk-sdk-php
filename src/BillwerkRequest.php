@@ -130,7 +130,7 @@ class BillwerkRequest
 
         $request = $this->requestFactory->createRequest($method, $uri);
         foreach ($headers as $header => $value) {
-            $request->withAddedHeader($header, $value);
+            $request = $request->withHeader($header, $value);
         }
 
         $this->setLastHttpMethod($method);
@@ -140,7 +140,7 @@ class BillwerkRequest
 
         if ($method === self::POST_REQUEST) {
             $bodyStream = $this->streamFactory->createStream(json_encode($body));
-            $request->withBody($bodyStream);
+            $request = $request->withBody($bodyStream);
         }
 
         try {

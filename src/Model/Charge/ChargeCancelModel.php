@@ -46,4 +46,9 @@ class ChargeCancelModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return [];
+    }
 }

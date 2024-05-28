@@ -48,4 +48,13 @@ class EpsTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'eps_id' => $this->getEpsId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

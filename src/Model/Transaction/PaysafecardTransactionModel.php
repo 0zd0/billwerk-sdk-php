@@ -48,4 +48,13 @@ class PaysafecardTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'paysafecard_id' => $this->getPaysafecardId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

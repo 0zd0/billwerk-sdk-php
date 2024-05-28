@@ -76,4 +76,12 @@ class TransactionGetModel extends AbstractModel implements HasIdInterface
 
         return $model;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [];
+    }
 }

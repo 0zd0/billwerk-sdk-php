@@ -673,4 +673,35 @@ class ChargeModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'handle' => $this->getHandle(),
+            'state' => $this->getState(),
+            'customer' => $this->getCustomer(),
+            'amount' => $this->getAmount(),
+            'currency' => $this->getCurrency(),
+            'authorized' => $this->getAuthorized() ? $this->getAuthorized()->format('Y-m-d\TH:i:s.v') : null,
+            'settled' => $this->getSettled() ? $this->getSettled()->format('Y-m-d\TH:i:s.v') : null,
+            'cancelled' => $this->getCancelled() ? $this->getCancelled()->format('Y-m-d\TH:i:s.v') : null,
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'transaction' => $this->getTransaction(),
+            'error' => $this->getError(),
+            'processing' => $this->getProcessing(),
+            'source' => $this->getSource() ? $this->getSource()->toArray() : null,
+            'order_lines' => array_map(function ($line) {
+                return $line->toArray();
+            }, $this->getOrderLines()),
+            'refunded_amount' => $this->getRefundedAmount(),
+            'authorized_amount' => $this->getAuthorizedAmount(),
+            'error_state' => $this->getErrorState(),
+            'recurring_payment_method' => $this->getRecurringPaymentMethod(),
+            'billing_address' => $this->getBillingAddress() ? $this->getBillingAddress()->toArray() : null,
+            'shipping_address' => $this->getShippingAddress() ? $this->getShippingAddress()->toArray() : null,
+            'payment_context' => $this->getPaymentContext(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

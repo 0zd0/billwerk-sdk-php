@@ -200,29 +200,22 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
         return $model;
     }
 
-    public function toApi(): array
+    public function toArray(): array
     {
-        $result = [
+        return array_filter([
             'ordertext' => $this->getOrdertext(),
             'amount' => $this->getAmount(),
-        ];
+            'vat' => $this->getVat(),
+            'quantity' => $this->getQuantity(),
+            'amount_incl_vat' => $this->getAmountInclVat(),
+            'tax_policy' => $this->getTaxPolicy(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 
-        if ( ! is_null($this->getVat())) {
-            $result['vat'] = $this->getVat();
-        }
-
-        if ( ! is_null($this->getQuantity())) {
-            $result['quantity'] = $this->getQuantity();
-        }
-
-        if ( ! is_null($this->getAmountInclVat())) {
-            $result['amount_incl_vat'] = $this->getAmountInclVat();
-        }
-
-        if ( ! is_null($this->getTaxPolicy())) {
-            $result['tax_policy'] = $this->getTaxPolicy();
-        }
-
-        return $result;
+    public function toApi(): array
+    {
+        return $this->toArray();
     }
 }

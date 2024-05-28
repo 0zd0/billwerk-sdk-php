@@ -1,0 +1,57 @@
+{
+  "configuration": "ddd",
+  "locale": "en_US",
+  "ttl": "PT3H",
+  "phone": "+4531313131",
+  "customer": "cust-0011",
+  "currency": "DKK",
+  "accept_url": "https://myshow.com/success/order-343",
+  "cancel_url": "https://myshow.com/cancel/order-343",
+  "payment_methods": [
+    "1",
+    "2"
+  ],
+  "card_on_file": "ca_xxx",
+  "card_on_file_require_cvv": true,
+  "card_on_file_require_exp_date": false,
+  "button_text": "pay",
+  "recurring_average_amount": 10000,
+  "sca_data": {
+    "name": "John Doe",
+    "email": "mail@example.com",
+    "home_phone": {
+      "cc": "45",
+      "subscriber": "56565656"
+    },
+    "mobile_phone": {
+      "cc": "45",
+      "subscriber": "56565656"
+    },
+    "work_phone": {
+      "cc": "45",
+      "subscriber": "56565656"
+    }
+  },
+  "session_data": {
+    "ssn": "200519903345"
+  },
+  "payment_method_reference": "order-3424",
+  "account_funding": false,
+  "account_funding_information": {
+    "sender_date_of_birth": "1990-07-01",
+    "sender_country": "DK"
+  },
+  "agreement_filter": [
+    "3",
+    "4"
+  ],
+  "offline_agreement_filter": [
+    "5",
+    "6"
+  ],
+  "allowed_ip": "1.2.3.4",
+  "create_customer": {
+    "email": "carl@leone.com"
+  },
+  "order_text": "Monthly broadband subscription €199"
+}

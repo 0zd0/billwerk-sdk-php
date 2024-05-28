@@ -48,4 +48,13 @@ class MbwayTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'mb_way_id' => $this->getMbWayId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

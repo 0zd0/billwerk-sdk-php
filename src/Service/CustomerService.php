@@ -42,7 +42,7 @@ class CustomerService extends AbstractService
         CustomerCollectionGetModel $data
     ): CustomerCollectionModel {
         $url      = $this::buildRoute(UrlPathInterface::LIST . '/' . UrlPathInterface::CUSTOMER);
-        $response = $this->getRequest()->get($url);
+        $response = $this->getRequest()->get($url, $data->toApi());
 
         return CustomerCollectionModel::fromArray($response);
     }

@@ -379,54 +379,30 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
         return $model;
     }
 
+    public function toArray(): array
+    {
+        return array_filter([
+            'handle' => $this->getHandle(),
+            'key' => $this->getKey(),
+            'amount' => $this->getAmount(),
+            'currency' => $this->getCurrency(),
+            'customer' => $this->getCustomer() ? $this->getCustomer()->toArray() : null,
+            'metadata' => $this->getMetadata() ? MetaDataModel::fromObjects($this->getMetadata()) : null,
+            'ordertext' => $this->getOrdertext(),
+            'order_lines' =>
+                $this->getOrderLines()
+                ? array_map(fn($orderLine) => $orderLine->toArray(), $this->getOrderLines()) : null,
+            'customer_handle' => $this->getCustomerHandle(),
+            'billing_address' => $this->getBillingAddress() ? $this->getBillingAddress()->toArray() : null,
+            'shipping_address' => $this->getShippingAddress() ? $this->getShippingAddress()->toArray() : null,
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
+
+
     public function toApi(): array
     {
-        $result = [
-            'handle' => $this->getHandle(),
-        ];
-
-        if ( ! is_null($this->getKey())) {
-            $result['key'] = $this->getKey();
-        }
-
-        if ( ! is_null($this->getAmount())) {
-            $result['amount'] = $this->getAmount();
-        }
-
-        if ( ! is_null($this->getCurrency())) {
-            $result['currency'] = $this->getCurrency();
-        }
-
-        if ( ! is_null($this->getCustomer())) {
-            $result['customer'] = $this->getCustomer()->toApi();
-        }
-
-        if ( ! is_null($this->getMetadata())) {
-            $result['metadata'] = MetaDataModel::fromObjects($this->getMetadata());
-        }
-
-        if ( ! is_null($this->getOrdertext())) {
-            $result['ordertext'] = $this->getOrdertext();
-        }
-
-        if ( ! is_null($this->getOrderLines())) {
-            foreach ($this->getOrderLines() as $orderLine) {
-                $result['order_lines'][] = $orderLine->toApi();
-            }
-        }
-
-        if ( ! is_null($this->getCustomerHandle())) {
-            $result['customer_handle'] = $this->getCustomerHandle();
-        }
-
-        if ( ! is_null($this->getBillingAddress())) {
-            $result['billing_address'] = $this->getBillingAddress()->toApi();
-        }
-
-        if ( ! is_null($this->getShippingAddress())) {
-            $result['shipping_address'] = $this->getShippingAddress()->toApi();
-        }
-
-        return $result;
+        return $this->toArray();
     }
 }

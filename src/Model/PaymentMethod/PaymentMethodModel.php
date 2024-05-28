@@ -114,6 +114,16 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Unique id for payment method
+     *
+     * @return string|null
+     */
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    /**
      * @return CardModel|null
      */
     public function getCard(): ?CardModel
@@ -409,8 +419,24 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
         return $model;
     }
 
-    public function getId(): ?string
+    public function toArray(): array
     {
-        return $this->id;
+        return array_filter([
+            'id' => $this->getId(),
+            'customer' => $this->getCustomer(),
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'payment_type' => $this->getPaymentType(),
+            'state' => $this->getState(),
+            'reference' => $this->getReference(),
+            'failed' => $this->getFailed() ? $this->getFailed()->format('Y-m-d\TH:i:s.v') : null,
+            'card' => $this->getCard() ? $this->getCard()->toArray() : null,
+            'applepay' => $this->getApplePay() ? $this->getApplePay()->toArray() : null,
+            'mps_subscription' => $this->getMpsSubscription() ? $this->getMpsSubscription()->toArray() : null,
+            'vipps_recurring_mandate' => $this->getVippsRecurringMandate(),
+            'sepa_mandate' => $this->getSepaMandate() ? $this->getSepaMandate()->toArray() : null,
+            'offline_mandate' => $this->getOfflineMandate() ? $this->getOfflineMandate()->toArray() : null,
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

@@ -553,78 +553,33 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
         return $model;
     }
 
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'handle' => $this->getHandle(),
+            'handle_prefix' => $this->getHandlePrefix(),
+            'handle_contains' => $this->getHandleContains(),
+            'name' => $this->getName(),
+            'email' => $this->getEmail(),
+            'email_prefix' => $this->getEmailPrefix(),
+            'first_name' => $this->getFirstName(),
+            'last_name' => $this->getLastName(),
+            'address' => $this->getAddress(),
+            'address2' => $this->getAddress2(),
+            'postal_code' => $this->getPostalCode(),
+            'city' => $this->getCity(),
+            'country' => $this->getCountry(),
+            'phone' => $this->getPhone(),
+            'company' => $this->getCompany(),
+            'vat' => $this->getVat(),
+            'debtor_id' => $this->getDebtorId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
+
     public function toApi(): array
     {
-        $result = $this->toApiDefault();
-
-        if ( ! is_null($this->getHandle())) {
-            $result['handle'] = $this->getHandle();
-        }
-
-        if ( ! is_null($this->getHandlePrefix())) {
-            $result['handle_prefix'] = $this->getHandlePrefix();
-        }
-
-        if ( ! is_null($this->getHandleContains())) {
-            $result['handle_contains'] = $this->getHandleContains();
-        }
-
-        if ( ! is_null($this->getName())) {
-            $result['name'] = $this->getName();
-        }
-
-        if ( ! is_null($this->getEmail())) {
-            $result['email'] = $this->getEmail();
-        }
-
-        if ( ! is_null($this->getEmailPrefix())) {
-            $result['email_prefix'] = $this->getEmailPrefix();
-        }
-
-        if ( ! is_null($this->getFirstName())) {
-            $result['first_name'] = $this->getFirstName();
-        }
-
-        if ( ! is_null($this->getLastName())) {
-            $result['last_name'] = $this->getLastName();
-        }
-
-        if ( ! is_null($this->getAddress())) {
-            $result['address'] = $this->getAddress();
-        }
-
-        if ( ! is_null($this->getAddress2())) {
-            $result['address2'] = $this->getAddress2();
-        }
-
-        if ( ! is_null($this->getPostalCode())) {
-            $result['postal_code'] = $this->getPostalCode();
-        }
-
-        if ( ! is_null($this->getCity())) {
-            $result['city'] = $this->getCity();
-        }
-
-        if ( ! is_null($this->getCountry())) {
-            $result['country'] = $this->getCountry();
-        }
-
-        if ( ! is_null($this->getPhone())) {
-            $result['phone'] = $this->getPhone();
-        }
-
-        if ( ! is_null($this->getCompany())) {
-            $result['company'] = $this->getCompany();
-        }
-
-        if ( ! is_null($this->getVat())) {
-            $result['vat'] = $this->getVat();
-        }
-
-        if ( ! is_null($this->getDebtorId())) {
-            $result['debtor_id'] = $this->getDebtorId();
-        }
-
-        return $result;
+        return $this->toArray();
     }
 }

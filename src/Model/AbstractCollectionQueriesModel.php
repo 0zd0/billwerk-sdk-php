@@ -217,34 +217,17 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
         }
     }
 
-    public function toApiDefault(): array
+    public function toArrayDefault(): array
     {
-        $result = [];
-
-        if ( ! is_null($this->getFrom())) {
-            $result['from'] = $this->getFrom()->format('Y-m-d\TH:i:s.v');
-        }
-
-        if ( ! is_null($this->getTo())) {
-            $result['to'] = $this->getTo()->format('Y-m-d\TH:i:s.v');
-        }
-
-        if ( ! is_null($this->getRange())) {
-            $result['range'] = $this->getRange();
-        }
-
-        if ( ! is_null($this->getInterval())) {
-            $result['interval'] = $this->getInterval();
-        }
-
-        if ( ! is_null($this->getSize())) {
-            $result['size'] = $this->getSize();
-        }
-
-        if ( ! is_null($this->getNextPageToken())) {
-            $result['next_page_token'] = $this->getNextPageToken();
-        }
-
-        return $result;
+        return array_filter([
+            'from' => $this->getFrom() ? $this->getFrom()->format('Y-m-d\TH:i:s.v') : null,
+            'to' => $this->getTo() ? $this->getTo()->format('Y-m-d\TH:i:s.v') : null,
+            'interval' => $this->getInterval(),
+            'size' => $this->getSize(),
+            'next_page_token' => $this->getNextPageToken(),
+            'range' => $this->getRange(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

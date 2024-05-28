@@ -587,4 +587,31 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'id' => $this->getId(),
+            'ordertext' => $this->getOrdertext(),
+            'amount' => $this->getAmount(),
+            'vat' => $this->getVat(),
+            'quantity' => $this->getQuantity(),
+            'timestamp' => $this->getTimestamp() ? $this->getTimestamp()->format('Y-m-d\TH:i:s.v') : null,
+            'amount_vat' => $this->getAmountVat(),
+            'amount_ex_vat' => $this->getAmountExVat(),
+            'unit_amount' => $this->getUnitAmount(),
+            'unit_amount_vat' => $this->getUnitAmountVat(),
+            'unit_amount_ex_vat' => $this->getUnitAmountExVat(),
+            'amount_defined_incl_vat' => $this->getAmountDefinedInclVat(),
+            'origin' => $this->getOrigin(),
+            'discounted_amount' => $this->getDiscountedAmount(),
+            'origin_handle' => $this->getOriginHandle(),
+            'period_from' => $this->getPeriodFrom() ? $this->getPeriodFrom()->format('Y-m-d\TH:i:s.v') : null,
+            'period_to' => $this->getPeriodTo() ? $this->getPeriodTo()->format('Y-m-d\TH:i:s.v') : null,
+            'discount_percentage' => $this->getDiscountPercentage(),
+            'discounted_order_line' => $this->getDiscountedOrderLine(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

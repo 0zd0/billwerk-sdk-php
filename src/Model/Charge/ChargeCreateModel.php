@@ -846,4 +846,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
 
         return $result;
     }
+
+    public function toArray(): array
+    {
+        return [];
+    }
 }

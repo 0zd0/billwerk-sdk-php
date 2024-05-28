@@ -397,58 +397,29 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
         return $model;
     }
 
+    public function toArray(): array
+    {
+        return array_filter([
+            'name' => $this->getName(),
+            'email' => $this->getEmail(),
+            'home_phone' => $this->getHomePhone() ? $this->getHomePhone()->toArray() : null,
+            'mobile_phone' => $this->getMobilePhone() ? $this->getMobilePhone()->toArray() : null,
+            'work_phone' => $this->getWorkPhone() ? $this->getWorkPhone()->toArray() : null,
+            'billing_address' => $this->getBillingAddress() ? $this->getBillingAddress()->toArray() : null,
+            'shipping_address' => $this->getShippingAddress() ? $this->getShippingAddress()->toArray() : null,
+            'address_match' => $this->getAddressMatch(),
+            'account_id' => $this->getAccountId(),
+            'challenge_indicator' => $this->getChallengeIndicator(),
+            'risk_indicator' => $this->getRiskIndicator() ? $this->getRiskIndicator()->toArray() : null,
+            'account_info' => $this->getAccountInfo() ? $this->getAccountInfo()->toArray() : null,
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
+
+
     public function toApi(): array
     {
-        $result = [];
-
-        if ( ! is_null($this->getName())) {
-            $result['name'] = $this->getName();
-        }
-
-        if ( ! is_null($this->getEmail())) {
-            $result['email'] = $this->getEmail();
-        }
-
-        if ( ! is_null($this->getHomePhone())) {
-            $result['home_phone'] = $this->getHomePhone()->toApi();
-        }
-
-        if ( ! is_null($this->getMobilePhone())) {
-            $result['mobile_phone'] = $this->getMobilePhone()->toApi();
-        }
-
-        if ( ! is_null($this->getWorkPhone())) {
-            $result['work_phone'] = $this->getWorkPhone()->toApi();
-        }
-
-        if ( ! is_null($this->getBillingAddress())) {
-            $result['billing_address'] = $this->getBillingAddress()->toApi();
-        }
-
-        if ( ! is_null($this->getShippingAddress())) {
-            $result['shipping_address'] = $this->getShippingAddress()->toApi();
-        }
-
-        if ( ! is_null($this->getAddressMatch())) {
-            $result['address_match'] = $this->getAddressMatch();
-        }
-
-        if ( ! is_null($this->getAccountId())) {
-            $result['account_id'] = $this->getAccountId();
-        }
-
-        if ( ! is_null($this->getChallengeIndicator())) {
-            $result['challenge_indicator'] = $this->getChallengeIndicator();
-        }
-
-        if ( ! is_null($this->getRiskIndicator())) {
-            $result['risk_indicator'] = $this->getRiskIndicator()->toApi();
-        }
-
-        if ( ! is_null($this->getAccountInfo())) {
-            $result['account_info'] = $this->getAccountInfo()->toApi();
-        }
-
-        return $result;
+        return $this->toArray();
     }
 }

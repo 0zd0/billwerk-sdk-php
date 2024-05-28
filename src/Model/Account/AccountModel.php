@@ -581,6 +581,9 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * @param array $response
+     *
+     * @return self
      * @throws Exception
      */
     public static function fromArray(array $response): self
@@ -644,5 +647,36 @@ class AccountModel extends AbstractModel implements HasIdInterface
         }
 
         return $model;
+    }
+
+    public function toArray(): array
+    {
+        $data = [
+            'handle' => $this->getHandle(),
+            'currency' => $this->getCurrency(),
+            'name' => $this->getName(),
+            'locale' => $this->getLocale(),
+            'timezone' => $this->getTimezone(),
+            'country' => $this->getCountry(),
+            'id' => $this->getId(),
+            'organisation' => $this->getOrganisation(),
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'default_vat' => $this->getDefaultVat(),
+            'state' => $this->getState(),
+            'address' => $this->getAddress(),
+            'address2' => $this->getAddress2(),
+            'city' => $this->getCity(),
+            'email' => $this->getEmail(),
+            'phone' => $this->getPhone(),
+            'vat' => $this->getVat(),
+            'website' => $this->getWebsite(),
+            'logo' => $this->getLogo(),
+            'postal_code' => $this->getPostalCode(),
+            'subscription_invoice_prefix' => $this->getSubscriptionInvoicePrefix(),
+        ];
+
+        return array_filter($data, function ($value) {
+            return $value !== null;
+        });
     }
 }

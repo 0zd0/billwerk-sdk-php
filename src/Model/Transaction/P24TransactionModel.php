@@ -48,4 +48,13 @@ class P24TransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'p24_id' => $this->getP24Id(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

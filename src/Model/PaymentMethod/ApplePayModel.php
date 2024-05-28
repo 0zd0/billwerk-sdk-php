@@ -103,4 +103,31 @@ class ApplePayModel extends AbstractCard
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'gateway' => $this->getGateway(),
+            'gw_ref' => $this->getGwRef(),
+            'card_agreement' => $this->getCardAgreement(),
+            'fingerprint' => $this->getFingerprint(),
+            'reactivated' => $this->getReactivated() ? $this->getReactivated()->format('Y-m-d\TH:i:s.v') : null,
+            'card_type' => $this->getCardType(),
+            'transaction_card_type' => $this->getTransactionCardType(),
+            'exp_date' => $this->getExpDate(),
+            'masked_card' => $this->getMaskedCard(),
+            'last_success' => $this->getLastSuccess() ? $this->getLastSuccess()->format('Y-m-d\TH:i:s.v') : null,
+            'last_failed' => $this->getLastFailed() ? $this->getLastFailed()->format('Y-m-d\TH:i:s.v') : null,
+            'first_fail' => $this->getFirstFail() ? $this->getFirstFail()->format('Y-m-d\TH:i:s.v') : null,
+            'error_code' => $this->getErrorCode(),
+            'error_state' => $this->getErrorState(),
+            'declined_count' => $this->getDeclinedCount(),
+            'strong_authentication_status' => $this->getStrongAuthenticationStatus(),
+            'three_d_secure_status' => $this->getThreeDSecureStatus(),
+            'risk_rule' => $this->getRiskRule(),
+            'card_country' => $this->getCardCountry(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

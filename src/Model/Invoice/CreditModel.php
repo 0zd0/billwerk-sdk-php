@@ -132,7 +132,7 @@ class CreditModel extends AbstractModel
     public static function fromArray(array $response): self
     {
         $model = new self();
-        
+
         $model
             ->setCredit($response['credit'])
             ->setAmount($response['amount'])
@@ -140,5 +140,17 @@ class CreditModel extends AbstractModel
             ->setText($response['text']);
 
         return $model;
+    }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'credit' => $this->getCredit(),
+            'amount' => $this->getAmount(),
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'text' => $this->getText(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

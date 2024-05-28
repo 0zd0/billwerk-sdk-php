@@ -16,16 +16,16 @@ class ErrorModel extends AbstractModel
     /**
      * Reepay API error codes
      *
-     * @var int $code
+     * @var null|int $code
      */
-    protected int $code;
+    protected ?int $code = null;
 
     /**
      * Short error message
      *
-     * @var string $error
+     * @var null|string $error
      */
-    protected string $error;
+    protected ?string $error = null;
 
     /**
      * Optional clarifying error message
@@ -37,37 +37,37 @@ class ErrorModel extends AbstractModel
     /**
      * The path generating the error response
      *
-     * @var string $path
+     * @var null|string $path
      */
-    protected string $path;
+    protected ?string $path = null;
 
     /**
      * Timestamp for the error response in ISO-8601 extended offset date-time format
      *
-     * @var string $timestamp
+     * @var null|string $timestamp
      */
-    protected string $timestamp;
+    protected ?string $timestamp = null;
 
     /**
      * HTTP status code of the error
      *
-     * @var int $httpStatus
+     * @var null|int $httpStatus
      */
-    protected int $httpStatus;
+    protected ?int $httpStatus = null;
 
     /**
      * HTTP reason of the error
      *
-     * @var string $httpReason
+     * @var null|string $httpReason
      */
-    protected string $httpReason;
+    protected ?string $httpReason = null;
 
     /**
      * Request-Id for the failed request
      *
-     * @var string $requestId
+     * @var null|string $requestId
      */
-    protected string $requestId;
+    protected ?string $requestId = null;
 
     /**
      * Optional transaction error in the case the request involved a transaction processing. See transaction errors
@@ -77,19 +77,19 @@ class ErrorModel extends AbstractModel
     protected ?string $transactionError = null;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCode(): int
+    public function getCode(): ?int
     {
         return $this->code;
     }
 
     /**
-     * @param int $code
+     * @param int|null $code
      *
      * @return ErrorModel
      */
-    public function setCode(int $code): self
+    public function setCode(?int $code): self
     {
         $this->code = $code;
 
@@ -97,11 +97,11 @@ class ErrorModel extends AbstractModel
     }
 
     /**
-     * @param string $error
+     * @param string|null $error
      *
      * @return ErrorModel
      */
-    public function setError(string $error): self
+    public function setError(?string $error): self
     {
         $this->error = $error;
 
@@ -109,11 +109,11 @@ class ErrorModel extends AbstractModel
     }
 
     /**
-     * @param string $httpReason
+     * @param string|null $httpReason
      *
      * @return ErrorModel
      */
-    public function setHttpReason(string $httpReason): self
+    public function setHttpReason(?string $httpReason): self
     {
         $this->httpReason = $httpReason;
 
@@ -121,11 +121,11 @@ class ErrorModel extends AbstractModel
     }
 
     /**
-     * @param int $httpStatus
+     * @param int|null $httpStatus
      *
      * @return ErrorModel
      */
-    public function setHttpStatus(int $httpStatus): self
+    public function setHttpStatus(?int $httpStatus): self
     {
         $this->httpStatus = $httpStatus;
 
@@ -145,11 +145,11 @@ class ErrorModel extends AbstractModel
     }
 
     /**
-     * @param string $path
+     * @param string|null $path
      *
      * @return ErrorModel
      */
-    public function setPath(string $path): self
+    public function setPath(?string $path): self
     {
         $this->path = $path;
 
@@ -157,11 +157,11 @@ class ErrorModel extends AbstractModel
     }
 
     /**
-     * @param string $requestId
+     * @param string|null $requestId
      *
      * @return ErrorModel
      */
-    public function setRequestId(string $requestId): self
+    public function setRequestId(?string $requestId): self
     {
         $this->requestId = $requestId;
 
@@ -169,11 +169,11 @@ class ErrorModel extends AbstractModel
     }
 
     /**
-     * @param string $timestamp
+     * @param string|null $timestamp
      *
      * @return ErrorModel
      */
-    public function setTimestamp(string $timestamp): self
+    public function setTimestamp(?string $timestamp): self
     {
         $this->timestamp = $timestamp;
 
@@ -191,25 +191,25 @@ class ErrorModel extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getError(): string
+    public function getError(): ?string
     {
         return $this->error;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getHttpReason(): string
+    public function getHttpReason(): ?string
     {
         return $this->httpReason;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getHttpStatus(): int
+    public function getHttpStatus(): ?int
     {
         return $this->httpStatus;
     }
@@ -223,25 +223,25 @@ class ErrorModel extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPath(): string
+    public function getPath(): ?string
     {
         return $this->path;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRequestId(): string
+    public function getRequestId(): ?string
     {
         return $this->requestId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTimestamp(): string
+    public function getTimestamp(): ?string
     {
         return $this->timestamp;
     }
@@ -261,23 +261,37 @@ class ErrorModel extends AbstractModel
     {
         $model = new self();
 
-        $model->setCode($response['code']);
+        if (isset($response['code'])) {
+            $model->setCode($response['code']);
+        }
 
-        $model->setError($response['error']);
+        if (isset($response['error'])) {
+            $model->setError($response['error']);
+        }
 
         if (isset($response['message'])) {
             $model->setMessage($response['message']);
         }
 
-        $model->setPath($response['path']);
+        if (isset($response['path'])) {
+            $model->setPath($response['path']);
+        }
 
-        $model->setTimestamp($response['timestamp']);
+        if (isset($response['timestamp'])) {
+            $model->setTimestamp($response['timestamp']);
+        }
 
-        $model->setHttpStatus($response['http_status']);
+        if (isset($response['http_status'])) {
+            $model->setHttpStatus($response['http_status']);
+        }
 
-        $model->setHttpReason($response['http_reason']);
+        if (isset($response['http_reason'])) {
+            $model->setHttpReason($response['http_reason']);
+        }
 
-        $model->setRequestId($response['request_id']);
+        if (isset($response['request_id'])) {
+            $model->setRequestId($response['request_id']);
+        }
 
         if (isset($response['transaction_error'])) {
             if (in_array($response['transaction_error'], TransactionErrorEnum::getAll(), true)) {
@@ -286,5 +300,22 @@ class ErrorModel extends AbstractModel
         }
 
         return $model;
+    }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'code' => $this->getCode(),
+            'error' => $this->getError(),
+            'message' => $this->getMessage(),
+            'path' => $this->getPath(),
+            'timestamp' => $this->getTimestamp(),
+            'http_status' => $this->getHttpStatus(),
+            'http_reason' => $this->getHttpReason(),
+            'request_id' => $this->getRequestId(),
+            'transaction_error' => $this->getTransactionError(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

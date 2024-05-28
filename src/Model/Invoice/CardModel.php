@@ -716,4 +716,34 @@ class CardModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'id' => $this->getId(),
+            'state' => $this->getState(),
+            'customer' => $this->getCustomer(),
+            'reference' => $this->getReference(),
+            'failed' => $this->getFailed() ? $this->getFailed()->format('Y-m-d\TH:i:s.v') : null,
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'fingerprint' => $this->getFingerprint(),
+            'reactivated' => $this->getReactivated() ? $this->getReactivated()->format('Y-m-d\TH:i:s.v') : null,
+            'gw_ref' => $this->getGwRef(),
+            'card_type' => $this->getCardType(),
+            'transaction_card_type' => $this->getTransactionCardType(),
+            'exp_date' => $this->getExpDate(),
+            'masked_card' => $this->getMaskedCard(),
+            'last_success' => $this->getLastSuccess() ? $this->getLastSuccess()->format('Y-m-d\TH:i:s.v') : null,
+            'last_failed' => $this->getLastFailed() ? $this->getLastFailed()->format('Y-m-d\TH:i:s.v') : null,
+            'first_fail' => $this->getFirstFail() ? $this->getFirstFail()->format('Y-m-d\TH:i:s.v') : null,
+            'error_code' => $this->getErrorCode(),
+            'error_state' => $this->getErrorState(),
+            'strong_authentication_status' => $this->getStrongAuthenticationStatus(),
+            'three_d_secure_status' => $this->getThreeDSecureStatus(),
+            'risk_rule' => $this->getRiskRule(),
+            'card_country' => $this->getCardCountry(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

@@ -48,4 +48,13 @@ class ViabillTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'viabill_id' => $this->getViabillId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

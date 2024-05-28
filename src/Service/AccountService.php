@@ -36,7 +36,7 @@ class AccountService extends AbstractService
      */
     public function getWebHookSettings(): WebHookSettingsModel
     {
-        $url      = $this::buildRoute(UrlPathInterface::ACCOUNT . "/", UrlPathInterface::WEBHOOK_SETTINGS);
+        $url      = $this::buildRoute(UrlPathInterface::ACCOUNT . "/" . UrlPathInterface::WEBHOOK_SETTINGS);
         $response = $this->getRequest()->get($url);
 
         return WebhookSettingsModel::fromArray($response);

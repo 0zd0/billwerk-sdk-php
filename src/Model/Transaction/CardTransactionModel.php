@@ -654,4 +654,35 @@ class CardTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'card' => $this->getCard() ? $this->getCard()->toArray() : null,
+            'error' => $this->getError(),
+            'fingerprint' => $this->getFingerprint(),
+            'provider' => $this->getProvider(),
+            'frictionless' => $this->getFrictionless(),
+            'ref_transaction' => $this->getRefTransaction(),
+            'gw_id' => $this->getGwId(),
+            'last_failed' => $this->getLastFailed() ? $this->getLastFailed()->format('Y-m-d\TH:i:s.v') : null,
+            'first_failed' => $this->getFirstFailed() ? $this->getFirstFailed()->format('Y-m-d\TH:i:s.v') : null,
+            'error_state' => $this->getErrorState(),
+            'card_type' => $this->getCardType(),
+            'transaction_card_type' => $this->getTransactionCardType(),
+            'exp_date' => $this->getExpDate(),
+            'masked_card' => $this->getMaskedCard(),
+            'card_country' => $this->getCardCountry(),
+            'strong_authentication_status' => $this->getStrongAuthenticationStatus(),
+            'three_d_secure_status' => $this->getThreeDSecureStatus(),
+            'risk_rule' => $this->getRiskRule(),
+            'acquirer_code' => $this->getAcquirerCode(),
+            'acquirer_message' => $this->getAcquirerMessage(),
+            'acquirer_reference' => $this->getAcquirerReference(),
+            'text_on_statement' => $this->getTextOnStatement(),
+            'surcharge_fee' => $this->getSurchargeFee(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

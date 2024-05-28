@@ -45,4 +45,13 @@ class SepaMandateModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'iban' => $this->getIban(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

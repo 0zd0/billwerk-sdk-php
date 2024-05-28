@@ -552,76 +552,31 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
 
     public function toApi(): array
     {
-        $result = [];
+        return $this->toArray();
+    }
 
-        if ( ! is_null($this->getEmail())) {
-            $result['email'] = $this->getEmail();
-        }
-
-        if ( ! is_null($this->getAddress())) {
-            $result['address'] = $this->getAddress();
-        }
-
-        if ( ! is_null($this->getAddress2())) {
-            $result['address2'] = $this->getAddress2();
-        }
-
-        if ( ! is_null($this->getCity())) {
-            $result['city'] = $this->getCity();
-        }
-
-        if ( ! is_null($this->getCountry())) {
-            $result['country'] = $this->getCountry();
-        }
-
-        if ( ! is_null($this->getPhone())) {
-            $result['phone'] = $this->getPhone();
-        }
-
-        if ( ! is_null($this->getCompany())) {
-            $result['company'] = $this->getCompany();
-        }
-
-        if ( ! is_null($this->getVat())) {
-            $result['vat'] = $this->getVat();
-        }
-
-        if ( ! is_null($this->getLanguage())) {
-            $result['language'] = $this->getLanguage();
-        }
-
-        if ( ! is_null($this->getHandle())) {
-            $result['handle'] = $this->getHandle();
-        }
-
-        if ( ! is_null($this->getTest())) {
-            $result['test'] = $this->getTest();
-        }
-
-        if ( ! is_null($this->getMetadata())) {
-            $result['metadata'] = MetaDataModel::fromObjects($this->getMetadata());
-        }
-
-        if ( ! is_null($this->getFirstName())) {
-            $result['first_name'] = $this->getFirstName();
-        }
-
-        if ( ! is_null($this->getLastName())) {
-            $result['last_name'] = $this->getLastName();
-        }
-
-        if ( ! is_null($this->getPostalCode())) {
-            $result['postal_code'] = $this->getPostalCode();
-        }
-
-        if ( ! is_null($this->getDebtorId())) {
-            $result['debtor_id'] = $this->getDebtorId();
-        }
-
-        if ( ! is_null($this->getGenerateHandle())) {
-            $result['generate_handle'] = $this->getGenerateHandle();
-        }
-
-        return $result;
+    public function toArray(): array
+    {
+        return array_filter([
+            'email' => $this->getEmail(),
+            'address' => $this->getAddress(),
+            'address2' => $this->getAddress2(),
+            'city' => $this->getCity(),
+            'country' => $this->getCountry(),
+            'phone' => $this->getPhone(),
+            'company' => $this->getCompany(),
+            'vat' => $this->getVat(),
+            'language' => $this->getLanguage(),
+            'handle' => $this->getHandle(),
+            'test' => $this->getTest(),
+            'metadata' => $this->getMetadata() ? MetaDataModel::fromObjects($this->getMetadata()) : null,
+            'first_name' => $this->getFirstName(),
+            'last_name' => $this->getLastName(),
+            'postal_code' => $this->getPostalCode(),
+            'debtor_id' => $this->getDebtorId(),
+            'generate_handle' => $this->getGenerateHandle(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

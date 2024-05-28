@@ -143,4 +143,16 @@ class ManualTransactionModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'method' => $this->getMethod(),
+            'comment' => $this->getComment(),
+            'reference' => $this->getReference(),
+            'payment_date' => $this->getPaymentDate() ? $this->getPaymentDate()->format('Y-m-d\TH:i:s.v') : null,
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

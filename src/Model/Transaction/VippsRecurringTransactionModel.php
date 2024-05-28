@@ -69,4 +69,14 @@ class VippsRecurringTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'vipps_recurring_id' => $this->getVippsRecurringId(),
+            'vipps_recurring_mandate' => $this->getVippsRecurringMandate(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

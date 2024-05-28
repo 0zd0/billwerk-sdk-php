@@ -1,2 +1,13 @@
 [api]
 key = ''
+
+[service]
+    [service.invoice]
+        [service.invoice.get]
+        id = 'value1'
+        transaction = 'value1'
+
+    [service.customer]
+        [service.invoice.get]
+        handle = 'customer-224'
+

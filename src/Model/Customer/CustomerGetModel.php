@@ -47,4 +47,9 @@ class CustomerGetModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return [];
+    }
 }

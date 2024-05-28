@@ -57,7 +57,7 @@ abstract class AbstractCollectionModel extends AbstractModel
     /**
      * List of count entities for the page
      *
-     * @var array $content
+     * @var AbstractModel[] $content
      */
     protected array $content;
 
@@ -69,7 +69,7 @@ abstract class AbstractCollectionModel extends AbstractModel
     protected ?string $nextPageToken = null;
 
     /**
-     * @return array
+     * @return AbstractModel[]
      */
     public function getContent(): array
     {
@@ -241,5 +241,22 @@ abstract class AbstractCollectionModel extends AbstractModel
         $collection->setContent($response['content']);
 
         return $collection;
+    }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'size' => $this->getSize(),
+            'count' => $this->getCount(),
+            'to' => $this->getTo()->format('Y-m-d\TH:i:s.v'),
+            'from' => $this->getFrom()->format('Y-m-d\TH:i:s.v'),
+            'next_page_token' => $this->getNextPageToken(),
+            'range' => $this->getRange(),
+            'content' => array_map(function ($item) {
+                return $item->toArray();
+            }, $this->getContent()),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

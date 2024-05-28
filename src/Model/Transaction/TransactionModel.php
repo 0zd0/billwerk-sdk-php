@@ -1601,4 +1601,77 @@ class TransactionModel extends AbstractModel implements HasIdInterface
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'id' => $this->getId(),
+            'state' => $this->getState(),
+            'invoice' => $this->getInvoice(),
+            'type' => $this->getType(),
+            'amount' => $this->getAmount(),
+            'currency' => $this->getCurrency(),
+            'settled' => $this->getSettled() ? $this->getSettled()->format('Y-m-d\TH:i:s.v') : null,
+            'authorized' => $this->getAuthorized() ? $this->getAuthorized()->format('Y-m-d\TH:i:s.v') : null,
+            'failed' => $this->getFailed() ? $this->getFailed()->format('Y-m-d\TH:i:s.v') : null,
+            'refunded' => $this->getRefunded() ? $this->getRefunded()->format('Y-m-d\TH:i:s.v') : null,
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'payment_type' => $this->getPaymentType(),
+            'payment_method' => $this->getPaymentMethod(),
+            'card_transaction' => $this->getCardTransaction() ? $this->getCardTransaction()->toArray() : null,
+            'mpo_transaction' => $this->getMpoTransaction() ? $this->getMpoTransaction()->toArray() : null,
+            'vipps_transaction' => $this->getVippsTransaction() ? $this->getVippsTransaction()->toArray() : null,
+            'applepay_transaction' =>
+                $this->getApplepayTransaction() ? $this->getApplepayTransaction()->toArray() : null,
+            'googlepay_transaction' =>
+                $this->getGooglepayTransaction() ? $this->getGooglepayTransaction()->toArray() : null,
+            'manual_transaction' => $this->getManualTransaction() ? $this->getManualTransaction()->toArray() : null,
+            'viabill_transaction' => $this->getViabillTransaction() ? $this->getViabillTransaction()->toArray() : null,
+            'anyday_transaction' => $this->getAnydayTransaction() ? $this->getAnydayTransaction()->toArray() : null,
+            'santander_transaction' =>
+                $this->getSantanderTransaction() ? $this->getSantanderTransaction()->toArray() : null,
+            'resurs_transaction' => $this->getResursTransaction() ? $this->getResursTransaction()->toArray() : null,
+            'klarna_transaction' => $this->getKlarnaTransaction() ? $this->getKlarnaTransaction()->toArray() : null,
+            'swish_transaction' => $this->getSwishTransaction() ? $this->getSwishTransaction()->toArray() : null,
+            'paypal_transaction' => $this->getPaypalTransaction() ? $this->getPaypalTransaction()->toArray() : null,
+            'bancomatpay_transaction' =>
+                $this->getBancomatpayTransaction() ? $this->getBancomatpayTransaction()->toArray() : null,
+            'bancontact_transaction' =>
+                $this->getBancontactTransaction() ? $this->getBancontactTransaction()->toArray() : null,
+            'blik_transaction' => $this->getBlikTransaction() ? $this->getBlikTransaction()->toArray() : null,
+            'ideal_transaction' => $this->getIdealTransaction() ? $this->getIdealTransaction()->toArray() : null,
+            'p24_transaction' => $this->getP24Transaction() ? $this->getP24Transaction()->toArray() : null,
+            'trustly_transaction' => $this->getTrustlyTransaction() ? $this->getTrustlyTransaction()->toArray() : null,
+            'eps_transaction' => $this->getEpsTransaction() ? $this->getEpsTransaction()->toArray() : null,
+            'estonia_banks_transaction' =>
+                $this->getEstoniaBanksTransaction() ? $this->getEstoniaBanksTransaction()->toArray() : null,
+            'latvia_banks_transaction' =>
+                $this->getLatviaBanksTransaction() ? $this->getLatviaBanksTransaction()->toArray() : null,
+            'lithuania_banks_transaction' =>
+                $this->getLithuaniaBanksTransaction() ? $this->getLithuaniaBanksTransaction()->toArray() : null,
+            'mbway_transaction' => $this->getMbwayTransaction() ? $this->getMbwayTransaction()->toArray() : null,
+            'multibanco_transaction' =>
+                $this->getMultibancoTransaction() ? $this->getMultibancoTransaction()->toArray() : null,
+            'mybank_transaction' => $this->getMybankTransaction() ? $this->getMybankTransaction()->toArray() : null,
+            'payconiq_transaction' =>
+                $this->getPayconiqTransaction() ? $this->getPayconiqTransaction()->toArray() : null,
+            'paysafecard_transaction' =>
+                $this->getPaysafecardTransaction() ? $this->getPaysafecardTransaction()->toArray() : null,
+            'paysera_transaction' => $this->getPayseraTransaction() ? $this->getPayseraTransaction()->toArray() : null,
+            'postfinance_transaction' =>
+                $this->getPostfinanceTransaction() ? $this->getPostfinanceTransaction()->toArray() : null,
+            'satispay_transaction' =>
+                $this->getSatispayTransaction() ? $this->getSatispayTransaction()->toArray() : null,
+            'twint_transaction' => $this->getTwintTransaction() ? $this->getTwintTransaction()->toArray() : null,
+            'wechatpay_transaction' =>
+                $this->getWechatpayTransaction() ? $this->getWechatpayTransaction()->toArray() : null,
+            'mps_transaction' => $this->getMpsTransaction() ? $this->getMpsTransaction()->toArray() : null,
+            'vipps_recurring_transaction' =>
+                $this->getVippsRecurringTransaction() ? $this->getVippsRecurringTransaction()->toArray() : null,
+            'offline_transaction' => $this->getOfflineTransaction() ? $this->getOfflineTransaction()->toArray() : null,
+            'payment_context' => $this->getPaymentContext(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

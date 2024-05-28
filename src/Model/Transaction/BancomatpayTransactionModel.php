@@ -48,4 +48,13 @@ class BancomatpayTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'bancomatpay_id' => $this->getBancomatpayId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

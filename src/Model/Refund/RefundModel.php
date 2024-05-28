@@ -177,7 +177,7 @@ class RefundModel extends AbstractModel implements HasIdInterface
     /**
      * @return string|null
      */
-    public function getErrorSate(): ?string
+    public function getErrorState(): ?string
     {
         return $this->errorState;
     }
@@ -448,5 +448,27 @@ class RefundModel extends AbstractModel implements HasIdInterface
         }
 
         return $model;
+    }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'id' => $this->getId(),
+            'invoice' => $this->getInvoice(),
+            'amount' => $this->getAmount(),
+            'currency' => $this->getCurrency(),
+            'transaction' => $this->getTransaction(),
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'type' => $this->getType(),
+            'state' => $this->getState(),
+            'error' => $this->getError(),
+            'credit_note_id' => $this->getCreditNoteId(),
+            'ref_transaction' => $this->getRefTransaction(),
+            'error_state' => $this->getErrorState(),
+            'acquirer_message' => $this->getAcquirerMessage(),
+            'accounting_number' => $this->getAccountingNumber(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

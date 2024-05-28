@@ -48,4 +48,13 @@ class PaypalTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'paypal_id' => $this->getPaypalId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

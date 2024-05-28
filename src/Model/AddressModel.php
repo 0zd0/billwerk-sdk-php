@@ -420,60 +420,29 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
 
     public function toApi(): array
     {
-        $result = [];
+        return $this->toArray();
+    }
 
-        if ( ! is_null($this->getCompany())) {
-            $result['company'] = $this->getCompany();
-        }
+    public function toArray(): array
+    {
+        $fields = [
+            'company' => $this->getCompany(),
+            'vat' => $this->getVat(),
+            'attention' => $this->getAttention(),
+            'address' => $this->getAddress(),
+            'address2' => $this->getAddress2(),
+            'city' => $this->getCity(),
+            'country' => $this->getCountry(),
+            'email' => $this->getEmail(),
+            'phone' => $this->getPhone(),
+            'first_name' => $this->getFirstName(),
+            'last_name' => $this->getLastName(),
+            'postal_code' => $this->getPostalCode(),
+            'state_or_province' => $this->getStateOrProvince(),
+        ];
 
-        if ( ! is_null($this->getVat())) {
-            $result['vat'] = $this->getVat();
-        }
-
-        if ( ! is_null($this->getAttention())) {
-            $result['attention'] = $this->getAttention();
-        }
-
-        if ( ! is_null($this->getAddress())) {
-            $result['address'] = $this->getAddress();
-        }
-
-        if ( ! is_null($this->getAddress2())) {
-            $result['address2'] = $this->getAddress2();
-        }
-
-        if ( ! is_null($this->getCity())) {
-            $result['city'] = $this->getCity();
-        }
-
-        if ( ! is_null($this->getCountry())) {
-            $result['country'] = $this->getCountry();
-        }
-
-        if ( ! is_null($this->getEmail())) {
-            $result['email'] = $this->getEmail();
-        }
-
-        if ( ! is_null($this->getPhone())) {
-            $result['phone'] = $this->getPhone();
-        }
-
-        if ( ! is_null($this->getFirstName())) {
-            $result['first_name'] = $this->getFirstName();
-        }
-
-        if ( ! is_null($this->getLastName())) {
-            $result['last_name'] = $this->getLastName();
-        }
-
-        if ( ! is_null($this->getPostalCode())) {
-            $result['postal_code'] = $this->getPostalCode();
-        }
-
-        if ( ! is_null($this->getStateOrProvince())) {
-            $result['state_or_province'] = $this->getStateOrProvince();
-        }
-
-        return $result;
+        return array_filter($fields, function ($value) {
+            return $value !== null;
+        });
     }
 }

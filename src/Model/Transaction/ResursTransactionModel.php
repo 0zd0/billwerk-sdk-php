@@ -48,4 +48,13 @@ class ResursTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'resurs_id' => $this->getResursId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

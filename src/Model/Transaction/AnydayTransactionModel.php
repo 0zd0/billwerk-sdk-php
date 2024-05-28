@@ -48,4 +48,13 @@ class AnydayTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'anyday_id' => $this->getAnydayId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

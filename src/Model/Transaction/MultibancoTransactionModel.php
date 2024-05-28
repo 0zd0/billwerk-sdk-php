@@ -48,4 +48,13 @@ class MultibancoTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'multibanco_id' => $this->getMultibancoId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

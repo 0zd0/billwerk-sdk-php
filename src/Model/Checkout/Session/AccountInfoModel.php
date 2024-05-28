@@ -544,74 +544,32 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
         return $model;
     }
 
+    public function toArray(): array
+    {
+        return array_filter([
+            'created' => $this->getCreated(),
+            'changed' => $this->getChanged(),
+            'age_indicator' => $this->getAgeIndicator(),
+            'change_indicator' => $this->getChangeIndicator(),
+            'password_change' => $this->getPasswordChange(),
+            'password_change_indicator' => $this->getPasswordChangeIndicator(),
+            'purchase_count' => $this->getPurchaseCount(),
+            'add_card_attempts' => $this->getAddCardAttempts(),
+            'transactions_day' => $this->getTransactionsDay(),
+            'transactions_year' => $this->getTransactionsYear(),
+            'card_age' => $this->getCardAge(),
+            'card_age_indicator' => $this->getCardAgeIndicator(),
+            'shipping_address_usage' => $this->getShippingAddressUsage(),
+            'shipping_address_usage_indicator' => $this->getShippingAddressUsageIndicator(),
+            'shipping_name_indicator' => $this->getShippingNameIndicator(),
+            'suspicious_activity' => $this->getSuspiciousActivity(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
+
     public function toApi(): array
     {
-        $result = [];
-
-        if ( ! is_null($this->getCreated())) {
-            $result['created'] = $this->getCreated();
-        }
-
-        if ( ! is_null($this->getChanged())) {
-            $result['changed'] = $this->getChanged();
-        }
-
-        if ( ! is_null($this->getAgeIndicator())) {
-            $result['age_indicator'] = $this->getAgeIndicator();
-        }
-
-        if ( ! is_null($this->getChangeIndicator())) {
-            $result['change_indicator'] = $this->getChangeIndicator();
-        }
-
-        if ( ! is_null($this->getPasswordChange())) {
-            $result['password_change'] = $this->getPasswordChange();
-        }
-
-        if ( ! is_null($this->getPasswordChangeIndicator())) {
-            $result['password_change_indicator'] = $this->getPasswordChangeIndicator();
-        }
-
-        if ( ! is_null($this->getPurchaseCount())) {
-            $result['purchase_count'] = $this->getPurchaseCount();
-        }
-
-        if ( ! is_null($this->getAddCardAttempts())) {
-            $result['add_card_attempts'] = $this->getAddCardAttempts();
-        }
-
-        if ( ! is_null($this->getTransactionsDay())) {
-            $result['transactions_day'] = $this->getTransactionsDay();
-        }
-
-        if ( ! is_null($this->getTransactionsYear())) {
-            $result['transactions_year'] = $this->getTransactionsYear();
-        }
-
-        if ( ! is_null($this->getCardAge())) {
-            $result['card_age'] = $this->getCardAge();
-        }
-
-        if ( ! is_null($this->getCardAgeIndicator())) {
-            $result['card_age_indicator'] = $this->getCardAgeIndicator();
-        }
-
-        if ( ! is_null($this->getShippingAddressUsage())) {
-            $result['shipping_address_usage'] = $this->getShippingAddressUsage();
-        }
-
-        if ( ! is_null($this->getShippingAddressUsageIndicator())) {
-            $result['shipping_address_usage_indicator'] = $this->getShippingAddressUsageIndicator();
-        }
-
-        if ( ! is_null($this->getShippingNameIndicator())) {
-            $result['shipping_name_indicator'] = $this->getShippingNameIndicator();
-        }
-
-        if ( ! is_null($this->getSuspiciousActivity())) {
-            $result['suspicious_activity'] = $this->getSuspiciousActivity();
-        }
-
-        return $result;
+        return $this->toArray();
     }
 }

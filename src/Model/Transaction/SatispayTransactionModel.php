@@ -48,4 +48,13 @@ class SatispayTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'satispay_id' => $this->getSatispayId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

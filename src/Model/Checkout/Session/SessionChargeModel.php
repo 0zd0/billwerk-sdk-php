@@ -935,122 +935,46 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
         return $model;
     }
 
+    public function toArray(): array
+    {
+        return array_filter([
+            'configuration' => $this->getConfiguration(),
+            'locale' => $this->getLocale(),
+            'ttl' => $this->getTtl(),
+            'phone' => $this->getPhone(),
+            'invoice' => $this->getInvoice(),
+            'settle' => $this->getSettle(),
+            'order' => $this->getOrder() ? $this->getOrder()->toArray() : null,
+            'recurring' => $this->getRecurring(),
+            'accept_url' => $this->getAcceptUrl(),
+            'cancel_url' => $this->getCancelUrl(),
+            'payment_methods' => $this->getPaymentMethods(),
+            'card_on_file' => $this->getCardOnFile(),
+            'card_on_file_require_cvv' => $this->getCardOnFileRequireCvv(),
+            'card_on_file_require_exp_date' => $this->getCardOnFileRequireExpDate(),
+            'button_text' => $this->getButtonText(),
+            'recurring_average_amount' => $this->getRecurringAverageAmount(),
+            'sca_data' => $this->getScaData() ? $this->getScaData()->toArray() : null,
+            'session_data' => $this->getSessionData() ? $this->getSessionData()->toArray() : null,
+            'payment_method_reference' => $this->getPaymentMethodReference(),
+            'account_funding' => $this->getAccountFunding(),
+            'account_funding_information' =>
+                $this->getAccountFundingInformation() ? $this->getAccountFundingInformation()->toArray() : null,
+            'agreement_filter' => $this->getAgreementFilter(),
+            'offline_agreement_filter' => $this->getOfflineAgreementFilter(),
+            'allowed_ip' => $this->getAllowedIp(),
+            'text_on_statement' => $this->getTextOnStatement(),
+            'acquirer_reference' => $this->getAcquirerReference(),
+            'recurring_optional' => $this->getRecurringOptional(),
+            'recurring_optional_text' => $this->getRecurringOptionalText(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
+
+
     public function toApi(): array
     {
-        $result = [];
-
-        if ( ! is_null($this->getConfiguration())) {
-            $result['configuration'] = $this->getConfiguration();
-        }
-
-        if ( ! is_null($this->getLocale())) {
-            $result['locale'] = $this->getLocale();
-        }
-
-        if ( ! is_null($this->getTtl())) {
-            $result['ttl'] = $this->getTtl();
-        }
-
-        if ( ! is_null($this->getPhone())) {
-            $result['phone'] = $this->getPhone();
-        }
-
-        if ( ! is_null($this->getInvoice())) {
-            $result['invoice'] = $this->getInvoice();
-        }
-
-        if ( ! is_null($this->getSettle())) {
-            $result['settle'] = $this->getSettle();
-        }
-
-        if ( ! is_null($this->getOrder())) {
-            $result['order'] = $this->getOrder()->toApi();
-        }
-
-        if ( ! is_null($this->getRecurring())) {
-            $result['recurring'] = $this->getRecurring();
-        }
-
-        if ( ! is_null($this->getAcceptUrl())) {
-            $result['accept_url'] = $this->getAcceptUrl();
-        }
-
-        if ( ! is_null($this->getCancelUrl())) {
-            $result['cancel_url'] = $this->getCancelUrl();
-        }
-
-        if ( ! is_null($this->getPaymentMethods())) {
-            $result['payment_methods'] = $this->getPaymentMethods();
-        }
-
-        if ( ! is_null($this->getCardOnFile())) {
-            $result['card_on_file'] = $this->getCardOnFile();
-        }
-
-        if ( ! is_null($this->getCardOnFileRequireCvv())) {
-            $result['card_on_file_require_cvv'] = $this->getCardOnFileRequireCvv();
-        }
-
-        if ( ! is_null($this->getCardOnFileRequireExpDate())) {
-            $result['card_on_file_require_exp_date'] = $this->getCardOnFileRequireExpDate();
-        }
-
-        if ( ! is_null($this->getButtonText())) {
-            $result['button_text'] = $this->getButtonText();
-        }
-
-        if ( ! is_null($this->getRecurringAverageAmount())) {
-            $result['recurring_average_amount'] = $this->getRecurringAverageAmount();
-        }
-
-        if ( ! is_null($this->getScaData())) {
-            $result['sca_data'] = $this->getScaData()->toApi();
-        }
-
-        if ( ! is_null($this->getSessionData())) {
-            $result['session_data'] = $this->getSessionData()->toApi();
-        }
-
-        if ( ! is_null($this->getPaymentMethodReference())) {
-            $result['payment_method_reference'] = $this->getPaymentMethodReference();
-        }
-
-        if ( ! is_null($this->getAccountFunding())) {
-            $result['account_funding'] = $this->getAccountFunding();
-        }
-
-        if ( ! is_null($this->getAccountFundingInformation())) {
-            $result['account_funding_information'] = $this->getAccountFundingInformation()->toApi();
-        }
-
-        if ( ! is_null($this->getAgreementFilter())) {
-            $result['agreement_filter'] = $this->getAgreementFilter();
-        }
-
-        if ( ! is_null($this->getOfflineAgreementFilter())) {
-            $result['offline_agreement_filter'] = $this->getOfflineAgreementFilter();
-        }
-
-        if ( ! is_null($this->getAllowedIp())) {
-            $result['allowed_ip'] = $this->getAllowedIp();
-        }
-
-        if ( ! is_null($this->getTextOnStatement())) {
-            $result['text_on_statement'] = $this->getTextOnStatement();
-        }
-
-        if ( ! is_null($this->getAcquirerReference())) {
-            $result['acquirer_reference'] = $this->getAcquirerReference();
-        }
-
-        if ( ! is_null($this->getRecurringOptional())) {
-            $result['recurring_optional'] = $this->getRecurringOptional();
-        }
-
-        if ( ! is_null($this->getRecurringOptionalText())) {
-            $result['recurring_optional_text'] = $this->getRecurringOptionalText();
-        }
-
-        return $result;
+        return $this->toArray();
     }
 }

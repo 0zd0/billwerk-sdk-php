@@ -48,4 +48,13 @@ class TwintTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'twint_id' => $this->getTwintId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

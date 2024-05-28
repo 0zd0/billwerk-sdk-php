@@ -50,4 +50,13 @@ class MpsSubscriptionModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'external_id' => $this->getExternalId(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

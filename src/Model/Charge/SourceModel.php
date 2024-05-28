@@ -3,7 +3,6 @@
 namespace Billwerk\Sdk\Model\Charge;
 
 use Billwerk\Sdk\Enum\CardTypeEnum;
-use Billwerk\Sdk\Enum\OfflineAgreementHandleEnum;
 use Billwerk\Sdk\Enum\ProviderEnum;
 use Billwerk\Sdk\Enum\SourceTypeEnum;
 use Billwerk\Sdk\Enum\StrongAuthenticationStatusEnum;
@@ -793,5 +792,37 @@ class SourceModel extends AbstractModel
         }
 
         return $model;
+    }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'type' => $this->getType(),
+            'card' => $this->getCard(),
+            'mps' => $this->getMps(),
+            'iban' => $this->getIban(),
+            'fingerprint' => $this->getFingerprint(),
+            'provider' => $this->getProvider(),
+            'frictionless' => $this->getFrictionless(),
+            'vipps_recurring' => $this->getVippsRecurring(),
+            'sepa_mandate' => $this->getSepaMandate(),
+            'offline_agreement_handle' => $this->getOfflineAgreementHandle(),
+            'auth_transaction' => $this->getAuthTransaction(),
+            'card_type' => $this->getCardType(),
+            'transaction_card_type' => $this->getTransactionCardType(),
+            'exp_date' => $this->getExpDate(),
+            'masked_card' => $this->getMaskedCard(),
+            'card_country' => $this->getCardCountry(),
+            'strong_authentication_status' => $this->getStrongAuthenticationStatus(),
+            'three_d_secure_status' => $this->getThreeDSecureStatus(),
+            'risk_rule' => $this->getRiskRule(),
+            'acquirer_code' => $this->getAcquirerCode(),
+            'acquirer_message' => $this->getAcquirerMessage(),
+            'acquirer_reference' => $this->getAcquirerReference(),
+            'text_on_statement' => $this->getTextOnStatement(),
+            'surcharge_fee' => $this->getSurchargeFee(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

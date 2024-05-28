@@ -236,38 +236,23 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
         return $model;
     }
 
+    public function toArray(): array
+    {
+        return array_filter([
+            'address1' => $this->getAddress1(),
+            'address2' => $this->getAddress2(),
+            'address3' => $this->getAddress3(),
+            'city' => $this->getCity(),
+            'country' => $this->getCountry(),
+            'postal_code' => $this->getPostalCode(),
+            'state_or_province' => $this->getStateOrProvince(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
+
     public function toApi(): array
     {
-        $result = [];
-
-        if ( ! is_null($this->getAddress1())) {
-            $result['address1'] = $this->getAddress1();
-        }
-
-        if ( ! is_null($this->getAddress2())) {
-            $result['address2'] = $this->getAddress2();
-        }
-
-        if ( ! is_null($this->getAddress3())) {
-            $result['address3'] = $this->getAddress3();
-        }
-
-        if ( ! is_null($this->getCity())) {
-            $result['city'] = $this->getCity();
-        }
-
-        if ( ! is_null($this->getCountry())) {
-            $result['country'] = $this->getCountry();
-        }
-
-        if ( ! is_null($this->getPostalCode())) {
-            $result['postal_code'] = $this->getPostalCode();
-        }
-
-        if ( ! is_null($this->getStateOrProvince())) {
-            $result['state_or_province'] = $this->getStateOrProvince();
-        }
-
-        return $result;
+        return $this->toArray();
     }
 }

@@ -235,4 +235,19 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'id' => $this->getId(),
+            'state' => $this->getState(),
+            'customer' => $this->getCustomer(),
+            'reference' => $this->getReference(),
+            'failed' => $this->getFailed() ? $this->getFailed()->format(DATE_ATOM) : null,
+            'created' => $this->getCreated() ? $this->getCreated()->format(DATE_ATOM) : null,
+            'external_id' => $this->getExternalId(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

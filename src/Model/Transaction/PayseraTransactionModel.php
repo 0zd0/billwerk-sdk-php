@@ -48,4 +48,13 @@ class PayseraTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'paysera_id' => $this->getPayseraId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

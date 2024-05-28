@@ -1,0 +1,12 @@
+{
+  "name": "billwerk-php-sdk",
+  "version": "1.0.0",
+  "scripts": {
+    "phpcs": "bash ./bin/phpcs.sh",
+    "phpcs:full": "bash ./bin/phpcs.sh -full",
+    "phpcs:fix": "bash ./bin/phpcs.sh -fix",
+    "phpcs:tests": "bash ./bin/phpcs.tests.sh",
+    "phpcs:tests:full": "bash ./bin/phpcs.tests.sh -full",
+    "phpcs:tests:fix": "bash ./bin/phpcs.tests.sh -fix"
+  }
+}

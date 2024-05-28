@@ -48,4 +48,13 @@ class PostfinanceTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'postfinance_id' => $this->getPostfinanceId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

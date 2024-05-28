@@ -75,4 +75,16 @@ class SessionModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        $fields = [
+            'id' => $this->getId(),
+            'url' => $this->getUrl(),
+        ];
+
+        return array_filter($fields, function ($value) {
+            return $value !== null;
+        });
+    }
 }

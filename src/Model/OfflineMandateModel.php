@@ -77,4 +77,14 @@ class OfflineMandateModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'offline_agreement_handle' => $this->getOfflineAgreementHandle(),
+            'offline_agreement_name' => $this->getOfflineAgreementName(),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

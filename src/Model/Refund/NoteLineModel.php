@@ -170,29 +170,6 @@ class NoteLineModel extends AbstractModel
         return $this;
     }
 
-    public function toArray(): array
-    {
-        $result = [
-            'amount'   => $this->getAmount(),
-            'text'     => $this->getText(),
-            'quantity' => $this->getQuantity(),
-        ];
-
-        if (! is_null($this->getVat())) {
-            $result['vat'] = $this->getVat();
-        }
-
-        if (! is_null($this->getOrderLineId())) {
-            $result['order_line_id'] = $this->getOrderLineId();
-        }
-
-        if (! is_null($this->getAmountInclVat())) {
-            $result['amount_incl_vat'] = $this->getAmountInclVat();
-        }
-
-        return $result;
-    }
-
     /**
      * @param array $response
      *
@@ -218,5 +195,19 @@ class NoteLineModel extends AbstractModel
         }
 
         return $model;
+    }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'amount' => $this->getAmount(),
+            'text' => $this->getText(),
+            'quantity' => $this->getQuantity(),
+            'vat' => $this->getVat(),
+            'amount_incl_vat' => $this->getAmountInclVat(),
+            'order_line_id' => $this->getOrderLineId(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

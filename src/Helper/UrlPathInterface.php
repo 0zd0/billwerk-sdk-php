@@ -16,4 +16,5 @@ interface UrlPathInterface
     public const SETTLE = 'settle';
     public const CANCEL = 'cancel';
     public const SESSION = 'session';
+    public const RECURRING = 'recurring';
 }

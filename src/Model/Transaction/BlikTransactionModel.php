@@ -48,4 +48,13 @@ class BlikTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'blik_id' => $this->getBlikId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

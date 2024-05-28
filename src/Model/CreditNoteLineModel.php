@@ -445,4 +445,26 @@ class CreditNoteLineModel extends AbstractModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'amount' => $this->getAmount(),
+            'text' => $this->getText(),
+            'quantity' => $this->getQuantity(),
+            'vat' => $this->getVat(),
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'order_line_id' => $this->getOrderLineId(),
+            'amount_incl_vat' => $this->getAmountInclVat(),
+            'amount_ex_vat' => $this->getAmountExVat(),
+            'unit_amount' => $this->getUnitAmount(),
+            'unit_amount_vat' => $this->getUnitAmountVat(),
+            'unit_amount_ex_vat' => $this->getUnitAmountExVat(),
+            'amount_incl_vat_defined' => $this->getAmountInclVatDefined(),
+            'period_from' => $this->getPeriodFrom() ? $this->getPeriodFrom()->format('Y-m-d\TH:i:s.v') : null,
+            'period_to' => $this->getPeriodTo() ? $this->getPeriodTo()->format('Y-m-d\TH:i:s.v') : null,
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

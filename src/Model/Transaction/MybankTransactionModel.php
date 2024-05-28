@@ -48,4 +48,13 @@ class MybankTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'mybank_id' => $this->getMybankId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }

@@ -1470,4 +1470,69 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter([
+            'id' => $this->getId(),
+            'handle' => $this->getHandle(),
+            'customer' => $this->getCustomer(),
+            'state' => $this->getState(),
+            'subscription' => $this->getSubscription(),
+            'plan' => $this->getPlan(),
+            'processing' => $this->getProcessing(),
+            'type' => $this->getType(),
+            'amount' => $this->getAmount(),
+            'number' => $this->getNumber(),
+            'currency' => $this->getCurrency(),
+            'due' => $this->getDue() ? $this->getDue()->format('Y-m-d\TH:i:s.v') : null,
+            'failed' => $this->getFailed() ? $this->getFailed()->format('Y-m-d\TH:i:s.v') : null,
+            'settled' => $this->getSettled() ? $this->getSettled()->format('Y-m-d\TH:i:s.v') : null,
+            'cancelled' => $this->getCancelled() ? $this->getCancelled()->format('Y-m-d\TH:i:s.v') : null,
+            'authorized' => $this->getAuthorized() ? $this->getAuthorized()->format('Y-m-d\TH:i:s.v') : null,
+            'credits' => array_map(function ($credit) {
+                return $credit->toArray();
+            }, $this->getCredits()),
+            'created' => $this->getCreated() ? $this->getCreated()->format('Y-m-d\TH:i:s.v') : null,
+            'plan_version' => $this->getPlanVersion(),
+            'dunning_plan' => $this->getDunningPlan(),
+            'discount_amount' => $this->getDiscountAmount(),
+            'org_amount' => $this->getOrgAmount(),
+            'amount_vat' => $this->getAmountVat(),
+            'amount_ex_vat' => $this->getAmountExVat(),
+            'settled_amount' => $this->getSettledAmount(),
+            'refunded_amount' => $this->getRefundedAmount(),
+            'authorized_amount' => $this->getAuthorizedAmount(),
+            'credited_amount' => $this->getCreditedAmount(),
+            'period_number' => $this->getPeriodNumber(),
+            'recurring_payment_method' => $this->getRecurringPaymentMethod(),
+            'order_lines' => array_map(function ($line) {
+                return $line->toArray();
+            }, $this->getOrderLines()),
+            'additional_costs' => $this->getAdditionalCosts(),
+            'transactions' => array_map(function ($transaction) {
+                return $transaction->toArray();
+            }, $this->getTransactions()),
+            'dunning_start' => $this->getDunningStart() ? $this->getDunningStart()->format('Y-m-d\TH:i:s.v') : null,
+            'dunning_count' => $this->getDunningCount(),
+            'dunning_expired' =>
+                $this->getDunningExpired() ? $this->getDunningExpired()->format('Y-m-d\TH:i:s.v') : null,
+            'period_from' => $this->getPeriodFrom() ? $this->getPeriodFrom()->format('Y-m-d\TH:i:s.v') : null,
+            'period_to' => $this->getPeriodTo() ? $this->getPeriodTo()->format('Y-m-d\TH:i:s.v') : null,
+            'settle_later' => $this->getSettleLater(),
+            'settle_later_payment_method' => $this->getSettleLaterPaymentMethod(),
+            'billing_address' => $this->getBillingAddress() ? $this->getBillingAddress()->toArray() : null,
+            'shipping_address' => $this->getShippingAddress() ? $this->getShippingAddress()->toArray() : null,
+            'accounting_number' => $this->getAccountingNumber(),
+            'debtor_id' => $this->getDebtorId(),
+            'download_url' => $this->getDownloadUrl(),
+            'accounting_created_date' =>
+                $this->getAccountingCreatedDate() ? $this->getAccountingCreatedDate()->format('Y-m-d\TH:i:s.v') : null,
+            'credit_notes' => array_map(function ($creditNote) {
+                return $creditNote->toArray();
+            }, $this->getCreditNotes()),
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
 }

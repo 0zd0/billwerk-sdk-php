@@ -84,4 +84,17 @@ class LastRequestInfo
     {
         return $this->timestamp;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'httpMethod' => $this->getHttpMethod(),
+            'uri' => $this->getUri(),
+            'body' => $this->getBody(),
+            'queryParams' => $this->getQueryParams(),
+            'response' => $this->getResponse(),
+            'responseCode' => $this->getResponseCode(),
+            'timestamp' => $this->getTimestamp(),
+        ];
+    }
 }

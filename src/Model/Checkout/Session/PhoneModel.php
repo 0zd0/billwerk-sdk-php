@@ -76,11 +76,18 @@ class PhoneModel extends AbstractModel implements HasRequestApiInterface
         return $model;
     }
 
-    public function toApi(): array
+    public function toArray(): array
     {
-        return [
+        return array_filter([
             'cc' => $this->getCc(),
             'subscriber' => $this->getSubscriber(),
-        ];
+        ], function ($value) {
+            return $value !== null;
+        });
+    }
+
+    public function toApi(): array
+    {
+        return $this->toArray();
     }
 }

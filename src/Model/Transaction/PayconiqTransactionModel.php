@@ -48,4 +48,13 @@ class PayconiqTransactionModel extends AbstractTransactionModel
 
         return $model;
     }
+
+    public function toArray(): array
+    {
+        return array_filter(array_merge($this->toArrayDefault(), [
+            'payconiq_id' => $this->getPayconiqId(),
+        ]), function ($value) {
+            return $value !== null;
+        });
+    }
 }
