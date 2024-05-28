@@ -1,5 +1,5 @@
 {
-    "name": "billwerk/sdk",
+    "name": "billwerk/php-sdk",
     "description": "Api SDK for Billwerk+",
     "type": "lib",
     "license": "MIT",
