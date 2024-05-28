@@ -9,3 +9,4 @@ package.json export-ignore
 phpcs.xml export-ignore
 phpunit.integration.xml export-ignore
 phpunit.unit.xml export-ignore
+.editorconfig export-ignore
