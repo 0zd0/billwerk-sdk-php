@@ -1,13 +1,55 @@
 [api]
-key = ''
+key = '1111111'
 
 [service]
-    [service.invoice]
-        [service.invoice.get]
-        id = 'value1'
-        transaction = 'value1'
+[service.customer]
+[service.customer.get]
+handle = 'customer-224'
 
-    [service.customer]
-        [service.invoice.get]
-        handle = 'customer-224'
+[service.customer.list]
+email = 'tesssssst@mail.ru'
+to = '2024-05-27T18:25:21+00:00'
 
+
+[service.invoice]
+[service.invoice.get]
+id = 'inv-32377'
+
+
+[service.payment-method]
+[service.payment-method.get]
+id = 'cs_1111111'
+
+
+[service.transaction]
+[service.transaction.get]
+id = 'inv-32377'
+transaction = '1221212121'
+
+
+[service.charge]
+source = 'auto'
+customer_handle = 'customer-224'
+amount = 1
+handle = 'test-2'
+
+[service.charge.get]
+handle = 'test-1'
+
+[service.charge.settle]
+handle = 'test-9'
+
+
+[service.refund]
+[service.refund.create]
+invoice = 'test-9'
+
+
+[service.session]
+[service.session.charge]
+handle = 'test-10'
+amount = 10
+customer_handle = 'customer-224'
+
+[service.session.recurring]
+customer_handle = 'customer-224'

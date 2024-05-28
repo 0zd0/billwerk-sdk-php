@@ -1,6 +1,8 @@
 {
     "name": "billwerk/sdk",
     "description": "Api SDK for Billwerk+",
+    "type": "lib",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Billwerk\\Sdk\\": "src/",
