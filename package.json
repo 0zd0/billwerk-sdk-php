@@ -1,5 +1,5 @@
 {
-  "name": "billwerk-php-sdk",
+  "name": "billwerk-sdk-php",
   "version": "1.0.0",
   "scripts": {
     "phpcs": "bash ./bin/phpcs.sh",
