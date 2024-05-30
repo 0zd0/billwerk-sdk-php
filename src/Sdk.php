@@ -15,6 +15,7 @@ final class Sdk
 {
     private BillwerkClientFactory $clientFactory;
     private string $apiKey;
+    private ?AccountService $accountService = null;
 
     public function __construct(BillwerkClientFactory $clientFactory, string $apiKey)
     {
@@ -36,6 +37,17 @@ final class Sdk
     public function getClientFactory(): BillwerkClientFactory
     {
         return $this->clientFactory;
+    }
+
+    /**
+     * @param AccountService|null $accountService
+     *
+     * @return self
+     */
+    public function setAccountService(?AccountService $accountService): self
+    {
+        $this->accountService = $accountService;
+        return $this;
     }
 
     public function getRequestWithApiUrl(): BillwerkRequest
@@ -68,9 +80,12 @@ final class Sdk
 
     public function account(): AccountService
     {
-        $request = $this->getRequestWithApiUrl();
+        if ($this->accountService === null) {
+            $request = $this->getRequestWithApiUrl();
+            $this->accountService = new AccountService($request);
+        }
 
-        return new AccountService($request);
+        return $this->accountService;
     }
 
     public function refund(): RefundService
