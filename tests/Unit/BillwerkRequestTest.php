@@ -36,7 +36,8 @@ final class BillwerkRequestTest extends TestCase
             $this->apiKey,
             $this->clientMock,
             $this->requestFactoryMock,
-            $this->streamFactoryMock
+            $this->streamFactoryMock,
+            $this->loggerMock,
         );
 
         $this->requestMock  = $this->createMock(RequestInterface::class);
@@ -94,6 +95,12 @@ final class BillwerkRequestTest extends TestCase
             ->method('sendRequest')
             ->willReturn($this->responseMock);
 
+        $this->loggerMock->expects($this->once())
+                ->method('info')
+                ->with(
+                    $this->equalTo('Api request GET - https://api.reepay.com/v1/sss'),
+                );
+
         $response = $this->requester->get(
             self::STUB_ROUTE,
         );
@@ -136,6 +143,18 @@ final class BillwerkRequestTest extends TestCase
 
         $this->requester->setSleepInstance(new Sleep());
 
+        $this->loggerMock->expects($this->exactly(2))
+                         ->method('debug')
+                         ->with(
+                             $this->equalTo('Too many requests. Retry'),
+                         );
+
+        $this->loggerMock->expects($this->once())
+                         ->method('info')
+                         ->with(
+                             $this->equalTo('Api request GET - https://api.reepay.com/v1/sss'),
+                         );
+
         $response = $this->requester->get(
             self::STUB_ROUTE,
         );
@@ -164,6 +183,18 @@ final class BillwerkRequestTest extends TestCase
             ->method('sendRequest')
             ->willReturn($this->responseMock);
 
+        $this->loggerMock->expects($this->exactly(6))
+                         ->method('debug')
+                         ->with(
+                             $this->equalTo('Too many requests. Retry'),
+                         );
+
+        $this->loggerMock->expects($this->once())
+                         ->method('error')
+                         ->with(
+                             $this->equalTo('Request limit exceeded after 5 attempts'),
+                         );
+
         $this->expectException(BillwerkApiException::class);
         $this->expectExceptionMessage("Request limit exceeded after 5 attempts");
 
@@ -183,6 +214,12 @@ final class BillwerkRequestTest extends TestCase
         $this->clientMock
             ->method('sendRequest')
             ->willThrowException(new ConnectException($errorMessage, $this->requestMock));
+
+        $this->loggerMock->expects($this->once())
+                         ->method('error')
+                         ->with(
+                             $this->equalTo($errorMessage),
+                         );
 
         $this->expectException(BillwerkNetworkException::class);
         $this->expectExceptionMessage($errorMessage);
@@ -204,6 +241,12 @@ final class BillwerkRequestTest extends TestCase
             ->method('sendRequest')
             ->willThrowException(new RequestException($errorMessage, $this->requestMock));
 
+        $this->loggerMock->expects($this->once())
+                         ->method('error')
+                         ->with(
+                             $this->equalTo($errorMessage),
+                         );
+
         $this->expectException(BillwerkRequestException::class);
         $this->expectExceptionMessage($errorMessage);
 
@@ -223,6 +266,12 @@ final class BillwerkRequestTest extends TestCase
         $this->clientMock
             ->method('sendRequest')
             ->willThrowException(new TransferException($errorMessage));
+
+        $this->loggerMock->expects($this->once())
+                         ->method('error')
+                         ->with(
+                             $this->equalTo($errorMessage),
+                         );
 
         $this->expectException(BillwerkClientException::class);
         $this->expectExceptionMessage($errorMessage);

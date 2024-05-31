@@ -2,6 +2,7 @@
 
 namespace Billwerk\Sdk;
 
+use Billwerk\Sdk\Logger\SdkLoggerInterface;
 use Billwerk\Sdk\Service\AccountService;
 use Billwerk\Sdk\Service\ChargeService;
 use Billwerk\Sdk\Service\CustomerService;
@@ -16,9 +17,18 @@ final class Sdk
     private BillwerkClientFactory $clientFactory;
     private string $apiKey;
     private ?AccountService $accountService = null;
+    private ?RefundService $refundService = null;
+    private ?InvoiceService $invoiceService = null;
+    private ?TransactionService $transactionService = null;
+    private ?CustomerService $customerService = null;
+    private ?ChargeService $chargeService = null;
+    private ?SessionService $sessionService = null;
+    private ?SdkLoggerInterface $logger = null;
 
-    public function __construct(BillwerkClientFactory $clientFactory, string $apiKey)
-    {
+    public function __construct(
+        BillwerkClientFactory $clientFactory,
+        string $apiKey
+    ) {
         $this->clientFactory = $clientFactory;
         $this->apiKey        = $apiKey;
     }
@@ -50,6 +60,86 @@ final class Sdk
         return $this;
     }
 
+    /**
+     * @param SdkLoggerInterface|null $logger
+     */
+    public function setLogger(?SdkLoggerInterface $logger): void
+    {
+        $this->logger = $logger;
+    }
+
+    /**
+     * @param ChargeService|null $chargeService
+     *
+     * @return self
+     */
+    public function setChargeService(?ChargeService $chargeService): self
+    {
+        $this->chargeService = $chargeService;
+
+        return $this;
+    }
+
+    /**
+     * @param CustomerService|null $customerService
+     *
+     * @return self
+     */
+    public function setCustomerService(?CustomerService $customerService): self
+    {
+        $this->customerService = $customerService;
+
+        return $this;
+    }
+
+    /**
+     * @param InvoiceService|null $invoiceService
+     *
+     * @return self
+     */
+    public function setInvoiceService(?InvoiceService $invoiceService): self
+    {
+        $this->invoiceService = $invoiceService;
+
+        return $this;
+    }
+
+    /**
+     * @param RefundService|null $refundService
+     *
+     * @return self
+     */
+    public function setRefundService(?RefundService $refundService): self
+    {
+        $this->refundService = $refundService;
+
+        return $this;
+    }
+
+    /**
+     * @param SessionService|null $sessionService
+     *
+     * @return self
+     */
+    public function setSessionService(?SessionService $sessionService): self
+    {
+        $this->sessionService = $sessionService;
+
+        return $this;
+    }
+
+    /**
+     * @param TransactionService|null $transactionService
+     *
+     * @return self
+     */
+    public function setTransactionService(?TransactionService $transactionService): self
+    {
+        $this->transactionService = $transactionService;
+
+        return $this;
+    }
+
     public function getRequestWithApiUrl(): BillwerkRequest
     {
         return new BillwerkRequest(
@@ -57,6 +147,7 @@ final class Sdk
             $this->getClientFactory()->getClient(),
             $this->getClientFactory()->getRequestFactory(),
             $this->getClientFactory()->getStreamFactory(),
+            $this->logger,
         );
     }
 
@@ -67,6 +158,7 @@ final class Sdk
             $this->getClientFactory()->getClient(),
             $this->getClientFactory()->getRequestFactory(),
             $this->getClientFactory()->getStreamFactory(),
+            $this->logger,
             Billwerk::CHECKOUT_BASE
         );
     }
@@ -80,7 +172,7 @@ final class Sdk
 
     public function account(): AccountService
     {
-        if ($this->accountService === null) {
+        if (!is_null($this->accountService)) {
             $request = $this->getRequestWithApiUrl();
             $this->accountService = new AccountService($request);
         }
@@ -90,43 +182,61 @@ final class Sdk
 
     public function refund(): RefundService
     {
-        $request = $this->getRequestWithApiUrl();
+        if (!is_null($this->refundService)) {
+            $request = $this->getRequestWithApiUrl();
+            $this->refundService = new RefundService($request);
+        }
 
-        return new RefundService($request);
+        return $this->refundService;
     }
 
     public function invoice(): InvoiceService
     {
-        $request = $this->getRequestWithApiUrl();
+        if (!is_null($this->invoiceService)) {
+            $request = $this->getRequestWithApiUrl();
+            $this->invoiceService = new InvoiceService($request);
+        }
 
-        return new InvoiceService($request);
+        return $this->invoiceService;
     }
 
     public function transaction(): TransactionService
     {
-        $request = $this->getRequestWithApiUrl();
+        if (!is_null($this->transactionService)) {
+            $request = $this->getRequestWithApiUrl();
+            $this->transactionService = new TransactionService($request);
+        }
 
-        return new TransactionService($request);
+        return $this->transactionService;
     }
 
     public function customer(): CustomerService
     {
-        $request = $this->getRequestWithApiUrl();
+        if (!is_null($this->customerService)) {
+            $request = $this->getRequestWithApiUrl();
+            $this->customerService = new CustomerService($request);
+        }
 
-        return new CustomerService($request);
+        return $this->customerService;
     }
 
     public function charge(): ChargeService
     {
-        $request = $this->getRequestWithApiUrl();
+        if (!is_null($this->chargeService)) {
+            $request = $this->getRequestWithApiUrl();
+            $this->chargeService = new ChargeService($request);
+        }
 
-        return new ChargeService($request);
+        return $this->chargeService;
     }
 
     public function session(): SessionService
     {
-        $request = $this->getRequestWithCheckoutUrl();
+        if (!is_null($this->sessionService)) {
+            $request = $this->getRequestWithApiUrl();
+            $this->sessionService = new SessionService($request);
+        }
 
-        return new SessionService($request);
+        return $this->sessionService;
     }
 }

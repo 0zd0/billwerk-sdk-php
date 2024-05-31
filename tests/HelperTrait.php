@@ -3,6 +3,7 @@
 namespace Billwerk\Sdk\Test;
 
 use Billwerk\Sdk\BillwerkClientFactory;
+use Billwerk\Sdk\Logger\SdkLoggerInterface;
 use Billwerk\Sdk\Sdk;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\HttpFactory;
@@ -32,7 +33,13 @@ trait HelperTrait
     protected string $apiKey;
 
     protected BillwerkClientFactory $clientFactoryMock;
+
     protected BillwerkClientFactory $clientFactory;
+
+    /**
+     * @var SdkLoggerInterface|MockObject
+     */
+    protected SdkLoggerInterface $loggerMock;
 
     protected Sdk $sdkMock;
     protected Sdk $sdk;
@@ -52,6 +59,8 @@ trait HelperTrait
         $this->clientMock         = $this->createMock(ClientInterface::class);
         $this->requestFactoryMock = $this->createMock(RequestFactoryInterface::class);
         $this->streamFactoryMock  = $this->createMock(StreamFactoryInterface::class);
+        $this->streamFactoryMock  = $this->createMock(StreamFactoryInterface::class);
+        $this->loggerMock  = $this->createMock(SdkLoggerInterface::class);
 
         $this->clientFactoryMock = new BillwerkClientFactory(
             $this->clientMock,

@@ -7,9 +7,9 @@ class LastRequestInfo
     private string $httpMethod;
     private string $uri;
     private array $body;
-    private ?array $queryParams;
-    private ?string $response;
-    private ?int $responseCode;
+    private ?array $queryParams = null;
+    private ?string $response = null;
+    private ?int $responseCode = null;
     private int $timestamp;
 
     public function __construct(
@@ -26,7 +26,7 @@ class LastRequestInfo
         $this->queryParams  = $queryParams;
         $this->response     = $response;
         $this->responseCode = $responseCode;
-        $this->timestamp    = time();
+        $this->timestamp    = gmdate('c');
     }
 
     /**
@@ -70,9 +70,9 @@ class LastRequestInfo
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getResponseCode(): int
+    public function getResponseCode(): ?int
     {
         return $this->responseCode;
     }

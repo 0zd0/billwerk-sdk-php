@@ -7,6 +7,7 @@ use Billwerk\Sdk\Exception\BillwerkClientException;
 use Billwerk\Sdk\Exception\BillwerkNetworkException;
 use Billwerk\Sdk\Exception\BillwerkRequestException;
 use Billwerk\Sdk\Helper\HttpStatusCodeInterface;
+use Billwerk\Sdk\Logger\SdkLoggerInterface;
 use Billwerk\Sdk\Model\ErrorModel;
 use Billwerk\Sdk\Util\LastRequestInfo;
 use Billwerk\Sdk\Util\Sleep;
@@ -38,6 +39,7 @@ class BillwerkRequest
     private RequestFactoryInterface $requestFactory;
     private StreamFactoryInterface $streamFactory;
     private Sleep $sleepInstance;
+    private ?SdkLoggerInterface $logger = null;
 
     private string $lastHttpMethod;
     private string $lastUri;
@@ -51,6 +53,7 @@ class BillwerkRequest
         ClientInterface $client,
         RequestFactoryInterface $requestFactory,
         StreamFactoryInterface $streamFactory,
+        ?SdkLoggerInterface $logger,
         ?string $baseUrl = Billwerk::API_BASE
     ) {
         $this->apiKey         = $apiKey;
@@ -58,6 +61,7 @@ class BillwerkRequest
         $this->baseUrl        = $baseUrl;
         $this->requestFactory = $requestFactory;
         $this->streamFactory  = $streamFactory;
+        $this->logger  = $logger;
         $this->sleepInstance  = new Sleep();
     }
 
@@ -146,10 +150,13 @@ class BillwerkRequest
         try {
             $response = $this->client->sendRequest($request);
         } catch (NetworkExceptionInterface $e) {
+            $this->error($e->getMessage());
             throw new BillwerkNetworkException($e->getMessage(), $e->getCode(), $this->getLastRequestInfo());
         } catch (RequestExceptionInterface $e) {
+            $this->error($e->getMessage());
             throw new BillwerkRequestException($e->getMessage(), $e->getCode(), $this->getLastRequestInfo());
         } catch (ClientExceptionInterface $e) {
+            $this->error($e->getMessage());
             throw new BillwerkClientException($e->getMessage(), $e->getCode(), $this->getLastRequestInfo());
         }
 
@@ -164,14 +171,17 @@ class BillwerkRequest
             } else {
                 $retryCount = $this->getRetryCount();
                 $this->setRetryCount(0);
+                $message = "Request limit exceeded after $retryCount attempts";
+                $this->error($message);
                 throw new BillwerkApiException(
-                    "Request limit exceeded after $retryCount attempts",
+                    $message,
                     $response->getStatusCode(),
                     $this->getLastRequestInfo(),
                     ErrorModel::fromArray($parsedResponse)
                 );
             }
         }
+        $this->info("Api request {$this->getLastHttpMethod()} - {$this->getLastUri()}");
 
         return $parsedResponse;
     }
@@ -183,13 +193,14 @@ class BillwerkRequest
     {
         $stream             = $response->getBody();
         $bodyContents       = $stream->getContents();
-        $this->lastResponse = $bodyContents;
+        $this->setLastResponse($bodyContents);
 
         $decodedBody = json_decode($bodyContents, true);
 
         if (
             empty($bodyContents) || ! $decodedBody
         ) {
+            $this->error("Response body is not json");
             throw new BillwerkApiException(
                 "Response body is not json",
                 $response->getStatusCode(),
@@ -212,11 +223,18 @@ class BillwerkRequest
 
         if ($statusCode === HttpStatusCodeInterface::STATUS_TOO_MANY_REQUESTS) {
             $this->setNeedToRetry(true);
+            $this->debug("Too many requests. Retry");
 
             return;
         }
 
         if ($statusCode !== HttpStatusCodeInterface::STATUS_OK) {
+            $this->error(
+                "Invalid http status",
+                [
+                    'response' => $decodedBody
+                ]
+            );
             throw new BillwerkApiException(
                 "Invalid http status",
                 $response->getStatusCode(),
@@ -224,6 +242,32 @@ class BillwerkRequest
                 ErrorModel::fromArray($decodedBody)
             );
         }
+    }
+
+    private function log(string $level, string $message, array $context = [])
+    {
+        if (!is_null($this->logger)) {
+            $context = array_merge(
+                ['lastRequestInfo' => $this->getLastRequestInfo()->toArray()],
+                $context
+            );
+            $this->logger->$level($message, $context);
+        }
+    }
+
+    private function error(string $message, array $context = [])
+    {
+        $this->log('error', $message, $context);
+    }
+
+    private function info(string $message, array $context = [])
+    {
+        $this->log('info', $message, $context);
+    }
+
+    private function debug(string $message, array $context = [])
+    {
+        $this->log('debug', $message, $context);
     }
 
     /**
