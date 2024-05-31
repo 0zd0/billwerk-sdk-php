@@ -10,7 +10,7 @@ class LastRequestInfo
     private ?array $queryParams = null;
     private ?string $response = null;
     private ?int $responseCode = null;
-    private int $timestamp;
+    private string $timestamp;
 
     public function __construct(
         string $httpMethod,
@@ -78,9 +78,9 @@ class LastRequestInfo
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getTimestamp(): int
+    public function getTimestamp(): string
     {
         return $this->timestamp;
     }
