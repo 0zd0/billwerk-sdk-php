@@ -172,7 +172,7 @@ final class Sdk
 
     public function account(): AccountService
     {
-        if (!is_null($this->accountService)) {
+        if (is_null($this->accountService)) {
             $request = $this->getRequestWithApiUrl();
             $this->accountService = new AccountService($request);
         }
@@ -182,7 +182,7 @@ final class Sdk
 
     public function refund(): RefundService
     {
-        if (!is_null($this->refundService)) {
+        if (is_null($this->refundService)) {
             $request = $this->getRequestWithApiUrl();
             $this->refundService = new RefundService($request);
         }
@@ -192,7 +192,7 @@ final class Sdk
 
     public function invoice(): InvoiceService
     {
-        if (!is_null($this->invoiceService)) {
+        if (is_null($this->invoiceService)) {
             $request = $this->getRequestWithApiUrl();
             $this->invoiceService = new InvoiceService($request);
         }
@@ -202,7 +202,7 @@ final class Sdk
 
     public function transaction(): TransactionService
     {
-        if (!is_null($this->transactionService)) {
+        if (is_null($this->transactionService)) {
             $request = $this->getRequestWithApiUrl();
             $this->transactionService = new TransactionService($request);
         }
@@ -212,7 +212,7 @@ final class Sdk
 
     public function customer(): CustomerService
     {
-        if (!is_null($this->customerService)) {
+        if (is_null($this->customerService)) {
             $request = $this->getRequestWithApiUrl();
             $this->customerService = new CustomerService($request);
         }
@@ -222,7 +222,7 @@ final class Sdk
 
     public function charge(): ChargeService
     {
-        if (!is_null($this->chargeService)) {
+        if (is_null($this->chargeService)) {
             $request = $this->getRequestWithApiUrl();
             $this->chargeService = new ChargeService($request);
         }
@@ -232,7 +232,7 @@ final class Sdk
 
     public function session(): SessionService
     {
-        if (!is_null($this->sessionService)) {
+        if (is_null($this->sessionService)) {
             $request = $this->getRequestWithApiUrl();
             $this->sessionService = new SessionService($request);
         }
