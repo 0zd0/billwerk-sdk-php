@@ -146,7 +146,7 @@ final class BillwerkRequestTest extends TestCase
         $this->loggerMock->expects($this->exactly(2))
                          ->method('debug')
                          ->with(
-                             $this->equalTo('Too many requests. Retry'),
+                             $this->equalTo('Too many requests. Retry https://api.reepay.com/v1/sss'),
                          );
 
         $this->loggerMock->expects($this->once())
@@ -186,7 +186,7 @@ final class BillwerkRequestTest extends TestCase
         $this->loggerMock->expects($this->exactly(6))
                          ->method('debug')
                          ->with(
-                             $this->equalTo('Too many requests. Retry'),
+                             $this->equalTo('Too many requests. Retry https://api.reepay.com/v1/sss'),
                          );
 
         $this->loggerMock->expects($this->once())

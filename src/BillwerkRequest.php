@@ -223,17 +223,14 @@ class BillwerkRequest
 
         if ($statusCode === HttpStatusCodeInterface::STATUS_TOO_MANY_REQUESTS) {
             $this->setNeedToRetry(true);
-            $this->debug("Too many requests. Retry");
+            $this->debug("Too many requests. Retry {$this->getLastUri()}");
 
             return;
         }
 
         if ($statusCode !== HttpStatusCodeInterface::STATUS_OK) {
             $this->error(
-                "Invalid http status",
-                [
-                    'response' => $decodedBody
-                ]
+                "Invalid http status"
             );
             throw new BillwerkApiException(
                 "Invalid http status",
