@@ -78,6 +78,7 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
      * <payment_name> = The id of payment method, e.g. dankort
      * See https://optimize-docs.billwerk.com/docs/checkout-payment-methods for full documentation
      *
+     * @see PaymentMethodEnum
      * @var string[]|null $paymentMethods
      */
     protected ?array $paymentMethods = null;
