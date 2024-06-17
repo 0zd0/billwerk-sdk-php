@@ -21,6 +21,7 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     /**
      * State of the payment method: active, inactivated, failed, pending or deleted
      *
+     * @see PaymentMethodStateEnum
      * @var string $state
      */
     protected string $state;

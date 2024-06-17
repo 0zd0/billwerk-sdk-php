@@ -1,0 +1,73 @@
+{
+    "size": 50,
+    "count": 51,
+    "to": "2021-10-06T13:02:23.190",
+    "from": "2021-09-06T14:02:23.190",
+    "range": "created",
+    "content": [
+        {
+            "id": "ca_fcfac2016614418f969fa5697383e47c",
+            "state": "active",
+            "customer": "customer00069",
+            "reference": "cs_6be90a4babc3c57ef7e6e477ac97ed3b",
+            "failed": "2015-06-04T12:40:56.656Z",
+            "created": "2015-04-04T12:40:56.656Z",
+            "card": {
+                "gateway": "nets",
+                "fingerprint": "cst_64e8a26cc0e85bc3f5ce7c5b366b4096",
+                "reactivated": "2015-05-14T00:00:00Z",
+                "gw_ref": "657e86162633415a9e6b715248c84da4",
+                "card_type": "visa_dk",
+                "transaction_card_type": "visa",
+                "card_agreement": "2b18c5d1f4dc640d9ff91bfbb2cbcce0",
+                "exp_date": "09-18",
+                "masked_card": "457111XXXXXX3777",
+                "last_success": "2015-05-14T00:00:00Z",
+                "last_failed": "2015-05-14T00:00:00Z",
+                "first_fail": "2015-05-14T00:00:00Z",
+                "error_code": "credit_card_expired",
+                "error_state": "hard_declined",
+                "declined_count": 2,
+                "strong_authentication_status": "secured_by_nets",
+                "three_d_secure_status": "Y",
+                "risk_rule": "string",
+                "card_country": "US"
+            },
+            "applepay": {
+                "gateway": "nets",
+                "fingerprint": "cst_64e8a26cc0e85bc3f5ce7c5b366b4096",
+                "reactivated": "2015-05-14T00:00:00Z",
+                "gw_ref": "657e86162633415a9e6b715248c84da4",
+                "card_type": "visa_dk",
+                "transaction_card_type": "visa",
+                "card_agreement": "2b18c5d1f4dc640d9ff91bfbb2cbcce0",
+                "exp_date": "09-18",
+                "masked_card": "457111XXXXXX3777",
+                "last_success": "2015-05-14T00:00:00Z",
+                "last_failed": "2015-05-14T00:00:00Z",
+                "first_fail": "2015-05-14T00:00:00Z",
+                "error_code": "credit_card_expired",
+                "error_state": "hard_declined",
+                "declined_count": 2,
+                "strong_authentication_status": "secured_by_nets",
+                "three_d_secure_status": "Y",
+                "risk_rule": "string",
+                "card_country": "US"
+            },
+            "payment_type": "card",
+            "mps_subscription": {
+                "external_id": "mps_sub_001"
+            },
+            "vipps_recurring_mandate": {},
+            "sepa_mandate": {
+                "iban": "string",
+                "sepa_mandate_bank_reference": "string"
+            },
+            "offline_mandate": {
+                "offline_agreement_handle": "string",
+                "offline_agreement_name": "string"
+            }
+        }
+    ],
+    "next_page_token": "MTYzMjkxNDc4NTAwMDoxMA"
+}

@@ -129,7 +129,7 @@ class BillwerkRequest
     ): array {
         $this->setNeedToRetry(false);
         $headers     = array_merge($headers, self::getDefaultHeaders($this->apiKey));
-        $queryString = ! empty($queryParams) ? '?' . http_build_query($queryParams) : '';
+        $queryString = ! empty($queryParams) ? '?' . $this->buildQueryWithoutIndexes($queryParams) : '';
         $uri         = Billwerk::PROTOCOL . $this->baseUrl . $route . $queryString;
 
         $request = $this->requestFactory->createRequest($method, $uri);
@@ -239,6 +239,29 @@ class BillwerkRequest
                 ErrorModel::fromArray($decodedBody)
             );
         }
+    }
+
+    /**
+     * Custom build query for API
+     *
+     * @param array $params
+     * @param string $prefix
+     *
+     * @return string
+     */
+    public function buildQueryWithoutIndexes(array $params, string $prefix = ''): string
+    {
+        $query = '';
+        foreach ($params as $key => $value) {
+            if (is_array($value)) {
+                foreach ($value as $val) {
+                    $query .= $prefix . $key . '=' . urlencode($val) . '&';
+                }
+            } else {
+                $query .= $prefix . $key . '=' . urlencode($value) . '&';
+            }
+        }
+        return rtrim($query, '&');
     }
 
     private function log(string $level, string $message, array $context = [])

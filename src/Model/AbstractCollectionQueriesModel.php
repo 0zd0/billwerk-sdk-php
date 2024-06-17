@@ -12,7 +12,7 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
      * defines the sorting. The sorting is always descending. Each resource offers different
      * range attributes. Each resource have a default range if non is defined
      */
-    const RANGES = [];
+    public const RANGES = [];
 
     /**
      * Optional range defining the date and time attribute used to limit the query and also defines the sorting.

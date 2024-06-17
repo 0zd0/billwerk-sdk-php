@@ -1,20 +1,20 @@
 <?php
 
-namespace Billwerk\Sdk\Model\Customer;
+namespace Billwerk\Sdk\Model\PaymentMethod;
 
 use Billwerk\Sdk\Enum\RangeEnum;
 use Billwerk\Sdk\Model\AbstractCollectionModel;
 
-class CustomerCollectionModel extends AbstractCollectionModel
+class PaymentMethodCollectionModel extends AbstractCollectionModel
 {
     public const RANGES = [
         RangeEnum::CREATED,
     ];
 
-    public const CONTENT_CLASS = CustomerModel::class;
+    public const CONTENT_CLASS = PaymentMethodModel::class;
 
     /**
-     * @return CustomerModel[]
+     * @return PaymentMethodModel[]
      */
     public function getContent(): array
     {

@@ -10,14 +10,14 @@ abstract class AbstractCollectionModel extends AbstractModel
     /**
      * Model class in content
      */
-    const CONTENT_CLASS = '';
+    public const CONTENT_CLASS = '';
 
     /**
      * Optional range defining the date and time attribute used to limit the query and also
      * defines the sorting. The sorting is always descending. Each resource offers different
      * range attributes. Each resource have a default range if non is defined
      */
-    const RANGES = [];
+    public const RANGES = [];
 
     /**
      * Used page size
@@ -69,14 +69,6 @@ abstract class AbstractCollectionModel extends AbstractModel
     protected ?string $nextPageToken = null;
 
     /**
-     * @return AbstractModel[]
-     */
-    public function getContent(): array
-    {
-        return $this->content;
-    }
-
-    /**
      * @return int
      */
     public function getCount(): int
@@ -99,6 +91,11 @@ abstract class AbstractCollectionModel extends AbstractModel
     {
         return $this->nextPageToken;
     }
+
+    /**
+     * @return AbstractModel[]
+     */
+    abstract public function getContent(): array;
 
     /**
      * @return string|null
@@ -219,6 +216,9 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * @param array $response
+     *
+     * @return static
      * @throws Exception
      */
     public static function fromArray(array $response): self

@@ -2,12 +2,10 @@
 
 namespace Billwerk\Sdk\Test\Integration\Service;
 
-use Billwerk\Sdk\Model\Customer\CustomerCollectionGetModel;
-use Billwerk\Sdk\Model\Customer\CustomerGetModel;
-use Billwerk\Sdk\Model\Invoice\InvoiceGetModel;
+use Billwerk\Sdk\Enum\PaymentMethodStateEnum;
+use Billwerk\Sdk\Model\PaymentMethod\PaymentMethodCollectionGetModel;
 use Billwerk\Sdk\Model\PaymentMethod\PaymentMethodGetModel;
 use Billwerk\Sdk\Test\TestCase;
-use DateTime;
 use Spatie\Snapshots\MatchesSnapshots;
 
 class PaymentMethodServiceTest extends TestCase
@@ -21,5 +19,15 @@ class PaymentMethodServiceTest extends TestCase
         ));
 
         $this->assertMatchesJsonSnapshot(json_encode($paymentMethod->toArray()));
+    }
+
+    public function testGetPaymentMethodList()
+    {
+        $paymentMethodList = $this->sdk->paymentMethod()->list(
+            (new PaymentMethodCollectionGetModel())
+                ->setState([PaymentMethodStateEnum::INACTIVATED, PaymentMethodStateEnum::ACTIVE])
+        );
+
+        $this->assertMatchesJsonSnapshot(json_encode($paymentMethodList->toArray()));
     }
 }
