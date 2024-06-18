@@ -755,100 +755,36 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
 
     public function toApi(): array
     {
-        $result = [
-            'handle' => $this->getHandle(),
-            'source' => $this->getSource(),
-        ];
-
-        if ( ! is_null($this->getKey())) {
-            $result['key'] = $this->getKey();
-        }
-
-        if ( ! is_null($this->getAmount())) {
-            $result['amount'] = $this->getAmount();
-        }
-
-        if ( ! is_null($this->getCurrency())) {
-            $result['currency'] = $this->getCurrency();
-        }
-
-        if ( ! is_null($this->getCustomer())) {
-            $result['customer'] = $this->getCustomer()->toApi();
-        }
-
-        if ( ! is_null($this->getMetadata())) {
-            $result['metadata'] = MetaDataModel::fromObjects($this->getMetadata());
-        }
-
-        $result['source'] = $this->getSource();
-
-        if ( ! is_null($this->getSettle())) {
-            $result['settle'] = $this->getSettle();
-        }
-
-        if ( ! is_null($this->getRecurring())) {
-            $result['recurring'] = $this->getRecurring();
-        }
-
-        if ( ! is_null($this->getParameters())) {
-            $result['parameters'] = $this->getParameters()->toApi();
-        }
-
-        if ( ! is_null($this->getOrdertext())) {
-            $result['ordertext'] = $this->getOrdertext();
-        }
-
-        if ( ! is_null($this->getOrderLines())) {
-            foreach ($this->getOrderLines() as $orderLine) {
-                $result['order_lines'][] = $orderLine->toApi();
-            }
-        }
-
-        if ( ! is_null($this->getCustomerHandle())) {
-            $result['customer_handle'] = $this->getCustomerHandle();
-        }
-
-        if ( ! is_null($this->getBillingAddress())) {
-            $result['billing_address'] = $this->getBillingAddress()->toApi();
-        }
-
-        if ( ! is_null($this->getShippingAddress())) {
-            $result['shipping_address'] = $this->getShippingAddress()->toApi();
-        }
-
-        if ( ! is_null($this->getUsePmForSubscription())) {
-            $result['use_pm_for_subscription'] = $this->getUsePmForSubscription();
-        }
-
-        if ( ! is_null($this->getTextOnStatement())) {
-            $result['text_on_statement'] = $this->getTextOnStatement();
-        }
-
-        if ( ! is_null($this->getPaymentMethodReference())) {
-            $result['payment_method_reference'] = $this->getPaymentMethodReference();
-        }
-
-        if ( ! is_null($this->getAsync())) {
-            $result['async'] = $this->getAsync();
-        }
-
-        if ( ! is_null($this->getAcquirerReference())) {
-            $result['acquirer_reference'] = $this->getAcquirerReference();
-        }
-
-        if ( ! is_null($this->getAccountFundingInformation())) {
-            $result['account_funding_information'] = $this->getAccountFundingInformation()->toApi();
-        }
-
-        if ( ! is_null($this->getAccountFunding())) {
-            $result['account_funding'] = $this->getAccountFunding();
-        }
-
-        return $result;
+        return $this->toArray();
     }
 
     public function toArray(): array
     {
-        return [];
+        return array_filter([
+            'handle' => $this->getHandle(),
+            'state' => $this->getSource(),
+            'key' => $this->getKey(),
+            'amount' => $this->getAmount(),
+            'currency' => $this->getCurrency(),
+            'customer' => $this->getCustomer(),
+            'metadata' => $this->getMetadata() ? MetaDataModel::fromObjects($this->getMetadata()) : null,
+            'settle' => $this->getSettle(),
+            'recurring' => $this->getRecurring(),
+            'parameters' => $this->getParameters(),
+            'ordertext' => $this->getOrdertext(),
+            'order_lines' => $this->getOrderLines() ? array_map(fn($orderLine) => $orderLine->toArray(), $this->getOrderLines()) : null,
+            'customer_handle' => $this->getCustomerHandle(),
+            'billing_address' => $this->getBillingAddress() ? $this->getBillingAddress()->toArray() : null,
+            'shipping_address' => $this->getShippingAddress() ? $this->getShippingAddress()->toArray() : null,
+            'use_pm_for_subscription' => $this->getUsePmForSubscription(),
+            'text_on_statement' => $this->getTextOnStatement(),
+            'payment_method_reference' => $this->getPaymentMethodReference(),
+            'async' => $this->getAsync(),
+            'acquirer_reference' => $this->getAcquirerReference(),
+            'account_funding_information' => $this->getAccountFundingInformation() ? $this->getAccountFundingInformation()->toArray() : null,
+            'account_funding' => $this->getAccountFunding(),
+        ], function ($value) {
+            return $value !== null;
+        });
     }
 }

@@ -53,3 +53,8 @@ customer_handle = 'customer-224'
 
 [service.session.recurring]
 customer_handle = 'customer-224'
+
+
+[service.account]
+[service.account.update-webhook]
+urls = ['https:///wc-api/WC_Gateway_Reepay/']

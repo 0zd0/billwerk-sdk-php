@@ -9,14 +9,12 @@ use Billwerk\Sdk\Exception\BillwerkRequestException;
 use Billwerk\Sdk\Helper\UrlPathInterface;
 use Billwerk\Sdk\Model\Account\AccountModel;
 use Billwerk\Sdk\Model\Account\WebhookSettingsModel;
+use Billwerk\Sdk\Model\Account\WebhookSettingsUpdateModel;
 use Exception;
 
 class AccountService extends AbstractService
 {
     /**
-     * @throws BillwerkNetworkException
-     * @throws BillwerkRequestException
-     * @throws BillwerkClientException
      * @throws BillwerkApiException
      * @throws Exception
      */
@@ -29,15 +27,23 @@ class AccountService extends AbstractService
     }
 
     /**
-     * @throws BillwerkNetworkException
-     * @throws BillwerkRequestException
-     * @throws BillwerkClientException
      * @throws BillwerkApiException
      */
     public function getWebHookSettings(): WebHookSettingsModel
     {
         $url      = $this::buildRoute(UrlPathInterface::ACCOUNT . "/" . UrlPathInterface::WEBHOOK_SETTINGS);
         $response = $this->getRequest()->get($url);
+
+        return WebhookSettingsModel::fromArray($response);
+    }
+
+    /**
+     * @throws BillwerkApiException
+     */
+    public function updateWebHookSettings(WebhookSettingsUpdateModel $data): WebHookSettingsModel
+    {
+        $url      = $this::buildRoute(UrlPathInterface::ACCOUNT . "/" . UrlPathInterface::WEBHOOK_SETTINGS);
+        $response = $this->getRequest()->put($url, $data->toApi());
 
         return WebhookSettingsModel::fromArray($response);
     }

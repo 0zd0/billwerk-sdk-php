@@ -1,0 +1,16 @@
+{
+    "disabled": false,
+    "urls": [
+        "122112",
+        "213213"
+    ],
+    "username": "myuser",
+    "password": "mypassword",
+    "alert_emails": [
+        "2"
+    ],
+    "alert_count": 1,
+    "event_types": [
+        "invoice_settled"
+    ]
+}

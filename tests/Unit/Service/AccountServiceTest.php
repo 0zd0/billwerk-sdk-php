@@ -4,6 +4,7 @@ namespace Billwerk\Sdk\Test\Unit\Service;
 
 use Billwerk\Sdk\Model\Account\AccountModel;
 use Billwerk\Sdk\Model\Account\WebhookSettingsModel;
+use Billwerk\Sdk\Model\Account\WebhookSettingsUpdateModel;
 
 final class AccountServiceTest extends AbstractServiceTest
 {
@@ -20,8 +21,21 @@ final class AccountServiceTest extends AbstractServiceTest
     {
         $this->setMockJsonModel(WebhookSettingsModel::getClassName());
 
-        $account = $this->account->getWebHookSettings();
+        $settings = $this->account->getWebHookSettings();
 
-        $this::assertInstanceOf(WebhookSettingsModel::class, $account);
+        $this::assertInstanceOf(WebhookSettingsModel::class, $settings);
+    }
+
+    public function testUpdateWebhookSettings()
+    {
+        $this->setMockJsonModel(WebhookSettingsModel::getClassName());
+
+        $settings = $this->account->updateWebHookSettings(
+            (new WebhookSettingsUpdateModel())
+            ->setUrls(['test'])
+            ->setDisabled(false)
+        );
+
+        $this::assertInstanceOf(WebhookSettingsModel::class, $settings);
     }
 }

@@ -107,10 +107,27 @@ class BillwerkRequest
     public function post(
         string $route,
         array $body = [],
+        array $queryParams = [],
         array $headers = [],
         int $delayBetweenRetry = 1
     ): array {
-        return $this->sendRequest(self::POST_REQUEST, $route, [], $body, $headers, $delayBetweenRetry);
+        return $this->sendRequest(self::POST_REQUEST, $route, $queryParams, $body, $headers, $delayBetweenRetry);
+    }
+
+    /**
+     * @throws BillwerkNetworkException
+     * @throws BillwerkRequestException
+     * @throws BillwerkClientException
+     * @throws BillwerkApiException
+     */
+    public function put(
+        string $route,
+        array $body = [],
+        array $queryParams = [],
+        array $headers = [],
+        int $delayBetweenRetry = 1
+    ): array {
+        return $this->sendRequest(self::PUT_REQUEST, $route, $queryParams, $body, $headers, $delayBetweenRetry);
     }
 
     /**
@@ -142,7 +159,7 @@ class BillwerkRequest
         $this->setLastBody($body);
         $this->setLastQueryParams($queryParams);
 
-        if ($method === self::POST_REQUEST) {
+        if (in_array($method, [self::POST_REQUEST, self::PUT_REQUEST])) {
             $bodyStream = $this->streamFactory->createStream(json_encode($body));
             $request = $request->withBody($bodyStream);
         }
