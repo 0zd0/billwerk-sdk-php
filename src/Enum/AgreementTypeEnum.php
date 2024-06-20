@@ -44,6 +44,7 @@ class AgreementTypeEnum
     public const PP_TWINT = 'pp_twint';
     public const PP_SATISPAY = 'pp_satispay';
     public const PP_WECHATPAY = 'pp_wechatpay';
+    public const PE_SANTANDER = 'pe_santander';
 
     public static function getAll(): array
     {
@@ -88,6 +89,7 @@ class AgreementTypeEnum
             self::PP_TWINT,
             self::PP_SATISPAY,
             self::PP_WECHATPAY,
+            self::PE_SANTANDER,
         ];
     }
 }
