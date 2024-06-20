@@ -21,6 +21,7 @@ final class Sdk
     private ?RefundService $refundService = null;
     private ?InvoiceService $invoiceService = null;
     private ?TransactionService $transactionService = null;
+    private ?PaymentMethodService $paymentMethodService = null;
     private ?CustomerService $customerService = null;
     private ?ChargeService $chargeService = null;
     private ?SessionService $sessionService = null;
@@ -179,9 +180,12 @@ final class Sdk
 
     public function paymentMethod(): PaymentMethodService
     {
-        $request = $this->getRequestWithApiUrl();
+        if (is_null($this->paymentMethodService)) {
+            $request = $this->getRequestWithApiUrl();
+            $this->paymentMethodService = new PaymentMethodService($request);
+        }
 
-        return new PaymentMethodService($request);
+        return $this->paymentMethodService;
     }
 
     public function account(): AccountService
