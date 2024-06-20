@@ -1,0 +1,7 @@
+{
+    "username": "string",
+    "password": "string2",
+    "test": true,
+    "currencies": ["DKK"],
+    "payment_type": "klarna_slice_it"
+}

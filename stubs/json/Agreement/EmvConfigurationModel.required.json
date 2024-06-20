@@ -1,0 +1,5 @@
+{
+    "emvTokenizationStatus": "string",
+    "tokenRequestorId": "string2",
+    "cardScheme": "string4"
+}

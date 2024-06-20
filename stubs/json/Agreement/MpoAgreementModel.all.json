@@ -1,0 +1,7 @@
+{
+    "shopName": "string",
+    "shopLogoUrl": "string2",
+    "merchantCategoryCode": 1,
+    "vat": "string3",
+    "minimumUserAge": 2
+}

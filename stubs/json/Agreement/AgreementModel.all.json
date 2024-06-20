@@ -1,0 +1,77 @@
+{
+    "id": "0943a00c8b0c48f28c637a8a2fd268f1",
+    "state": "active",
+    "type": "card",
+    "usage": "reusable",
+    "test": true,
+    "created": "2015-04-04T12:40:56.656Z",
+    "name": "Example Agreement",
+    "card_gateway_agreement": {
+        "currencies": [
+            "DKK"
+        ],
+        "provider": "test",
+        "gw_ref": "657e86162633415a9e6b715248c84da4"
+    },
+    "offline_agreement": {
+        "name": "Bank transfer",
+        "instructions": "instructions",
+        "handle": "bank_transfer_nordea",
+        "settle_type": "instant",
+        "payment_type": "offline_cash"
+    },
+    "mpo_agreement": {
+        "shopName": "string",
+        "merchantCategoryCode": 1,
+        "vat": "string3"
+    },
+    "vipps_agreement": {
+        "merchantSerialNumber": "string"
+    },
+    "vipps_recurring_agreement": {
+        "merchantSerialNumber": "123456",
+        "merchantCancelUrl": "https://example.com/cancel",
+        "currency": "NOK",
+        "charge_type": "recurring"
+    },
+    "viabill_agreement": {},
+    "anyday_agreement": {},
+    "resurs_agreement": {
+        "username": "string",
+        "password": "string2",
+        "currency": "string3"
+    },
+    "klarna_agreement": {
+        "username": "string",
+        "password": "string2",
+        "currencies": [
+            "DKK"
+        ],
+        "payment_type": "klarna_slice_it"
+    },
+    "swish": {
+        "swishNumber": "string"
+    },
+    "applepay_agreement": {
+        "display_name": "string"
+    },
+    "googlepay_agreement": {
+        "display_name": "string"
+    },
+    "paypal_agreement": {
+        "client_id": "string",
+        "client_secret": "string2"
+    },
+    "mps_agreement": {
+        "currencies": [
+            "DKK"
+        ]
+    },
+    "ppro_agreement": {
+        "contract_id": "string",
+        "payment_type": "pp_ideal"
+    },
+    "payever_agreement": {
+        "currency": "string"
+    }
+}

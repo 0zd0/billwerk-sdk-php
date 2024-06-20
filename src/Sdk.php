@@ -4,6 +4,7 @@ namespace Billwerk\Sdk;
 
 use Billwerk\Sdk\Logger\SdkLoggerInterface;
 use Billwerk\Sdk\Service\AccountService;
+use Billwerk\Sdk\Service\AgreementService;
 use Billwerk\Sdk\Service\ChargeService;
 use Billwerk\Sdk\Service\CustomerService;
 use Billwerk\Sdk\Service\InvoiceService;
@@ -23,6 +24,7 @@ final class Sdk
     private ?CustomerService $customerService = null;
     private ?ChargeService $chargeService = null;
     private ?SessionService $sessionService = null;
+    private ?AgreementService $agreementService = null;
     private ?SdkLoggerInterface $logger = null;
 
     public function __construct(
@@ -238,5 +240,15 @@ final class Sdk
         }
 
         return $this->sessionService;
+    }
+
+    public function agreement(): AgreementService
+    {
+        if (is_null($this->agreementService)) {
+            $request = $this->getRequestWithApiUrl();
+            $this->agreementService = new AgreementService($request);
+        }
+
+        return $this->agreementService;
     }
 }

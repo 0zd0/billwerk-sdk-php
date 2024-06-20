@@ -1,0 +1,38 @@
+{
+    "currencies": [
+        "DKK"
+    ],
+    "surcharge": true,
+    "name": "sek_worldline",
+    "provider": "test",
+    "card_types": [
+        "string"
+    ],
+    "payment_types": [
+        "card"
+    ],
+    "provider_settings": {},
+    "fee_configuration": [
+        {}
+    ],
+    "threed_secure": true,
+    "threed_secure_recurring": false,
+    "secured_by_nets": true,
+    "secured_by_nets_recurring": false,
+    "default_require_sca": true,
+    "disallow_threed_secure_attempted": false,
+    "payout": true,
+    "vts_configuration": {
+        "emvTokenizationStatus": "string",
+        "tokenRequestorId": "string2",
+        "onboardingState": "string3",
+        "cardScheme": "string4"
+    },
+    "scof_configuration": {
+        "emvTokenizationStatus": "string",
+        "tokenRequestorId": "string2",
+        "onboardingState": "string3",
+        "cardScheme": "string4"
+    },
+    "gw_ref": "657e86162633415a9e6b715248c84da4"
+}

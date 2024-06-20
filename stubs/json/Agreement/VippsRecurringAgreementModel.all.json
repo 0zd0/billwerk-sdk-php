@@ -1,0 +1,6 @@
+{
+    "merchantSerialNumber": "123456",
+    "merchantCancelUrl": "https://example.com/cancel",
+    "currency": "NOK",
+    "charge_type": "recurring"
+}

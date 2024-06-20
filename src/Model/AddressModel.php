@@ -425,7 +425,7 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
 
     public function toArray(): array
     {
-        $fields = [
+        return array_filter([
             'company' => $this->getCompany(),
             'vat' => $this->getVat(),
             'attention' => $this->getAttention(),
@@ -439,9 +439,7 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
             'last_name' => $this->getLastName(),
             'postal_code' => $this->getPostalCode(),
             'state_or_province' => $this->getStateOrProvince(),
-        ];
-
-        return array_filter($fields, function ($value) {
+        ], function ($value) {
             return $value !== null;
         });
     }

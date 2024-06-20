@@ -1,0 +1,6 @@
+{
+    "currency": "string",
+    "test": true,
+    "client_id": "string2",
+    "client_secret": "string3"
+}

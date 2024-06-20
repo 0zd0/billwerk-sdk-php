@@ -204,25 +204,25 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
 
         $model->setUrls($response['urls']);
 
-        if (!is_null($response['username'])) {
+        if (isset($response['username'])) {
             $model->setUsername($response['username']);
         }
 
-        if (!is_null($response['password'])) {
+        if (isset($response['password'])) {
             $model->setPassword($response['password']);
         }
 
         $model->setDisabled($response['disabled']);
 
-        if (!is_null($response['alert_emails'])) {
+        if (isset($response['alert_emails'])) {
             $model->setAlertEmails($response['alert_emails']);
         }
 
-        if (!is_null($response['alert_count'])) {
+        if (isset($response['alert_count'])) {
             $model->setAlertCount($response['alert_count']);
         }
 
-        if (!is_null($response['event_types'])) {
+        if (isset($response['event_types'])) {
             $model->setEventTypes($response['event_types']);
         }
 

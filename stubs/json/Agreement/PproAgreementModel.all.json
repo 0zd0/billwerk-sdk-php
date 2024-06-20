@@ -1,0 +1,7 @@
+{
+    "test": true,
+    "contract_id": "string",
+    "payment_type": "pp_ideal",
+    "secure_sepa": false,
+    "tink_merchant_id": "string2"
+}

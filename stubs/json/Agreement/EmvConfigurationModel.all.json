@@ -1,0 +1,6 @@
+{
+    "emvTokenizationStatus": "string",
+    "tokenRequestorId": "string2",
+    "onboardingState": "string3",
+    "cardScheme": "string4"
+}

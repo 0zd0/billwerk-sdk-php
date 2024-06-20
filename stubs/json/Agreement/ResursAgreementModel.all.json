@@ -1,0 +1,6 @@
+{
+    "username": "string",
+    "password": "string2",
+    "currency": "string3",
+    "test": true
+}

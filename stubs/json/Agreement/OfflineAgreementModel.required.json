@@ -1,0 +1,7 @@
+{
+    "name": "Bank transfer",
+    "instructions": "instructions",
+    "handle": "bank_transfer_nordea",
+    "settle_type": "instant",
+    "payment_type": "offline_cash"
+}

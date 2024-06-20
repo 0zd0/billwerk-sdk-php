@@ -3,6 +3,7 @@
 namespace Billwerk\Sdk\Test\Unit\Service;
 
 use Billwerk\Sdk\Service\AccountService;
+use Billwerk\Sdk\Service\AgreementService;
 use Billwerk\Sdk\Service\ChargeService;
 use Billwerk\Sdk\Service\CustomerService;
 use Billwerk\Sdk\Service\InvoiceService;
@@ -29,6 +30,7 @@ abstract class AbstractServiceTest extends TestCase
     protected TransactionService $transaction;
     protected AccountService $account;
     protected RefundService $refund;
+    protected AgreementService $agreement;
 
     protected function setUp(): void
     {
@@ -46,16 +48,20 @@ abstract class AbstractServiceTest extends TestCase
         $this->customer      = $this->sdkMock->customer();
         $this->charge        = $this->sdkMock->charge();
         $this->session        = $this->sdkMock->session();
+        $this->agreement        = $this->sdkMock->agreement();
     }
 
     /**
      * @throws Exception
      */
-    protected function setMockJsonModel(string $className, bool $allFields = false)
+    protected function setMockJsonModel(string $className, bool $allFields = false, bool $arrayModels = false)
     {
         $json = $this::getStubJsonModelWithRequiredFields($className);
         if ($allFields) {
             $json = $this::getStubJsonModelWithAllFields($className);
+        }
+        if ($arrayModels) {
+            $json = [$json, $json];
         }
 
         $this->requestMock

@@ -1,0 +1,12 @@
+{
+    "currencies": [
+        "DKK"
+    ],
+    "name": "Bank transfer",
+    "description": "desc",
+    "instructions": "instructions",
+    "handle": "bank_transfer_nordea",
+    "logo": "logo",
+    "settle_type": "instant",
+    "payment_type": "offline_cash"
+}

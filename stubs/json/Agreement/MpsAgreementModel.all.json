@@ -1,0 +1,9 @@
+{
+    "currencies": ["DKK"],
+    "country": "string",
+    "shop_name": "string2",
+    "merchant_vat": "string3",
+    "provider_id": "string4",
+    "authorization_url": "string5",
+    "async_one_off": true
+}

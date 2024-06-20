@@ -1,0 +1,7 @@
+{
+    "test": true,
+    "version": 1,
+    "client_id": "string",
+    "client_secret": "string2",
+    "action_url": "string3"
+}
