@@ -142,6 +142,18 @@ final class Sdk
         return $this;
     }
 
+    /**
+     * @param AgreementService|null $agreementService
+     *
+     * @return self
+     */
+    public function setAgreementService(?AgreementService $agreementService): self
+    {
+        $this->agreementService = $agreementService;
+
+        return $this;
+    }
+
     public function getRequestWithApiUrl(): BillwerkRequest
     {
         return new BillwerkRequest(
