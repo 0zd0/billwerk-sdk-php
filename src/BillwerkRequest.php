@@ -272,13 +272,21 @@ class BillwerkRequest
         foreach ($params as $key => $value) {
             if (is_array($value)) {
                 foreach ($value as $val) {
-                    $query .= $prefix . $key . '=' . urlencode($val) . '&';
+                    $query .= $prefix . $key . '=' . urlencode($this->formatValue($val)) . '&';
                 }
             } else {
-                $query .= $prefix . $key . '=' . urlencode($value) . '&';
+                $query .= $prefix . $key . '=' . urlencode($this->formatValue($value)) . '&';
             }
         }
         return rtrim($query, '&');
+    }
+
+    private function formatValue($value): string
+    {
+        if (is_bool($value)) {
+            return $value ? 'true' : 'false';
+        }
+        return (string) $value;
     }
 
     private function log(string $level, string $message, array $context = [])
