@@ -155,6 +155,18 @@ final class Sdk
         return $this;
     }
 
+    /**
+     * @param PaymentMethodService|null $paymentMethodService
+     *
+     * @return self
+     */
+    public function setPaymentMethodService(?PaymentMethodService $paymentMethodService): self
+    {
+        $this->paymentMethodService = $paymentMethodService;
+
+        return $this;
+    }
+
     public function getRequestWithApiUrl(): BillwerkRequest
     {
         return new BillwerkRequest(
