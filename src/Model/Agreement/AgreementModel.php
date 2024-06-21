@@ -31,7 +31,7 @@ class AgreementModel extends AbstractModel implements HasIdInterface
      * Agreement type: card, viabill, anyday, resurs, klarna_pay_now, klarna_pay_later, klarna_slice_it,
      * klarna_direct_bank_transfer, klarna_direct_debit, santander,mobilepay, mobilepay_subscriptions,
      * applepay, googlepay, vipps, swish, paypal, pp_bancomatpay, pp_bancontact, pp_blik_oc, pp_giropay,
-     * pp_ideal, pp_p24, pp_sepa, pp_trustly, pp_verkkopankki``pp_eps, pp_estonia_banks, pp_latvia_banks,
+     * pp_ideal, pp_p24, pp_sepa, pp_trustly, pp_verkkopankki, pp_eps, pp_estonia_banks, pp_latvia_banks,
      * pp_lithuania_banks, pp_mb_way, pp_multibanco, pp_mybank, pp_payconiq, pp_paysafecard, pp_paysera,
      * pp_postfinance, pp_satispay, pp_twint, pp_wechatpay
      *

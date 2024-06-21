@@ -2,6 +2,7 @@
 
 namespace Billwerk\Sdk\Model\Agreement;
 
+use Billwerk\Sdk\Enum\VippsRecurringAgreementChargeTypeEnum;
 use Billwerk\Sdk\Model\AbstractModel;
 
 class VippsRecurringAgreementModel extends AbstractModel
@@ -9,95 +10,71 @@ class VippsRecurringAgreementModel extends AbstractModel
     /**
      * Merchant serial number
      *
-     * @var string $merchantSerialNumber
+     * @var string|null $merchantSerialNumber
      */
-    protected string $merchantSerialNumber;
+    protected ?string $merchantSerialNumber = null;
 
     /**
      * Merchant cancel url
      *
-     * @var string $merchantCancelUrl
+     * @var string|null $merchantCancelUrl
      */
-    protected string $merchantCancelUrl;
+    protected ?string $merchantCancelUrl = null;
 
     /**
      * Currency to use for the agreement
      *
      * @see VippsRecurringAgreementCurrencyEnum
-     * @var string $currency
+     * @var string|null $currency
      */
-    protected string $currency;
+    protected ?string $currency = null;
 
     /**
      * Charge Type to be used on MIT charges
      *
      * @see VippsRecurringAgreementChargeTypeEnum
-     * @var string $chargeType
+     * @var string|null $chargeType
      */
-    protected string $chargeType;
+    protected ?string $chargeType = null;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMerchantSerialNumber(): string
-    {
-        return $this->merchantSerialNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getChargeType(): string
-    {
-        return $this->chargeType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCurrency(): string
+    public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMerchantCancelUrl(): string
+    public function getMerchantCancelUrl(): ?string
     {
         return $this->merchantCancelUrl;
     }
 
     /**
-     * @param string $chargeType
-     *
-     * @return self
+     * @return string|null
      */
-    public function setChargeType(string $chargeType): self
+    public function getChargeType(): ?string
     {
-        $this->chargeType = $chargeType;
-
-        return $this;
+        return $this->chargeType;
     }
 
     /**
-     * @param string $merchantSerialNumber
-     *
-     * @return self
+     * @return string|null
      */
-    public function setMerchantSerialNumber(string $merchantSerialNumber): self
+    public function getMerchantSerialNumber(): ?string
     {
-        $this->merchantSerialNumber = $merchantSerialNumber;
-
-        return $this;
+        return $this->merchantSerialNumber;
     }
 
     /**
-     * @param string $currency
+     * @param string|null $currency
      *
      * @return self
      */
-    public function setCurrency(string $currency): self
+    public function setCurrency(?string $currency): self
     {
         $this->currency = $currency;
 
@@ -105,13 +82,37 @@ class VippsRecurringAgreementModel extends AbstractModel
     }
 
     /**
-     * @param string $merchantCancelUrl
+     * @param string|null $merchantCancelUrl
      *
      * @return self
      */
-    public function setMerchantCancelUrl(string $merchantCancelUrl): self
+    public function setMerchantCancelUrl(?string $merchantCancelUrl): self
     {
         $this->merchantCancelUrl = $merchantCancelUrl;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $merchantSerialNumber
+     *
+     * @return self
+     */
+    public function setMerchantSerialNumber(?string $merchantSerialNumber): self
+    {
+        $this->merchantSerialNumber = $merchantSerialNumber;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $chargeType
+     *
+     * @return self
+     */
+    public function setChargeType(?string $chargeType): self
+    {
+        $this->chargeType = $chargeType;
 
         return $this;
     }
@@ -125,11 +126,22 @@ class VippsRecurringAgreementModel extends AbstractModel
     {
         $model = new self();
 
-        $model
-            ->setMerchantSerialNumber($response['merchantSerialNumber'])
-            ->setMerchantCancelUrl($response['merchantCancelUrl'])
-            ->setCurrency($response['currency'])
-            ->setChargeType($response['charge_type']);
+        if (isset($response['merchantSerialNumber'])) {
+            $model->setMerchantSerialNumber($response['merchantSerialNumber']);
+        }
+
+        if (isset($response['merchantCancelUrl'])) {
+            $model->setMerchantCancelUrl($response['merchantCancelUrl']);
+        }
+
+        if (isset($response['currency'])) {
+            $model->setCurrency($response['currency']);
+        }
+
+        if (isset($response['charge_type'])
+            && in_array($response['charge_type'], VippsRecurringAgreementChargeTypeEnum::getAll(), true)) {
+            $model->setChargeType($response['charge_type']);
+        }
 
         return $model;
     }

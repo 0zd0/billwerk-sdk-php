@@ -27,6 +27,19 @@ class VippsRecurringAgreementModelTest extends TestCase
     /**
      * @throws Exception
      */
+    public function testFromArrayMethodWithRequiredFields()
+    {
+        $json  = $this::getStubJsonModelWithRequiredFields(VippsRecurringAgreementModel::getClassName());
+        $model = VippsRecurringAgreementModel::fromArray($json);
+        $this::assertSame(null, $model->getMerchantSerialNumber());
+        $this::assertSame(null, $model->getMerchantCancelUrl());
+        $this::assertSame(null, $model->getCurrency());
+        $this::assertSame(null, $model->getChargeType());
+    }
+
+    /**
+     * @throws Exception
+     */
     public function testFromArrayMethodWithAllFields()
     {
         $json  = $this::getStubJsonModelWithAllFields(VippsRecurringAgreementModel::getClassName());
