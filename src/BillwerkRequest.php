@@ -188,7 +188,8 @@ class BillwerkRequest
             } else {
                 $retryCount = $this->getRetryCount();
                 $this->setRetryCount(0);
-                $message = "Request limit exceeded after $retryCount attempts";
+                $message
+                    = "Limit exceeded after $retryCount attempts {$this->getLastHttpMethod()} - {$this->getLastUri()}";
                 $this->error($message);
                 throw new BillwerkApiException(
                     $message,
@@ -247,7 +248,7 @@ class BillwerkRequest
 
         if ($statusCode !== HttpStatusCodeInterface::STATUS_OK) {
             $this->error(
-                "Invalid http status"
+                "Invalid http status {$this->getLastHttpMethod()} - {$this->getLastUri()}"
             );
             throw new BillwerkApiException(
                 "Invalid http status",
