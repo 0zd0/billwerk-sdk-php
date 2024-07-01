@@ -26,6 +26,8 @@ class OfflineMandateModel extends AbstractModel
     protected ?string $offlineAgreementName = null;
 
     /**
+     * Offline agreement handle
+     *
      * @return string
      */
     public function getOfflineAgreementHandle(): string
@@ -34,6 +36,8 @@ class OfflineMandateModel extends AbstractModel
     }
 
     /**
+     * Optional offline agreement name
+     *
      * @return string|null
      */
     public function getOfflineAgreementName(): ?string
@@ -42,6 +46,8 @@ class OfflineMandateModel extends AbstractModel
     }
 
     /**
+     * Offline agreement handle
+     *
      * @param string $offlineAgreementHandle
      *
      * @return OfflineMandateModel
@@ -54,6 +60,8 @@ class OfflineMandateModel extends AbstractModel
     }
 
     /**
+     * Optional offline agreement name
+     *
      * @param string|null $offlineAgreementName
      *
      * @return self

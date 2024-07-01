@@ -129,6 +129,9 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     protected ?bool $generateHandle = null;
 
     /**
+     *  Per account unique handle for the customer. Max length 255 with allowable characters [a-zA-Z0-9_.-@].
+     *  Must be provided if generate_handle is not defined
+     *
      * @return string|null
      */
     public function getHandle(): ?string
@@ -137,6 +140,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer vat number
+     *
      * @return string|null
      */
     public function getVat(): ?string
@@ -145,6 +150,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer company
+     *
      * @return string|null
      */
     public function getCompany(): ?string
@@ -153,6 +160,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer phone number
+     *
      * @return string|null
      */
     public function getPhone(): ?string
@@ -161,6 +170,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer country in ISO 3166-1 alpha-2. E.g. US
+     *
      * @return string|null
      */
     public function getCountry(): ?string
@@ -169,6 +180,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer city
+     *
      * @return string|null
      */
     public function getCity(): ?string
@@ -177,6 +190,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer postal code
+     *
      * @return string|null
      */
     public function getPostalCode(): ?string
@@ -185,6 +200,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer address2
+     *
      * @return string|null
      */
     public function getAddress2(): ?string
@@ -193,6 +210,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer address
+     *
      * @return string|null
      */
     public function getAddress(): ?string
@@ -201,6 +220,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer last name
+     *
      * @return string|null
      */
     public function getLastName(): ?string
@@ -209,6 +230,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer first name
+     *
      * @return string|null
      */
     public function getFirstName(): ?string
@@ -217,6 +240,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer email. Validated against RFC 822
+     *
      * @return string|null
      */
     public function getEmail(): ?string
@@ -225,6 +250,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Debtor identifier for this customer. If set this is unique and cannot be changed anymore
+     *
      * @return int|null
      */
     public function getDebtorId(): ?int
@@ -233,6 +260,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Test flag
+     *
      * @return bool|null
      */
     public function getTest(): ?bool
@@ -241,6 +270,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer language
+     *
      * @return string|null
      */
     public function getLanguage(): ?string
@@ -249,6 +280,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Auto generate handle on the form cust-[sequence_number]
+     *
      * @return bool|null
      */
     public function getGenerateHandle(): ?bool
@@ -257,6 +290,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Custom metadata
+     *
      * @return MetaDataModel[]|null
      */
     public function getMetadata(): ?array
@@ -265,6 +300,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Auto generate handle on the form cust-[sequence_number]
+     *
      * @param bool|null $generateHandle
      *
      * @return self
@@ -277,6 +314,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer language
+     *
      * @param string|null $language
      *
      * @return self
@@ -289,6 +328,9 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Per account unique handle for the customer. Max length 255 with allowable characters [a-zA-Z0-9_.-@].
+     * Must be provided if generate_handle is not defined
+     *
      * @param string|null $handle
      *
      * @return self
@@ -301,6 +343,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Debtor identifier for this customer. If set this is unique and cannot be changed anymore
+     *
      * @param int|null $debtorId
      *
      * @return self
@@ -313,6 +357,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer vat number
+     *
      * @param string|null $vat
      *
      * @return self
@@ -325,6 +371,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer company
+     *
      * @param string|null $company
      *
      * @return self
@@ -337,6 +385,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer phone number
+     *
      * @param string|null $phone
      *
      * @return self
@@ -349,6 +399,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer country in ISO 3166-1 alpha-2. E.g. US
+     *
      * @param string|null $country
      *
      * @return self
@@ -361,6 +413,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer city
+     *
      * @param string|null $city
      *
      * @return self
@@ -373,6 +427,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer postal code
+     *
      * @param string|null $postalCode
      *
      * @return self
@@ -385,6 +441,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer address2
+     *
      * @param string|null $address2
      *
      * @return self
@@ -397,6 +455,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer address
+     *
      * @param string|null $address
      *
      * @return self
@@ -409,6 +469,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer last name
+     *
      * @param string|null $lastName
      *
      * @return self
@@ -421,6 +483,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer first name
+     *
      * @param string|null $firstName
      *
      * @return self
@@ -433,6 +497,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer email. Validated against RFC 822
+     *
      * @param string|null $email
      *
      * @return self
@@ -445,6 +511,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Test flag
+     *
      * @param bool|null $test
      *
      * @return self
@@ -457,6 +525,8 @@ class CustomerModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Custom metadata
+     *
      * @param MetaDataModel[]|null $metadata
      *
      * @return self

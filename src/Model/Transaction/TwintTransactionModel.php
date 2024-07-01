@@ -12,6 +12,8 @@ class TwintTransactionModel extends AbstractTransactionModel
     protected ?string $twintId = null;
 
     /**
+     * Twint id
+     *
      * @return string|null
      */
     public function getTwintId(): ?string
@@ -20,6 +22,8 @@ class TwintTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Twint id
+     *
      * @param string|null $twintId
      *
      * @return self

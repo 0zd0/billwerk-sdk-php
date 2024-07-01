@@ -12,6 +12,8 @@ class IdealTransactionModel extends AbstractTransactionModel
     protected ?string $idealId = null;
 
     /**
+     * Ideal id
+     *
      * @return string|null
      */
     public function getIdealId(): ?string
@@ -20,6 +22,8 @@ class IdealTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Ideal id
+     *
      * @param string|null $idealId
      *
      * @return self

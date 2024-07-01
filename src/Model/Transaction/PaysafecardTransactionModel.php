@@ -12,6 +12,8 @@ class PaysafecardTransactionModel extends AbstractTransactionModel
     protected ?string $paysafecardId = null;
 
     /**
+     * Paysafecard id
+     *
      * @return string|null
      */
     public function getPaysafecardId(): ?string
@@ -20,6 +22,8 @@ class PaysafecardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Paysafecard id
+     *
      * @param string|null $paysafecardId
      *
      * @return self

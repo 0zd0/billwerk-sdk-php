@@ -19,7 +19,15 @@ class ResursAgreementModel extends AbstractModel
      * @var string $password
      */
     protected string $password;
+
+    /**
+     * @var string $currency
+     */
     protected string $currency;
+
+    /**
+     * @var bool|null $test
+     */
     protected ?bool $test = null;
 
     /**
@@ -39,6 +47,8 @@ class ResursAgreementModel extends AbstractModel
     }
 
     /**
+     * Resurs Bank username
+     *
      * @return string
      */
     public function getUsername(): string
@@ -47,6 +57,8 @@ class ResursAgreementModel extends AbstractModel
     }
 
     /**
+     * Resurs Bank password
+     *
      * @return string
      */
     public function getPassword(): string
@@ -79,6 +91,8 @@ class ResursAgreementModel extends AbstractModel
     }
 
     /**
+     * Resurs Bank username
+     *
      * @param string $username
      *
      * @return self
@@ -91,6 +105,8 @@ class ResursAgreementModel extends AbstractModel
     }
 
     /**
+     * Resurs Bank password
+     *
      * @param string $password
      *
      * @return self

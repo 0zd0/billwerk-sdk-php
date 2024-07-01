@@ -68,6 +68,8 @@ class OfflineAgreementModel extends AbstractModel
     protected string $paymentType;
 
     /**
+     * Set of currencies supported by agreement. Each currency in ISO 4217 three letter alpha code
+     *
      * @return array|null
      */
     public function getCurrencies(): ?array
@@ -76,6 +78,9 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Payment gateway payment type
+     *
+     * @see OfflineAgreementPaymentTypeEnum
      * @return string
      */
     public function getPaymentType(): string
@@ -84,6 +89,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Name of the payment method
+     *
      * @return string
      */
     public function getName(): string
@@ -92,6 +99,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Optional description of the payment method
+     *
      * @return string|null
      */
     public function getDescription(): ?string
@@ -100,6 +109,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Unique handle of the payment method
+     *
      * @return string
      */
     public function getHandle(): string
@@ -108,6 +119,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Instructions for the consumer
+     *
      * @return string
      */
     public function getInstructions(): string
@@ -116,6 +129,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Optional payment method logo url. Must be hosted on a *.reepay.com domain
+     *
      * @return string|null
      */
     public function getLogo(): ?string
@@ -124,6 +139,9 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Instant settle type
+     *
+     * @see OfflineAgreementSettleTypeEnum
      * @return string
      */
     public function getSettleType(): string
@@ -132,6 +150,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Name of the payment method
+     *
      * @param string $name
      *
      * @return self
@@ -144,6 +164,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Set of currencies supported by agreement. Each currency in ISO 4217 three letter alpha code
+     *
      * @param array|null $currencies
      *
      * @return self
@@ -156,6 +178,10 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Payment gateway payment type
+     *
+     * @see OfflineAgreementPaymentTypeEnum
+     *
      * @param string $paymentType
      *
      * @return self
@@ -168,6 +194,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Optional description of the payment method
+     *
      * @param string|null $description
      *
      * @return self
@@ -180,6 +208,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Unique handle of the payment method
+     *
      * @param string $handle
      *
      * @return self
@@ -192,6 +222,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Instructions for the consumer
+     *
      * @param string $instructions
      *
      * @return self
@@ -204,6 +236,8 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Optional payment method logo url. Must be hosted on a *.reepay.com domain
+     *
      * @param string|null $logo
      *
      * @return self
@@ -216,6 +250,10 @@ class OfflineAgreementModel extends AbstractModel
     }
 
     /**
+     * Instant settle type
+     *
+     * @see OfflineAgreementSettleTypeEnum
+     *
      * @param string $settleType
      *
      * @return self

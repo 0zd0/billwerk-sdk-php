@@ -91,6 +91,8 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     protected ?string $shippingIndicator = null;
 
     /**
+     * For Electronic delivery, the email address to which the merchandise was delivered. Must be RFC5322 compliant
+     *
      * @return string|null
      */
     public function getDeliveryEmail(): ?string
@@ -99,6 +101,10 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates the merchandise delivery timeframe: electronic - Electronic Delivery, same_day_shipping - Same day
+     *  shipping, overnight_shipping - Overnight shipping, two_day_or_more_shipping - Two-day or more shipping
+     *
+     * @see DeliveryTimeframeEnum
      * @return string|null
      */
     public function getDeliveryTimeframe(): ?string
@@ -107,6 +113,9 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For prepaid or gift card purchase, the purchase amount total of prepaid or gift card(s) in major units
+     *  (for example, USD 123.45 is 123)
+     *
      * @return int|null
      */
     public function getGiftCardAmount(): ?int
@@ -115,6 +124,8 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased
+     *
      * @return int|null
      */
     public function getGiftCardCount(): ?int
@@ -123,6 +134,8 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For prepaid or gift card purchase, currency code of the gift card in ISO 4217 three letter alpha code
+     *
      * @return string|null
      */
     public function getGiftCardCurrency(): ?string
@@ -131,6 +144,9 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For a pre-ordered purchase, the expected local date that the merchandise will be available.
+     *  Local date on the form yyyy-MM-dd
+     *
      * @return string|null
      */
     public function getPreOrderDate(): ?string
@@ -139,6 +155,10 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates whether cardholder is placing an order for merchandise with a future availability or release
+     *  date. Either: merchandise_available or future_availability
+     *
+     * @see PreOrderPurchaseIndicatorEnum
      * @return string|null
      */
     public function getPreOrderPurchaseIndicator(): ?string
@@ -147,6 +167,10 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates whether the cardholder is reordering previously purchased merchandise.
+     *  Either: first_time_ordered or reordered
+     *
+     * @see ReorderItemsIndicatorEnum
      * @return string|null
      */
     public function getReorderItemsIndicator(): ?string
@@ -155,6 +179,17 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates shipping method chosen for the transaction. The Shipping Indicator code that most accurately describes
+     * the cardholder’s specific transaction must be used, not the general business. If one or more items are included
+     * in the sale, use the Shipping Indicator code for the physical goods, or if all digital goods, use the Shipping
+     * Indicator code that describes the most expensive item. Possible values: billing_address - Ship to cardholder’s
+     * billing address, verified - Ship to another verified address on file, non_billing_address - Ship to address that
+     * is different than the cardholder’s billing address, ship_to_store - Pick-up at local store (Store address shall
+     * be populated in shipping address fields), digital_goods - Digital goods (includes online services, electronic
+     * gift cards and redemption codes), travel_and_event_tickets - Travel and Event tickets, not shipped, other
+     * - Other (for example, Gaming, digital services not shipped, emedia subscriptions, etc.)
+     *
+     * @see ShippingIndicatorEnum
      * @return string|null
      */
     public function getShippingIndicator(): ?string
@@ -163,6 +198,8 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For Electronic delivery, the email address to which the merchandise was delivered. Must be RFC5322 compliant
+     *
      * @param string|null $deliveryEmail
      *
      * @return self
@@ -175,6 +212,11 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates the merchandise delivery timeframe: electronic - Electronic Delivery, same_day_shipping - Same day
+     *  shipping, overnight_shipping - Overnight shipping, two_day_or_more_shipping - Two-day or more shipping
+     *
+     * @see DeliveryTimeframeEnum
+     *
      * @param string|null $deliveryTimeframe
      *
      * @return self
@@ -187,6 +229,9 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For prepaid or gift card purchase, the purchase amount total of prepaid or gift card(s) in major units
+     *  (for example, USD 123.45 is 123)
+     *
      * @param int|null $giftCardAmount
      *
      * @return self
@@ -199,6 +244,8 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased
+     *
      * @param int|null $giftCardCount
      *
      * @return self
@@ -211,6 +258,8 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For prepaid or gift card purchase, currency code of the gift card in ISO 4217 three letter alpha code
+     *
      * @param string|null $giftCardCurrency
      *
      * @return self
@@ -223,6 +272,9 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For a pre-ordered purchase, the expected local date that the merchandise will be available.
+     *  Local date on the form yyyy-MM-dd
+     *
      * @param string|null $preOrderDate
      *
      * @return self
@@ -235,6 +287,11 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates whether cardholder is placing an order for merchandise with a future availability or release
+     *  date. Either: merchandise_available or future_availability
+     *
+     * @see PreOrderPurchaseIndicatorEnum
+     *
      * @param string|null $preOrderPurchaseIndicator
      *
      * @return self
@@ -247,6 +304,11 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates whether the cardholder is reordering previously purchased merchandise.
+     *  Either: first_time_ordered or reordered
+     *
+     * @see ReorderItemsIndicatorEnum
+     *
      * @param string|null $reorderItemsIndicator
      *
      * @return self
@@ -259,6 +321,18 @@ class RiskIndicatorModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates shipping method chosen for the transaction. The Shipping Indicator code that most accurately describes
+     * the cardholder’s specific transaction must be used, not the general business. If one or more items are included
+     * in the sale, use the Shipping Indicator code for the physical goods, or if all digital goods, use the Shipping
+     * Indicator code that describes the most expensive item. Possible values: billing_address - Ship to cardholder’s
+     * billing address, verified - Ship to another verified address on file, non_billing_address - Ship to address that
+     * is different than the cardholder’s billing address, ship_to_store - Pick-up at local store (Store address shall
+     * be populated in shipping address fields), digital_goods - Digital goods (includes online services, electronic
+     * gift cards and redemption codes), travel_and_event_tickets - Travel and Event tickets, not shipped, other
+     * - Other (for example, Gaming, digital services not shipped, emedia subscriptions, etc.)
+     *
+     * @see ShippingIndicatorEnum
+     *
      * @param string|null $shippingIndicator
      *
      * @return self

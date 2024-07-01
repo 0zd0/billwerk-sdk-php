@@ -12,6 +12,8 @@ class SwishTransactionModel extends AbstractTransactionModel
     protected ?string $swishId = null;
 
     /**
+     * Swish id
+     *
      * @return string|null
      */
     public function getSwishId(): ?string
@@ -20,6 +22,8 @@ class SwishTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Swish id
+     *
      * @param string|null $swishId
      *
      * @return self

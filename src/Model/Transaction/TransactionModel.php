@@ -88,7 +88,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
 
     /**
      * Date when the transaction was created. In ISO-8601 extended offset date-time format
-     *     * @var DateTime $created
+     *
+     * @var DateTime $created
      */
     protected DateTime $created;
 
@@ -165,7 +166,7 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     /**
      * Specifics in case of Anyday transaction
      *
-     * @var AnydayTransactionModel|null
+     * @var AnydayTransactionModel|null $anydayTransaction
      */
     protected ?AnydayTransactionModel $anydayTransaction = null;
 
@@ -375,6 +376,9 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     protected ?string $paymentContext = null;
 
     /**
+     * Transaction type, one of the following: settle, refund, authorization
+     *
+     * @see TransactionTypeEnum
      * @return string
      */
     public function getType(): string
@@ -383,6 +387,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the transaction was settled, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getSettled(): ?DateTime
@@ -391,6 +397,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the transaction was authorized, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getAuthorized(): ?DateTime
@@ -399,6 +407,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the transaction failed, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getFailed(): ?DateTime
@@ -407,6 +417,10 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * State of the transaction, one of the following: pending, processing, authorized,
+     *  settled, refunded, failed, cancelled
+     *
+     * @see TransactionStateEnum
      * @return string
      */
     public function getState(): string
@@ -415,6 +429,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Currency in ISO 4217 three letter alpha code
+     *
      * @return string|null
      */
     public function getCurrency(): ?string
@@ -423,6 +439,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the transaction was created. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -431,6 +449,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The transaction amount
+     *
      * @return int
      */
     public function getAmount(): int
@@ -439,6 +459,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Transaction id assigned by Reepay
+     *
      * @return string
      */
     public function getId(): string
@@ -447,6 +469,15 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Payment type for transaction, either: card, mpo, mobilepay, vipps, vipps_recurring, swish, viabill,
+     *  anyday, manual, applepay, googlepay, paypal, klarna_pay_now, klarna_pay_later, klarna_slice_it,
+     *  klarna_direct_bank_transfer, klarna_direct_debit, resurs, mobilepay_subscriptions, emv_token,
+     *  bancomatpay, bcmc, blik, pp_blik_oc, giropay, ideal, p24, sepa, trustly, eps, estonia_banks,
+     *  latvia_banks, lithuania_banks, mb_way, multibanco, mybank, payconiq, paysafecard, paysera,
+     *  postfinance, satispay, twint, wechatpay, santander, or verkkopankki, offline_cash,
+     *  offline_bank_transfer, offline_other
+     *
+     * @see TransactionPaymentTypeEnum
      * @return string
      */
     public function getPaymentType(): string
@@ -455,6 +486,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Anyday transaction
+     *
      * @return AnydayTransactionModel|null
      */
     public function getAnydayTransaction(): ?AnydayTransactionModel
@@ -463,6 +496,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of ApplePay transaction
+     *
      * @return ApplePayTransactionModel|null
      */
     public function getApplepayTransaction(): ?ApplePayTransactionModel
@@ -471,6 +506,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Bancomat Pay transaction
+     *
      * @return BancomatpayTransactionModel|null
      */
     public function getBancomatpayTransaction(): ?BancomatpayTransactionModel
@@ -479,6 +516,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Bancontact transaction
+     *
      * @return BancontactTransactionModel|null
      */
     public function getBancontactTransaction(): ?BancontactTransactionModel
@@ -487,6 +526,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of BLIK transaction
+     *
      * @return BlikTransactionModel|null
      */
     public function getBlikTransaction(): ?BlikTransactionModel
@@ -495,6 +536,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Card transaction
+     *
      * @return CardTransactionModel|null
      */
     public function getCardTransaction(): ?CardTransactionModel
@@ -503,6 +546,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Eps transaction
+     *
      * @return EpsTransactionModel|null
      */
     public function getEpsTransaction(): ?EpsTransactionModel
@@ -511,6 +556,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Estonia Banks transaction
+     *
      * @return EstoniaBanksTransactionModel|null
      */
     public function getEstoniaBanksTransaction(): ?EstoniaBanksTransactionModel
@@ -519,6 +566,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of GooglePay transaction
+     *
      * @return GooglePayTransactionModel|null
      */
     public function getGooglepayTransaction(): ?GooglePayTransactionModel
@@ -527,6 +576,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of IDEAL transaction
+     *
      * @return IdealTransactionModel|null
      */
     public function getIdealTransaction(): ?IdealTransactionModel
@@ -535,6 +586,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice handle
+     *
      * @return string
      */
     public function getInvoice(): string
@@ -543,6 +596,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Klarna transaction
+     *
      * @return KlarnaTransactionModel|null
      */
     public function getKlarnaTransaction(): ?KlarnaTransactionModel
@@ -551,6 +606,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Latvia Banks transaction
+     *
      * @return LatviaBanksTransactionModel|null
      */
     public function getLatviaBanksTransaction(): ?LatviaBanksTransactionModel
@@ -559,6 +616,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Lithuania Banks transaction
+     *
      * @return LithuaniaBanksTransactionModel|null
      */
     public function getLithuaniaBanksTransaction(): ?LithuaniaBanksTransactionModel
@@ -567,6 +626,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of manual transaction
+     *
      * @return ManualTransactionModel|null
      */
     public function getManualTransaction(): ?ManualTransactionModel
@@ -575,6 +636,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of MB Way transaction
+     *
      * @return MbwayTransactionModel|null
      */
     public function getMbwayTransaction(): ?MbwayTransactionModel
@@ -583,6 +646,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of mpo transaction
+     *
      * @return MpoTransactionModel|null
      */
     public function getMpoTransaction(): ?MpoTransactionModel
@@ -591,6 +656,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of MobilePay Subscriptions transaction
+     *
      * @return MpsTransactionModel|null
      */
     public function getMpsTransaction(): ?MpsTransactionModel
@@ -599,6 +666,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Multibanco transaction
+     *
      * @return MultibancoTransactionModel|null
      */
     public function getMultibancoTransaction(): ?MultibancoTransactionModel
@@ -607,6 +676,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of MyBank transaction
+     *
      * @return MybankTransactionModel|null
      */
     public function getMybankTransaction(): ?MybankTransactionModel
@@ -615,6 +686,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Offline transaction
+     *
      * @return OfflineTransactionModel|null
      */
     public function getOfflineTransaction(): ?OfflineTransactionModel
@@ -623,6 +696,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of P24 transaction
+     *
      * @return P24TransactionModel|null
      */
     public function getP24Transaction(): ?P24TransactionModel
@@ -631,6 +706,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Payconiq transaction
+     *
      * @return PayconiqTransactionModel|null
      */
     public function getPayconiqTransaction(): ?PayconiqTransactionModel
@@ -639,6 +716,10 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Payment context describing if the transaction is customer or merchant initiated,
+     *  one of the following values: cit, mit, cit_cof
+     *
+     * @see PaymentContextEnum
      * @return string|null
      */
     public function getPaymentContext(): ?string
@@ -647,6 +728,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Reference to payment method in case of a MIT transaction
+     *
      * @return string|null
      */
     public function getPaymentMethod(): ?string
@@ -655,6 +738,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of PayPal transaction
+     *
      * @return PaypalTransactionModel|null
      */
     public function getPaypalTransaction(): ?PaypalTransactionModel
@@ -663,6 +748,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Paysafecard transaction
+     *
      * @return PaysafecardTransactionModel|null
      */
     public function getPaysafecardTransaction(): ?PaysafecardTransactionModel
@@ -671,6 +758,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Paysera transaction
+     *
      * @return PayseraTransactionModel|null
      */
     public function getPayseraTransaction(): ?PayseraTransactionModel
@@ -679,6 +768,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of PostFinance transaction
+     *
      * @return PostfinanceTransactionModel|null
      */
     public function getPostfinanceTransaction(): ?PostfinanceTransactionModel
@@ -687,6 +778,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the transaction was refunded, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getRefunded(): ?DateTime
@@ -695,6 +788,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Resurs Bank transaction
+     *
      * @return ResursTransactionModel|null
      */
     public function getResursTransaction(): ?ResursTransactionModel
@@ -703,6 +798,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Santander transaction
+     *
      * @return SantanderTransactionModel|null
      */
     public function getSantanderTransaction(): ?SantanderTransactionModel
@@ -711,6 +808,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Satispay transaction
+     *
      * @return SatispayTransactionModel|null
      */
     public function getSatispayTransaction(): ?SatispayTransactionModel
@@ -719,6 +818,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Swish transaction
+     *
      * @return SwishTransactionModel|null
      */
     public function getSwishTransaction(): ?SwishTransactionModel
@@ -727,6 +828,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Trustly transaction
+     *
      * @return TrustlyTransactionModel|null
      */
     public function getTrustlyTransaction(): ?TrustlyTransactionModel
@@ -735,6 +838,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Twint transaction
+     *
      * @return TwintTransactionModel|null
      */
     public function getTwintTransaction(): ?TwintTransactionModel
@@ -743,6 +848,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of ViaBill transaction
+     *
      * @return ViabillTransactionModel|null
      */
     public function getViabillTransaction(): ?ViabillTransactionModel
@@ -751,6 +858,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Vipps Recurring transaction
+     *
      * @return VippsRecurringTransactionModel|null
      */
     public function getVippsRecurringTransaction(): ?VippsRecurringTransactionModel
@@ -759,6 +868,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Vipps transaction
+     *
      * @return VippsTransactionModel|null
      */
     public function getVippsTransaction(): ?VippsTransactionModel
@@ -767,6 +878,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of WeChat Pay transaction
+     *
      * @return WechatpayTransactionModel|null
      */
     public function getWechatpayTransaction(): ?WechatpayTransactionModel
@@ -775,6 +888,10 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Transaction type, one of the following: settle, refund, authorization
+     *
+     * @see TransactionTypeEnum
+     *
      * @param string $type
      *
      * @return self
@@ -787,6 +904,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the transaction was settled, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $settled
      *
      * @return self
@@ -799,6 +918,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the transaction was authorized, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $authorized
      *
      * @return self
@@ -811,6 +932,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the transaction failed, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $failed
      *
      * @return self
@@ -823,6 +946,11 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * State of the transaction, one of the following: pending, processing, authorized,
+     *  settled, refunded, failed, cancelled
+     *
+     * @see TransactionStateEnum
+     *
      * @param string $state
      *
      * @return self
@@ -835,6 +963,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Currency in ISO 4217 three letter alpha code
+     *
      * @param string|null $currency
      *
      * @return self
@@ -847,6 +977,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the transaction was created. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime $created
      *
      * @return self
@@ -859,6 +991,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The transaction amount
+     *
      * @param int $amount
      *
      * @return self
@@ -871,6 +1005,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Transaction id assigned by Reepay
+     *
      * @param string $id
      *
      * @return self
@@ -883,6 +1019,16 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Payment type for transaction, either: card, mpo, mobilepay, vipps, vipps_recurring, swish, viabill,
+     *  anyday, manual, applepay, googlepay, paypal, klarna_pay_now, klarna_pay_later, klarna_slice_it,
+     *  klarna_direct_bank_transfer, klarna_direct_debit, resurs, mobilepay_subscriptions, emv_token,
+     *  bancomatpay, bcmc, blik, pp_blik_oc, giropay, ideal, p24, sepa, trustly, eps, estonia_banks,
+     *  latvia_banks, lithuania_banks, mb_way, multibanco, mybank, payconiq, paysafecard, paysera,
+     *  postfinance, satispay, twint, wechatpay, santander, or verkkopankki, offline_cash,
+     *  offline_bank_transfer, offline_other
+     *
+     * @see TransactionPaymentTypeEnum
+     *
      * @param string $paymentType
      *
      * @return self
@@ -895,6 +1041,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Anyday transaction
+     *
      * @param AnydayTransactionModel|null $anydayTransaction
      *
      * @return self
@@ -907,6 +1055,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of ApplePay transaction
+     *
      * @param ApplePayTransactionModel|null $applepayTransaction
      *
      * @return self
@@ -919,6 +1069,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Bancomat Pay transaction
+     *
      * @param BancomatpayTransactionModel|null $bancomatpayTransaction
      *
      * @return self
@@ -931,6 +1083,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Bancontact transaction
+     *
      * @param BancontactTransactionModel|null $bancontactTransaction
      *
      * @return self
@@ -943,6 +1097,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of BLIK transaction
+     *
      * @param BlikTransactionModel|null $blikTransaction
      *
      * @return self
@@ -955,6 +1111,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Card transaction
+     *
      * @param CardTransactionModel|null $cardTransaction
      *
      * @return self
@@ -967,6 +1125,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Eps transaction
+     *
      * @param EpsTransactionModel|null $epsTransaction
      *
      * @return self
@@ -979,6 +1139,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Estonia Banks transaction
+     *
      * @param EstoniaBanksTransactionModel|null $estoniaBanksTransaction
      *
      * @return self
@@ -991,6 +1153,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of GooglePay transaction
+     *
      * @param GooglePayTransactionModel|null $googlepayTransaction
      *
      * @return self
@@ -1003,6 +1167,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of IDEAL transaction
+     *
      * @param IdealTransactionModel|null $idealTransaction
      *
      * @return self
@@ -1015,6 +1181,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice handle
+     *
      * @param string $invoice
      *
      * @return self
@@ -1027,6 +1195,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Klarna transaction
+     *
      * @param KlarnaTransactionModel|null $klarnaTransaction
      *
      * @return self
@@ -1039,6 +1209,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Latvia Banks transaction
+     *
      * @param LatviaBanksTransactionModel|null $latviaBanksTransaction
      *
      * @return self
@@ -1051,6 +1223,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Lithuania Banks transaction
+     *
      * @param LithuaniaBanksTransactionModel|null $lithuaniaBanksTransaction
      *
      * @return self
@@ -1063,6 +1237,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of manual transaction
+     *
      * @param ManualTransactionModel|null $manualTransaction
      *
      * @return self
@@ -1075,6 +1251,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of MB Way transaction
+     *
      * @param MbwayTransactionModel|null $mbwayTransaction
      *
      * @return self
@@ -1087,6 +1265,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of mpo transaction
+     *
      * @param MpoTransactionModel|null $mpoTransaction
      *
      * @return self
@@ -1099,6 +1279,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of MobilePay Subscriptions transaction
+     *
      * @param MpsTransactionModel|null $mpsTransaction
      *
      * @return self
@@ -1111,6 +1293,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Multibanco transaction
+     *
      * @param MultibancoTransactionModel|null $multibancoTransaction
      *
      * @return self
@@ -1123,6 +1307,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of MyBank transaction
+     *
      * @param MybankTransactionModel|null $mybankTransaction
      *
      * @return self
@@ -1135,6 +1321,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Offline transaction
+     *
      * @param OfflineTransactionModel|null $offlineTransaction
      *
      * @return self
@@ -1147,6 +1335,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of P24 transaction
+     *
      * @param P24TransactionModel|null $p24Transaction
      *
      * @return self
@@ -1159,6 +1349,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Payconiq transaction
+     *
      * @param PayconiqTransactionModel|null $payconiqTransaction
      *
      * @return self
@@ -1171,6 +1363,11 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Payment context describing if the transaction is customer or merchant initiated,
+     *  one of the following values: cit, mit, cit_cof
+     *
+     * @see PaymentContextEnum
+     *
      * @param string|null $paymentContext
      *
      * @return self
@@ -1183,6 +1380,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Reference to payment method in case of a MIT transaction
+     *
      * @param string|null $paymentMethod
      *
      * @return self
@@ -1195,6 +1394,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of PayPal transaction
+     *
      * @param PaypalTransactionModel|null $paypalTransaction
      *
      * @return self
@@ -1207,6 +1408,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Paysafecard transaction
+     *
      * @param PaysafecardTransactionModel|null $paysafecardTransaction
      *
      * @return self
@@ -1219,6 +1422,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Paysera transaction
+     *
      * @param PayseraTransactionModel|null $payseraTransaction
      *
      * @return self
@@ -1231,6 +1436,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of PostFinance transaction
+     *
      * @param PostfinanceTransactionModel|null $postfinanceTransaction
      *
      * @return self
@@ -1243,6 +1450,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the transaction was refunded, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $refunded
      *
      * @return self
@@ -1255,6 +1464,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Resurs Bank transaction
+     *
      * @param ResursTransactionModel|null $resursTransaction
      *
      * @return self
@@ -1267,6 +1478,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Santander transaction
+     *
      * @param SantanderTransactionModel|null $santanderTransaction
      *
      * @return self
@@ -1279,6 +1492,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Satispay transaction
+     *
      * @param SatispayTransactionModel|null $satispayTransaction
      *
      * @return self
@@ -1291,6 +1506,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Swish transaction
+     *
      * @param SwishTransactionModel|null $swishTransaction
      *
      * @return self
@@ -1303,6 +1520,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Trustly transaction
+     *
      * @param TrustlyTransactionModel|null $trustlyTransaction
      *
      * @return self
@@ -1315,6 +1534,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Twint transaction
+     *
      * @param TwintTransactionModel|null $twintTransaction
      *
      * @return self
@@ -1327,6 +1548,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of ViaBill transaction
+     *
      * @param ViabillTransactionModel|null $viabillTransaction
      *
      * @return self
@@ -1339,6 +1562,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Vipps Recurring transaction
+     *
      * @param VippsRecurringTransactionModel|null $vippsRecurringTransaction
      *
      * @return self
@@ -1351,6 +1576,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of Vipps transaction
+     *
      * @param VippsTransactionModel|null $vippsTransaction
      *
      * @return self
@@ -1363,6 +1590,8 @@ class TransactionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Specifics in case of WeChat Pay transaction
+     *
      * @param WechatpayTransactionModel|null $wechatpayTransaction
      *
      * @return self

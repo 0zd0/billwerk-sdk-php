@@ -22,6 +22,8 @@ class PhoneModel extends AbstractModel implements HasRequestApiInterface
     protected string $subscriber;
 
     /**
+     * Country code (1-3 digits). See https://en.wikipedia.org/wiki/List_of_country_calling_codes
+     *
      * @return string
      */
     public function getCc(): string
@@ -30,6 +32,8 @@ class PhoneModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Subscriber number (1-12 digits)
+     *
      * @return string
      */
     public function getSubscriber(): string
@@ -38,6 +42,8 @@ class PhoneModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Country code (1-3 digits). See https://en.wikipedia.org/wiki/List_of_country_calling_codes
+     *
      * @param string $cc
      *
      * @return self
@@ -50,6 +56,8 @@ class PhoneModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Subscriber number (1-12 digits)
+     *
      * @param string $subscriber
      *
      * @return self

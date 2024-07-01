@@ -21,6 +21,8 @@ class MpsSubscriptionModel extends AbstractModel
     protected ?string $externalId = null;
 
     /**
+     * Optional external id at MobilePay defined when creating the subscription
+     *
      * @return string|null
      */
     public function getExternalId(): ?string
@@ -29,6 +31,8 @@ class MpsSubscriptionModel extends AbstractModel
     }
 
     /**
+     * Optional external id at MobilePay defined when creating the subscription
+     *
      * @param string|null $externalId
      *
      * @return MpsSubscriptionModel

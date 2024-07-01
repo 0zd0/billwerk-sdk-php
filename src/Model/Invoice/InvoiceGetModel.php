@@ -16,6 +16,8 @@ class InvoiceGetModel extends AbstractModel implements HasIdInterface, HasReques
     protected string $id;
 
     /**
+     * Invoice id or handle
+     *
      * @return string
      */
     public function getId(): string
@@ -24,6 +26,8 @@ class InvoiceGetModel extends AbstractModel implements HasIdInterface, HasReques
     }
 
     /**
+     * Invoice id or handle
+     *
      * @param string $id
      *
      * @return self

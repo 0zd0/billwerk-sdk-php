@@ -38,6 +38,9 @@ class VippsRecurringAgreementModel extends AbstractModel
     protected ?string $chargeType = null;
 
     /**
+     * Currency to use for the agreement
+     *
+     * @see VippsRecurringAgreementCurrencyEnum
      * @return string|null
      */
     public function getCurrency(): ?string
@@ -46,6 +49,8 @@ class VippsRecurringAgreementModel extends AbstractModel
     }
 
     /**
+     * Merchant cancel url
+     *
      * @return string|null
      */
     public function getMerchantCancelUrl(): ?string
@@ -54,6 +59,9 @@ class VippsRecurringAgreementModel extends AbstractModel
     }
 
     /**
+     * Charge Type to be used on MIT charges
+     *
+     * @see VippsRecurringAgreementChargeTypeEnum
      * @return string|null
      */
     public function getChargeType(): ?string
@@ -62,6 +70,8 @@ class VippsRecurringAgreementModel extends AbstractModel
     }
 
     /**
+     * Merchant serial number
+     *
      * @return string|null
      */
     public function getMerchantSerialNumber(): ?string
@@ -70,6 +80,10 @@ class VippsRecurringAgreementModel extends AbstractModel
     }
 
     /**
+     * Currency to use for the agreement
+     *
+     * @see VippsRecurringAgreementCurrencyEnum
+     *
      * @param string|null $currency
      *
      * @return self
@@ -82,6 +96,8 @@ class VippsRecurringAgreementModel extends AbstractModel
     }
 
     /**
+     * Merchant cancel url
+     *
      * @param string|null $merchantCancelUrl
      *
      * @return self
@@ -94,6 +110,8 @@ class VippsRecurringAgreementModel extends AbstractModel
     }
 
     /**
+     * Merchant serial number
+     *
      * @param string|null $merchantSerialNumber
      *
      * @return self
@@ -106,6 +124,10 @@ class VippsRecurringAgreementModel extends AbstractModel
     }
 
     /**
+     * Charge Type to be used on MIT charges
+     *
+     * @see VippsRecurringAgreementChargeTypeEnum
+     *
      * @param string|null $chargeType
      *
      * @return self

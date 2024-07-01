@@ -12,6 +12,8 @@ class LatviaBanksTransactionModel extends AbstractTransactionModel
     protected ?string $latviaBanksId = null;
 
     /**
+     * Latvia Banks id
+     *
      * @return string|null
      */
     public function getLatviaBanksId(): ?string
@@ -20,6 +22,8 @@ class LatviaBanksTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Latvia Banks id
+     *
      * @param string|null $latviaBanksId
      *
      * @return self

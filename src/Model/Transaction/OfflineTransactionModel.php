@@ -29,6 +29,8 @@ class OfflineTransactionModel extends AbstractTransactionModel
     protected string $offlinePaymentInstructions;
 
     /**
+     * Offline agreement handle
+     *
      * @return OfflineMandateModel|null
      */
     public function getOfflineMandate(): ?OfflineMandateModel
@@ -37,6 +39,8 @@ class OfflineTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Offline agreement handle used to initiate transaction. Only set when offline_mandate is not set
+     *
      * @return string|null
      */
     public function getOfflineAgreementHandle(): ?string
@@ -45,6 +49,8 @@ class OfflineTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Offline payment instructions, either default from agreement or overriding from charge parameters
+     *
      * @return string
      */
     public function getOfflinePaymentInstructions(): string
@@ -53,6 +59,8 @@ class OfflineTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Offline agreement handle
+     *
      * @param OfflineMandateModel|null $offlineMandate
      *
      * @return self
@@ -65,6 +73,8 @@ class OfflineTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Offline agreement handle used to initiate transaction. Only set when offline_mandate is not set
+     *
      * @param string|null $offlineAgreementHandle
      *
      * @return self
@@ -77,6 +87,8 @@ class OfflineTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Offline payment instructions, either default from agreement or overriding from charge parameters
+     *
      * @param string $offlinePaymentInstructions
      *
      * @return self

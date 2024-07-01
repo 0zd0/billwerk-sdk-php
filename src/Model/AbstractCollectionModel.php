@@ -69,6 +69,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     protected ?string $nextPageToken = null;
 
     /**
+     * Number of elements in current page. If less than page size it is the last page
+     *
      * @return int
      */
     public function getCount(): int
@@ -77,6 +79,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * Local date and time range used as from (inclusive)
+     *
      * @return DateTime
      */
     public function getFrom(): DateTime
@@ -85,6 +89,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * Pagination token to use to get the next page. If not present the last page has been reached
+     *
      * @return string|null
      */
     public function getNextPageToken(): ?string
@@ -93,11 +99,15 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * List of count entities for the page
+     *
      * @return AbstractModel[]
      */
     abstract public function getContent(): array;
 
     /**
+     * Range attribute limited on
+     *
      * @return string|null
      */
     public function getRange(): ?string
@@ -106,6 +116,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * Used page size
+     *
      * @return int
      */
     public function getSize(): int
@@ -114,6 +126,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * Local date and time range used as to (exclusive)
+     *
      * @return DateTime
      */
     public function getTo(): DateTime
@@ -122,6 +136,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * List of count entities for the page
+     *
      * @param array $content
      *
      * @return self
@@ -144,6 +160,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * Number of elements in current page. If less than page size it is the last page
+     *
      * @param int $count
      *
      * @return self
@@ -156,6 +174,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * Local date and time range used as from (inclusive)
+     *
      * @param DateTime $from
      *
      * @return self
@@ -168,6 +188,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * Pagination token to use to get the next page. If not present the last page has been reached
+     *
      * @param string|null $nextPageToken
      *
      * @return self
@@ -180,6 +202,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * Range attribute limited on
+     *
      * @param string|null $range
      *
      * @return self
@@ -192,6 +216,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * Used page size
+     *
      * @param int $size
      *
      * @return self
@@ -204,6 +230,8 @@ abstract class AbstractCollectionModel extends AbstractModel
     }
 
     /**
+     * Local date and time range used as to (exclusive)
+     *
      * @param DateTime $to
      *
      * @return self

@@ -12,6 +12,8 @@ class MybankTransactionModel extends AbstractTransactionModel
     protected ?string $mybankId = null;
 
     /**
+     * MyBank id
+     *
      * @return string|null
      */
     public function getMybankId(): ?string
@@ -20,6 +22,8 @@ class MybankTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * MyBank id
+     *
      * @param string|null $mybankId
      *
      * @return self

@@ -250,6 +250,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     protected ?string $recurringOptionalText = null;
 
     /**
+     * Whether or not to immediately settle (capture). Default is false. If not settled immediately
+     *  an authorization will be performed which can be settled later. Normally this have to be done within
+     *  7 days. Note that not all payment methods support immediate settle
+     *
      * @return bool|null
      */
     public function getSettle(): ?bool
@@ -258,6 +262,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * If set a recurring payment method is stored for the customer and a reference returned.
+     *  This parameter if set to true will limit payment methods to those that are reusable. Cannot be
+     *  used in conjunction with recurring_optional
+     *
      * @return bool|null
      */
     public function getRecurring(): ?bool
@@ -266,6 +274,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional reference given to the created payment method in case a recurring payment method is created
+     *  by the session. Session id will be used by default if not defined. Max length 64 with allowable characters
+     *  [a-zA-Z0-9_.-@]
+     *
      * @return string|null
      */
     public function getPaymentMethodReference(): ?string
@@ -274,6 +286,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional sender information required for Account Funding Transaction (AFT).
+     *  If not provided when requesting account funding transaction with account_funding=true,
+     *  information will be gathered from invoice billing address and customer
+     *
      * @return AccountFundingInformationModel|null
      */
     public function getAccountFundingInformation(): ?AccountFundingInformationModel
@@ -282,6 +298,9 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates that Account Funding Transaction (AFT) is requested.
+     *  It only can be used for instant settle (i.e. 'settle' = true)
+     *
      * @return bool|null
      */
     public function getAccountFunding(): ?bool
@@ -290,6 +309,15 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional argument to define the text on bank statement. Notice the following about this argument:
+     *  1. It only works for some acquirers. 2. Acquirers may have rigid rules on the content of the text
+     *  on statement. Not complying to these rules will result in declined payments. 3) It is already
+     *  possible to define custom text on statement using templating in the Reepay Administration.
+     *  Contact support for help. We highly recommend to only supply this argument if absolutely necessary,
+     *  and the templated default text on statement is not sufficient. Maximum length is 128, but most
+     *  acquirers require a maximum length of 22 characters. Truncating will be applied if too long
+     *  for specific acquirer. Characters must match regex [\x20-\x7F]
+     *
      * @return string|null
      */
     public function getTextOnStatement(): ?string
@@ -298,6 +326,18 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional reference for the transaction at the acquirer. Notice the following about this argument:
+     *
+     *  It only works for some acquirers.
+     *  Acquirers may have rigid rules on the content of the acquirer reference.
+     *  Not complying to these rules can result in declined payments.
+     *  It is already possible to define custom acquirer reference using templating in the Reepay Administration.
+     *  Contact support for help. We highly recommend to only supply this argument if absolutely necessary,
+     *  and the templated default acquirer reference is not sufficient. Maximum length is 128,
+     *  but most acquirers require a maximum length of 22 characters.
+     *  Truncating will be applied if too long for specific acquirer.
+     *  Characters must match regex [\x20-\x7F]
+     *
      * @return string|null
      */
     public function getAcquirerReference(): ?string
@@ -306,6 +346,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Phone number to use for payment methods able to use a prefilled phone number. E.g. MobilePay,
+     *  Vipps and Swish. If no explicit phone number is defined, the phone number for the customer entity
+     *  will be used
+     *
      * @return string|null
      */
     public function getPhone(): ?string
@@ -314,6 +358,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Handle for existing invoice to charge. Either this argument must be provided or order
+     *
      * @return string|null
      */
     public function getInvoice(): ?string
@@ -322,6 +368,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional locale for session. E.g. en_GB, da_DK, es_ES. Defaults to configuration locale or account locale
+     *
      * @return string|null
      */
     public function getLocale(): ?string
@@ -330,6 +378,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * If checkout is opened in separate window the customer will be directed to this page after success
+     *
      * @return string|null
      */
     public function getAcceptUrl(): ?string
@@ -338,6 +388,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional list of agreement ids to filter which agreements will be used for card payments
+     *
      * @return array|null
      */
     public function getAgreementFilter(): ?array
@@ -346,6 +398,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional IP address to restrict the use of the session to
+     *
      * @return string|null
      */
     public function getAllowedIp(): ?string
@@ -354,6 +408,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional alternative button text. Maximum length 32 characters
+     *
      * @return string|null
      */
     public function getButtonText(): ?string
@@ -362,6 +418,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * If checkout is opened in separate window the customer will be directed to this page if the customer cancels
+     *
      * @return string|null
      */
     public function getCancelUrl(): ?string
@@ -370,6 +428,9 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Reference to existing card payment method (ca_xxx) to use instead of having cardholder enter card data.
+     *  CVV may still be required from cardholder
+     *
      * @return string|null
      */
     public function getCardOnFile(): ?string
@@ -378,6 +439,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Require cvv from cardholder for card-on-file
+     *
      * @return bool|null
      */
     public function getCardOnFileRequireCvv(): ?bool
@@ -386,6 +449,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Require expiration date for card-on-file
+     *
      * @return bool|null
      */
     public function getCardOnFileRequireExpDate(): ?bool
@@ -394,6 +459,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional handle for a checkout configuration defined in the admin app to be used for this session
+     *
      * @return string|null
      */
     public function getConfiguration(): ?string
@@ -402,6 +469,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional list of offline agreement handles to filter which options are shown to the consumer
+     *
      * @return array|null
      */
     public function getOfflineAgreementFilter(): ?array
@@ -410,6 +479,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Object defining order details such as amount, currency and order text
+     *
      * @return OrderModel|null
      */
     public function getOrder(): ?OrderModel
@@ -418,6 +489,12 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional list of payment methods to use for the checkout session. Format:
+     *  <payment_methods> = list of <payment_method>
+     *  <payment_method> = [sca-|nosca-]<payment_name>
+     *  <payment_name> = The id of payment method, e.g. dankort
+     *  See https://optimize-docs.billwerk.com/docs/checkout-payment-methods for full documentation
+     *
      * @return array|null
      */
     public function getPaymentMethods(): ?array
@@ -426,6 +503,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For cost based acquirer agreement selection this argument can be used to define the amount used
+     *  in calculating the least expensive agreement for future recurring payments. Can only be used
+     *  for sessions saving a payment method for later use. Must be given in minor unit for currency
+     *
      * @return int|null
      */
     public function getRecurringAverageAmount(): ?int
@@ -434,6 +515,11 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Option to show a checkbox for reusable payment methods to allow the customer to select to save
+     *  the payment method or not. If set to true the checkbox will be checked by default and vice versa.
+     *  If the customer chooses to save the payment method, the payment_method parameter will be returned.
+     *  Cannot be used in conjunction with recurring
+     *
      * @return bool|null
      */
     public function getRecurringOptional(): ?bool
@@ -442,6 +528,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional alternative text to show if the recurring_optional option is used
+     *
      * @return string|null
      */
     public function getRecurringOptionalText(): ?string
@@ -450,6 +538,11 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer data used in strong customer authentication to reduce the need for a lengthy authentication
+     *  process and ensure less fraud. The data is not stored at Reepay and only used in the process of
+     *  strong customer authentication. The data is used by card issuer to determine if a frictionless
+     *  authentication flow can be used
+     *
      * @return ScaDataModel|null
      */
     public function getScaData(): ?ScaDataModel
@@ -458,6 +551,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Object to define payment type specific parameters
+     *
      * @return SessionDataModel|null
      */
     public function getSessionData(): ?SessionDataModel
@@ -466,6 +561,12 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional time-to-live duration. The session will expire after the duration from creation, meaning that
+     *  payment attempts cannot be initiated after this duration. Notice though, that payments initiated within
+     *  the time-to-live duration might finish after the TTL E.g. MobilePay Online flows. The duration must be
+     *  given in the following notation: PTxS - x seconds, PTxM - x minutes, PTxH - x hours or PxD - x days.
+     *  E.g. PT3H (three hours). The default time-to-live is three months
+     *
      * @return string|null
      */
     public function getTtl(): ?string
@@ -474,6 +575,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * If set a recurring payment method is stored for the customer and a reference returned.
+     *  This parameter if set to true will limit payment methods to those that are reusable. Cannot be
+     *  used in conjunction with recurring_optional
+     *
      * @param bool|null $recurring
      *
      * @return self
@@ -486,6 +591,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional reference given to the created payment method in case a recurring payment method is created
+     *  by the session. Session id will be used by default if not defined. Max length 64 with allowable characters
+     *  [a-zA-Z0-9_.-@]
+     *
      * @param string|null $paymentMethodReference
      *
      * @return self
@@ -498,6 +607,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional sender information required for Account Funding Transaction (AFT).
+     *  If not provided when requesting account funding transaction with account_funding=true,
+     *  information will be gathered from invoice billing address and customer
+     *
      * @param AccountFundingInformationModel|null $accountFundingInformation
      *
      * @return self
@@ -510,6 +623,9 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates that Account Funding Transaction (AFT) is requested.
+     *  It only can be used for instant settle (i.e. 'settle' = true)
+     *
      * @param bool|null $accountFunding
      *
      * @return self
@@ -522,6 +638,15 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional argument to define the text on bank statement. Notice the following about this argument:
+     *  1. It only works for some acquirers. 2. Acquirers may have rigid rules on the content of the text
+     *  on statement. Not complying to these rules will result in declined payments. 3) It is already
+     *  possible to define custom text on statement using templating in the Reepay Administration.
+     *  Contact support for help. We highly recommend to only supply this argument if absolutely necessary,
+     *  and the templated default text on statement is not sufficient. Maximum length is 128, but most
+     *  acquirers require a maximum length of 22 characters. Truncating will be applied if too long
+     *  for specific acquirer. Characters must match regex [\x20-\x7F]
+     *
      * @param string|null $textOnStatement
      *
      * @return self
@@ -534,6 +659,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Whether or not to immediately settle (capture). Default is false. If not settled immediately
+     *  an authorization will be performed which can be settled later. Normally this have to be done within
+     *  7 days. Note that not all payment methods support immediate settle
+     *
      * @param bool|null $settle
      *
      * @return self
@@ -546,6 +675,18 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional reference for the transaction at the acquirer. Notice the following about this argument:
+     *
+     *  It only works for some acquirers.
+     *  Acquirers may have rigid rules on the content of the acquirer reference.
+     *  Not complying to these rules can result in declined payments.
+     *  It is already possible to define custom acquirer reference using templating in the Reepay Administration.
+     *  Contact support for help. We highly recommend to only supply this argument if absolutely necessary,
+     *  and the templated default acquirer reference is not sufficient. Maximum length is 128,
+     *  but most acquirers require a maximum length of 22 characters.
+     *  Truncating will be applied if too long for specific acquirer.
+     *  Characters must match regex [\x20-\x7F]
+     *
      * @param string|null $acquirerReference
      *
      * @return self
@@ -558,6 +699,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Phone number to use for payment methods able to use a prefilled phone number. E.g. MobilePay,
+     *  Vipps and Swish. If no explicit phone number is defined, the phone number for the customer entity
+     *  will be used
+     *
      * @param string|null $phone
      *
      * @return self
@@ -570,6 +715,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Handle for existing invoice to charge. Either this argument must be provided or order
+     *
      * @param string|null $invoice
      *
      * @return self
@@ -582,6 +729,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional locale for session. E.g. en_GB, da_DK, es_ES. Defaults to configuration locale or account locale
+     *
      * @param string|null $locale
      *
      * @return self
@@ -594,6 +743,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * If checkout is opened in separate window the customer will be directed to this page after success
+     *
      * @param string|null $acceptUrl
      *
      * @return self
@@ -606,6 +757,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional list of agreement ids to filter which agreements will be used for card payments
+     *
      * @param array|null $agreementFilter
      *
      * @return self
@@ -618,6 +771,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional IP address to restrict the use of the session to
+     *
      * @param string|null $allowedIp
      *
      * @return self
@@ -630,6 +785,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional alternative button text. Maximum length 32 characters
+     *
      * @param string|null $buttonText
      *
      * @return self
@@ -642,6 +799,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * If checkout is opened in separate window the customer will be directed to this page if the customer cancels
+     *
      * @param string|null $cancelUrl
      *
      * @return self
@@ -654,6 +813,9 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Reference to existing card payment method (ca_xxx) to use instead of having cardholder enter card data.
+     *  CVV may still be required from cardholder
+     *
      * @param string|null $cardOnFile
      *
      * @return self
@@ -666,6 +828,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Require cvv from cardholder for card-on-file
+     *
      * @param bool|null $cardOnFileRequireCvv
      *
      * @return self
@@ -678,6 +842,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Require expiration date for card-on-file
+     *
      * @param bool|null $cardOnFileRequireExpDate
      *
      * @return self
@@ -690,6 +856,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional handle for a checkout configuration defined in the admin app to be used for this session
+     *
      * @param string|null $configuration
      *
      * @return self
@@ -702,6 +870,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional list of offline agreement handles to filter which options are shown to the consumer
+     *
      * @param array|null $offlineAgreementFilter
      *
      * @return self
@@ -714,6 +884,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Object defining order details such as amount, currency and order text
+     *
      * @param OrderModel|null $order
      *
      * @return self
@@ -726,6 +898,12 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional list of payment methods to use for the checkout session. Format:
+     *  <payment_methods> = list of <payment_method>
+     *  <payment_method> = [sca-|nosca-]<payment_name>
+     *  <payment_name> = The id of payment method, e.g. dankort
+     *  See https://optimize-docs.billwerk.com/docs/checkout-payment-methods for full documentation
+     *
      * @param array|null $paymentMethods
      *
      * @return self
@@ -738,6 +916,10 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * For cost based acquirer agreement selection this argument can be used to define the amount used
+     *  in calculating the least expensive agreement for future recurring payments. Can only be used
+     *  for sessions saving a payment method for later use. Must be given in minor unit for currency
+     *
      * @param int|null $recurringAverageAmount
      *
      * @return self
@@ -750,6 +932,11 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Option to show a checkbox for reusable payment methods to allow the customer to select to save
+     *  the payment method or not. If set to true the checkbox will be checked by default and vice versa.
+     *  If the customer chooses to save the payment method, the payment_method parameter will be returned.
+     *  Cannot be used in conjunction with recurring
+     *
      * @param bool|null $recurringOptional
      *
      * @return self
@@ -762,6 +949,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional alternative text to show if the recurring_optional option is used
+     *
      * @param string|null $recurringOptionalText
      *
      * @return self
@@ -774,6 +963,11 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer data used in strong customer authentication to reduce the need for a lengthy authentication
+     *  process and ensure less fraud. The data is not stored at Reepay and only used in the process of
+     *  strong customer authentication. The data is used by card issuer to determine if a frictionless
+     *  authentication flow can be used
+     *
      * @param ScaDataModel|null $scaData
      *
      * @return self
@@ -786,6 +980,8 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Object to define payment type specific parameters
+     *
      * @param SessionDataModel|null $sessionData
      *
      * @return self
@@ -798,6 +994,12 @@ class SessionChargeModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional time-to-live duration. The session will expire after the duration from creation, meaning that
+     *  payment attempts cannot be initiated after this duration. Notice though, that payments initiated within
+     *  the time-to-live duration might finish after the TTL E.g. MobilePay Online flows. The duration must be
+     *  given in the following notation: PTxS - x seconds, PTxM - x minutes, PTxH - x hours or PxD - x days.
+     *  E.g. PT3H (three hours). The default time-to-live is three months
+     *
      * @param string|null $ttl
      *
      * @return self

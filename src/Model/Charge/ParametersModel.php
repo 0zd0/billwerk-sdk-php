@@ -24,11 +24,14 @@ class ParametersModel extends AbstractModel implements HasRequestApiInterface
 
     /**
      * Optional override of payment instructions of the default instructions from the agreement
+     *
      * @var string|null $offlinePaymentInstructions
      */
     protected ?string $offlinePaymentInstructions = null;
 
     /**
+     * Required offline agreement handle, if source = 'offline'.
+     *
      * @return string|null
      */
     public function getOfflineAgreementHandle(): ?string
@@ -37,6 +40,8 @@ class ParametersModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional override of payment instructions of the default instructions from the agreement
+     *
      * @return string|null
      */
     public function getOfflinePaymentInstructions(): ?string
@@ -45,6 +50,9 @@ class ParametersModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional override of default MPS payment expiration. The period is defined as
+     *  an ISO-8601 duration. See https://en.wikipedia.org/wiki/ISO_8601#Durations
+     *
      * @return string|null
      */
     public function getMpsTtl(): ?string
@@ -53,6 +61,8 @@ class ParametersModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Required offline agreement handle, if source = 'offline'.
+     *
      * @param string|null $offlineAgreementHandle
      *
      * @return self
@@ -65,6 +75,9 @@ class ParametersModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional override of default MPS payment expiration. The period is defined as
+     *  an ISO-8601 duration. See https://en.wikipedia.org/wiki/ISO_8601#Durations
+     *
      * @param string|null $mpsTtl
      *
      * @return self
@@ -77,6 +90,8 @@ class ParametersModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional override of payment instructions of the default instructions from the agreement
+     *
      * @param string|null $offlinePaymentInstructions
      *
      * @return self

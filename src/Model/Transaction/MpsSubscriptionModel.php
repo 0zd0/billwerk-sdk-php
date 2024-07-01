@@ -16,6 +16,7 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
      * @var string $id
      */
     protected string $id;
+
     /**
      * State of the payment method: active, inactivated, failed, pending or deleted
      *
@@ -62,6 +63,10 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     protected ?string $externalId = null;
 
     /**
+     * Optional reference provided when creating the payment method. For payment methods
+     *  created with Reepay Checkout the reference will correspond to the session id for
+     *  the Checkout session that created the payment method
+     *
      * @return string|null
      */
     public function getReference(): ?string
@@ -70,6 +75,8 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Customer by handle
+     *
      * @return string
      */
     public function getCustomer(): string
@@ -78,6 +85,8 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the payment method failed. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getFailed(): ?DateTime
@@ -86,6 +95,9 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * State of the payment method: active, inactivated, failed, pending or deleted
+     *
+     * @see MpsSubscriptionStateEnum
      * @return string
      */
     public function getState(): string
@@ -94,6 +106,8 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the payment method was created. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getCreated(): ?DateTime
@@ -102,6 +116,8 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Unique id for payment method
+     *
      * @return string
      */
     public function getId(): string
@@ -110,6 +126,8 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional external id at MobilePay defined when creating the subscription
+     *
      * @return string|null
      */
     public function getExternalId(): ?string
@@ -118,6 +136,10 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional reference provided when creating the payment method. For payment methods
+     *  created with Reepay Checkout the reference will correspond to the session id for
+     *  the Checkout session that created the payment method
+     *
      * @param string|null $reference
      *
      * @return self
@@ -130,6 +152,8 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Customer by handle
+     *
      * @param string $customer
      *
      * @return self
@@ -142,6 +166,8 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the payment method failed. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $failed
      *
      * @return self
@@ -154,6 +180,10 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * State of the payment method: active, inactivated, failed, pending or deleted
+     *
+     * @see MpsSubscriptionStateEnum
+     *
      * @param string $state
      *
      * @return self
@@ -166,6 +196,8 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the payment method was created. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $created
      *
      * @return self
@@ -178,6 +210,8 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Unique id for payment method
+     *
      * @param string $id
      *
      * @return self
@@ -190,6 +224,8 @@ class MpsSubscriptionModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional external id at MobilePay defined when creating the subscription
+     *
      * @param string|null $externalId
      *
      * @return self

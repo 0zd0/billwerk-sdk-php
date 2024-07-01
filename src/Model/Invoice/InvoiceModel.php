@@ -61,6 +61,7 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     /**
      * The invoice state one of the following: created, pending, dunning, settled, cancelled, authorized, failed
      *
+     * @see InvoiceStateEnum
      * @var string $state
      */
     protected string $state;
@@ -77,6 +78,7 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
      * The type of invoice: s - subscription recurring, so - subscription one-time, soi - subscription one-time instant,
      * co - customer one-time, ch - charge
      *
+     * @see InvoiceTypeEnum
      * @var string $type
      */
     protected string $type;
@@ -139,6 +141,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     protected ?DateTime $authorized = null;
 
     /**
+     * Credits applied to invoice
+     *
      * @var CreditModel[] $credits
      */
     protected array $credits;
@@ -359,6 +363,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     protected ?array $creditNotes = null;
 
     /**
+     * The end of billing period if the invoice is for a specific billing period,
+     *  in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getPeriodTo(): ?DateTime
@@ -367,6 +374,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The start of billing period if the invoice is for a specific billing period,
+     *  in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getPeriodFrom(): ?DateTime
@@ -375,6 +385,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The invoice vat amount calculated as rounded summed fractional vats for each orderline
+     *
      * @return int
      */
     public function getAmountVat(): int
@@ -383,6 +395,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The invoice amount without vat
+     *
      * @return int
      */
     public function getAmountExVat(): int
@@ -391,6 +405,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice id assigned by Reepay
+     *
      * @return string
      */
     public function getId(): string
@@ -399,6 +415,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The invoice amount including VAT
+     *
      * @return int
      */
     public function getAmount(): int
@@ -407,6 +425,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional reference to recurring payment method created in conjunction with charging
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -415,6 +435,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Per account unique handle. Provided at on-demand invoice/charge creation or set to inv-<invoice_number>
+     *  for automatically created subscription invoices
+     *
      * @return string
      */
     public function getHandle(): string
@@ -423,6 +446,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice currency in ISO 4217 three letter alpha code
+     *
      * @return string
      */
     public function getCurrency(): string
@@ -431,6 +456,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The invoice state one of the following: created, pending, dunning, settled, cancelled, authorized, failed
+     *
+     * @see InvoiceStateEnum
      * @return string
      */
     public function getState(): string
@@ -439,6 +467,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the invoice failed, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getFailed(): ?DateTime
@@ -447,6 +477,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Customer handle
+     *
      * @return string
      */
     public function getCustomer(): string
@@ -455,6 +487,10 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the accounting invoice was created. An accounting invoice is created when
+     *  a non-charging invoice is created with the state pending or the invoice moved
+     *  from state created. Timestamp in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getAccountingCreatedDate(): ?DateTime
@@ -463,6 +499,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice accounting number
+     *
      * @return string|null
      */
     public function getAccountingNumber(): ?string
@@ -471,6 +509,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Additional cost handles for any additional costs added to this invoice
+     *
      * @return array
      */
     public function getAdditionalCosts(): array
@@ -479,6 +519,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the invoice was authorized, if the invoice went through an authorize and
+     *  settle flow, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getAuthorized(): ?DateTime
@@ -487,6 +530,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Authorized amount
+     *
      * @return int|null
      */
     public function getAuthorizedAmount(): ?int
@@ -495,6 +540,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional billing address
+     *
      * @return AddressModel|null
      */
     public function getBillingAddress(): ?AddressModel
@@ -503,6 +550,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the invoice was cancelled, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getCancelled(): ?DateTime
@@ -511,6 +560,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Credited amount
+     *
      * @return int|null
      */
     public function getCreditedAmount(): ?int
@@ -519,6 +570,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice credit notes
+     *
      * @return CreditNoteModel[]|null
      */
     public function getCreditNotes(): ?array
@@ -527,6 +580,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Credits applied to invoice
+     *
      * @return CreditModel[]
      */
     public function getCredits(): array
@@ -535,6 +590,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Customer debtor id
+     *
      * @return int|null
      */
     public function getDebtorId(): ?int
@@ -543,6 +600,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The potential discount amount deducted from the invoice amount including VAT
+     *
      * @return int
      */
     public function getDiscountAmount(): int
@@ -551,6 +610,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Url to invoice pdf
+     *
      * @return string|null
      */
     public function getDownloadUrl(): ?string
@@ -559,6 +620,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When is the invoice due, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getDue(): DateTime
@@ -567,6 +630,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Number of dunning events for invoice (number of reminders sent)
+     *
      * @return int|null
      */
     public function getDunningCount(): ?int
@@ -575,6 +640,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When dunning for the invoice expired, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getDunningExpired(): ?DateTime
@@ -583,6 +650,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Dunning plan handle
+     *
      * @return string|null
      */
     public function getDunningPlan(): ?string
@@ -591,6 +660,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When dunning for the invoice was started, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getDunningStart(): ?DateTime
@@ -599,6 +670,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Sequential invoice number. Only present for subscription and customer invoices
+     *
      * @return int|null
      */
     public function getNumber(): ?int
@@ -607,6 +680,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order lines for invoice sorted by descending timestamp
+     *
      * @return array
      */
     public function getOrderLines(): array
@@ -615,6 +690,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The invoice original amount including VAT, may differ from amount if adjustments
+     *  have been applied for the invoice
+     *
      * @return int
      */
     public function getOrgAmount(): int
@@ -623,6 +701,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The subscription period this invoice is for
+     *
      * @return int|null
      */
     public function getPeriodNumber(): ?int
@@ -631,6 +711,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Subscription plan handle for the plan used to automatically create the invoice or the case that
+     *  an on-demand subscription invoice has been created that should include a plan order line
+     *
      * @return string|null
      */
     public function getPlan(): ?string
@@ -639,6 +722,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Subscription plan version
+     *
      * @return int|null
      */
     public function getPlanVersion(): ?int
@@ -647,6 +732,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * For asynchronous payment methods, e.g. MobilePay subscriptions, this flag indicates that an invoice
+     *  transaction is in state processing and is awaiting result
+     *
      * @return bool|null
      */
     public function getProcessing(): ?bool
@@ -655,6 +743,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional reference to recurring payment method created in conjunction with charging
+     *
      * @return string|null
      */
     public function getRecurringPaymentMethod(): ?string
@@ -663,6 +753,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Refunded amount
+     *
      * @return int
      */
     public function getRefundedAmount(): int
@@ -671,6 +763,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the invoice settled, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getSettled(): ?DateTime
@@ -679,6 +773,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Settled amount
+     *
      * @return int
      */
     public function getSettledAmount(): int
@@ -687,6 +783,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Whether this is a customer one-time invoice that will be settled later
+     *
      * @return bool|null
      */
     public function getSettleLater(): ?bool
@@ -695,6 +793,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The payment method to use for a later settle of a one-time customer invoice
+     *
      * @return string|null
      */
     public function getSettleLaterPaymentMethod(): ?string
@@ -703,6 +803,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional shipping address
+     *
      * @return AddressModel|null
      */
     public function getShippingAddress(): ?AddressModel
@@ -711,6 +813,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Subscription handle, will be null for a one-time customer invoice
+     *
      * @return string|null
      */
     public function getSubscription(): ?string
@@ -719,6 +823,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice transactions
+     *
      * @return array
      */
     public function getTransactions(): array
@@ -727,6 +833,10 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The type of invoice: s - subscription recurring, so - subscription one-time, soi - subscription one-time instant,
+     *  co - customer one-time, ch - charge
+     *
+     * @see InvoiceTypeEnum
      * @return string
      */
     public function getType(): string
@@ -735,6 +845,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The end of billing period if the invoice is for a specific billing period,
+     *  in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $periodTo
      *
      * @return InvoiceModel
@@ -747,6 +860,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The start of billing period if the invoice is for a specific billing period,
+     *  in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $periodFrom
      *
      * @return InvoiceModel
@@ -759,6 +875,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The invoice vat amount calculated as rounded summed fractional vats for each orderline
+     *
      * @param int $amountVat
      *
      * @return InvoiceModel
@@ -771,6 +889,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The invoice amount without vat
+     *
      * @param int $amountExVat
      *
      * @return InvoiceModel
@@ -783,6 +903,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice id assigned by Reepay
+     *
      * @param string $id
      *
      * @return InvoiceModel
@@ -795,6 +917,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The invoice amount including VAT
+     *
      * @param int $amount
      *
      * @return InvoiceModel
@@ -807,6 +931,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional reference to recurring payment method created in conjunction with charging
+     *
      * @param DateTime $created
      *
      * @return InvoiceModel
@@ -819,6 +945,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Per account unique handle. Provided at on-demand invoice/charge creation or set to inv-<invoice_number>
+     *  for automatically created subscription invoices
+     *
      * @param string $handle
      *
      * @return InvoiceModel
@@ -831,6 +960,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice currency in ISO 4217 three letter alpha code
+     *
      * @param string $currency
      *
      * @return InvoiceModel
@@ -843,6 +974,10 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The invoice state one of the following: created, pending, dunning, settled, cancelled, authorized, failed
+     *
+     * @see InvoiceStateEnum
+     *
      * @param string $state
      *
      * @return InvoiceModel
@@ -855,6 +990,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the invoice failed, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $failed
      *
      * @return InvoiceModel
@@ -867,6 +1004,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Customer handle
+     *
      * @param string $customer
      *
      * @return InvoiceModel
@@ -879,6 +1018,10 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the accounting invoice was created. An accounting invoice is created when
+     *  a non-charging invoice is created with the state pending or the invoice moved
+     *  from state created. Timestamp in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $accountingCreatedDate
      *
      * @return InvoiceModel
@@ -891,6 +1034,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice accounting number
+     *
      * @param string|null $accountingNumber
      *
      * @return InvoiceModel
@@ -903,6 +1048,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Additional cost handles for any additional costs added to this invoice
+     *
      * @param array $additionalCosts
      *
      * @return InvoiceModel
@@ -915,6 +1062,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the invoice was authorized, if the invoice went through an authorize and
+     *  settle flow, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $authorized
      *
      * @return InvoiceModel
@@ -927,6 +1077,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Authorized amount
+     *
      * @param int|null $authorizedAmount
      *
      * @return InvoiceModel
@@ -939,6 +1091,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional billing address
+     *
      * @param AddressModel|null $billingAddress
      *
      * @return InvoiceModel
@@ -951,6 +1105,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the invoice was cancelled, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $cancelled
      *
      * @return InvoiceModel
@@ -963,6 +1119,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Credited amount
+     *
      * @param int|null $creditedAmount
      *
      * @return InvoiceModel
@@ -975,6 +1133,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice credit notes
+     *
      * @param CreditNoteModel[]|null $creditNotes
      *
      * @return InvoiceModel
@@ -987,6 +1147,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Credits applied to invoice
+     *
      * @param CreditModel[] $credits
      *
      * @return InvoiceModel
@@ -999,6 +1161,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Customer debtor id
+     *
      * @param int|null $debtorId
      *
      * @return InvoiceModel
@@ -1011,6 +1175,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The potential discount amount deducted from the invoice amount including VAT
+     *
      * @param int $discountAmount
      *
      * @return InvoiceModel
@@ -1023,6 +1189,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Url to invoice pdf
+     *
      * @param string|null $downloadUrl
      *
      * @return InvoiceModel
@@ -1035,6 +1203,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When is the invoice due, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime $due
      *
      * @return InvoiceModel
@@ -1047,6 +1217,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Number of dunning events for invoice (number of reminders sent)
+     *
      * @param int|null $dunningCount
      *
      * @return InvoiceModel
@@ -1059,6 +1231,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When dunning for the invoice expired, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $dunningExpired
      *
      * @return InvoiceModel
@@ -1071,6 +1245,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Dunning plan handle
+     *
      * @param string|null $dunningPlan
      *
      * @return InvoiceModel
@@ -1083,6 +1259,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When dunning for the invoice was started, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $dunningStart
      *
      * @return InvoiceModel
@@ -1095,6 +1273,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Sequential invoice number. Only present for subscription and customer invoices
+     *
      * @param int|null $number
      *
      * @return InvoiceModel
@@ -1107,6 +1287,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order lines for invoice sorted by descending timestamp
+     *
      * @param array $orderLines
      *
      * @return InvoiceModel
@@ -1119,6 +1301,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice transactions
+     *
      * @param array $transactions
      *
      * @return InvoiceModel
@@ -1131,6 +1315,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The invoice original amount including VAT, may differ from amount if adjustments
+     *  have been applied for the invoice
+     *
      * @param int $orgAmount
      *
      * @return InvoiceModel
@@ -1143,7 +1330,11 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The subscription period this invoice is for
+     *
      * @param int|null $periodNumber
+     *
+     * @return self
      */
     public function setPeriodNumber(?int $periodNumber): self
     {
@@ -1153,6 +1344,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Subscription plan handle for the plan used to automatically create the invoice or the case that
+     *  an on-demand subscription invoice has been created that should include a plan order line
+     *
      * @param string|null $plan
      *
      * @return InvoiceModel
@@ -1165,6 +1359,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Subscription plan version
+     *
      * @param int|null $planVersion
      *
      * @return InvoiceModel
@@ -1177,6 +1373,9 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * For asynchronous payment methods, e.g. MobilePay subscriptions, this flag indicates that an invoice
+     *  transaction is in state processing and is awaiting result
+     *
      * @param bool|null $processing
      *
      * @return InvoiceModel
@@ -1189,6 +1388,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional reference to recurring payment method created in conjunction with charging
+     *
      * @param string|null $recurringPaymentMethod
      *
      * @return InvoiceModel
@@ -1201,6 +1402,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Refunded amount
+     *
      * @param int $refundedAmount
      *
      * @return InvoiceModel
@@ -1213,6 +1416,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the invoice settled, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $settled
      *
      * @return InvoiceModel
@@ -1225,6 +1430,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Settled amount
+     *
      * @param int $settledAmount
      *
      * @return InvoiceModel
@@ -1237,6 +1444,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Whether this is a customer one-time invoice that will be settled later
+     *
      * @param bool|null $settleLater
      *
      * @return InvoiceModel
@@ -1249,6 +1458,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The payment method to use for a later settle of a one-time customer invoice
+     *
      * @param string|null $settleLaterPaymentMethod
      *
      * @return InvoiceModel
@@ -1261,6 +1472,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional shipping address
+     *
      * @param AddressModel|null $shippingAddress
      *
      * @return InvoiceModel
@@ -1273,6 +1486,8 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Subscription handle, will be null for a one-time customer invoice
+     *
      * @param string|null $subscription
      *
      * @return InvoiceModel
@@ -1285,6 +1500,11 @@ class InvoiceModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The type of invoice: s - subscription recurring, so - subscription one-time, soi - subscription one-time instant,
+     *  co - customer one-time, ch - charge
+     *
+     * @see InvoiceTypeEnum
+     *
      * @param string $type
      *
      * @return InvoiceModel

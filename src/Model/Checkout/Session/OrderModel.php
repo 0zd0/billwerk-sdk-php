@@ -55,6 +55,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     protected ?CustomerModel $customer = null;
 
     /**
+     * Custom metadata
+     *
      * @var MetaDataModel[]|null $metadata
      */
     protected ?array $metadata = null;
@@ -100,6 +102,11 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     protected ?AddressModel $shippingAddress = null;
 
     /**
+     * Customer reference. If charge does not already exist either this reference must be provided,
+     *  a create customer object must be provided or the source must be a payment method reference
+     *  (e.g. ca_..) identifying customer. Notice that customer cannot be changed for existing charge/invoice
+     *  so if handle is provided it must match the customer handle for existing customer
+     *
      * @return string|null
      */
     public function getCustomerHandle(): ?string
@@ -108,6 +115,9 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional currency in ISO 4217 three letter alpha code. If not provided the account default
+     *  currency will be used. The currency of an existing charge or invoice cannot be changed
+     *
      * @return string|null
      */
     public function getCurrency(): ?string
@@ -116,6 +126,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Create customer and subscription in an atomic operation
+     *
      * @return CustomerModel|null
      */
     public function getCustomer(): ?CustomerModel
@@ -124,6 +136,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional shipping address
+     *
      * @return AddressModel|null
      */
     public function getShippingAddress(): ?AddressModel
@@ -132,6 +146,10 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Order lines for the charge. The order lines controls the amount. Only required if charge/invoice
+     *  does not already exist. If given for existing charge the order lines and amount are adjusted.
+     *  A maximum of 100 order lines is allowed
+     *
      * @return array|null
      */
     public function getOrderLines(): ?array
@@ -140,6 +158,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional billing address
+     *
      * @return AddressModel|null
      */
     public function getBillingAddress(): ?AddressModel
@@ -148,6 +168,12 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional idempotency key. Only one authorization or settle can be performed for the same
+     *  handle. If two create attempts are attempted and the first succeeds the second will fail
+     *  because charge is already settled or authorized. An idempotency key identifies uniquely
+     *  the request and multiple requests with the same key and handle will yield the same result.
+     *  In case of networking errors the same request with same key can safely be retried
+     *
      * @return string|null
      */
     public function getKey(): ?string
@@ -156,6 +182,12 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Per account unique reference to charge/invoice. E.g. order id from own system. Multiple
+     *  payments can be attempted for the same handle but only one authorized or settled charge
+     *  can exist per handle. Max length 255 with allowable characters [a-zA-Z0-9_.-@]. It is
+     *  recommended to use a maximum of 20 characters as this will allow for the use of handle
+     *  as reference on bank statements without truncation
+     *
      * @return string
      */
     public function getHandle(): string
@@ -164,6 +196,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Custom metadata
+     *
      * @return array|null
      */
     public function getMetadata(): ?array
@@ -172,6 +206,9 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Amount in the smallest unit. Either amount or order_lines must be provided if charge/invoice
+     *  does not already exists
+     *
      * @return int|null
      */
     public function getAmount(): ?int
@@ -180,6 +217,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional order text. Used in conjunction with amount. Ignored if order_lines is provided
+     *
      * @return string|null
      */
     public function getOrdertext(): ?string
@@ -188,6 +227,11 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Customer reference. If charge does not already exist either this reference must be provided,
+     *  a create customer object must be provided or the source must be a payment method reference
+     *  (e.g. ca_..) identifying customer. Notice that customer cannot be changed for existing charge/invoice
+     *  so if handle is provided it must match the customer handle for existing customer
+     *
      * @param string|null $customerHandle
      *
      * @return self
@@ -200,6 +244,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Create customer and subscription in an atomic operation
+     *
      * @param CustomerModel|null $customer
      *
      * @return self
@@ -212,6 +258,9 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional currency in ISO 4217 three letter alpha code. If not provided the account default
+     *  currency will be used. The currency of an existing charge or invoice cannot be changed
+     *
      * @param string|null $currency
      *
      * @return self
@@ -224,6 +273,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional shipping address
+     *
      * @param AddressModel|null $shippingAddress
      *
      * @return self
@@ -236,6 +287,10 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Order lines for the charge. The order lines controls the amount. Only required if charge/invoice
+     *  does not already exist. If given for existing charge the order lines and amount are adjusted.
+     *  A maximum of 100 order lines is allowed
+     *
      * @param array|null $orderLines
      *
      * @return self
@@ -248,6 +303,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional billing address
+     *
      * @param AddressModel|null $billingAddress
      *
      * @return self
@@ -260,6 +317,12 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional idempotency key. Only one authorization or settle can be performed for the same
+     *  handle. If two create attempts are attempted and the first succeeds the second will fail
+     *  because charge is already settled or authorized. An idempotency key identifies uniquely
+     *  the request and multiple requests with the same key and handle will yield the same result.
+     *  In case of networking errors the same request with same key can safely be retried
+     *
      * @param string|null $key
      *
      * @return self
@@ -272,6 +335,12 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Per account unique reference to charge/invoice. E.g. order id from own system. Multiple
+     *  payments can be attempted for the same handle but only one authorized or settled charge
+     *  can exist per handle. Max length 255 with allowable characters [a-zA-Z0-9_.-@]. It is
+     *  recommended to use a maximum of 20 characters as this will allow for the use of handle
+     *  as reference on bank statements without truncation
+     *
      * @param string $handle
      *
      * @return self
@@ -284,6 +353,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Custom metadata
+     *
      * @param array|null $metadata
      *
      * @return self
@@ -296,6 +367,9 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Amount in the smallest unit. Either amount or order_lines must be provided if charge/invoice
+     *  does not already exists
+     *
      * @param int|null $amount
      *
      * @return self
@@ -308,6 +382,8 @@ class OrderModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional order text. Used in conjunction with amount. Ignored if order_lines is provided
+     *
      * @param string|null $ordertext
      *
      * @return self

@@ -34,7 +34,9 @@ class AnydayAgreementModel extends AbstractModel
     }
 
     /**
-     * @return string|null
+     *  Anyday API key
+     *
+ * @return string|null
      */
     public function getApiKey(): ?string
     {
@@ -42,6 +44,8 @@ class AnydayAgreementModel extends AbstractModel
     }
 
     /**
+     * Anyday private key for callback verification
+     *
      * @return string|null
      */
     public function getPrivateKey(): ?string
@@ -62,6 +66,8 @@ class AnydayAgreementModel extends AbstractModel
     }
 
     /**
+     *  Anyday API key
+     *
      * @param string|null $apiKey
      *
      * @return self
@@ -74,6 +80,8 @@ class AnydayAgreementModel extends AbstractModel
     }
 
     /**
+     * Anyday private key for callback verification
+     *
      * @param string|null $privateKey
      *
      * @return self

@@ -106,6 +106,8 @@ class CreditNoteLineModel extends AbstractModel
     protected ?DateTime $periodTo = null;
 
     /**
+     * Credit note line total amount excluding VAT
+     *
      * @return int|null
      */
     public function getAmountExVat(): ?int
@@ -114,6 +116,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line total amount
+     *
      * @return int
      */
     public function getAmount(): int
@@ -122,6 +126,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Creation date for this credit note line, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getCreated(): ?DateTime
@@ -130,6 +136,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Vat for this credit note line
+     *
      * @return float|null
      */
     public function getVat(): ?float
@@ -138,6 +146,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * The start of billing period in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getPeriodFrom(): ?DateTime
@@ -146,6 +156,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * The end of billing period in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getPeriodTo(): ?DateTime
@@ -154,6 +166,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line vat amount
+     *
      * @return int|null
      */
     public function getUnitAmountVat(): ?int
@@ -162,6 +176,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line unit amount excluding VAT
+     *
      * @return int|null
      */
     public function getUnitAmountExVat(): ?int
@@ -170,6 +186,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line unit amount
+     *
      * @return int|null
      */
     public function getUnitAmount(): ?int
@@ -178,6 +196,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line quantity
+     *
      * @return int
      */
     public function getQuantity(): int
@@ -186,6 +206,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line text
+     *
      * @return string
      */
     public function getText(): string
@@ -194,6 +216,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line total amount including VAT
+     *
      * @return int|null
      */
     public function getAmountInclVat(): ?int
@@ -202,6 +226,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Whether the total and units are including VAT
+     *
      * @return bool|null
      */
     public function getAmountInclVatDefined(): ?bool
@@ -210,6 +236,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Reference to invoice orderline this credit note line relates to
+     *
      * @return string|null
      */
     public function getOrderLineId(): ?string
@@ -218,6 +246,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line total amount excluding VAT
+     *
      * @param int|null $amountExVat
      *
      * @return self
@@ -230,6 +260,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line total amount
+     *
      * @param int $amount
      *
      * @return self
@@ -242,6 +274,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Creation date for this credit note line, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $created
      *
      * @return self
@@ -254,6 +288,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Vat for this credit note line
+     *
      * @param float|null $vat
      *
      * @return self
@@ -266,6 +302,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * The start of billing period in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $periodFrom
      *
      * @return self
@@ -278,6 +316,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * The end of billing period in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $periodTo
      *
      * @return self
@@ -290,6 +330,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line vat amount
+     *
      * @param int|null $unitAmountVat
      *
      * @return self
@@ -302,6 +344,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line unit amount excluding VAT
+     *
      * @param int|null $unitAmountExVat
      *
      * @return self
@@ -314,6 +358,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line unit amount
+     *
      * @param int|null $unitAmount
      *
      * @return self
@@ -326,6 +372,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line quantity
+     *
      * @param int $quantity
      *
      * @return self
@@ -338,6 +386,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line total amount including VAT
+     *
      * @param int|null $amountInclVat
      *
      * @return self
@@ -350,6 +400,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Whether the total and units are including VAT
+     *
      * @param bool|null $amountInclVatDefined
      *
      * @return self
@@ -362,6 +414,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Reference to invoice orderline this credit note line relates to
+     *
      * @param string|null $orderLineId
      *
      * @return self
@@ -374,6 +428,8 @@ class CreditNoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line text
+     *
      * @param string $text
      *
      * @return self

@@ -31,6 +31,8 @@ class MpsTransactionModel extends AbstractTransactionModel
     protected string $mpsPaymentType;
 
     /**
+     * MobilePay Subscriptions id
+     *
      * @return string
      */
     public function getMpsId(): string
@@ -39,6 +41,8 @@ class MpsTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * MobilePay Subscriptions agreement
+     *
      * @return MpsSubscriptionModel
      */
     public function getMpsSubscription(): MpsSubscriptionModel
@@ -47,6 +51,10 @@ class MpsTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * MobilePay Subscriptions payment type: regular, one_off_cit (customer initiated),
+     *  one_off_mit (merchant initiated auto reserve)
+     *
+     * @see MpsPaymentTypeEnum
      * @return string
      */
     public function getMpsPaymentType(): string
@@ -55,6 +63,8 @@ class MpsTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * MobilePay Subscriptions agreement
+     *
      * @param MpsSubscriptionModel $mpsSubscription
      *
      * @return self
@@ -67,6 +77,8 @@ class MpsTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * MobilePay Subscriptions id
+     *
      * @param string $mpsId
      *
      * @return self
@@ -79,6 +91,11 @@ class MpsTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * MobilePay Subscriptions payment type: regular, one_off_cit (customer initiated),
+     *  one_off_mit (merchant initiated auto reserve)
+     *
+     * @see MpsPaymentTypeEnum
+     *
      * @param string $mpsPaymentType
      *
      * @return self

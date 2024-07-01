@@ -12,6 +12,8 @@ class SantanderTransactionModel extends AbstractTransactionModel
     protected ?string $santanderId = null;
 
     /**
+     * Santander id
+     *
      * @return string|null
      */
     public function getSantanderId(): ?string
@@ -20,6 +22,8 @@ class SantanderTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Santander id
+     *
      * @param string|null $santanderId
      *
      * @return self

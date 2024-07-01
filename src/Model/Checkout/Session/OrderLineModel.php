@@ -50,6 +50,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     protected ?string $taxPolicy = null;
 
     /**
+     * Order line vat percent
+     *
      * @return float|null
      */
     public function getVat(): ?float
@@ -58,6 +60,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Order line total amount including vat
+     *
      * @return int
      */
     public function getAmount(): int
@@ -66,6 +70,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Whether the per quantity amount is including VAT. Defaults to true
+     *
      * @return bool|null
      */
     public function getAmountInclVat(): ?bool
@@ -74,6 +80,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Order line quantity
+     *
      * @return int|null
      */
     public function getQuantity(): ?int
@@ -82,6 +90,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Order line text
+     *
      * @return string
      */
     public function getOrdertext(): string
@@ -90,6 +100,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional tax policy handle for this order line. Account default vat is used if none given
+     *
      * @return string|null
      */
     public function getTaxPolicy(): ?string
@@ -98,6 +110,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Order line vat percent
+     *
      * @param float|null $vat
      *
      * @return self
@@ -110,6 +124,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Order line total amount including vat
+     *
      * @param int $amount
      *
      * @return self
@@ -122,6 +138,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Whether the per quantity amount is including VAT. Defaults to true
+     *
      * @param bool|null $amountInclVat
      *
      * @return self
@@ -134,6 +152,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Order line quantity
+     *
      * @param int|null $quantity
      *
      * @return self
@@ -146,6 +166,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Order line text
+     *
      * @param string $ordertext
      *
      * @return self
@@ -158,6 +180,8 @@ class OrderLineModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional tax policy handle for this order line. Account default vat is used if none given
+     *
      * @param string|null $taxPolicy
      *
      * @return self

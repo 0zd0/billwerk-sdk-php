@@ -40,6 +40,8 @@ class ManualTransactionModel extends AbstractModel
     protected DateTime $paymentDate;
 
     /**
+     * Optional reference for the manual transaction
+     *
      * @return string|null
      */
     public function getReference(): ?string
@@ -48,6 +50,8 @@ class ManualTransactionModel extends AbstractModel
     }
 
     /**
+     * Optional comment for manual transaction
+     *
      * @return string|null
      */
     public function getComment(): ?string
@@ -56,6 +60,10 @@ class ManualTransactionModel extends AbstractModel
     }
 
     /**
+     * The method used for the offline manual transaction, allowable values: cash,
+     *  bank_transfer, check, chargeback, other
+     *
+     * @see ManualTransactionMethodEnum
      * @return string
      */
     public function getMethod(): string
@@ -64,6 +72,9 @@ class ManualTransactionModel extends AbstractModel
     }
 
     /**
+     * When the manual transaction was performed on the form yyyy-MM-dd, yyyyMMdd,
+     *  yyyy-MM-ddTHH:mm and yyyy-MM-ddTHH:mm:ss
+     *
      * @return DateTime
      */
     public function getPaymentDate(): DateTime
@@ -72,6 +83,8 @@ class ManualTransactionModel extends AbstractModel
     }
 
     /**
+     * Optional reference for the manual transaction
+     *
      * @param string|null $reference
      *
      * @return self
@@ -84,6 +97,8 @@ class ManualTransactionModel extends AbstractModel
     }
 
     /**
+     * Optional comment for manual transaction
+     *
      * @param string|null $comment
      *
      * @return self
@@ -96,6 +111,11 @@ class ManualTransactionModel extends AbstractModel
     }
 
     /**
+     * The method used for the offline manual transaction, allowable values: cash,
+     *  bank_transfer, check, chargeback, other
+     *
+     * @see ManualTransactionMethodEnum
+     *
      * @param string $method
      *
      * @return self
@@ -108,6 +128,9 @@ class ManualTransactionModel extends AbstractModel
     }
 
     /**
+     * When the manual transaction was performed on the form yyyy-MM-dd, yyyyMMdd,
+     *  yyyy-MM-ddTHH:mm and yyyy-MM-ddTHH:mm:ss
+     *
      * @param DateTime $paymentDate
      *
      * @return self

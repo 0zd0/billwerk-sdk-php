@@ -12,6 +12,8 @@ class PayconiqTransactionModel extends AbstractTransactionModel
     protected ?string $payconiqId = null;
 
     /**
+     * Payconiq id
+     *
      * @return string|null
      */
     public function getPayconiqId(): ?string
@@ -20,6 +22,8 @@ class PayconiqTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Payconiq id
+     *
      * @param string|null $payconiqId
      *
      * @return self

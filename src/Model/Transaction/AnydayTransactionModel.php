@@ -12,6 +12,8 @@ class AnydayTransactionModel extends AbstractTransactionModel
     protected ?string $anydayId = null;
 
     /**
+     * Anyday id
+     *
      * @return string|null
      */
     public function getAnydayId(): ?string
@@ -20,6 +22,8 @@ class AnydayTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Anyday id
+     *
      * @param string|null $anydayId
      *
      * @return self

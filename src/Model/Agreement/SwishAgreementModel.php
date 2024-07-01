@@ -14,6 +14,8 @@ class SwishAgreementModel extends AbstractModel
     protected string $swishNumber;
 
     /**
+     * Swish Number
+     *
      * @return string
      */
     public function getSwishNumber(): string
@@ -22,6 +24,8 @@ class SwishAgreementModel extends AbstractModel
     }
 
     /**
+     * Swish Number
+     *
      * @param string $swishNumber
      *
      * @return self

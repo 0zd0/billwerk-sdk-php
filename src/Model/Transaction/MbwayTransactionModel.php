@@ -12,6 +12,8 @@ class MbwayTransactionModel extends AbstractTransactionModel
     protected ?string $mbWayId = null;
 
     /**
+     * MB Way id
+     *
      * @return string|null
      */
     public function getMbWayId(): ?string
@@ -20,6 +22,8 @@ class MbwayTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * MB Way id
+     *
      * @param string|null $mbWayId
      *
      * @return self

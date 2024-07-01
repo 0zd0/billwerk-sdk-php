@@ -39,6 +39,9 @@ abstract class AbstractTransactionModel extends AbstractModel
     protected ?string $acquirerMessage = null;
 
     /**
+     * Error code if failed. See transaction errors
+     *
+     * @see TransactionErrorEnum
      * @return string|null
      */
     public function getError(): ?string
@@ -47,6 +50,8 @@ abstract class AbstractTransactionModel extends AbstractModel
     }
 
     /**
+     * Id of a possible referenced transaction
+     *
      * @return string|null
      */
     public function getRefTransaction(): ?string
@@ -55,6 +60,9 @@ abstract class AbstractTransactionModel extends AbstractModel
     }
 
     /**
+     * Error state if failed: pending, soft_declined, hard_declined or processing_error
+     *
+     * @see ErrorStateEnum
      * @return string|null
      */
     public function getErrorState(): ?string
@@ -63,6 +71,8 @@ abstract class AbstractTransactionModel extends AbstractModel
     }
 
     /**
+     * Acquirer message in case of error
+     *
      * @return string|null
      */
     public function getAcquirerMessage(): ?string
@@ -71,6 +81,10 @@ abstract class AbstractTransactionModel extends AbstractModel
     }
 
     /**
+     * Error state if failed: pending, soft_declined, hard_declined or processing_error
+     *
+     * @see ErrorStateEnum
+     *
      * @param string|null $errorState
      *
      * @return self
@@ -83,6 +97,8 @@ abstract class AbstractTransactionModel extends AbstractModel
     }
 
     /**
+     * Id of a possible referenced transaction
+     *
      * @param string|null $refTransaction
      *
      * @return self
@@ -95,6 +111,8 @@ abstract class AbstractTransactionModel extends AbstractModel
     }
 
     /**
+     * Acquirer message in case of error
+     *
      * @param string|null $acquirerMessage
      *
      * @return self
@@ -107,6 +125,10 @@ abstract class AbstractTransactionModel extends AbstractModel
     }
 
     /**
+     * Error code if failed. See transaction errors
+     *
+     * @see TransactionErrorEnum
+     *
      * @param string|null $error
      *
      * @return self

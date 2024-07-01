@@ -167,6 +167,8 @@ class CardTransactionModel extends AbstractTransactionModel
     protected ?int $surchargeFee = null;
 
     /**
+     * Saved card used for transaction. Only present if a saved card was used
+     *
      * @return CardModel|null
      */
     public function getCard(): ?CardModel
@@ -175,6 +177,11 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Transaction card type. Will differ from card_type if co-branded card. Transaction card type is the card type
+     *  used for the transaction. unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners,
+     *  discover or jcb
+     *
+     * @see CardTypeEnum
      * @return string|null
      */
     public function getTransactionCardType(): ?string
@@ -183,6 +190,11 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * If 3D Secure authenticated the 3D status will either be Y (fully authenticated) or A (attempted
+     *  authenticated). An attempted authentication means that card issuer (e.g. bank) does not support
+     *  3D Secure so no full authentication has been performed. Attempted authentication normally means
+     *  liability shift, but this can differ between acquirers
+     *
      * @return string|null
      */
     public function getThreeDSecureStatus(): ?string
@@ -191,6 +203,11 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Status for strong customer authentication: threed_secure - 3D Secure authenticated,
+     *  threed_secure_not_enrolled - 3D Secure authentication not performed as card not enrolled,
+     *  secured_by_nets - Secure by Nets authenticated
+     *
+     * @see StrongAuthenticationStatusEnum
      * @return string|null
      */
     public function getStrongAuthenticationStatus(): ?string
@@ -199,6 +216,9 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * If this parameter is set the card has been flagged by Reepay Risk Filter with a flag rule. Special
+     *  attention may be required before using the card for recurring payments or subscription sign-up
+     *
      * @return string|null
      */
     public function getRiskRule(): ?string
@@ -207,6 +227,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Masked card number
+     *
      * @return string|null
      */
     public function getMaskedCard(): ?string
@@ -215,6 +237,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * When the card transaction last failed, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getLastFailed(): ?DateTime
@@ -223,6 +247,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Uniquely identifies this particular card number
+     *
      * @return string|null
      */
     public function getFingerprint(): ?string
@@ -231,6 +257,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Card expire date on form MM-YY
+     *
      * @return string|null
      */
     public function getExpDate(): ?string
@@ -239,6 +267,9 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Card type: unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
      * @return string
      */
     public function getCardType(): string
@@ -247,6 +278,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Card issuing country in ISO 3166-1 alpha-2
+     *
      * @return string|null
      */
     public function getCardCountry(): ?string
@@ -255,6 +288,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Acquirer error code in case of error
+     *
      * @return string|null
      */
     public function getAcquirerCode(): ?string
@@ -263,6 +298,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Acquirer reference to transaction. E.g. Nets order id or Clearhaus reference
+     *
      * @return string|null
      */
     public function getAcquirerReference(): ?string
@@ -271,6 +308,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * When the card transaction first failed, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getFirstFailed(): ?DateTime
@@ -279,6 +318,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * If the transaction was exempted from a 3DS challenge
+     *
      * @return bool|null
      */
     public function getFrictionless(): ?bool
@@ -287,6 +328,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Gateway id for card
+     *
      * @return string|null
      */
     public function getGwId(): ?string
@@ -295,6 +338,10 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Acquirer or payment gateway used: reepay, clearhaus, nets, swedbank, handelsbanken,
+     *  elavon, bambora, valitor, dibs, stripe, test
+     *
+     * @see ProviderEnum
      * @return string|null
      */
     public function getProvider(): ?string
@@ -303,6 +350,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Potential card surcharge fee added to amount if surcharging enabled
+     *
      * @return int|null
      */
     public function getSurchargeFee(): ?int
@@ -311,6 +360,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Resulting text on bank statement if known
+     *
      * @return string|null
      */
     public function getTextOnStatement(): ?string
@@ -319,6 +370,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Saved card used for transaction. Only present if a saved card was used
+     *
      * @param CardModel|null $card
      *
      * @return self
@@ -331,6 +384,12 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Transaction card type. Will differ from card_type if co-branded card. Transaction card type is the card type
+     *  used for the transaction. unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners,
+     *  discover or jcb
+     *
+     * @see CardTypeEnum
+     *
      * @param string|null $transactionCardType
      *
      * @return self
@@ -343,6 +402,11 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * If 3D Secure authenticated the 3D status will either be Y (fully authenticated) or A (attempted
+     *  authenticated). An attempted authentication means that card issuer (e.g. bank) does not support
+     *  3D Secure so no full authentication has been performed. Attempted authentication normally means
+     *  liability shift, but this can differ between acquirers
+     *
      * @param string|null $threeDSecureStatus
      *
      * @return self
@@ -355,6 +419,12 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Status for strong customer authentication: threed_secure - 3D Secure authenticated,
+     *  threed_secure_not_enrolled - 3D Secure authentication not performed as card not enrolled,
+     *  secured_by_nets - Secure by Nets authenticated
+     *
+     * @see StrongAuthenticationStatusEnum
+     *
      * @param string|null $strongAuthenticationStatus
      *
      * @return self
@@ -367,6 +437,9 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * If this parameter is set the card has been flagged by Reepay Risk Filter with a flag rule. Special
+     *  attention may be required before using the card for recurring payments or subscription sign-up
+     *
      * @param string|null $riskRule
      *
      * @return self
@@ -379,6 +452,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Masked card number
+     *
      * @param string|null $maskedCard
      *
      * @return self
@@ -391,6 +466,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * When the card transaction last failed, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $lastFailed
      *
      * @return self
@@ -403,6 +480,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Card expire date on form MM-YY
+     *
      * @param string|null $expDate
      *
      * @return self
@@ -415,6 +494,10 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Card type: unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
+     *
      * @param string $cardType
      *
      * @return self
@@ -427,6 +510,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Card issuing country in ISO 3166-1 alpha-2
+     *
      * @param string|null $cardCountry
      *
      * @return self
@@ -439,6 +524,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Uniquely identifies this particular card number
+     *
      * @param string|null $fingerprint
      *
      * @return self
@@ -451,6 +538,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Acquirer error code in case of error
+     *
      * @param string|null $acquirerCode
      *
      * @return self
@@ -463,6 +552,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Acquirer reference to transaction. E.g. Nets order id or Clearhaus reference
+     *
      * @param string|null $acquirerReference
      *
      * @return self
@@ -475,6 +566,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * When the card transaction first failed, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $firstFailed
      *
      * @return self
@@ -487,6 +580,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * If the transaction was exempted from a 3DS challenge
+     *
      * @param bool|null $frictionless
      *
      * @return self
@@ -499,6 +594,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Gateway id for card
+     *
      * @param string|null $gwId
      *
      * @return self
@@ -511,6 +608,11 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Acquirer or payment gateway used: reepay, clearhaus, nets, swedbank, handelsbanken,
+     *  elavon, bambora, valitor, dibs, stripe, test
+     *
+     * @see ProviderEnum
+     *
      * @param string|null $provider
      *
      * @return self
@@ -523,6 +625,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Potential card surcharge fee added to amount if surcharging enabled
+     *
      * @param int|null $surchargeFee
      *
      * @return self
@@ -535,6 +639,8 @@ class CardTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Resulting text on bank statement if known
+     *
      * @param string|null $textOnStatement
      *
      * @return self

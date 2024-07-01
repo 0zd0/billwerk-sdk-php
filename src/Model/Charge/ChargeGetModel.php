@@ -14,6 +14,8 @@ class ChargeGetModel extends AbstractModel
     protected string $handle;
 
     /**
+     * Charge handle
+     *
      * @return string
      */
     public function getHandle(): string
@@ -22,6 +24,8 @@ class ChargeGetModel extends AbstractModel
     }
 
     /**
+     * Charge handle
+     *
      * @param string $handle
      *
      * @return self

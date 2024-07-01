@@ -319,6 +319,8 @@ class CustomerModel extends AbstractModel
     protected int $transferredCreditAmount;
 
     /**
+     * Per account unique handle for the customer. Max length 255 with allowable characters [a-zA-Z0-9_.-@].
+     *
      * @return string
      */
     public function getHandle(): string
@@ -327,6 +329,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer vat number
+     *
      * @return string|null
      */
     public function getVat(): ?string
@@ -335,6 +339,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Date when the customer was created. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -343,6 +349,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Debtor identifier for this customer. If set this is unique and cannot be changed anymore
+     *
      * @return int|null
      */
     public function getDebtorId(): ?int
@@ -351,6 +359,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer last name
+     *
      * @return string|null
      */
     public function getLastName(): ?string
@@ -359,6 +369,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer first name
+     *
      * @return string|null
      */
     public function getFirstName(): ?string
@@ -367,6 +379,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer company
+     *
      * @return string|null
      */
     public function getCompany(): ?string
@@ -375,6 +389,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer city
+     *
      * @return string|null
      */
     public function getCity(): ?string
@@ -383,6 +399,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer address
+     *
      * @return string|null
      */
     public function getAddress(): ?string
@@ -391,6 +409,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer address2
+     *
      * @return string|null
      */
     public function getAddress2(): ?string
@@ -399,6 +419,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer country in ISO 3166-1 alpha-2. E.g. US
+     *
      * @return string|null
      */
     public function getCountry(): ?string
@@ -407,6 +429,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer email. Validated against RFC 822
+     *
      * @return string|null
      */
     public function getEmail(): ?string
@@ -415,6 +439,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer phone number
+     *
      * @return string|null
      */
     public function getPhone(): ?string
@@ -423,6 +449,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer postal code
+     *
      * @return string|null
      */
     public function getPostalCode(): ?string
@@ -431,6 +459,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed settled subscription amount
+     *
      * @return int
      */
     public function getSettledAmount(): int
@@ -439,6 +469,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed refunded subscription amount
+     *
      * @return int
      */
     public function getRefundedAmount(): int
@@ -447,6 +479,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of active subscriptions for this customer
+     *
      * @return int
      */
     public function getActiveSubscriptions(): int
@@ -455,6 +489,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount for cancelled subscription invoices
+     *
      * @return int
      */
     public function getCancelledAmount(): int
@@ -463,6 +499,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of cancelled subscription invoices for this customer
+     *
      * @return int
      */
     public function getCancelledInvoices(): int
@@ -471,6 +509,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of cancelled subscription for this customer
+     *
      * @return int
      */
     public function getCancelledSubscriptions(): int
@@ -479,6 +519,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Date when the customer was deleted. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getDeleted(): ?DateTime
@@ -487,6 +529,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount for dunning subscription invoices
+     *
      * @return int
      */
     public function getDunningAmount(): int
@@ -495,6 +539,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of dunning subscription invoices for this customer
+     *
      * @return int
      */
     public function getDunningInvoices(): int
@@ -503,6 +549,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of expired subscription for this customer
+     *
      * @return int
      */
     public function getExpiredSubscriptions(): int
@@ -511,6 +559,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount for failed subscription invoices
+     *
      * @return int
      */
     public function getFailedAmount(): int
@@ -519,6 +569,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of failed subscription invoices for this customer
+     *
      * @return int
      */
     public function getFailedInvoices(): int
@@ -527,6 +579,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer language
+     *
      * @return string|null
      */
     public function getLanguage(): ?string
@@ -535,6 +589,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of non renewing (active subscriptions not renewing at billing period end) subscriptions for this customer
+     *
      * @return int
      */
     public function getNonRenewingSubscriptions(): int
@@ -543,6 +599,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of subscription on hold for this customer
+     *
      * @return int
      */
     public function getOnHoldSubscriptions(): int
@@ -551,6 +609,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount of pending additional costs incl vat
+     *
      * @return int
      */
     public function getPendingAdditionalCostAmount(): int
@@ -559,6 +619,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of pending additional costs
+     *
      * @return int
      */
     public function getPendingAdditionalCosts(): int
@@ -567,6 +629,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount for pending subscription invoices
+     *
      * @return int
      */
     public function getPendingAmount(): int
@@ -575,6 +639,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed credit amount not yet applied to invoices
+     *
      * @return int
      */
     public function getPendingCreditAmount(): int
@@ -583,6 +649,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of credits that have not fully been applied to invoices
+     *
      * @return int
      */
     public function getPendingCredits(): int
@@ -591,6 +659,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of pending subscription invoices for this customer
+     *
      * @return int
      */
     public function getPendingInvoices(): int
@@ -599,6 +669,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of settled subscription invoices for this customer
+     *
      * @return int
      */
     public function getSettledInvoices(): int
@@ -607,6 +679,9 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of active subscriptions for this customer (deprecated, will be removed in a later version,
+     *  use active_subscriptions)
+     *
      * @return int
      */
     public function getSubscriptions(): int
@@ -615,6 +690,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Test flag
+     *
      * @return bool|null
      */
     public function getTest(): ?bool
@@ -623,6 +700,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount of additional costs that have been applied to invoices
+     *
      * @return int
      */
     public function getTransferredAdditionalCostAmount(): int
@@ -631,6 +710,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of additional costs that have been applied to invoices
+     *
      * @return int
      */
     public function getTransferredAdditionalCosts(): int
@@ -639,6 +720,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed credit amount that have been applied to invoices
+     *
      * @return int
      */
     public function getTransferredCreditAmount(): int
@@ -647,6 +730,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of credits that have fully been applied to invoices
+     *
      * @return int
      */
     public function getTransferredCredits(): int
@@ -655,6 +740,9 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of active subscriptions in trial for this customer. Also counts subscription to enter
+     *  trial at a future start date
+     *
      * @return int
      */
     public function getTrialActiveSubscriptions(): int
@@ -663,6 +751,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of cancelled subscriptions in trial for this customer
+     *
      * @return int
      */
     public function getTrialCancelledSubscriptions(): int
@@ -671,6 +761,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer vat number
      *
      * @param string|null $vat
      *
@@ -684,6 +775,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Date when the customer was created. In ISO-8601 extended offset date-time format
      *
      * @param DateTime $created
      *
@@ -697,6 +789,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Debtor identifier for this customer. If set this is unique and cannot be changed anymore
      *
      * @param int|null $debtorId
      *
@@ -710,6 +803,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer last name
      *
      * @param string|null $lastName
      *
@@ -723,6 +817,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer first name
      *
      * @param string|null $firstName
      *
@@ -736,6 +831,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer company
      *
      * @param string|null $company
      *
@@ -749,6 +845,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer address
      *
      * @param string|null $address
      *
@@ -762,6 +859,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer address2
      *
      * @param string|null $address2
      *
@@ -775,6 +873,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer city
      *
      * @param string|null $city
      *
@@ -788,6 +887,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer country in ISO 3166-1 alpha-2. E.g. US
      *
      * @param string|null $country
      *
@@ -801,6 +901,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer email. Validated against RFC 822
      *
      * @param string|null $email
      *
@@ -814,6 +915,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer phone number
      *
      * @param string|null $phone
      *
@@ -827,6 +929,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer postal code
      *
      * @param string|null $postalCode
      *
@@ -840,6 +943,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed settled subscription amount
      *
      * @param int $settledAmount
      *
@@ -853,6 +957,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed refunded subscription amount
      *
      * @param int $refundedAmount
      *
@@ -866,6 +971,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Per account unique handle for the customer. Max length 255 with allowable characters [a-zA-Z0-9_.-@].
      *
      * @param string $handle
      *
@@ -879,6 +985,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of active subscriptions for this customer
      *
      * @param int $activeSubscriptions
      *
@@ -892,6 +999,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount for cancelled subscription invoices
      *
      * @param int $cancelledAmount
      *
@@ -905,6 +1013,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of cancelled subscription invoices for this customer
      *
      * @param int $cancelledInvoices
      *
@@ -918,6 +1027,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of cancelled subscription for this customer
      *
      * @param int $cancelledSubscriptions
      *
@@ -931,6 +1041,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Date when the customer was deleted. In ISO-8601 extended offset date-time format
      *
      * @param DateTime|null $deleted
      *
@@ -944,6 +1055,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount for dunning subscription invoices
      *
      * @param int $dunningAmount
      *
@@ -957,6 +1069,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of dunning subscription invoices for this customer
      *
      * @param int $dunningInvoices
      *
@@ -970,6 +1083,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of expired subscription for this customer
      *
      * @param int $expiredSubscriptions
      *
@@ -983,6 +1097,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount for failed subscription invoices
      *
      * @param int $failedAmount
      *
@@ -996,6 +1111,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of failed subscription invoices for this customer
      *
      * @param int $failedInvoices
      *
@@ -1009,6 +1125,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Customer language
      *
      * @param string|null $language
      *
@@ -1022,6 +1139,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of non renewing (active subscriptions not renewing at billing period end) subscriptions for this customer
      *
      * @param int $nonRenewingSubscriptions
      *
@@ -1035,6 +1153,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of subscription on hold for this customer
      *
      * @param int $onHoldSubscriptions
      *
@@ -1048,6 +1167,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount of pending additional costs incl vat
      *
      * @param int $pendingAdditionalCostAmount
      *
@@ -1061,6 +1181,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of pending additional costs
      *
      * @param int $pendingAdditionalCosts
      *
@@ -1074,6 +1195,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount for pending subscription invoices
      *
      * @param int $pendingAmount
      *
@@ -1087,6 +1209,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed credit amount not yet applied to invoices
      *
      * @param int $pendingCreditAmount
      *
@@ -1100,6 +1223,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of credits that have not fully been applied to invoices
      *
      * @param int $pendingCredits
      *
@@ -1113,6 +1237,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of pending subscription invoices for this customer
      *
      * @param int $pendingInvoices
      *
@@ -1126,6 +1251,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of settled subscription invoices for this customer
      *
      * @param int $settledInvoices
      *
@@ -1139,6 +1265,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of active subscriptions for this customer (deprecated, will be removed in a later version,
+     *  use active_subscriptions)
      *
      * @param int $subscriptions
      *
@@ -1152,6 +1280,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Test flag
      *
      * @param bool|null $test
      *
@@ -1165,6 +1294,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed amount of additional costs that have been applied to invoices
      *
      * @param int $transferredAdditionalCostAmount
      *
@@ -1178,6 +1308,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of additional costs that have been applied to invoices
      *
      * @param int $transferredAdditionalCosts
      *
@@ -1191,6 +1322,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Summed credit amount that have been applied to invoices
      *
      * @param int $transferredCreditAmount
      *
@@ -1204,6 +1336,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of credits that have fully been applied to invoices
      *
      * @param int $transferredCredits
      *
@@ -1217,6 +1350,8 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of active subscriptions in trial for this customer. Also counts subscription to enter
+     *  trial at a future start date
      *
      * @param int $trialActiveSubscriptions
      *
@@ -1230,6 +1365,7 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Number of cancelled subscriptions in trial for this customer
      *
      * @param int $trialCancelledSubscriptions
      *

@@ -200,6 +200,10 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     protected ?string $orderText = null;
 
     /**
+     * Optional reference given to the created payment method in case a recurring payment method is created
+     *  by the session. Session id will be used by default if not defined. Max length 64 with allowable characters
+     *  [a-zA-Z0-9_.-@]
+     *
      * @return string|null
      */
     public function getPaymentMethodReference(): ?string
@@ -208,6 +212,10 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional sender information required for Account Funding Transaction (AFT).
+     *  If not provided when requesting account funding transaction with account_funding=true,
+     *  information will be gathered from invoice billing address and customer
+     *
      * @return AccountFundingInformationModel|null
      */
     public function getAccountFundingInformation(): ?AccountFundingInformationModel
@@ -216,6 +224,9 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Indicates that Account Funding Transaction (AFT) is requested.
+     *  It only can be used for instant settle (i.e. 'settle' = true)
+     *
      * @return bool|null
      */
     public function getAccountFunding(): ?bool
@@ -224,6 +235,10 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Phone number to use for payment methods able to use a prefilled phone number. E.g. MobilePay,
+     *  Vipps and Swish. If no explicit phone number is defined, the phone number for the customer entity
+     *  will be used
+     *
      * @return string|null
      */
     public function getPhone(): ?string
@@ -232,6 +247,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional locale for session. E.g. en_GB, da_DK, es_ES. Defaults to configuration locale or account locale
+     *
      * @return string|null
      */
     public function getLocale(): ?string
@@ -240,6 +257,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * If checkout is opened in separate window the customer will be directed to this page after success
+     *
      * @return string|null
      */
     public function getAcceptUrl(): ?string
@@ -248,6 +267,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional list of agreement ids to filter which agreements will be used for card payments
+     *
      * @return array|null
      */
     public function getAgreementFilter(): ?array
@@ -256,6 +277,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional IP address to restrict the use of the session to
+     *
      * @return string|null
      */
     public function getAllowedIp(): ?string
@@ -264,6 +287,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional alternative button text. Maximum length 32 characters
+     *
      * @return string|null
      */
     public function getButtonText(): ?string
@@ -272,6 +297,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * If checkout is opened in separate window the customer will be directed to this page if the customer cancels
+     *
      * @return string|null
      */
     public function getCancelUrl(): ?string
@@ -280,6 +307,9 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Reference to existing card payment method (ca_xxx) to use instead of having cardholder enter card data.
+     *  CVV may still be required from cardholder
+     *
      * @return string|null
      */
     public function getCardOnFile(): ?string
@@ -288,6 +318,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Require cvv from cardholder for card-on-file
+     *
      * @return bool|null
      */
     public function getCardOnFileRequireCvv(): ?bool
@@ -296,6 +328,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Require expiration date for card-on-file
+     *
      * @return bool|null
      */
     public function getCardOnFileRequireExpDate(): ?bool
@@ -304,6 +338,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional handle for a checkout configuration defined in the admin app to be used for this session
+     *
      * @return string|null
      */
     public function getConfiguration(): ?string
@@ -312,6 +348,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional list of offline agreement handles to filter which options are shown to the consumer
+     *
      * @return array|null
      */
     public function getOfflineAgreementFilter(): ?array
@@ -320,6 +358,13 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional list of payment methods to use for the checkout session. Format:
+     *  <payment_methods> = list of <payment_method>
+     *  <payment_method> = [sca-|nosca-]<payment_name>
+     *  <payment_name> = The id of payment method, e.g. dankort
+     *  See https://optimize-docs.billwerk.com/docs/checkout-payment-methods for full documentation
+     *
+     * @see PaymentMethodEnum
      * @return array|null
      */
     public function getPaymentMethods(): ?array
@@ -328,6 +373,10 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * For cost based acquirer agreement selection this argument can be used to define the amount used
+     *  in calculating the least expensive agreement for future recurring payments. Can only be used
+     *  for sessions saving a payment method for later use. Must be given in minor unit for currency
+     *
      * @return int|null
      */
     public function getRecurringAverageAmount(): ?int
@@ -336,6 +385,11 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Customer data used in strong customer authentication to reduce the need for a lengthy authentication
+     *  process and ensure less fraud. The data is not stored at Reepay and only used in the process of
+     *  strong customer authentication. The data is used by card issuer to determine if a frictionless
+     *  authentication flow can be used
+     *
      * @return ScaDataModel|null
      */
     public function getScaData(): ?ScaDataModel
@@ -344,6 +398,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Object to define payment type specific parameters
+     *
      * @return SessionDataModel|null
      */
     public function getSessionData(): ?SessionDataModel
@@ -352,6 +408,12 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional time-to-live duration. The session will expire after the duration from creation, meaning that
+     *  payment attempts cannot be initiated after this duration. Notice though, that payments initiated within
+     *  the time-to-live duration might finish after the TTL E.g. MobilePay Online flows. The duration must be
+     *  given in the following notation: PTxS - x seconds, PTxM - x minutes, PTxH - x hours or PxD - x days.
+     *  E.g. PT3H (three hours). The default time-to-live is three months
+     *
      * @return string|null
      */
     public function getTtl(): ?string
@@ -360,6 +422,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional order text presented in the sign-up form
+     *
      * @return string|null
      */
     public function getOrderText(): ?string
@@ -368,6 +432,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Handle for existing customer to add payment method to. Either this argument must be provided or create_customer
+     *
      * @return string|null
      */
     public function getCustomer(): ?string
@@ -376,6 +442,9 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional currency to choose acquirer agreement from. Only use this argument if specifically necessary to select
+     *  agreement based on currency for acquirers not supporting multi-currency
+     *
      * @return string|null
      */
     public function getCurrency(): ?string
@@ -384,6 +453,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Create customer and subscription in an atomic operation
+     *
      * @return CustomerModel|null
      */
     public function getCreateCustomer(): ?CustomerModel
@@ -392,6 +463,9 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional currency to choose acquirer agreement from. Only use this argument if specifically necessary to select
+     *  agreement based on currency for acquirers not supporting multi-currency
+     *
      * @param string|null $currency
      *
      * @return self
@@ -404,6 +478,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Handle for existing customer to add payment method to. Either this argument must be provided or create_customer
+     *
      * @param string|null $customer
      *
      * @return self
@@ -416,6 +492,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Create customer and subscription in an atomic operation
+     *
      * @param CustomerModel|null $createCustomer
      *
      * @return self
@@ -428,6 +506,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional order text presented in the sign-up form
+     *
      * @param string|null $orderText
      *
      * @return self
@@ -440,6 +520,10 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional reference given to the created payment method in case a recurring payment method is created
+     *  by the session. Session id will be used by default if not defined. Max length 64 with allowable characters
+     *  [a-zA-Z0-9_.-@]
+     *
      * @param string|null $paymentMethodReference
      *
      * @return self
@@ -452,6 +536,10 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional sender information required for Account Funding Transaction (AFT).
+     *  If not provided when requesting account funding transaction with account_funding=true,
+     *  information will be gathered from invoice billing address and customer
+     *
      * @param AccountFundingInformationModel|null $accountFundingInformation
      *
      * @return self
@@ -464,6 +552,9 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Indicates that Account Funding Transaction (AFT) is requested.
+     *  It only can be used for instant settle (i.e. 'settle' = true)
+     *
      * @param bool|null $accountFunding
      *
      * @return self
@@ -476,6 +567,10 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Phone number to use for payment methods able to use a prefilled phone number. E.g. MobilePay,
+     *  Vipps and Swish. If no explicit phone number is defined, the phone number for the customer entity
+     *  will be used
+     *
      * @param string|null $phone
      *
      * @return self
@@ -488,6 +583,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional locale for session. E.g. en_GB, da_DK, es_ES. Defaults to configuration locale or account locale
+     *
      * @param string|null $locale
      *
      * @return self
@@ -500,6 +597,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * If checkout is opened in separate window the customer will be directed to this page after success
+     *
      * @param string|null $acceptUrl
      *
      * @return self
@@ -512,6 +611,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional list of agreement ids to filter which agreements will be used for card payments
+     *
      * @param array|null $agreementFilter
      *
      * @return self
@@ -524,6 +625,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional IP address to restrict the use of the session to
+     *
      * @param string|null $allowedIp
      *
      * @return self
@@ -536,6 +639,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional alternative button text. Maximum length 32 characters
+     *
      * @param string|null $buttonText
      *
      * @return self
@@ -548,6 +653,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * If checkout is opened in separate window the customer will be directed to this page if the customer cancels
+     *
      * @param string|null $cancelUrl
      *
      * @return self
@@ -560,6 +667,9 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Reference to existing card payment method (ca_xxx) to use instead of having cardholder enter card data.
+     *  CVV may still be required from cardholder
+     *
      * @param string|null $cardOnFile
      *
      * @return self
@@ -572,6 +682,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Require cvv from cardholder for card-on-file
+     *
      * @param bool|null $cardOnFileRequireCvv
      *
      * @return self
@@ -584,6 +696,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Require expiration date for card-on-file
+     *
      * @param bool|null $cardOnFileRequireExpDate
      *
      * @return self
@@ -596,6 +710,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional handle for a checkout configuration defined in the admin app to be used for this session
+     *
      * @param string|null $configuration
      *
      * @return self
@@ -608,6 +724,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional list of offline agreement handles to filter which options are shown to the consumer
+     *
      * @param array|null $offlineAgreementFilter
      *
      * @return self
@@ -620,6 +738,14 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional list of payment methods to use for the checkout session. Format:
+     *  <payment_methods> = list of <payment_method>
+     *  <payment_method> = [sca-|nosca-]<payment_name>
+     *  <payment_name> = The id of payment method, e.g. dankort
+     *  See https://optimize-docs.billwerk.com/docs/checkout-payment-methods for full documentation
+     *
+     * @see PaymentMethodEnum
+     *
      * @param array|null $paymentMethods
      *
      * @return self
@@ -632,6 +758,10 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * For cost based acquirer agreement selection this argument can be used to define the amount used
+     *  in calculating the least expensive agreement for future recurring payments. Can only be used
+     *  for sessions saving a payment method for later use. Must be given in minor unit for currency
+     *
      * @param int|null $recurringAverageAmount
      *
      * @return self
@@ -644,6 +774,11 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Customer data used in strong customer authentication to reduce the need for a lengthy authentication
+     *  process and ensure less fraud. The data is not stored at Reepay and only used in the process of
+     *  strong customer authentication. The data is used by card issuer to determine if a frictionless
+     *  authentication flow can be used
+     *
      * @param ScaDataModel|null $scaData
      *
      * @return self
@@ -656,6 +791,8 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Object to define payment type specific parameters
+     *
      * @param SessionDataModel|null $sessionData
      *
      * @return self
@@ -668,6 +805,12 @@ class SessionRecurringModel extends AbstractModel implements HasRequestApiInterf
     }
 
     /**
+     * Optional time-to-live duration. The session will expire after the duration from creation, meaning that
+     *  payment attempts cannot be initiated after this duration. Notice though, that payments initiated within
+     *  the time-to-live duration might finish after the TTL E.g. MobilePay Online flows. The duration must be
+     *  given in the following notation: PTxS - x seconds, PTxM - x minutes, PTxH - x hours or PxD - x days.
+     *  E.g. PT3H (three hours). The default time-to-live is three months
+     *
      * @param string|null $ttl
      *
      * @return self

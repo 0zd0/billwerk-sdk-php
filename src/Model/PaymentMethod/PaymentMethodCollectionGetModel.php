@@ -77,7 +77,7 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
      * ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
      *
      * @see CardTypeEnum
- * @var array|null $cardType
+     * @var array|null $cardType
      */
     protected ?array $cardType = null;
 
@@ -85,7 +85,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
      * Card payment methods with transaction card type. Multiple can be defined. unknown, visa, mc, dankort,
      * visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
      *
- * @var array|null $transactionCardType
+     * @see CardTypeEnum
+     * @var array|null $transactionCardType
      */
     protected ?array $transactionCardType = null;
 
@@ -146,6 +147,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     protected ?string $mpsExternalId = null;
 
     /**
+     * Payment method id
+     *
      * @return string|null
      */
     public function getId(): ?string
@@ -154,6 +157,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods tied to card agreement with id
+     *
      * @return string|null
      */
     public function getCardAgreement(): ?string
@@ -162,6 +167,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with card country. Multiple can be defined. In ISO 3166-1 alpha-2
+     *
      * @return array|null
      */
     public function getCardCountry(): ?array
@@ -170,6 +177,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with card number postfix
+     *
      * @return string|null
      */
     public function getCardFingerprint(): ?string
@@ -178,6 +187,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods tied to card gateway
+     *
      * @return string|null
      */
     public function getCardGateway(): ?string
@@ -186,6 +197,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with card number postfix
+     *
      * @return string|null
      */
     public function getCardPostfix(): ?string
@@ -194,6 +207,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with card with prefix
+     *
      * @return string|null
      */
     public function getCardPrefix(): ?string
@@ -202,6 +217,10 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with card type. Multiple can be defined. unknown, visa, mc, dankort, visa_dk,
+     *  ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
      * @return array|null
      */
     public function getCardType(): ?array
@@ -210,6 +229,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Customer owning payment method
+     *
      * @return string|null
      */
     public function getCustomer(): ?string
@@ -218,6 +239,14 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Payment method payment type, multiple can be defined. card, mobilepay, mobilepay_subscriptions, vipps,
+     *  swish, viabill, manual, applepay, googlepay, paypal, santander, klarna_pay_now, klarna_pay_later,
+     *  klarna_slice_it, klarna_direct_bank_transfer, klarna_direct_debit, resurs, ideal, p24, blik, blik_oc,
+     *  bancontact, giropay, sepa, trustly, verkkopankki, eps, estonia_banks, latvia_banks, lithuania_banks,
+     *  mb_way, multibanco, mybank, payconiq, paysafecard, paysera, postfinance, satispay, wechatpay, offline_cash,
+     *  offline_bank_transfer or offline_other
+     *
+     * @see PaymentMethodPaymentTypeEnum
      * @return array|null
      */
     public function getPaymentType(): ?array
@@ -226,6 +255,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Failed date interval
+     *
      * @return string|null
      */
     public function getFailed(): ?string
@@ -234,6 +265,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * MobilePay Subscription external id
+     *
      * @return string|null
      */
     public function getMpsExternalId(): ?string
@@ -242,6 +275,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Offline agreement handle
+     *
      * @return string|null
      */
     public function getOfflineAgreementHandle(): ?string
@@ -250,6 +285,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Payment methods for subscription
+     *
      * @return string|null
      */
     public function getSubscription(): ?string
@@ -258,6 +295,9 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Payment state, multiple can be defined. States: pending, active, inactivated, failed and deleted
+     *
+     * @see PaymentMethodStateEnum
      * @return array|null
      */
     public function getState(): ?array
@@ -266,6 +306,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Payment method reference
+     *
      * @return string|null
      */
     public function getReference(): ?string
@@ -274,6 +316,10 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with transaction card type. Multiple can be defined. unknown, visa, mc, dankort,
+     *  visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
      * @return array|null
      */
     public function getTransactionCardType(): ?array
@@ -282,6 +328,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Payment method id
+     *
      * @param string|null $id
      *
      * @return self
@@ -294,6 +342,10 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Payment state, multiple can be defined. States: pending, active, inactivated, failed and deleted
+     *
+     * @see PaymentMethodStateEnum
+     *
      * @param array|null $state
      *
      * @return self
@@ -306,6 +358,15 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Payment method payment type, multiple can be defined. card, mobilepay, mobilepay_subscriptions, vipps,
+     *  swish, viabill, manual, applepay, googlepay, paypal, santander, klarna_pay_now, klarna_pay_later,
+     *  klarna_slice_it, klarna_direct_bank_transfer, klarna_direct_debit, resurs, ideal, p24, blik, blik_oc,
+     *  bancontact, giropay, sepa, trustly, verkkopankki, eps, estonia_banks, latvia_banks, lithuania_banks,
+     *  mb_way, multibanco, mybank, payconiq, paysafecard, paysera, postfinance, satispay, wechatpay, offline_cash,
+     *  offline_bank_transfer or offline_other
+     *
+     * @see PaymentMethodPaymentTypeEnum
+     *
      * @param array|null $paymentType
      *
      * @return self
@@ -318,6 +379,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Customer owning payment method
+     *
      * @param string|null $customer
      *
      * @return self
@@ -330,6 +393,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Payment methods for subscription
+     *
      * @param string|null $subscription
      *
      * @return self
@@ -342,6 +407,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Payment method reference
+     *
      * @param string|null $reference
      *
      * @return self
@@ -354,6 +421,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Failed date interval
+     *
      * @param string|null $failed
      *
      * @return self
@@ -366,6 +435,11 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with card type. Multiple can be defined. unknown, visa, mc, dankort, visa_dk,
+     *  ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
+     *
      * @param array|null $cardType
      *
      * @return self
@@ -378,6 +452,11 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with transaction card type. Multiple can be defined. unknown, visa, mc, dankort,
+     *  visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
+     *
      * @param array|null $transactionCardType
      *
      * @return self
@@ -390,6 +469,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with card with prefix
+     *
      * @param string|null $cardPrefix
      *
      * @return self
@@ -402,6 +483,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with card number postfix
+     *
      * @param string|null $cardPostfix
      *
      * @return self
@@ -414,6 +497,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with card number postfix
+     *
      * @param string|null $cardFingerprint
      *
      * @return self
@@ -426,6 +511,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods with card country. Multiple can be defined. In ISO 3166-1 alpha-2
+     *
      * @param array|null $cardCountry
      *
      * @return self
@@ -438,6 +525,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods tied to card gateway
+     *
      * @param string|null $cardGateway
      *
      * @return self
@@ -450,6 +539,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Card payment methods tied to card agreement with id
+     *
      * @param string|null $cardAgreement
      *
      * @return self
@@ -462,6 +553,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * Offline agreement handle
+     *
      * @param string|null $offlineAgreementHandle
      *
      * @return self
@@ -474,6 +567,8 @@ class PaymentMethodCollectionGetModel extends AbstractCollectionQueriesModel imp
     }
 
     /**
+     * MobilePay Subscription external id
+     *
      * @param string|null $mpsExternalId
      *
      * @return self

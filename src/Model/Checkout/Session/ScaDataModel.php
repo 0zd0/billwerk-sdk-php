@@ -100,6 +100,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     protected ?AccountInfoModel $accountInfo = null;
 
     /**
+     * Cardholder Billing Address. If not provided it will be taken from invoice billing address or customer
+     *
      * @return AddressModel|null
      */
     public function getBillingAddress(): ?AddressModel
@@ -108,6 +110,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Cardholder Shipping Address. If not provided it will be taken from invoice shipping address or customer
+     *
      * @return AddressModel|null
      */
     public function getShippingAddress(): ?AddressModel
@@ -116,6 +120,9 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Cardholder Email. If not provided information will be taken from customer or invoice addresses.
+     *  Must be RFC5322 compliant
+     *
      * @return string|null
      */
     public function getEmail(): ?string
@@ -124,6 +131,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Cardholder Name. If not provided information will be taken from customer or invoice addresses
+     *
      * @return string|null
      */
     public function getName(): ?string
@@ -132,6 +141,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Cardholder Account Identifier. Customer id from own system. If not provided customer handle will be used
+     *
      * @return string|null
      */
     public function getAccountId(): ?string
@@ -140,6 +151,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional additional information about the Cardholder’s account
+     *
      * @return AccountInfoModel|null
      */
     public function getAccountInfo(): ?AccountInfoModel
@@ -148,6 +161,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicate if Shipping Address and Billing Address are the same
+     *
      * @return bool|null
      */
     public function getAddressMatch(): ?bool
@@ -156,6 +171,13 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional argument to control whether the cardholder should be posed with a challenge instead of a potential
+     *  frictionless authentication flow. This could e.g. be used the first time a new customer makes a purchase to
+     *  make sure they are strongly authenticated. Two values can be used: preference - cardholder should be given
+     *  a challenge if issuer supports challenges, mandate - cardholder must be given a challenge and the
+     *  authentication should be declined if the issuer does not support challenges
+     *
+     * @see ChallengeIndicatorEnum
      * @return string|null
      */
     public function getChallengeIndicator(): ?string
@@ -164,6 +186,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * ITU-E.164 phone number. See https://en.wikipedia.org/wiki/E.164
+     *
      * @return PhoneModel|null
      */
     public function getHomePhone(): ?PhoneModel
@@ -172,6 +196,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * ITU-E.164 phone number. See https://en.wikipedia.org/wiki/E.164
+     *
      * @return PhoneModel|null
      */
     public function getMobilePhone(): ?PhoneModel
@@ -180,6 +206,9 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional argument to help the issuer in determining whether to use a frictionless authentication flow.
+     * The object represents the assessed level of fraud risk
+     *
      * @return RiskIndicatorModel|null
      */
     public function getRiskIndicator(): ?RiskIndicatorModel
@@ -188,6 +217,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * ITU-E.164 phone number. See https://en.wikipedia.org/wiki/E.164
+     *
      * @return PhoneModel|null
      */
     public function getWorkPhone(): ?PhoneModel
@@ -196,6 +227,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Cardholder Billing Address. If not provided it will be taken from invoice billing address or customer
+     *
      * @param AddressModel|null $billingAddress
      *
      * @return self
@@ -208,6 +241,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Cardholder Shipping Address. If not provided it will be taken from invoice shipping address or customer
+     *
      * @param AddressModel|null $shippingAddress
      *
      * @return self
@@ -220,6 +255,9 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Cardholder Email. If not provided information will be taken from customer or invoice addresses.
+     *  Must be RFC5322 compliant
+     *
      * @param string|null $email
      *
      * @return self
@@ -232,6 +270,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Cardholder Name. If not provided information will be taken from customer or invoice addresses
+     *
      * @param string|null $name
      *
      * @return self
@@ -244,6 +284,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Cardholder Account Identifier. Customer id from own system. If not provided customer handle will be used
+     *
      * @param string|null $accountId
      *
      * @return self
@@ -256,6 +298,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional additional information about the Cardholder’s account
+     *
      * @param AccountInfoModel|null $accountInfo
      *
      * @return self
@@ -268,6 +312,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicate if Shipping Address and Billing Address are the same
+     *
      * @param bool|null $addressMatch
      *
      * @return self
@@ -280,6 +326,14 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional argument to control whether the cardholder should be posed with a challenge instead of a potential
+     *  frictionless authentication flow. This could e.g. be used the first time a new customer makes a purchase to
+     *  make sure they are strongly authenticated. Two values can be used: preference - cardholder should be given
+     *  a challenge if issuer supports challenges, mandate - cardholder must be given a challenge and the
+     *  authentication should be declined if the issuer does not support challenges
+     *
+     * @see ChallengeIndicatorEnum
+     *
      * @param string|null $challengeIndicator
      *
      * @return self
@@ -292,6 +346,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * ITU-E.164 phone number. See https://en.wikipedia.org/wiki/E.164
+     *
      * @param PhoneModel|null $homePhone
      *
      * @return self
@@ -304,6 +360,8 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * ITU-E.164 phone number. See https://en.wikipedia.org/wiki/E.164
+     *
      * @param PhoneModel|null $mobilePhone
      *
      * @return self
@@ -316,6 +374,9 @@ class ScaDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional argument to help the issuer in determining whether to use a frictionless authentication flow.
+     *  The object represents the assessed level of fraud risk
+     *
      * @param RiskIndicatorModel|null $riskIndicator
      *
      * @return self

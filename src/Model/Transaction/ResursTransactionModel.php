@@ -12,6 +12,8 @@ class ResursTransactionModel extends AbstractTransactionModel
     protected ?string $resursId = null;
 
     /**
+     * Resurs id
+     *
      * @return string|null
      */
     public function getResursId(): ?string
@@ -20,6 +22,8 @@ class ResursTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Resurs id
+     *
      * @param string|null $resursId
      *
      * @return self

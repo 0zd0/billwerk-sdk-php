@@ -76,7 +76,6 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
      * Optional MobilePay Subscriptions merchant cancel redirect URL. If present user will not be able to cancel
      * within app, but instead will be redirected to this url
      *
-     * @see MpoFlowEnum
      * @var string|null $mpsCancelRedirectUrl
      */
     protected ?string $mpsCancelRedirectUrl = null;
@@ -296,6 +295,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     protected ?int $mpoMinimumUserAge = null;
 
     /**
+     * Account Holder name, e.g. for IDEAL
+     *
      * @return string|null
      */
     public function getAccountHolderName(): ?string
@@ -304,6 +305,12 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Alternative return url for MobilePay Online and Vipss wallet payments. Using this parameter the customer
+     *  will be redirected from wallet payment directly to this URL, bypassing Reepay Checkout. Notice that the
+     *  result of the payment is not part of the return url from the wallet providers, so the result of the charge
+     *  must be fetched from Reepay API operation get charge. Using this option can give a smoother experience
+     *  for app integrations. Notice that the return url can be an app scheme url
+     *
      * @return string|null
      */
     public function getAlternativeReturnUrl(): ?string
@@ -312,6 +319,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional parameter for Anyday. Recommended to set if webshop has many domains
+     *
      * @return string|null
      */
     public function getAnydayWebshopUrl(): ?string
@@ -320,6 +329,10 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional ApplePay recurring payment interval unit to be displayed to the user. One of the following
+     *  values: year, month, or day. If not set, the value defaults to month in ApplePay
+     *
+     * @see IntervalUnitEnum
      * @return string|null
      */
     public function getApplepayRecurringPaymentIntervalUnit(): ?string
@@ -328,6 +341,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional value to define Apple Pay fixed recurring amount
+     *
      * @return int|null
      */
     public function getApplepayRecurringAmount(): ?int
@@ -336,6 +351,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Apple Pay label to be displayed to the customer. Maximum 64 characters
+     *
      * @return string|null
      */
     public function getApplepayRecurringLabel(): ?string
@@ -344,6 +361,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Apple Pay recurring payment end date in format yyyy-MM-dd to be displayed to the user
+     *
      * @return string|null
      */
     public function getApplepayRecurringPaymentEndDate(): ?string
@@ -352,6 +371,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Apple Pay recurring payment interval count to be displayed to the user
+     *
      * @return int|null
      */
     public function getApplepayRecurringPaymentIntervalCount(): ?int
@@ -360,6 +381,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Apple Pay recurring payment start date in format yyyy-MM-dd to be displayed to the user
+     *
      * @return string|null
      */
     public function getApplepayRecurringPaymentStartDate(): ?string
@@ -368,6 +391,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Require MobilePay user age to be this age or above
+     *
      * @return int|null
      */
     public function getMpoMinimumUserAge(): ?int
@@ -376,6 +401,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions additional description displayed to the customer. Maximum 60 characters.
+     *  For subscription sessions this will default to plan description
+     *
      * @return string|null
      */
     public function getMpsDescription(): ?string
@@ -384,6 +412,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional value to define MobilePay Subscriptions fixed recurring amount in minor unit.
+     *  For subscription sessions this will default to plan amount
+     *
      * @return int|null
      */
     public function getMpsAmount(): ?int
@@ -392,6 +423,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions merchant cancel redirect URL. If present user will not be able to cancel
+     *  within app, but instead will be redirected to this url
+     *
      * @return string|null
      */
     public function getMpsCancelRedirectUrl(): ?string
@@ -400,6 +434,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions id for subscription. Maximum 64 characters. For subscription sessions
+     *  this will default to subscription handle
+     *
      * @return string|null
      */
     public function getMpsExternalId(): ?string
@@ -408,6 +445,10 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions frequency. Allowed values flexible, yearly, biyearly, quarterly, monthly,
+     *  biweekly, weekly or daily. For subscription sessions this will default to plan frequency
+     *
+     * @see MpsFrequencyEnum
      * @return string|null
      */
     public function getMpsFrequency(): ?string
@@ -416,6 +457,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions description for payment created in conjunction with subscription signup.
+     *  Maximum 60 characters. Defaults to shop name
+     *
      * @return string|null
      */
     public function getMpsPaymentDescription(): ?string
@@ -424,6 +468,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions plan text shown when signing up. Maximum 64 characters.
+     *  For subscription sessions this will default to plan name. For other session types default will be shop name
+     *
      * @return string|null
      */
     public function getMpsPlan(): ?string
@@ -432,6 +479,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor address
+     *
      * @return string|null
      */
     public function getSepaDebtorAddress(): ?string
@@ -440,6 +489,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor city
+     *
      * @return string|null
      */
     public function getSepaDebtorCity(): ?string
@@ -448,6 +499,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor country in ISO 3166-1 alpha-2
+     *
      * @return string|null
      */
     public function getSepaDebtorCountry(): ?string
@@ -456,6 +509,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor IBAN
+     *
      * @return string|null
      */
     public function getSepaDebtorIban(): ?string
@@ -464,6 +519,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor name
+     *
      * @return string|null
      */
     public function getSepaDebtorName(): ?string
@@ -472,6 +529,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor postal code
+     *
      * @return string|null
      */
     public function getSepaDebtorPostalCode(): ?string
@@ -480,6 +539,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional value to define SEPA fixed recurring amount
+     *
      * @return int|null
      */
     public function getSepaMandateAmount(): ?int
@@ -488,6 +549,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Social security number, e.g. for Klarna Sweden
+     *
      * @return string|null
      */
     public function getSsn(): ?string
@@ -496,6 +559,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional value to define Vipps Recurring fixed recurring amount in minor unit.
+     *  For subscription sessions this will default to plan amount
+     *
      * @return int|null
      */
     public function getVippsRecurringAmount(): ?int
@@ -504,6 +570,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional amount for Vipps Recurring campaign in minor unit. For subscription sessions this will
+     *  default to discount amount
+     *
      * @return int|null
      */
     public function getVippsRecurringCampaignAmount(): ?int
@@ -512,6 +581,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Conditional Vipps Recurring campaign end date to be displayed to the user
+     *
      * @return DateTime|null
      */
     public function getVippsRecurringCampaignEndDate(): ?DateTime
@@ -520,6 +591,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Conditional Vipps Recurring campaign interval count to be displayed to the customer
+     *
      * @return int|null
      */
     public function getVippsRecurringCampaignIntervalCount(): ?int
@@ -528,6 +601,10 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Conditional Vipps Recurring campaign interval unit to be displayed to the customer.
+     *  One of the following values: year, month, week or day
+     *
+     * @see IntervalUnitEnum
      * @return string|null
      */
     public function getVippsRecurringCampaignIntervalUnit(): ?string
@@ -536,6 +613,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring description for initial payment created in conjunction with subscription signup
+     *
      * @return string|null
      */
     public function getVippsRecurringInitialPaymentDescription(): ?string
@@ -544,6 +623,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring payment interval count to be displayed to the customer.
+     *  For subscription sessions this will default to plan interval length
+     *
      * @return int|null
      */
     public function getVippsRecurringIntervalCount(): ?int
@@ -552,6 +634,11 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring payment interval unit to be displayed to the customer. One of
+     *  the following values: year, month, or day. For subscription sessions this will default
+     *  to plan schedule type
+     *
+     * @see IntervalUnitEnum
      * @return string|null
      */
     public function getVippsRecurringIntervalUnit(): ?string
@@ -560,6 +647,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring agreement cancel URL. If present this URL will override the URL set on the agreement
+     *
      * @return string|null
      */
     public function getVippsRecurringMerchantCancelUrl(): ?string
@@ -568,6 +657,10 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring subscription pricing type. One of the following values: legacy, variable.
+     *  Defaults to legacy
+     *
+     * @see VippsRecurringPricingTypeEnum
      * @return string|null
      */
     public function getVippsRecurringPricingType(): ?string
@@ -576,6 +669,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring additional product description displayed to the customer.
+     *  Maximum 100 characters. For subscription sessions this will default to plan description
+     *
      * @return string|null
      */
     public function getVippsRecurringProductDescription(): ?string
@@ -584,6 +680,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring product name displayed to the customer. Maximum 45 characters.
+     *  For subscription sessions this will default to plan name
+     *
      * @return string|null
      */
     public function getVippsRecurringProductName(): ?string
@@ -592,6 +691,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Account Holder name, e.g. for IDEAL
+     *
      * @param string|null $accountHolderName
      *
      * @return self
@@ -604,6 +705,12 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Alternative return url for MobilePay Online and Vipss wallet payments. Using this parameter the customer
+     *  will be redirected from wallet payment directly to this URL, bypassing Reepay Checkout. Notice that the
+     *  result of the payment is not part of the return url from the wallet providers, so the result of the charge
+     *  must be fetched from Reepay API operation get charge. Using this option can give a smoother experience
+     *  for app integrations. Notice that the return url can be an app scheme url
+     *
      * @param string|null $alternativeReturnUrl
      *
      * @return self
@@ -616,6 +723,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional parameter for Anyday. Recommended to set if webshop has many domains
+     *
      * @param string|null $anydayWebshopUrl
      *
      * @return self
@@ -628,6 +737,11 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional ApplePay recurring payment interval unit to be displayed to the user. One of the following
+     *  values: year, month, or day. If not set, the value defaults to month in ApplePay
+     *
+     * @see IntervalUnitEnum
+     *
      * @param string|null $applepayRecurringPaymentIntervalUnit
      *
      * @return self
@@ -640,6 +754,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional value to define Apple Pay fixed recurring amount
+     *
      * @param int|null $applepayRecurringAmount
      *
      * @return self
@@ -652,6 +768,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Apple Pay label to be displayed to the customer. Maximum 64 characters
+     *
      * @param string|null $applepayRecurringLabel
      *
      * @return self
@@ -664,6 +782,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Apple Pay recurring payment end date in format yyyy-MM-dd to be displayed to the user
+     *
      * @param string|null $applepayRecurringPaymentEndDate
      *
      * @return self
@@ -676,6 +796,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Apple Pay recurring payment interval count to be displayed to the user
+     *
      * @param int|null $applepayRecurringPaymentIntervalCount
      *
      * @return self
@@ -688,6 +810,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Apple Pay recurring payment start date in format yyyy-MM-dd to be displayed to the user
+     *
      * @param string|null $applepayRecurringPaymentStartDate
      *
      * @return self
@@ -700,6 +824,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Require MobilePay user age to be this age or above
+     *
      * @param int|null $mpoMinimumUserAge
      *
      * @return self
@@ -712,6 +838,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional value to define MobilePay Subscriptions fixed recurring amount in minor unit.
+     *  For subscription sessions this will default to plan amount
+     *
      * @param int|null $mpsAmount
      *
      * @return self
@@ -724,6 +853,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions merchant cancel redirect URL. If present user will not be able to cancel
+     *  within app, but instead will be redirected to this url
+     *
      * @param string|null $mpsCancelRedirectUrl
      *
      * @return self
@@ -736,6 +868,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions additional description displayed to the customer. Maximum 60 characters.
+     *  For subscription sessions this will default to plan description
+     *
      * @param string|null $mpsDescription
      *
      * @return self
@@ -748,6 +883,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions id for subscription. Maximum 64 characters. For subscription sessions
+     *  this will default to subscription handle
+     *
      * @param string|null $mpsExternalId
      *
      * @return self
@@ -760,6 +898,11 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions frequency. Allowed values flexible, yearly, biyearly, quarterly, monthly,
+     *  biweekly, weekly or daily. For subscription sessions this will default to plan frequency
+     *
+     * @see MpsFrequencyEnum
+     *
      * @param string|null $mpsFrequency
      *
      * @return self
@@ -772,6 +915,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions description for payment created in conjunction with subscription signup.
+     *  Maximum 60 characters. Defaults to shop name
+     *
      * @param string|null $mpsPaymentDescription
      *
      * @return self
@@ -784,6 +930,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional MobilePay Subscriptions plan text shown when signing up. Maximum 64 characters.
+     *  For subscription sessions this will default to plan name. For other session types default will be shop name
+     *
      * @param string|null $mpsPlan
      *
      * @return self
@@ -796,6 +945,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor address
+     *
      * @param string|null $sepaDebtorAddress
      *
      * @return self
@@ -808,6 +959,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor city
+     *
      * @param string|null $sepaDebtorCity
      *
      * @return self
@@ -820,6 +973,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor country in ISO 3166-1 alpha-2
+     *
      * @param string|null $sepaDebtorCountry
      *
      * @return self
@@ -832,6 +987,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor IBAN
+     *
      * @param string|null $sepaDebtorIban
      *
      * @return self
@@ -844,6 +1001,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor name
+     *
      * @param string|null $sepaDebtorName
      *
      * @return self
@@ -856,6 +1015,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional SEPA debtor postal code
+     *
      * @param string|null $sepaDebtorPostalCode
      *
      * @return self
@@ -868,6 +1029,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional value to define SEPA fixed recurring amount
+     *
      * @param int|null $sepaMandateAmount
      *
      * @return self
@@ -880,6 +1043,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Social security number, e.g. for Klarna Sweden
+     *
      * @param string|null $ssn
      *
      * @return self
@@ -892,6 +1057,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional value to define Vipps Recurring fixed recurring amount in minor unit.
+     *  For subscription sessions this will default to plan amount
+     *
      * @param int|null $vippsRecurringAmount
      *
      * @return self
@@ -904,6 +1072,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional amount for Vipps Recurring campaign in minor unit. For subscription sessions this will
+     *  default to discount amount
+     *
      * @param int|null $vippsRecurringCampaignAmount
      *
      * @return self
@@ -916,6 +1087,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Conditional Vipps Recurring campaign end date to be displayed to the user
+     *
      * @param DateTime|null $vippsRecurringCampaignEndDate
      *
      * @return self
@@ -928,6 +1101,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Conditional Vipps Recurring campaign interval count to be displayed to the customer
+     *
      * @param int|null $vippsRecurringCampaignIntervalCount
      *
      * @return self
@@ -940,6 +1115,11 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Conditional Vipps Recurring campaign interval unit to be displayed to the customer.
+     *  One of the following values: year, month, week or day
+     *
+     * @see IntervalUnitEnum
+     *
      * @param string|null $vippsRecurringCampaignIntervalUnit
      *
      * @return self
@@ -952,6 +1132,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring description for initial payment created in conjunction with subscription signup
+     *
      * @param string|null $vippsRecurringInitialPaymentDescription
      *
      * @return self
@@ -964,6 +1146,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring payment interval count to be displayed to the customer.
+     *  For subscription sessions this will default to plan interval length
+     *
      * @param int|null $vippsRecurringIntervalCount
      *
      * @return self
@@ -976,6 +1161,12 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring payment interval unit to be displayed to the customer. One of
+     *  the following values: year, month, or day. For subscription sessions this will default
+     *  to plan schedule type
+     *
+     * @see IntervalUnitEnum
+     *
      * @param string|null $vippsRecurringIntervalUnit
      *
      * @return self
@@ -988,6 +1179,8 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring agreement cancel URL. If present this URL will override the URL set on the agreement
+     *
      * @param string|null $vippsRecurringMerchantCancelUrl
      *
      * @return self
@@ -1000,6 +1193,11 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring subscription pricing type. One of the following values: legacy, variable.
+     *  Defaults to legacy
+     *
+     * @see VippsRecurringPricingTypeEnum
+     *
      * @param string|null $vippsRecurringPricingType
      *
      * @return self
@@ -1012,6 +1210,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring additional product description displayed to the customer.
+     *  Maximum 100 characters. For subscription sessions this will default to plan description
+     *
      * @param string|null $vippsRecurringProductDescription
      *
      * @return self
@@ -1024,6 +1225,9 @@ class SessionDataModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional Vipps Recurring product name displayed to the customer. Maximum 45 characters.
+     *  For subscription sessions this will default to plan name
+     *
      * @param string|null $vippsRecurringProductName
      *
      * @return self

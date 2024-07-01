@@ -12,6 +12,8 @@ class MultibancoTransactionModel extends AbstractTransactionModel
     protected ?string $multibancoId = null;
 
     /**
+     * Multibanco id
+     *
      * @return string|null
      */
     public function getMultibancoId(): ?string
@@ -20,6 +22,8 @@ class MultibancoTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Multibanco id
+     *
      * @param string|null $multibancoId
      *
      * @return self

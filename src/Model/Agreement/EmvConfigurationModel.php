@@ -9,9 +9,24 @@ use Billwerk\Sdk\Model\AbstractModel;
 
 class EmvConfigurationModel extends AbstractModel
 {
+    /**
+     * @var string $emvTokenizationStatus
+     */
     protected string $emvTokenizationStatus;
+
+    /**
+     * @var string $tokenRequestorId
+     */
     protected string $tokenRequestorId;
+
+    /**
+     * @var string|null $onboardingState
+     */
     protected ?string $onboardingState = null;
+
+    /**
+     * @var string $cardScheme
+     */
     protected string $cardScheme;
 
     /**

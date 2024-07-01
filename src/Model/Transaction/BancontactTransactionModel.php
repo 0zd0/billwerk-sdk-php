@@ -12,6 +12,8 @@ class BancontactTransactionModel extends AbstractTransactionModel
     protected ?string $bancontactId = null;
 
     /**
+     * Bancontact id
+     *
      * @return string|null
      */
     public function getBancontactId(): ?string
@@ -20,6 +22,8 @@ class BancontactTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Bancontact id
+     *
      * @param string|null $bancontactId
      *
      * @return self

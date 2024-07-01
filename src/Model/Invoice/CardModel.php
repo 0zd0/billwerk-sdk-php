@@ -190,6 +190,8 @@ class CardModel extends AbstractModel
     protected ?string $cardCountry = null;
 
     /**
+     * Card issuing country in ISO 3166-1 alpha-2
+     *
      * @return string|null
      */
     public function getCardCountry(): ?string
@@ -198,6 +200,9 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Card type: unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
      * @return string
      */
     public function getCardType(): string
@@ -206,6 +211,9 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Error state from last failed use of the card: pending, soft_declined, hard_declined or processing_error
+     *
+     * @see ErrorStateEnum
      * @return string|null
      */
     public function getErrorState(): ?string
@@ -214,6 +222,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Card expire date on form MM-YY
+     *
      * @return string|null
      */
     public function getExpDate(): ?string
@@ -222,6 +232,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Uniquely identifies this particular card number
+     *
      * @return string|null
      */
     public function getFingerprint(): ?string
@@ -230,6 +242,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date and time of last failed use of the card. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getLastFailed(): ?DateTime
@@ -238,6 +252,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Masked card number
+     *
      * @return string|null
      */
     public function getMaskedCard(): ?string
@@ -246,6 +262,9 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * If this parameter is set the card has been flagged by Reepay Risk Filter with a flag rule. Special
+     *  attention may be required before using the card for recurring payments or subscription sign-up
+     *
      * @return string|null
      */
     public function getRiskRule(): ?string
@@ -254,6 +273,11 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Status for strong customer authentication: threed_secure - 3D Secure authenticated,
+     *  threed_secure_not_enrolled - 3D Secure authentication not performed as card not enrolled,
+     *  secured_by_nets - Secure by Nets authenticated
+     *
+     * @see StrongAuthenticationStatusEnum
      * @return string|null
      */
     public function getStrongAuthenticationStatus(): ?string
@@ -262,6 +286,11 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * If 3D Secure authenticated the 3D status will either be Y (fully authenticated) or A (attempted
+     *  authenticated). An attempted authentication means that card issuer (e.g. bank) does not support
+     *  3D Secure so no full authentication has been performed. Attempted authentication normally means
+     *  liability shift, but this can differ between acquirers
+     *
      * @return string|null
      */
     public function getThreeDSecureStatus(): ?string
@@ -270,6 +299,10 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Card type used in authentication and the card type used for subsequent MIT transactions. Will differ from
+     *  card_type if co-branded card. unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners,
+     *  discover or jcb
+     *
      * @return string|null
      */
     public function getTransactionCardType(): ?string
@@ -278,6 +311,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Unique id for payment method
+     *
      * @return string
      */
     public function getId(): string
@@ -286,6 +321,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date when the payment method was created. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -294,6 +331,9 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * State of the payment method: active, inactivated, failed, pending or deleted
+     *
+     * @see CardStateEnum
      * @return string
      */
     public function getState(): string
@@ -302,6 +342,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date when the payment method failed. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getFailed(): ?DateTime
@@ -310,6 +352,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Uniquely identifies this particular card number
+     *
      * @param string|null $fingerprint
      */
     public function setFingerprint(?string $fingerprint): void
@@ -318,6 +362,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Customer by handle
+     *
      * @return string
      */
     public function getCustomer(): string
@@ -326,6 +372,10 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Optional reference provided when creating the payment method. For payment methods
+     *  created with Reepay Checkout the reference will correspond to the session id for
+     *  the Checkout session that created the payment method
+     *
      * @return string|null
      */
     public function getReference(): ?string
@@ -334,6 +384,9 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date and time of reactivation if the card has been reactivated from failed state.
+     * In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getReactivated(): ?DateTime
@@ -342,6 +395,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date and time of last successful use of the card. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getLastSuccess(): ?DateTime
@@ -350,6 +405,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Card gateway reference id
+     *
      * @return string
      */
     public function getGwRef(): string
@@ -358,6 +415,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date and time of first successful use of the card. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getFirstFail(): ?DateTime
@@ -366,6 +425,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * An error code from the last failed use of the card. See transaction errors
+     *
      * @return string|null
      */
     public function getErrorCode(): ?string
@@ -374,6 +435,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Card issuing country in ISO 3166-1 alpha-2
+     *
      * @param string|null $cardCountry
      *
      * @return self
@@ -386,6 +449,10 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Card type: unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
+     *
      * @param string $cardType
      *
      * @return self
@@ -398,6 +465,10 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Error state from last failed use of the card: pending, soft_declined, hard_declined or processing_error
+     *
+     * @see ErrorStateEnum
+     *
      * @param string|null $errorState
      *
      * @return self
@@ -410,6 +481,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Card expire date on form MM-YY
+     *
      * @param string|null $expDate
      *
      * @return self
@@ -422,6 +495,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date and time of last failed use of the card. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $lastFailed
      *
      * @return self
@@ -434,6 +509,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Masked card number
+     *
      * @param string|null $maskedCard
      *
      * @return self
@@ -446,6 +523,9 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * If this parameter is set the card has been flagged by Reepay Risk Filter with a flag rule. Special
+     *  attention may be required before using the card for recurring payments or subscription sign-up
+     *
      * @param string|null $riskRule
      *
      * @return self
@@ -458,6 +538,12 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Status for strong customer authentication: threed_secure - 3D Secure authenticated,
+     * threed_secure_not_enrolled - 3D Secure authentication not performed as card not enrolled,
+     * secured_by_nets - Secure by Nets authenticated
+     *
+     * @see StrongAuthenticationStatusEnum
+     *
      * @param string|null $strongAuthenticationStatus
      *
      * @return self
@@ -470,6 +556,11 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * If 3D Secure authenticated the 3D status will either be Y (fully authenticated) or A (attempted
+     *  authenticated). An attempted authentication means that card issuer (e.g. bank) does not support
+     *  3D Secure so no full authentication has been performed. Attempted authentication normally means
+     *  liability shift, but this can differ between acquirers
+     *
      * @param string|null $threeDSecureStatus
      *
      * @return self
@@ -482,6 +573,10 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Card type used in authentication and the card type used for subsequent MIT transactions. Will differ from
+     *  card_type if co-branded card. unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners,
+     *  discover or jcb
+     *
      * @param string|null $transactionCardType
      *
      * @return self
@@ -494,6 +589,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Unique id for payment method
+     *
      * @param string $id
      *
      * @return self
@@ -506,6 +603,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date when the payment method was created. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime $created
      *
      * @return self
@@ -518,6 +617,10 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * State of the payment method: active, inactivated, failed, pending or deleted
+     *
+     * @see CardStateEnum
+     *
      * @param string $state
      *
      * @return self
@@ -530,6 +633,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date when the payment method failed. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $failed
      *
      * @return self
@@ -542,6 +647,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Customer by handle
+     *
      * @param string $customer
      *
      * @return self
@@ -554,6 +661,10 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Optional reference provided when creating the payment method. For payment methods
+     *  created with Reepay Checkout the reference will correspond to the session id for
+     *  the Checkout session that created the payment method
+     *
      * @param string|null $reference
      *
      * @return self
@@ -566,6 +677,9 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date and time of reactivation if the card has been reactivated from failed state.
+     * In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $reactivated
      *
      * @return self
@@ -578,6 +692,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date and time of last successful use of the card. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $lastSuccess
      *
      * @return self
@@ -590,6 +706,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Card gateway reference id
+     *
      * @param string $gwRef
      *
      * @return self
@@ -602,6 +720,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * Date and time of first successful use of the card. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $firstFail
      *
      * @return self
@@ -614,6 +734,8 @@ class CardModel extends AbstractModel
     }
 
     /**
+     * An error code from the last failed use of the card. See transaction errors
+     *
      * @param string|null $errorCode
      *
      * @return self

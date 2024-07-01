@@ -88,6 +88,7 @@ class SourceModel extends AbstractModel
     /**
      * Agreement handle if source type offline_cash, offline_bank_transfer, offline_other
      *
+     * @see OfflineAgreementHandleEnum
      * @var string|null $offlineAgreementHandle
      */
     protected ?string $offlineAgreementHandle = null;
@@ -109,11 +110,11 @@ class SourceModel extends AbstractModel
     protected ?string $cardType = null;
 
     /**
-     * Transaction card type if credit card source. Will differ from card_type if
-     * co-branded card. Transaction card type is the card type used for the transaction.
-     * unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners,
-     * discover or jcb
+     * Transaction card type if credit card source. Will differ from card_type if co-branded card.
+     * Transaction card type is the card type used for the transaction. unknown, visa, mc, dankort,
+     * visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
      *
+     * @see CardTypeEnum
      * @var string|null $transactionCardType
      */
     protected ?string $transactionCardType = null;
@@ -205,6 +206,9 @@ class SourceModel extends AbstractModel
     protected ?int $surchargeFee = null;
 
     /**
+     * Agreement handle if source type offline_cash, offline_bank_transfer, offline_other
+     *
+     * @see OfflineAgreementHandleEnum
      * @return string|null
      */
     public function getOfflineAgreementHandle(): ?string
@@ -213,6 +217,17 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  Type of charge source: card - existing customer card, card_token - card token,
+     *  mpo - MobilePay Online, vipps, vipps_recurring, swish, viabill, anyday,
+     *  manual, applepay, googlepay, paypal, klarna_pay_now, klarna_pay_later,
+     *  klarna_slice_it, klarna_direct_bank_transfer, klarna_direct_debit, resurs,
+     *  mobilepay_subscriptions, emv_token, bancomatpay, bcmc, blik, pp_blik_oc,
+     *  giropay, ideal, p24, sepa, trustly, eps, estonia_banks, latvia_banks,
+     *  lithuania_banks, mb_way, multibanco, mybank, payconiq, paysafecard, paysera,
+     *  postfinance, satispay, twint, wechatpay, santander, or verkkopankki, offline_cash,
+     *  offline_bank_transfer, offline_other
+     *
+     * @see SourceTypeEnum
      * @return string
      */
     public function getType(): string
@@ -221,6 +236,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Acquirer message in case of error
+     *
      * @return string|null
      */
     public function getAcquirerMessage(): ?string
@@ -229,6 +246,11 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Transaction card type if credit card source. Will differ from card_type if co-branded card.
+     * Transaction card type is the card type used for the transaction. unknown, visa, mc, dankort,
+     * visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
      * @return string|null
      */
     public function getTransactionCardType(): ?string
@@ -237,6 +259,12 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  If 3D Secure authenticated the 3D status will either be Y (fully authenticated) or
+     *  A (attempted authenticated). An attempted authentication means that card issuer
+     *  (e.g. bank) does not support 3D Secure so no full authentication has been performed.
+     *  Attempted authentication normally means liability shift, but this can differ between acquirers
+     *
+     * @see ThreeDSecureStatusEnum
      * @return string|null
      */
     public function getThreeDSecureStatus(): ?string
@@ -245,6 +273,11 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  Status for strong customer authentication: threed_secure - 3D Secure authenticated,
+     *  threed_secure_not_enrolled - 3D Secure authentication not performed as card not enrolled,
+     *  secured_by_nets - Secure by Nets authenticated
+     *
+     * @see StrongAuthenticationStatusEnum
      * @return string|null
      */
     public function getStrongAuthenticationStatus(): ?string
@@ -253,6 +286,10 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  If this parameter is set the charge has either been flagged or declined by a Reepay Risk
+     *  Filter rule. For flag action rules the charge can be successful, but may require special
+     *  attention. For block action rules the decline error will be risk_filter_block
+     *
      * @return string|null
      */
     public function getRiskRule(): ?string
@@ -261,6 +298,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Masked card number if credit card source
+     *
      * @return string|null
      */
     public function getMaskedCard(): ?string
@@ -269,6 +308,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Uniquely identifies this particular card number if credit card source
+     *
      * @return string|null
      */
     public function getFingerprint(): ?string
@@ -277,6 +318,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Card expire date on form MM-YY if credit card source
+     *
      * @return string|null
      */
     public function getExpDate(): ?string
@@ -285,6 +328,10 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  Card type if credit card source: unknown, visa, mc, dankort, visa_dk, ffk,
+     *  visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
      * @return string|null
      */
     public function getCardType(): ?string
@@ -293,6 +340,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Card issuing country if credit card source, in ISO 3166-1 alpha-2
+     *
      * @return string|null
      */
     public function getCardCountry(): ?string
@@ -301,6 +350,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Resulting text on bank statement if known
+     *
      * @return string|null
      */
     public function getTextOnStatement(): ?string
@@ -309,6 +360,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Potential card surcharge fee added to amount if surcharging enabled
+     *
      * @return int|null
      */
     public function getSurchargeFee(): ?int
@@ -317,6 +370,10 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  Card acquirer or card payment gateway used if card source: reepay, clearhaus,
+     *  nets, swedbank, handelsbanken, elavon, bambora, valitor, dibs, stripe, epay, test
+     *
+     * @see ProviderEnum
      * @return string|null
      */
     public function getProvider(): ?string
@@ -325,6 +382,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * If the card transaction was exempted from a 3DS challenge
+     *
      * @return bool|null
      */
     public function getFrictionless(): ?bool
@@ -333,6 +392,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Card acquirer reference to transaction in case of card source. E.g. Nets order id or Clearhaus reference
+     *
      * @return string|null
      */
     public function getAcquirerReference(): ?string
@@ -341,6 +402,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Card acquirer error code in case of card error
+     *
      * @return string|null
      */
     public function getAcquirerCode(): ?string
@@ -349,6 +412,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Reference to customer card if source type card
+     *
      * @return string|null
      */
     public function getCard(): ?string
@@ -357,6 +422,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Reference to SEPA Mandate payment method if source type sepa
+     *
      * @return string|null
      */
     public function getSepaMandate(): ?string
@@ -365,6 +432,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * IBAN number if source type sepa
+     *
      * @return string|null
      */
     public function getIban(): ?string
@@ -373,6 +442,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Reference to authorization transaction if charge is settled after authorization
+     *
      * @return string|null
      */
     public function getAuthTransaction(): ?string
@@ -381,6 +452,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Reference to MobilePay Subscriptions payment method if source type mobilepay_subscriptions
+     *
      * @return string|null
      */
     public function getMps(): ?string
@@ -389,6 +462,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Reference to Vipps Recurring Subscriptions payment method if source type vipps_recurring
+     *
      * @return string|null
      */
     public function getVippsRecurring(): ?string
@@ -397,6 +472,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Acquirer message in case of error
+     *
      * @param string|null $acquirerMessage
      *
      * @return self
@@ -409,6 +486,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Uniquely identifies this particular card number if credit card source
+     *
      * @param string|null $fingerprint
      *
      * @return self
@@ -421,6 +500,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Potential card surcharge fee added to amount if surcharging enabled
+     *
      * @param int|null $surchargeFee
      *
      * @return self
@@ -433,6 +514,10 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Agreement handle if source type offline_cash, offline_bank_transfer, offline_other
+     *
+     * @see OfflineAgreementHandleEnum
+     *
      * @param string|null $offlineAgreementHandle
      *
      * @return self
@@ -445,6 +530,12 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  Transaction card type if credit card source. Will differ from card_type if co-branded card.
+     *  Transaction card type is the card type used for the transaction. unknown, visa, mc, dankort,
+     *  visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
+     * @see CardTypeEnum
+     *
      * @param string|null $transactionCardType
      *
      * @return self
@@ -457,6 +548,13 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  If 3D Secure authenticated the 3D status will either be Y (fully authenticated) or
+     *  A (attempted authenticated). An attempted authentication means that card issuer
+     *  (e.g. bank) does not support 3D Secure so no full authentication has been performed.
+     *  Attempted authentication normally means liability shift, but this can differ between acquirers
+     *
+     * @see ThreeDSecureStatusEnum
+     *
      * @param string|null $threeDSecureStatus
      *
      * @return self
@@ -469,6 +567,12 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  Status for strong customer authentication: threed_secure - 3D Secure authenticated,
+     *  threed_secure_not_enrolled - 3D Secure authentication not performed as card not enrolled,
+     *  secured_by_nets - Secure by Nets authenticated
+     *
+     * @see StrongAuthenticationStatusEnum
+     *
      * @param string|null $strongAuthenticationStatus
      *
      * @return self
@@ -481,6 +585,10 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  If this parameter is set the charge has either been flagged or declined by a Reepay Risk
+     *  Filter rule. For flag action rules the charge can be successful, but may require special
+     *  attention. For block action rules the decline error will be risk_filter_block
+     *
      * @param string|null $riskRule
      *
      * @return self
@@ -493,6 +601,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Masked card number if credit card source
+     *
      * @param string|null $maskedCard
      *
      * @return self
@@ -505,6 +615,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Card expire date on form MM-YY if credit card source
+     *
      * @param string|null $expDate
      *
      * @return self
@@ -529,6 +641,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Card issuing country if credit card source, in ISO 3166-1 alpha-2
+     *
      * @param string|null $cardCountry
      *
      * @return self
@@ -541,6 +655,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Resulting text on bank statement if known
+     *
      * @param string|null $textOnStatement
      *
      * @return self
@@ -553,6 +669,11 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  Card acquirer or card payment gateway used if card source: reepay, clearhaus,
+     *  nets, swedbank, handelsbanken, elavon, bambora, valitor, dibs, stripe, epay, test
+     *
+     * @see ProviderEnum
+     *
      * @param string|null $provider
      *
      * @return self
@@ -565,6 +686,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * If the card transaction was exempted from a 3DS challenge
+     *
      * @param bool|null $frictionless
      *
      * @return self
@@ -577,6 +700,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Card acquirer reference to transaction in case of card source. E.g. Nets order id or Clearhaus reference
+     *
      * @param string|null $acquirerReference
      *
      * @return self
@@ -589,6 +714,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Card acquirer error code in case of card error
+     *
      * @param string|null $acquirerCode
      *
      * @return self
@@ -601,6 +728,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Reference to customer card if source type card
+     *
      * @param string|null $card
      *
      * @return self
@@ -613,6 +742,18 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     *  Type of charge source: card - existing customer card, card_token - card token,
+     *  mpo - MobilePay Online, vipps, vipps_recurring, swish, viabill, anyday,
+     *  manual, applepay, googlepay, paypal, klarna_pay_now, klarna_pay_later,
+     *  klarna_slice_it, klarna_direct_bank_transfer, klarna_direct_debit, resurs,
+     *  mobilepay_subscriptions, emv_token, bancomatpay, bcmc, blik, pp_blik_oc,
+     *  giropay, ideal, p24, sepa, trustly, eps, estonia_banks, latvia_banks,
+     *  lithuania_banks, mb_way, multibanco, mybank, payconiq, paysafecard, paysera,
+     *  postfinance, satispay, twint, wechatpay, santander, or verkkopankki, offline_cash,
+     *  offline_bank_transfer, offline_other
+     *
+     * @see SourceTypeEnum
+     *
      * @param string $type
      *
      * @return self
@@ -625,6 +766,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Reference to SEPA Mandate payment method if source type sepa
+     *
      * @param string|null $sepaMandate
      *
      * @return self
@@ -637,6 +780,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * IBAN number if source type sepa
+     *
      * @param string|null $iban
      *
      * @return self
@@ -649,6 +794,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Reference to authorization transaction if charge is settled after authorization
+     *
      * @param string|null $authTransaction
      *
      * @return self
@@ -661,6 +808,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Reference to MobilePay Subscriptions payment method if source type mobilepay_subscriptions
+     *
      * @param string|null $mps
      *
      * @return self
@@ -673,6 +822,8 @@ class SourceModel extends AbstractModel
     }
 
     /**
+     * Reference to Vipps Recurring Subscriptions payment method if source type vipps_recurring
+     *
      * @param string|null $vippsRecurring
      *
      * @return self

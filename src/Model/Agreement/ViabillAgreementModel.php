@@ -19,6 +19,8 @@ class ViabillAgreementModel extends AbstractModel
     protected ?string $apiKey = null;
 
     /**
+     * Viabill API key
+     *
      * @return string|null
      */
     public function getApiKey(): ?string
@@ -35,6 +37,8 @@ class ViabillAgreementModel extends AbstractModel
     }
 
     /**
+     * Viabill API key
+     *
      * @param string|null $apiKey
      *
      * @return self

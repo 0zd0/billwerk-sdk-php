@@ -47,6 +47,9 @@ class PproAgreementModel extends AbstractModel
     }
 
     /**
+     * Payment gateway payment type
+     *
+     * @see PproAgreementPaymentTypeEnum
      * @return string
      */
     public function getPaymentType(): string
@@ -55,6 +58,8 @@ class PproAgreementModel extends AbstractModel
     }
 
     /**
+     * Contract id for local payment method
+     *
      * @return string|null
      */
     public function getContractId(): ?string
@@ -63,6 +68,8 @@ class PproAgreementModel extends AbstractModel
     }
 
     /**
+     * Optional account validation for SEPA account
+     *
      * @return bool|null
      */
     public function getSecureSepa(): ?bool
@@ -71,6 +78,8 @@ class PproAgreementModel extends AbstractModel
     }
 
     /**
+     * Optional custom merchant id for secure SEPA
+     *
      * @return string|null
      */
     public function getTinkMerchantId(): ?string
@@ -91,6 +100,10 @@ class PproAgreementModel extends AbstractModel
     }
 
     /**
+     * Payment gateway payment type
+     *
+     * @see PproAgreementPaymentTypeEnum
+     *
      * @param string $paymentType
      *
      * @return self
@@ -103,6 +116,8 @@ class PproAgreementModel extends AbstractModel
     }
 
     /**
+     * Contract id for local payment method
+     *
      * @param string|null $contractId
      *
      * @return self
@@ -115,6 +130,8 @@ class PproAgreementModel extends AbstractModel
     }
 
     /**
+     * Optional account validation for SEPA account
+     *
      * @param bool|null $secureSepa
      *
      * @return self
@@ -127,6 +144,8 @@ class PproAgreementModel extends AbstractModel
     }
 
     /**
+     * Optional custom merchant id for secure SEPA
+     *
      * @param string|null $tinkMerchantId
      *
      * @return self

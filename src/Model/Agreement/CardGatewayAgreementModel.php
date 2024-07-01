@@ -91,7 +91,7 @@ class CardGatewayAgreementModel extends AbstractModel
     /**
      * Use Secured By Nets for recurring payments (if supported by provider)
      *
- * @var bool|null $securedByNetsRecurring
+     * @var bool|null $securedByNetsRecurring
      */
     protected ?bool $securedByNetsRecurring = null;
 
@@ -140,6 +140,8 @@ class CardGatewayAgreementModel extends AbstractModel
     protected string $gwRef;
 
     /**
+     * Configuration for enabling integration to Mastercard SCOF
+     *
      * @return EmvConfigurationModel|null
      */
     public function getScofConfiguration(): ?EmvConfigurationModel
@@ -148,6 +150,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Configuration for enabling integration to Mastercard SCOF
+     *
      * @return EmvConfigurationModel|null
      */
     public function getVtsConfiguration(): ?EmvConfigurationModel
@@ -156,6 +160,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Card types supported by agreement
+     *
      * @return array|null
      */
     public function getCardTypes(): ?array
@@ -164,6 +170,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Set of currencies supported by agreement. Each currency in ISO 4217 three letter alpha code.
+     *
      * @return array|null
      */
     public function getCurrencies(): ?array
@@ -172,6 +180,9 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Default behaviour if no specific SCA handing is defined in payment sessions.
+     * If enabled SCA will be required and un-enrolled cards will be declined.
+     *
      * @return bool|null
      */
     public function getDefaultRequireSca(): ?bool
@@ -180,6 +191,9 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Disallow 3D Secure status attempted which means that card issuer does not support 3D Secure so
+     * authentication could not be performed. An attempted 3D Secure flow normally results in liability shift.
+     *
      * @return bool|null
      */
     public function getDisallowThreedSecureAttempted(): ?bool
@@ -188,6 +202,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Prioritized list of fee configuration entries
+     *
      * @return array|null
      */
     public function getFeeConfiguration(): ?array
@@ -196,6 +212,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Card gateway reference id
+     *
      * @return string
      */
     public function getGwRef(): string
@@ -204,6 +222,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Optional name
+     *
      * @return string|null
      */
     public function getName(): ?string
@@ -211,9 +231,12 @@ class CardGatewayAgreementModel extends AbstractModel
         return $this->name;
     }
 
-
-
     /**
+     * Set of supported payment types for agreement: card, applepay, googlepay, mobilepay, vipps.
+     * If not defined defaults to all.
+     *
+     * @see CardGatewayAgreementPaymentTypeEnum
+     *
      * @return array|null
      */
     public function getPaymentTypes(): ?array
@@ -222,6 +245,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Use agreement for payout (if supported by provider)
+     *
      * @return bool|null
      */
     public function getPayout(): ?bool
@@ -230,6 +255,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Card gateway provider type
+     *
      * @return string
      */
     public function getProvider(): string
@@ -238,6 +265,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Key value map of provider settings
+     *
      * @return array|null
      */
     public function getProviderSettings(): ?array
@@ -246,6 +275,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Use Secured By Nets for non-recurring payments (if supported by provider)
+     *
      * @return bool|null
      */
     public function getSecuredByNets(): ?bool
@@ -254,6 +285,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Use Secured By Nets for recurring payments (if supported by provider)
+     *
      * @return bool|null
      */
     public function getSecuredByNetsRecurring(): ?bool
@@ -262,6 +295,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Add acquirer surcharge fee if possible
+     *
      * @return bool|null
      */
     public function getSurcharge(): ?bool
@@ -270,6 +305,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Use 3DSecure for non-recurring payments (if supported by provider)
+     *
      * @return bool|null
      */
     public function getThreedSecure(): ?bool
@@ -278,6 +315,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Use 3DSecure for recurring payments (if supported by provider)
+     *
      * @return bool|null
      */
     public function getThreedSecureRecurring(): ?bool
@@ -286,6 +325,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Card types supported by agreement
+     *
      * @param array|null $cardTypes
      *
      * @return self
@@ -298,6 +339,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Set of currencies supported by agreement. Each currency in ISO 4217 three letter alpha code.
+     *
      * @param array|null $currencies
      *
      * @return self
@@ -310,6 +353,9 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Default behaviour if no specific SCA handing is defined in payment sessions.
+     * If enabled SCA will be required and un-enrolled cards will be declined.
+     *
      * @param bool|null $defaultRequireSca
      *
      * @return self
@@ -322,6 +368,9 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Disallow 3D Secure status attempted which means that card issuer does not support 3D Secure so
+     * authentication could not be performed. An attempted 3D Secure flow normally results in liability shift.
+     *
      * @param bool|null $disallowThreedSecureAttempted
      *
      * @return self
@@ -334,6 +383,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Prioritized list of fee configuration entries
+     *
      * @param array|null $feeConfiguration
      *
      * @return self
@@ -346,6 +397,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Card gateway reference id
+     *
      * @param string $gwRef
      *
      * @return self
@@ -358,6 +411,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Optional name
+     *
      * @param string|null $name
      *
      * @return self
@@ -370,6 +425,11 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Set of supported payment types for agreement: card, applepay, googlepay, mobilepay, vipps.
+     * If not defined defaults to all.
+     *
+     * @see CardGatewayAgreementPaymentTypeEnum
+     *
      * @param array|null $paymentTypes
      *
      * @return self
@@ -382,6 +442,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Use agreement for payout (if supported by provider)
+     *
      * @param bool|null $payout
      *
      * @return self
@@ -394,6 +456,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Card gateway provider type
+     *
      * @param string $provider
      *
      * @return self
@@ -406,6 +470,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Key value map of provider settings
+     *
      * @param array|null $providerSettings
      *
      * @return self
@@ -418,6 +484,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Configuration for enabling integration to Mastercard SCOF
+     *
      * @param EmvConfigurationModel|null $scofConfiguration
      *
      * @return self
@@ -430,6 +498,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Use Secured By Nets for non-recurring payments (if supported by provider)
+     *
      * @param bool|null $securedByNets
      *
      * @return self
@@ -442,6 +512,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Use Secured By Nets for recurring payments (if supported by provider)
+     *
      * @param bool|null $securedByNetsRecurring
      *
      * @return self
@@ -454,6 +526,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Add acquirer surcharge fee if possible
+     *
      * @param bool|null $surcharge
      *
      * @return self
@@ -466,6 +540,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Use 3DSecure for non-recurring payments (if supported by provider)
+     *
      * @param bool|null $threedSecure
      *
      * @return self
@@ -478,6 +554,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Use 3DSecure for recurring payments (if supported by provider)
+     *
      * @param bool|null $threedSecureRecurring
      *
      * @return self
@@ -490,6 +568,8 @@ class CardGatewayAgreementModel extends AbstractModel
     }
 
     /**
+     * Configuration for enabling integration to Mastercard SCOF
+     *
      * @param EmvConfigurationModel|null $vtsConfiguration
      *
      * @return self

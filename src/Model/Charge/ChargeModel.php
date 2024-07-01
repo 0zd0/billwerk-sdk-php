@@ -176,6 +176,10 @@ class ChargeModel extends AbstractModel
     protected ?string $paymentContext = null;
 
     /**
+     *  Per account unique reference to charge/invoice. E.g. order id from own system.
+     *  Multiple payments can be attempted for the same handle but only one succeeded charge
+     *  can exist per handle. Max length 255 with allowable characters [a-zA-Z0-9_.-@].
+     *
      * @return string
      */
     public function getHandle(): string
@@ -184,6 +188,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Refunded amount
+     *
      * @return int
      */
     public function getRefundedAmount(): int
@@ -192,6 +198,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * When the invoice was created, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -200,6 +208,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Transaction id assigned by Reepay. Assigned when transaction is performed
+     *
      * @return string|null
      */
     public function getTransaction(): ?string
@@ -208,6 +218,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * The invoice amount including VAT. If partial settles are performed amount represents the total settled amount
+     *
      * @return int
      */
     public function getAmount(): int
@@ -216,6 +228,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Currency for the account in ISO 4217 three letter alpha code
+     *
      * @return string
      */
     public function getCurrency(): string
@@ -224,6 +238,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  Customer handle
+     *
      * @return string
      */
     public function getCustomer(): string
@@ -232,6 +248,13 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  The charge state one of the following: created, authorized, settled, failed, cancelled,
+     *  pending. A pending state after create charge indicates an async processing has been
+     *  started for an asynchronous payment method. E.g. MobilePay Subscriptions. See also
+     *  processing. The result of the charge will be delivered in webhook as either
+     *  invoice_authorized, invoice_settled or invoice_failed
+     *
+     * @see ChargeStateEnum
      * @return string
      */
     public function getState(): string
@@ -240,6 +263,13 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  Reepay error state if failed: soft_declined, hard_declined or processing_error.
+     *  Soft and hard declines indicate a card decline. A soft decline is possibly recoverable
+     *  and a subsequent request with the same card may succeed. E.g. insufficient funds.
+     *  A processing error indicates an error processing the card either at Reepay, the acquirer,
+     *  or between Reepay and the acquirer
+     *
+     * @see ErrorStateEnum
      * @return string|null
      */
     public function getErrorState(): ?string
@@ -248,6 +278,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Reepay error code if failed. See transaction errors
+     *
      * @return string|null
      */
     public function getError(): ?string
@@ -256,6 +288,10 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  Payment context describing if the transaction is customer or merchant initiated,
+     *  one of the following values: cit, mit, cit_cof
+     *
+     * @see PaymentContextEnum
      * @return string|null
      */
     public function getPaymentContext(): ?string
@@ -264,6 +300,9 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  When the charge was authorized, if the charge went through an authorize and settle flow,
+     *  in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getAuthorized(): ?DateTime
@@ -272,6 +311,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * When the charge was settled, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getSettled(): ?DateTime
@@ -280,6 +321,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Optional shipping address
+     *
      * @return AddressModel|null
      */
     public function getShippingAddress(): ?AddressModel
@@ -288,6 +331,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Optional reference to recurring payment method created in conjunction with charging
+     *
      * @return string|null
      */
     public function getRecurringPaymentMethod(): ?string
@@ -296,6 +341,9 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  For asynchronous payment methods this flag indicates that the charge is awaiting
+     *  result. The charge/invoice state will be pending
+     *
      * @return bool|null
      */
     public function getProcessing(): ?bool
@@ -304,6 +352,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Order lines for charge
+     *
      * @return array
      */
     public function getOrderLines(): array
@@ -312,6 +362,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  When the charge was cancelled, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getCancelled(): ?DateTime
@@ -320,6 +372,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Optional billing address
+     *
      * @return AddressModel|null
      */
     public function getBillingAddress(): ?AddressModel
@@ -328,6 +382,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Authorized amount if authorization was performed. The maximum amount that can be settled
+     *
      * @return int|null
      */
     public function getAuthorizedAmount(): ?int
@@ -336,6 +392,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Object describing the source for the charge. E.g. credit card
+     *
      * @return SourceModel
      */
     public function getSource(): SourceModel
@@ -344,6 +402,10 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  Per account unique reference to charge/invoice. E.g. order id from own system.
+     *  Multiple payments can be attempted for the same handle but only one succeeded charge
+     *  can exist per handle. Max length 255 with allowable characters [a-zA-Z0-9_.-@].
+     *
      * @param string $handle
      *
      * @return self
@@ -356,6 +418,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Refunded amount
+     *
      * @param int $refundedAmount
      *
      * @return self
@@ -368,6 +432,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * When the invoice was created, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime $created
      *
      * @return self
@@ -380,6 +446,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * The invoice amount including VAT. If partial settles are performed amount represents the total settled amount
+     *
      * @param int $amount
      *
      * @return self
@@ -392,6 +460,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Customer handle
+     *
      * @param string $customer
      *
      * @return self
@@ -404,6 +474,14 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  The charge state one of the following: created, authorized, settled, failed, cancelled,
+     *  pending. A pending state after create charge indicates an async processing has been
+     *  started for an asynchronous payment method. E.g. MobilePay Subscriptions. See also
+     *  processing. The result of the charge will be delivered in webhook as either
+     *  invoice_authorized, invoice_settled or invoice_failed
+     *
+     * @see ChargeStateEnum
+     *
      * @param string $state
      *
      * @return self
@@ -416,6 +494,14 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  Reepay error state if failed: soft_declined, hard_declined or processing_error.
+     *  Soft and hard declines indicate a card decline. A soft decline is possibly recoverable
+     *  and a subsequent request with the same card may succeed. E.g. insufficient funds.
+     *  A processing error indicates an error processing the card either at Reepay, the acquirer,
+     *  or between Reepay and the acquirer
+     *
+     * @see ErrorStateEnum
+     *
      * @param string|null $errorState
      *
      * @return self
@@ -428,6 +514,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Reepay error code if failed. See transaction errors
+     *
      * @param string|null $error
      *
      * @return self
@@ -440,6 +528,11 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  Payment context describing if the transaction is customer or merchant initiated,
+     *  one of the following values: cit, mit, cit_cof
+     *
+     * @see PaymentContextEnum
+     *
      * @param string|null $paymentContext
      *
      * @return self
@@ -452,6 +545,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Currency for the account in ISO 4217 three letter alpha code
+     *
      * @param string $currency
      *
      * @return self
@@ -464,6 +559,9 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  When the charge was authorized, if the charge went through an authorize and settle flow,
+     *  in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $authorized
      *
      * @return self
@@ -476,6 +574,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * When the charge was settled, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $settled
      *
      * @return self
@@ -488,6 +588,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Optional shipping address
+     *
      * @param AddressModel|null $shippingAddress
      *
      * @return self
@@ -500,6 +602,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Optional reference to recurring payment method created in conjunction with charging
+     *
      * @param string|null $recurringPaymentMethod
      *
      * @return self
@@ -512,6 +616,9 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  For asynchronous payment methods this flag indicates that the charge is awaiting
+     *  result. The charge/invoice state will be pending
+     *
      * @param bool|null $processing
      *
      * @return self
@@ -524,6 +631,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Order lines for charge
+     *
      * @param array $orderLines
      *
      * @return self
@@ -536,6 +645,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     *  When the charge was cancelled, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $cancelled
      *
      * @return self
@@ -548,6 +659,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Optional billing address
+     *
      * @param AddressModel|null $billingAddress
      *
      * @return self
@@ -560,6 +673,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Authorized amount if authorization was performed. The maximum amount that can be settled
+     *
      * @param int|null $authorizedAmount
      *
      * @return self
@@ -572,6 +687,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Object describing the source for the charge. E.g. credit card
+     *
      * @param SourceModel $source
      *
      * @return self
@@ -584,6 +701,8 @@ class ChargeModel extends AbstractModel
     }
 
     /**
+     * Transaction id assigned by Reepay. Assigned when transaction is performed
+     *
      * @param string|null $transaction
      *
      * @return self

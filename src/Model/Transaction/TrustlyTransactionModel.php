@@ -12,6 +12,8 @@ class TrustlyTransactionModel extends AbstractTransactionModel
     protected ?string $trustlyId = null;
 
     /**
+     * Trustly id
+     *
      * @return string|null
      */
     public function getTrustlyId(): ?string
@@ -20,6 +22,8 @@ class TrustlyTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Trustly id
+     *
      * @param string|null $trustlyId
      *
      * @return self

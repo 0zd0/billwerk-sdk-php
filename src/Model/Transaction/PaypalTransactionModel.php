@@ -12,6 +12,8 @@ class PaypalTransactionModel extends AbstractTransactionModel
     protected ?string $paypalId = null;
 
     /**
+     * PayPal id
+     *
      * @return string|null
      */
     public function getPaypalId(): ?string
@@ -20,6 +22,8 @@ class PaypalTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * PayPal id
+     *
      * @param string|null $paypalId
      *
      * @return self

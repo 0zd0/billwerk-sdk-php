@@ -2,6 +2,9 @@
 
 namespace Billwerk\Sdk\Model;
 
+use Billwerk\Sdk\Enum\ErrorStateEnum;
+use Billwerk\Sdk\Enum\StrongAuthenticationStatusEnum;
+use Billwerk\Sdk\Enum\ThreeDSecureStatusEnum;
 use DateTime;
 
 /**
@@ -110,6 +113,7 @@ abstract class AbstractCard extends AbstractModel
     /**
      * Error state from last failed use of the card: pending, soft_declined, hard_declined or processing_error
      *
+     * @see ErrorStateEnum
      * @var string|null $errorState
      */
     protected ?string $errorState = null;
@@ -126,6 +130,7 @@ abstract class AbstractCard extends AbstractModel
      * threed_secure_not_enrolled - 3D Secure authentication not performed as card not enrolled,
      * secured_by_nets - Secure by Nets authenticated
      *
+     * @see StrongAuthenticationStatusEnum
      * @var string|null $strongAuthenticationStatus
      */
     protected ?string $strongAuthenticationStatus = null;
@@ -136,6 +141,7 @@ abstract class AbstractCard extends AbstractModel
      * 3D Secure so no full authentication has been performed. Attempted authentication normally means
      * liability shift, but this can differ between acquirers
      *
+     * @see ThreeDSecureStatusEnum
      * @var string|null $threeDSecureStatus
      */
     protected ?string $threeDSecureStatus = null;
@@ -156,6 +162,8 @@ abstract class AbstractCard extends AbstractModel
     protected ?string $cardCountry = null;
 
     /**
+     * Card agreement id
+     *
      * @return string
      */
     public function getCardAgreement(): string
@@ -164,6 +172,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card issuing country in ISO 3166-1 alpha-2
+     *
      * @return string|null
      */
     public function getCardCountry(): ?string
@@ -172,6 +182,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card type: unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
      * @return string
      */
     public function getCardType(): string
@@ -180,6 +192,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Number of soft and hard declined attempts for the card since created or since last successful transaction
+     *
      * @return int|null
      */
     public function getDeclinedCount(): ?int
@@ -188,6 +202,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * An error code from the last failed use of the card. See transaction errors
+     *
      * @return string|null
      */
     public function getErrorCode(): ?string
@@ -196,6 +212,9 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Error state from last failed use of the card: pending, soft_declined, hard_declined or processing_error
+     *
+     * @see ErrorStateEnum
      * @return string|null
      */
     public function getErrorState(): ?string
@@ -204,6 +223,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card expire date on form MM-YY
+     *
      * @return string|null
      */
     public function getExpDate(): ?string
@@ -212,6 +233,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Uniquely identifies this particular card number
+     *
      * @return string|null
      */
     public function getFingerprint(): ?string
@@ -220,6 +243,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Date and time of first successful use of the card. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getFirstFail(): ?DateTime
@@ -228,6 +253,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card gateway tied to card
+     *
      * @return string
      */
     public function getGateway(): string
@@ -236,6 +263,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card gateway reference id
+     *
      * @return string
      */
     public function getGwRef(): string
@@ -244,6 +273,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Date and time of last failed use of the card. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getLastFailed(): ?DateTime
@@ -252,6 +283,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Date and time of last successful use of the card. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getLastSuccess(): ?DateTime
@@ -260,6 +293,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Masked card number
+     *
      * @return string|null
      */
     public function getMaskedCard(): ?string
@@ -268,6 +303,9 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Date and time of reactivation if the card has been reactivated from failed state. In ISO-8601 extended
+     *  offset date-time format
+     *
      * @return DateTime|null
      */
     public function getReactivated(): ?DateTime
@@ -276,6 +314,9 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * If this parameter is set the card has been flagged by Reepay Risk Filter with a flag rule. Special
+     *  attention may be required before using the card for recurring payments or subscription sign-up
+     *
      * @return string|null
      */
     public function getRiskRule(): ?string
@@ -284,6 +325,11 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Status for strong customer authentication: threed_secure - 3D Secure authenticated,
+     *  threed_secure_not_enrolled - 3D Secure authentication not performed as card not enrolled,
+     *  secured_by_nets - Secure by Nets authenticated
+     *
+     * @see StrongAuthenticationStatusEnum
      * @return string|null
      */
     public function getStrongAuthenticationStatus(): ?string
@@ -292,6 +338,12 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * If 3D Secure authenticated the 3D status will either be Y (fully authenticated) or A (attempted
+     *  authenticated). An attempted authentication means that card issuer (e.g. bank) does not support
+     *  3D Secure so no full authentication has been performed. Attempted authentication normally means
+     *  liability shift, but this can differ between acquirers
+     *
+     * @see ThreeDSecureStatusEnum
      * @return string|null
      */
     public function getThreeDSecureStatus(): ?string
@@ -300,6 +352,10 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card type used in authentication and the card type used for subsequent MIT transactions. Will differ from
+     *  card_type if co-branded card. unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex,
+     *  diners, discover or jcb
+     *
      * @return string|null
      */
     public function getTransactionCardType(): ?string
@@ -308,6 +364,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Uniquely identifies this particular card number
+     *
      * @param string|null $fingerprint
      *
      * @return AbstractCard
@@ -320,6 +378,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card agreement id
+     *
      * @param string $cardAgreement
      *
      * @return AbstractCard
@@ -332,6 +392,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card issuing country in ISO 3166-1 alpha-2
+     *
      * @param string|null $cardCountry
      *
      * @return AbstractCard
@@ -344,6 +406,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card type: unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex, diners, discover or jcb
+     *
      * @param string $cardType
      *
      * @return AbstractCard
@@ -356,6 +420,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Number of soft and hard declined attempts for the card since created or since last successful transaction
+     *
      * @param int|null $declinedCount
      *
      * @return AbstractCard
@@ -368,6 +434,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * An error code from the last failed use of the card. See transaction errors
+     *
      * @param string|null $errorCode
      *
      * @return AbstractCard
@@ -380,6 +448,10 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Error state from last failed use of the card: pending, soft_declined, hard_declined or processing_error
+     *
+     * @see ErrorStateEnum
+     *
      * @param string|null $errorState
      *
      * @return AbstractCard
@@ -392,6 +464,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card expire date on form MM-YY
+     *
      * @param string|null $expDate
      *
      * @return AbstractCard
@@ -404,6 +478,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Date and time of first successful use of the card. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $firstFail
      *
      * @return AbstractCard
@@ -416,6 +492,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card gateway tied to card
+     *
      * @param string $gateway
      *
      * @return AbstractCard
@@ -428,6 +506,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card gateway reference id
+     *
      * @param string $gwRef
      *
      * @return AbstractCard
@@ -440,6 +520,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Date and time of last failed use of the card. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $lastFailed
      *
      * @return AbstractCard
@@ -452,6 +534,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Date and time of last successful use of the card. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $lastSuccess
      *
      * @return AbstractCard
@@ -464,6 +548,8 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Masked card number
+     *
      * @param string|null $maskedCard
      *
      * @return AbstractCard
@@ -476,6 +562,9 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Date and time of reactivation if the card has been reactivated from failed state. In ISO-8601 extended
+     * offset date-time format
+     *
      * @param DateTime|null $reactivated
      *
      * @return AbstractCard
@@ -488,6 +577,9 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * If this parameter is set the card has been flagged by Reepay Risk Filter with a flag rule. Special
+     *  attention may be required before using the card for recurring payments or subscription sign-up
+     *
      * @param string|null $riskRule
      *
      * @return AbstractCard
@@ -500,6 +592,12 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Status for strong customer authentication: threed_secure - 3D Secure authenticated,
+     *  threed_secure_not_enrolled - 3D Secure authentication not performed as card not enrolled,
+     *  secured_by_nets - Secure by Nets authenticated
+     *
+     * @see StrongAuthenticationStatusEnum
+     *
      * @param string|null $strongAuthenticationStatus
      *
      * @return AbstractCard
@@ -512,6 +610,13 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * If 3D Secure authenticated the 3D status will either be Y (fully authenticated) or A (attempted
+     *  authenticated). An attempted authentication means that card issuer (e.g. bank) does not support
+     *  3D Secure so no full authentication has been performed. Attempted authentication normally means
+     *  liability shift, but this can differ between acquirers
+     *
+     * @see ThreeDSecureStatusEnum
+     *
      * @param string|null $threeDSecureStatus
      *
      * @return AbstractCard
@@ -524,6 +629,10 @@ abstract class AbstractCard extends AbstractModel
     }
 
     /**
+     * Card type used in authentication and the card type used for subsequent MIT transactions. Will differ from
+     *  card_type if co-branded card. unknown, visa, mc, dankort, visa_dk, ffk, visa_elec, maestro, laser, amex,
+     *  diners, discover or jcb
+     *
      * @param string $transactionCardType
      *
      * @return AbstractCard

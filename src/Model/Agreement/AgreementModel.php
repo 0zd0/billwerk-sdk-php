@@ -182,6 +182,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     protected ?PayeverAgreementModel $payeverAgreement = null;
 
     /**
+     * Optional name
+     *
      * @return string|null
      */
     public function getName(): ?string
@@ -190,6 +192,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Agreement id
+     *
      * @return string
      */
     public function getId(): string
@@ -198,6 +202,9 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Agreement state: active, disabled, pending or deleted
+     *
+     * @see AgreementStateEnum
      * @return string
      */
     public function getState(): string
@@ -206,7 +213,9 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
-     * @return bool
+     * Test agreement or not
+     *
+ * @return bool
      */
     public function getTest(): bool
     {
@@ -214,6 +223,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Anyday agreement details
+     *
      * @return AnydayAgreementModel|null
      */
     public function getAnydayAgreement(): ?AnydayAgreementModel
@@ -222,6 +233,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * ApplePay agreement details
+     *
      * @return ApplepayAgreementModel|null
      */
     public function getApplepayAgreement(): ?ApplepayAgreementModel
@@ -230,6 +243,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Card gateway agreement details in case of card gateway
+     *
      * @return CardGatewayAgreementModel|null
      */
     public function getCardGatewayAgreement(): ?CardGatewayAgreementModel
@@ -238,6 +253,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * GooglePay agreement details
+     *
      * @return GooglepayAgreementModel|null
      */
     public function getGooglepayAgreement(): ?GooglepayAgreementModel
@@ -246,6 +263,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Klarna agreement details
+     *
      * @return KlarnaAgreementModel|null
      */
     public function getKlarnaAgreement(): ?KlarnaAgreementModel
@@ -254,6 +273,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * MobilePay online agreement details
+     *
      * @return MpoAgreementModel|null
      */
     public function getMpoAgreement(): ?MpoAgreementModel
@@ -262,6 +283,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * MobilePay Subscriptions agreement details in case of MobilePay Subscriptions
+     *
      * @return MpsAgreementModel|null
      */
     public function getMpsAgreement(): ?MpsAgreementModel
@@ -270,6 +293,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Offline agreement details
+     *
      * @return OfflineAgreementModel|null
      */
     public function getOfflineAgreement(): ?OfflineAgreementModel
@@ -278,6 +303,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Vipps agreement details
+     *
      * @return VippsAgreementModel|null
      */
     public function getVippsAgreement(): ?VippsAgreementModel
@@ -286,6 +313,14 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     *  Agreement type: card, viabill, anyday, resurs, klarna_pay_now, klarna_pay_later, klarna_slice_it,
+     *  klarna_direct_bank_transfer, klarna_direct_debit, santander,mobilepay, mobilepay_subscriptions,
+     *  applepay, googlepay, vipps, swish, paypal, pp_bancomatpay, pp_bancontact, pp_blik_oc, pp_giropay,
+     *  pp_ideal, pp_p24, pp_sepa, pp_trustly, pp_verkkopankki, pp_eps, pp_estonia_banks, pp_latvia_banks,
+     *  pp_lithuania_banks, pp_mb_way, pp_multibanco, pp_mybank, pp_payconiq, pp_paysafecard, pp_paysera,
+     *  pp_postfinance, pp_satispay, pp_twint, pp_wechatpay
+     *
+     * @see AgreementTypeEnum
      * @return string|null
      */
     public function getType(): ?string
@@ -294,6 +329,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Payever agreement details
+     *
      * @return PayeverAgreementModel|null
      */
     public function getPayeverAgreement(): ?PayeverAgreementModel
@@ -302,6 +339,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * PayPal agreement details
+     *
      * @return PaypalAgreementModel|null
      */
     public function getPaypalAgreement(): ?PaypalAgreementModel
@@ -310,6 +349,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Local payment methods agreement details
+     *
      * @return PproAgreementModel|null
      */
     public function getPproAgreement(): ?PproAgreementModel
@@ -318,6 +359,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the agreement was created. In ISO-8601 extended offset date-time format.
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -326,6 +369,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Resurs Bank agreement details
+     *
      * @return ResursAgreementModel|null
      */
     public function getResursAgreement(): ?ResursAgreementModel
@@ -334,6 +379,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Swish agreement details
+     *
      * @return SwishAgreementModel|null
      */
     public function getSwish(): ?SwishAgreementModel
@@ -342,6 +389,9 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Agreement payment type usage: single, reusable, subscription
+     *
+     * @see AgreementUsageEnum
      * @return string
      */
     public function getUsage(): string
@@ -350,6 +400,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * ViaBill agreement details
+     *
      * @return ViabillAgreementModel|null
      */
     public function getViabillAgreement(): ?ViabillAgreementModel
@@ -358,6 +410,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Vipps Recurring agreement details
+     *
      * @return VippsRecurringAgreementModel|null
      */
     public function getVippsRecurringAgreement(): ?VippsRecurringAgreementModel
@@ -366,6 +420,9 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Agreement payment type usage: single, reusable, subscription
+     *
+     * @see AgreementUsageEnum
      * @param string $usage
      *
      * @return self
@@ -378,6 +435,7 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Test agreement or not
      * @param bool $test
      *
      * @return self
@@ -390,6 +448,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional name
+     *
      * @param string|null $name
      *
      * @return self
@@ -402,6 +462,9 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Agreement state: active, disabled, pending or deleted
+     *
+     * @see AgreementStateEnum
      * @param string $state
      *
      * @return self
@@ -414,6 +477,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Agreement id
+     *
      * @param string $id
      *
      * @return self
@@ -426,6 +491,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Anyday agreement details
+     *
      * @param AnydayAgreementModel|null $anydayAgreement
      *
      * @return self
@@ -438,6 +505,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * ApplePay agreement details
+     *
      * @param ApplepayAgreementModel|null $applepayAgreement
      *
      * @return self
@@ -450,6 +519,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Card gateway agreement details in case of card gateway
+     *
      * @param CardGatewayAgreementModel|null $cardGatewayAgreement
      *
      * @return self
@@ -462,6 +533,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the agreement was created. In ISO-8601 extended offset date-time format.
+     *
      * @param DateTime $created
      *
      * @return self
@@ -474,6 +547,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * GooglePay agreement details
+     *
      * @param GooglepayAgreementModel|null $googlepayAgreement
      *
      * @return self
@@ -486,6 +561,14 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     *  Agreement type: card, viabill, anyday, resurs, klarna_pay_now, klarna_pay_later, klarna_slice_it,
+     *  klarna_direct_bank_transfer, klarna_direct_debit, santander,mobilepay, mobilepay_subscriptions,
+     *  applepay, googlepay, vipps, swish, paypal, pp_bancomatpay, pp_bancontact, pp_blik_oc, pp_giropay,
+     *  pp_ideal, pp_p24, pp_sepa, pp_trustly, pp_verkkopankki, pp_eps, pp_estonia_banks, pp_latvia_banks,
+     *  pp_lithuania_banks, pp_mb_way, pp_multibanco, pp_mybank, pp_payconiq, pp_paysafecard, pp_paysera,
+     *  pp_postfinance, pp_satispay, pp_twint, pp_wechatpay
+     *
+     * @see AgreementTypeEnum
      * @param string|null $type
      *
      * @return self
@@ -498,6 +581,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Klarna agreement details
+     *
      * @param KlarnaAgreementModel|null $klarnaAgreement
      *
      * @return self
@@ -510,6 +595,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * MobilePay online agreement details
+     *
      * @param MpoAgreementModel|null $mpoAgreement
      *
      * @return self
@@ -522,6 +609,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * MobilePay Subscriptions agreement details in case of MobilePay Subscriptions
+     *
      * @param MpsAgreementModel|null $mpsAgreement
      *
      * @return self
@@ -534,6 +623,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Offline agreement details
+     *
      * @param OfflineAgreementModel|null $offlineAgreement
      *
      * @return self
@@ -546,6 +637,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Vipps agreement details
+     *
      * @param VippsAgreementModel|null $vippsAgreement
      *
      * @return self
@@ -558,6 +651,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Payever agreement details
+     *
      * @param PayeverAgreementModel|null $payeverAgreement
      *
      * @return self
@@ -570,6 +665,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * PayPal agreement details
+     *
      * @param PaypalAgreementModel|null $paypalAgreement
      *
      * @return self
@@ -582,6 +679,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Local payment methods agreement details
+     *
      * @param PproAgreementModel|null $pproAgreement
      *
      * @return self
@@ -594,6 +693,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Resurs Bank agreement details
+     *
      * @param ResursAgreementModel|null $resursAgreement
      *
      * @return self
@@ -606,6 +707,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Swish agreement details
+     *
      * @param SwishAgreementModel|null $swish
      *
      * @return self
@@ -618,6 +721,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * ViaBill agreement details
+     *
      * @param ViabillAgreementModel|null $viabillAgreement
      *
      * @return self
@@ -630,6 +735,8 @@ class AgreementModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Vipps Recurring agreement details
+     *
      * @param VippsRecurringAgreementModel|null $vippsRecurringAgreement
      *
      * @return self

@@ -22,6 +22,8 @@ class TransactionGetModel extends AbstractModel implements HasIdInterface
     protected string $transaction;
 
     /**
+     * Invoice id or handle
+     *
      * @return string
      */
     public function getId(): string
@@ -30,6 +32,8 @@ class TransactionGetModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Transaction id
+     *
      * @return string
      */
     public function getTransaction(): string
@@ -38,6 +42,8 @@ class TransactionGetModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice id or handle
+     *
      * @param string $id
      *
      * @return self
@@ -50,6 +56,8 @@ class TransactionGetModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Transaction id
+     *
      * @param string $transaction
      *
      * @return self

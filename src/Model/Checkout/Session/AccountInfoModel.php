@@ -146,6 +146,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     protected ?bool $suspiciousActivity = null;
 
     /**
+     * Date that the cardholder created the account. Format: yyyy-MM-dd
+     *
      * @return string|null
      */
     public function getCreated(): ?string
@@ -154,6 +156,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Number of Add Card attempts in the last 24 hours
+     *
      * @return int|null
      */
     public function getAddCardAttempts(): ?int
@@ -162,6 +166,11 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Length of time that the cardholder has had the account. One off: guest_account - No account
+     *  (guest check-out), this_transaction - Created during this transaction, less_than_30_days
+     *  - Less than 30 days, from_30_to_60_days - 30−60 days, more_than_60_days - More than 60 days
+     *
+     * @see AgeIndicatorEnum
      * @return string|null
      */
     public function getAgeIndicator(): ?string
@@ -170,6 +179,9 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  For customer initiated card-on-file session, the date that the used card was added. Provided by Reepay
+     *  but can be overridden. Format: yyyy-MM-dd
+     *
      * @return string|null
      */
     public function getCardAge(): ?string
@@ -178,6 +190,12 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  For customer initiated card-on-file session, indicates the length of time that the card was enrolled in
+     *  the cardholder’s account. Provided by Reepay but can be overridden. One off: this_transaction - Changed
+     *  during this transaction, less_than_30_days - Less than 30 days, from_30_to_60_days - 30−60 days,
+     *  more_than_60_days - More than 60 days
+     *
+     * @see CardAgeIndicatorEnum
      * @return string|null
      */
     public function getCardAgeIndicator(): ?string
@@ -186,6 +204,9 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Date that the cardholder’s account was last changed, including Billing or Shipping address,
+     *  new payment method, or new user(s) added. Format: yyyy-MM-dd
+     *
      * @return string|null
      */
     public function getChanged(): ?string
@@ -194,6 +215,12 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Length of time since the cardholder’s account information was last changed, including Billing or
+     *  Shipping address, new payment account, or new user(s) added. One off: this_transaction - Changed
+     *  during this transaction, less_than_30_days - Less than 30 days, from_30_to_60_days - 30−60 days,
+     *  more_than_60_days - More than 60 days
+     *
+     * @see ChangeIndicatorEnum
      * @return string|null
      */
     public function getChangeIndicator(): ?string
@@ -202,6 +229,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Date that cardholder’s account had a password change or account reset. Format: yyyy-MM-dd
+     *
      * @return string|null
      */
     public function getPasswordChange(): ?string
@@ -210,6 +239,11 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Indicates the length of time since the cardholder’s account had a password change or account reset.
+     *  One off: no_change - No change, this_transaction - Changed during this transaction,
+     *  less_than_30_days - Less than 30 days, from_30_to_60_days - 30−60 days, more_than_60_days - More than 60 days
+     *
+     * @see PasswordChangeIndicatorEnum
      * @return string|null
      */
     public function getPasswordChangeIndicator(): ?string
@@ -218,6 +252,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Number of purchases with this cardholder account during the previous six months
+     *
      * @return int|null
      */
     public function getPurchaseCount(): ?int
@@ -226,6 +262,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Date when the shipping address used for this transaction was first used. Format: yyyy-MM-dd
+     *
      * @return string|null
      */
     public function getShippingAddressUsage(): ?string
@@ -234,6 +272,11 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Indicates when the shipping address used for this transaction was first used. One off:
+     *  this_transaction - During this transaction, less_than_30_days - Less than 30 days,
+     *  from_30_to_60_days - 30−60 days, more_than_60_days - More than 60 days
+     *
+     * @see ShippingAddressUsageIndicatorEnum
      * @return string|null
      */
     public function getShippingAddressUsageIndicator(): ?string
@@ -242,6 +285,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates if the Cardholder Name on the account is identical to the shipping Name used for this transaction
+     *
      * @return bool|null
      */
     public function getShippingNameIndicator(): ?bool
@@ -250,6 +295,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates if there has been experienced suspicious activity (including previous fraud) on the cardholder account
+     *
      * @return bool|null
      */
     public function getSuspiciousActivity(): ?bool
@@ -258,6 +305,9 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Number of transactions (successful and abandoned) for this cardholder account (across payment methods)
+     *  in the previous 24 hours
+     *
      * @return int|null
      */
     public function getTransactionsDay(): ?int
@@ -266,6 +316,9 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Number of transactions (successful and abandoned) for this cardholder account (across payment methods)
+     *  in the previous year
+     *
      * @return int|null
      */
     public function getTransactionsYear(): ?int
@@ -274,6 +327,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Date that the cardholder created the account. Format: yyyy-MM-dd
+     *
      * @param string|null $created
      *
      * @return self
@@ -286,6 +341,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Number of Add Card attempts in the last 24 hours
+     *
      * @param int|null $addCardAttempts
      *
      * @return self
@@ -298,6 +355,12 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Length of time that the cardholder has had the account. One off: guest_account - No account
+     *  (guest check-out), this_transaction - Created during this transaction, less_than_30_days
+     *  - Less than 30 days, from_30_to_60_days - 30−60 days, more_than_60_days - More than 60 days
+     *
+     * @see AgeIndicatorEnum
+     *
      * @param string|null $ageIndicator
      *
      * @return self
@@ -310,6 +373,9 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  For customer initiated card-on-file session, the date that the used card was added. Provided by Reepay
+     *  but can be overridden. Format: yyyy-MM-dd
+     *
      * @param string|null $cardAge
      *
      * @return self
@@ -322,6 +388,13 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  For customer initiated card-on-file session, indicates the length of time that the card was enrolled in
+     *  the cardholder’s account. Provided by Reepay but can be overridden. One off: this_transaction - Changed
+     *  during this transaction, less_than_30_days - Less than 30 days, from_30_to_60_days - 30−60 days,
+     *  more_than_60_days - More than 60 days
+     *
+     * @see CardAgeIndicatorEnum
+     *
      * @param string|null $cardAgeIndicator
      *
      * @return self
@@ -334,6 +407,9 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Date that the cardholder’s account was last changed, including Billing or Shipping address,
+     *  new payment method, or new user(s) added. Format: yyyy-MM-dd
+     *
      * @param string|null $changed
      *
      * @return self
@@ -346,6 +422,13 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Length of time since the cardholder’s account information was last changed, including Billing or
+     *  Shipping address, new payment account, or new user(s) added. One off: this_transaction - Changed
+     *  during this transaction, less_than_30_days - Less than 30 days, from_30_to_60_days - 30−60 days,
+     *  more_than_60_days - More than 60 days
+     *
+     * @see ChangeIndicatorEnum
+     *
      * @param string|null $changeIndicator
      *
      * @return self
@@ -358,6 +441,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Date that cardholder’s account had a password change or account reset. Format: yyyy-MM-dd
+     *
      * @param string|null $passwordChange
      *
      * @return self
@@ -370,6 +455,12 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Indicates the length of time since the cardholder’s account had a password change or account reset.
+     *  One off: no_change - No change, this_transaction - Changed during this transaction,
+     *  less_than_30_days - Less than 30 days, from_30_to_60_days - 30−60 days, more_than_60_days - More than 60 days
+     *
+     * @see PasswordChangeIndicatorEnum
+     *
      * @param string|null $passwordChangeIndicator
      *
      * @return self
@@ -382,6 +473,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Number of purchases with this cardholder account during the previous six months
+     *
      * @param int|null $purchaseCount
      *
      * @return self
@@ -394,6 +487,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Date when the shipping address used for this transaction was first used. Format: yyyy-MM-dd
+     *
      * @param string|null $shippingAddressUsage
      *
      * @return self
@@ -406,6 +501,12 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Indicates when the shipping address used for this transaction was first used. One off:
+     *  this_transaction - During this transaction, less_than_30_days - Less than 30 days,
+     *  from_30_to_60_days - 30−60 days, more_than_60_days - More than 60 days
+     *
+     * @see ShippingAddressUsageIndicatorEnum
+     *
      * @param string|null $shippingAddressUsageIndicator
      *
      * @return self
@@ -418,6 +519,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates if the Cardholder Name on the account is identical to the shipping Name used for this transaction
+     *
      * @param bool|null $shippingNameIndicator
      *
      * @return self
@@ -430,6 +533,8 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Indicates if there has been experienced suspicious activity (including previous fraud) on the cardholder account
+     *
      * @param bool|null $suspiciousActivity
      *
      * @return self
@@ -442,6 +547,9 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Number of transactions (successful and abandoned) for this cardholder account (across payment methods)
+     *  in the previous 24 hours
+     *
      * @param int|null $transactionsDay
      *
      * @return self
@@ -454,6 +562,9 @@ class AccountInfoModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Number of transactions (successful and abandoned) for this cardholder account (across payment methods)
+     *  in the previous year
+     *
      * @param int|null $transactionsYear
      *
      * @return self

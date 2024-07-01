@@ -155,6 +155,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     protected ?string $discountedOrderLine = null;
 
     /**
+     * Order line total amount including vat
+     *
      * @return int
      */
     public function getAmount(): int
@@ -163,6 +165,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line vat percent
+     *
      * @return float
      */
     public function getVat(): float
@@ -171,6 +175,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Per account unique order line id
+     *
      * @return string
      */
     public function getId(): string
@@ -179,6 +185,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Timestamp from order line origin, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getTimestamp(): DateTime
@@ -187,6 +195,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line total amount without vat
+     *
      * @return int
      */
     public function getAmountExVat(): int
@@ -195,6 +205,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * For discount order lines a reference to the order line for which the order line is a discount
+     *
      * @return string|null
      */
     public function getDiscountedOrderLine(): ?string
@@ -203,6 +215,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Whether the amount was defined including VAT. E.g. plan amount defined including VAT
+     *
      * @return bool
      */
     public function getAmountDefinedInclVat(): bool
@@ -211,6 +225,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line total vat amount
+     *
      * @return int
      */
     public function getAmountVat(): int
@@ -219,6 +235,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line amount after potential discount has been deducted
+     *
      * @return int|null
      */
     public function getDiscountedAmount(): ?int
@@ -227,6 +245,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The discount percentage for discount order lines that has a percentage discount
+     *
      * @return int|null
      */
     public function getDiscountPercentage(): ?int
@@ -235,6 +255,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line text
+     *
      * @return string
      */
     public function getOrdertext(): string
@@ -243,6 +265,10 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line origin, one of the following: plan, add_on, ondemand, additional_cost,
+     *  credit, discount, setup_fee, surcharge_fee
+     *
+     * @see OrderLineOriginEnum
      * @return string
      */
     public function getOrigin(): string
@@ -251,6 +277,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Handle for additional cost, credit, plan or subscription discount in the case one of those are the origin
+     *
      * @return string|null
      */
     public function getOriginHandle(): ?string
@@ -259,6 +287,9 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The start of billing period if the order line is a plan order line for a specific billing period,
+     *  in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getPeriodFrom(): ?DateTime
@@ -267,6 +298,9 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The end of billing period if the order line is a plan order line for a specific billing period,
+     *  in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getPeriodTo(): ?DateTime
@@ -275,6 +309,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line quantity
+     *
      * @return int
      */
     public function getQuantity(): int
@@ -283,6 +319,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line unit amount including vat
+     *
      * @return int
      */
     public function getUnitAmount(): int
@@ -291,6 +329,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line unit amount without vat
+     *
      * @return int
      */
     public function getUnitAmountExVat(): int
@@ -299,6 +339,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line unit vat amount
+     *
      * @return int
      */
     public function getUnitAmountVat(): int
@@ -307,6 +349,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line total amount including vat
+     *
      * @param int $amount
      *
      * @return OrderLineModel
@@ -319,6 +363,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line vat percent
+     *
      * @param float $vat
      *
      * @return OrderLineModel
@@ -331,6 +377,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Per account unique order line id
+     *
      * @param string $id
      *
      * @return OrderLineModel
@@ -343,6 +391,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Timestamp from order line origin, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime $timestamp
      *
      * @return OrderLineModel
@@ -355,6 +405,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Whether the amount was defined including VAT. E.g. plan amount defined including VAT
+     *
      * @param bool $amountDefinedInclVat
      *
      * @return OrderLineModel
@@ -367,6 +419,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line total amount without vat
+     *
      * @param int $amountExVat
      *
      * @return OrderLineModel
@@ -379,6 +433,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line total vat amount
+     *
      * @param int $amountVat
      *
      * @return OrderLineModel
@@ -391,6 +447,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line amount after potential discount has been deducted
+     *
      * @param int|null $discountedAmount
      *
      * @return OrderLineModel
@@ -403,6 +461,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * For discount order lines a reference to the order line for which the order line is a discount
+     *
      * @param string|null $discountedOrderLine
      *
      * @return OrderLineModel
@@ -415,6 +475,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The discount percentage for discount order lines that has a percentage discount
+     *
      * @param int|null $discountPercentage
      *
      * @return OrderLineModel
@@ -427,6 +489,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line text
+     *
      * @param string $ordertext
      *
      * @return OrderLineModel
@@ -439,6 +503,11 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line origin, one of the following: plan, add_on, ondemand, additional_cost,
+     *  credit, discount, setup_fee, surcharge_fee
+     *
+     * @see OrderLineOriginEnum
+     *
      * @param string $origin
      *
      * @return OrderLineModel
@@ -451,6 +520,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Handle for additional cost, credit, plan or subscription discount in the case one of those are the origin
+     *
      * @param string|null $originHandle
      *
      * @return OrderLineModel
@@ -463,6 +534,9 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The start of billing period if the order line is a plan order line for a specific billing period,
+     *  in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $periodFrom
      *
      * @return OrderLineModel
@@ -475,6 +549,9 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The end of billing period if the order line is a plan order line for a specific billing period,
+     *  in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $periodTo
      *
      * @return OrderLineModel
@@ -487,6 +564,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line quantity
+     *
      * @param int $quantity
      *
      * @return OrderLineModel
@@ -499,6 +578,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line unit amount including vat
+     *
      * @param int $unitAmount
      *
      * @return OrderLineModel
@@ -511,6 +592,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line unit amount without vat
+     *
      * @param int $unitAmountExVat
      *
      * @return OrderLineModel
@@ -523,6 +606,8 @@ class OrderLineModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Order line unit vat amount
+     *
      * @param int $unitAmountVat
      *
      * @return OrderLineModel

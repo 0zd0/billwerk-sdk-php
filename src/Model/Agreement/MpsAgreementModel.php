@@ -44,6 +44,8 @@ class MpsAgreementModel extends AbstractModel
     protected ?bool $asyncOneOff = null;
 
     /**
+     * Set of currencies supported by agreement. Each currency in ISO 4217 three letter alpha code
+     *
      * @return array
      */
     public function getCurrencies(): array
@@ -100,6 +102,8 @@ class MpsAgreementModel extends AbstractModel
     }
 
     /**
+     * Set of currencies supported by agreement. Each currency in ISO 4217 three letter alpha code
+     *
      * @param array $currencies
      *
      * @return self

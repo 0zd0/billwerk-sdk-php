@@ -43,6 +43,7 @@ class NoteLineModel extends AbstractModel
      * @var string|null $orderLineId
      */
     protected ?string $orderLineId = null;
+
     /**
      * Optional whether the amount is including VAT
      *
@@ -51,6 +52,8 @@ class NoteLineModel extends AbstractModel
     protected ?bool $amountInclVat = null;
 
     /**
+     * Per quantity amount in the smallest unit for the account currency
+     *
      * @return int
      */
     public function getAmount(): int
@@ -59,6 +62,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Optional whether the amount is including VAT
+     *
      * @return bool|null
      */
     public function getAmountInclVat(): ?bool
@@ -67,6 +72,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Optional reference to invoice order line for which this refund line is related
+     *
      * @return string|null
      */
     public function getOrderLineId(): ?string
@@ -75,6 +82,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Quantity
+     *
      * @return int
      */
     public function getQuantity(): int
@@ -83,6 +92,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line text
+     *
      * @return string
      */
     public function getText(): string
@@ -91,6 +102,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Optional vat for this credit note line
+     *
      * @return float|null
      */
     public function getVat(): ?float
@@ -99,6 +112,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Per quantity amount in the smallest unit for the account currency
+     *
      * @param int $amount
      *
      * @return NoteLineModel
@@ -111,6 +126,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Optional whether the amount is including VAT
+     *
      * @param bool|null $amountInclVat
      *
      * @return NoteLineModel
@@ -123,6 +140,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Optional reference to invoice order line for which this refund line is related
+     *
      * @param string|null $orderLineId
      *
      * @return NoteLineModel
@@ -135,6 +154,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Quantity
+     *
      * @param int $quantity
      *
      * @return NoteLineModel
@@ -147,6 +168,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Credit note line text
+     *
      * @param string $text
      *
      * @return NoteLineModel
@@ -159,6 +182,8 @@ class NoteLineModel extends AbstractModel
     }
 
     /**
+     * Optional vat for this credit note line
+     *
      * @param float|null $vat
      *
      * @return NoteLineModel

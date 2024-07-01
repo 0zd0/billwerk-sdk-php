@@ -44,6 +44,8 @@ class CreditModel extends AbstractModel
     protected string $text;
 
     /**
+     * The credit amount transferred to invoice
+     *
      * @return int
      */
     public function getAmount(): int
@@ -52,6 +54,8 @@ class CreditModel extends AbstractModel
     }
 
     /**
+     * Date when credit was transferred to invoice. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -60,6 +64,8 @@ class CreditModel extends AbstractModel
     }
 
     /**
+     * Credit handle
+     *
      * @return string
      */
     public function getCredit(): string
@@ -68,6 +74,8 @@ class CreditModel extends AbstractModel
     }
 
     /**
+     * Text describing the credit
+     *
      * @return string
      */
     public function getText(): string
@@ -76,6 +84,8 @@ class CreditModel extends AbstractModel
     }
 
     /**
+     * Date when credit was transferred to invoice. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime $created
      *
      * @return CreditModel
@@ -88,6 +98,8 @@ class CreditModel extends AbstractModel
     }
 
     /**
+     * The credit amount transferred to invoice
+     *
      * @param int $amount
      *
      * @return CreditModel
@@ -100,6 +112,8 @@ class CreditModel extends AbstractModel
     }
 
     /**
+     * Credit handle
+     *
      * @param string $credit
      *
      * @return CreditModel
@@ -112,6 +126,8 @@ class CreditModel extends AbstractModel
     }
 
     /**
+     * Text describing the credit
+     *
      * @param string $text
      *
      * @return CreditModel

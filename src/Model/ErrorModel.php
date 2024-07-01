@@ -77,6 +77,8 @@ class ErrorModel extends AbstractModel
     protected ?string $transactionError = null;
 
     /**
+     * Reepay API error codes
+     *
      * @return int|null
      */
     public function getCode(): ?int
@@ -85,6 +87,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Reepay API error codes
+     *
      * @param int|null $code
      *
      * @return ErrorModel
@@ -97,6 +101,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Short error message
+     *
      * @param string|null $error
      *
      * @return ErrorModel
@@ -109,6 +115,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * HTTP reason of the error
+     *
      * @param string|null $httpReason
      *
      * @return ErrorModel
@@ -121,6 +129,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * HTTP status code of the error
+     *
      * @param int|null $httpStatus
      *
      * @return ErrorModel
@@ -133,6 +143,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Optional clarifying error message
+     *
      * @param string|null $message
      *
      * @return ErrorModel
@@ -145,6 +157,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * The path generating the error response
+     *
      * @param string|null $path
      *
      * @return ErrorModel
@@ -157,6 +171,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Request-Id for the failed request
+     *
      * @param string|null $requestId
      *
      * @return ErrorModel
@@ -169,6 +185,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Timestamp for the error response in ISO-8601 extended offset date-time format
+     *
      * @param string|null $timestamp
      *
      * @return ErrorModel
@@ -181,6 +199,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Optional transaction error in the case the request involved a transaction processing. See transaction errors
+     *
      * @param string|null $transactionError TransactionErrorInterface
      */
     public function setTransactionError(?string $transactionError): self
@@ -191,6 +211,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Short error message
+     *
      * @return string|null
      */
     public function getError(): ?string
@@ -199,6 +221,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * HTTP reason of the error
+     *
      * @return string|null
      */
     public function getHttpReason(): ?string
@@ -207,6 +231,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * HTTP status code of the error
+     *
      * @return int|null
      */
     public function getHttpStatus(): ?int
@@ -215,6 +241,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Optional clarifying error message
+     *
      * @return string|null
      */
     public function getMessage(): ?string
@@ -223,6 +251,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * The path generating the error response
+     *
      * @return string|null
      */
     public function getPath(): ?string
@@ -231,6 +261,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Request-Id for the failed request
+     *
      * @return string|null
      */
     public function getRequestId(): ?string
@@ -239,6 +271,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Timestamp for the error response in ISO-8601 extended offset date-time format
+     *
      * @return string|null
      */
     public function getTimestamp(): ?string
@@ -247,6 +281,8 @@ class ErrorModel extends AbstractModel
     }
 
     /**
+     * Optional transaction error in the case the request involved a transaction processing. See transaction errors
+     *
      * @return string|null
      */
     public function getTransactionError(): ?string

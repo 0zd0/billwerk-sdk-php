@@ -18,11 +18,13 @@ class KlarnaTransactionModel extends AbstractTransactionModel
      * klarna_direct_bank_transfer, klarna_direct_debit
      *
      * @see KlarnaTransactionTypeEnum
-     * @var string
+     * @var string $type
      */
     protected string $type;
 
     /**
+     * Klarna id
+     *
      * @return string|null
      */
     public function getKlarnaId(): ?string
@@ -31,6 +33,10 @@ class KlarnaTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Transaction type: klarna_pay_now, klarna_pay_later, klarna_slice_it,
+     *  klarna_direct_bank_transfer, klarna_direct_debit
+     *
+     * @see KlarnaTransactionTypeEnum
      * @return string
      */
     public function getType(): string
@@ -39,6 +45,8 @@ class KlarnaTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Klarna id
+     *
      * @param string|null $klarnaId
      *
      * @return self
@@ -51,6 +59,11 @@ class KlarnaTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Transaction type: klarna_pay_now, klarna_pay_later, klarna_slice_it,
+     *  klarna_direct_bank_transfer, klarna_direct_debit
+     *
+     * @see KlarnaTransactionTypeEnum
+     *
      * @param string $type
      *
      * @return self

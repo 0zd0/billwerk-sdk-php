@@ -23,6 +23,9 @@ class AgreementGetAllModel extends AbstractModel
     protected ?bool $nonDeleted = null;
 
     /**
+     * Get only non-deleted
+     * Default value : false
+     *
      * @return bool|null
      */
     public function getNonDeleted(): ?bool
@@ -31,6 +34,9 @@ class AgreementGetAllModel extends AbstractModel
     }
 
     /**
+     * Get only active
+     * Default value : false
+     *
      * @return bool|null
      */
     public function getOnlyActive(): ?bool
@@ -39,6 +45,9 @@ class AgreementGetAllModel extends AbstractModel
     }
 
     /**
+     * Get only non-deleted
+     * Default value : false
+     *
      * @param bool|null $nonDeleted
      *
      * @return self
@@ -51,6 +60,9 @@ class AgreementGetAllModel extends AbstractModel
     }
 
     /**
+     * Get only active
+     * Default value : false
+     *
      * @param bool|null $onlyActive
      *
      * @return self

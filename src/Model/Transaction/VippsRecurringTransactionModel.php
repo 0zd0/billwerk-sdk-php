@@ -19,6 +19,8 @@ class VippsRecurringTransactionModel extends AbstractTransactionModel
     protected array $vippsRecurringMandate;
 
     /**
+     * Vipps Recurring id
+     *
      * @return string
      */
     public function getVippsRecurringId(): string
@@ -27,6 +29,8 @@ class VippsRecurringTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Vipps Recurring mandate object in case of Vipps Recurring payment method
+     *
      * @return array
      */
     public function getVippsRecurringMandate(): array
@@ -35,6 +39,8 @@ class VippsRecurringTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Vipps Recurring mandate object in case of Vipps Recurring payment method
+     *
      * @param array $vippsRecurringMandate
      *
      * @return self
@@ -47,6 +53,8 @@ class VippsRecurringTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Vipps Recurring id
+     *
      * @param string $vippsRecurringId
      *
      * @return self

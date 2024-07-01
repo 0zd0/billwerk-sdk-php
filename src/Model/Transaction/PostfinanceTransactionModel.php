@@ -12,6 +12,8 @@ class PostfinanceTransactionModel extends AbstractTransactionModel
     protected ?string $postfinanceId = null;
 
     /**
+     * PostFinance id
+     *
      * @return string|null
      */
     public function getPostfinanceId(): ?string
@@ -20,6 +22,8 @@ class PostfinanceTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * PostFinance id
+     *
      * @param string|null $postfinanceId
      *
      * @return self

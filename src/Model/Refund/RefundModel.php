@@ -25,48 +25,53 @@ class RefundModel extends AbstractModel implements HasIdInterface
      * @var string $id
      */
     protected string $id;
+
     /**
-     * @see RefundStateEnum
-     *
      * The refund state either refunded, failed or processing. The processing state can only be returned
      * for asynchronous payment method (not card)
+     *
+     * @see RefundStateEnum
      *
      * @var string $state
      */
     protected string $state;
+
     /**
      * Invoice/charge handle
      *
      * @var string $invoice
      */
     protected string $invoice;
+
     /**
      * Refunded amount
      *
      * @var int $amount
      */
     protected int $amount;
+
     /**
      * Currency for the account in ISO 4217 three letter alpha code
      *
      * @var string $currency
      */
     protected string $currency;
+
     /**
      * Transaction id assigned by Reepay
      *
      * @var string $transaction
      */
     protected string $transaction;
+
     /**
      * Reepay error code if failed
      *
      * @var string|null $error
      */
     protected ?string $error = null;
+
     /**
-     * @see RefundTypeEnum
-     *
      * Type of refund, either card, mpo, mobilepay, vipps, vipps_recurring, swish, viabill, anyday, manual,
      * applepay, googlepay, paypal, klarna_pay_now, klarna_pay_later, klarna_slice_it, klarna_direct_bank_transfer,
      * klarna_direct_debit, resurs, mobilepay_subscriptions, emv_token, bancomatpay, bcmc, blik, pp_blik_oc, giropay,
@@ -74,43 +79,49 @@ class RefundModel extends AbstractModel implements HasIdInterface
      * payconiq, paysafecard, paysera, postfinance, satispay, twint, wechatpay, santander, or verkkopankki,
      * offline_cash, offline_bank_transfer, offline_other
      *
+     * @see RefundTypeEnum
      * @var string $type
      */
     protected string $type;
+
     /**
      * When the refund was created, in ISO-8601 extended offset date-time format
      *
      * @var DateTime $created
      */
     protected DateTime $created;
+
     /**
      * Credit note id for successful refund
      *
      * @var string|null $creditNoteId
      */
     protected ?string $creditNoteId = null;
+
     /**
      * Id of a possible settled transaction that has been refunded
      *
      * @var string|null $refTransaction
      */
     protected ?string $refTransaction = null;
+
     /**
-     * @see ErrorStateEnum
-     *
      * Reepay error state if failed: hard_declined or processing_error. A hard decline indicates a refund decline
      * by acquirer. A processing error indicates an error processing the refund either at Reepay, the acquirer,
      * or between Reepay and the acquirer
      *
+     * @see ErrorStateEnum
      * @var string|null $errorState
      */
     protected ?string $errorState = null;
+
     /**
      * Acquirer message in case of error
      *
      * @var string|null $acquirerMessage
      */
     protected ?string $acquirerMessage = null;
+
     /**
      * Invoice accounting number
      *
@@ -119,6 +130,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     protected ?string $accountingNumber = null;
 
     /**
+     * Reepay error code if failed
+     *
      * @return string|null
      */
     public function getError(): ?string
@@ -127,6 +140,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice accounting number
+     *
      * @return string|null
      */
     public function getAccountingNumber(): ?string
@@ -135,6 +150,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Acquirer message in case of error
+     *
      * @return string|null
      */
     public function getAcquirerMessage(): ?string
@@ -143,6 +160,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Refunded amount
+     *
      * @return int
      */
     public function getAmount(): int
@@ -151,6 +170,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the refund was created, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -159,6 +180,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Credit note id for successful refund
+     *
      * @return string|null
      */
     public function getCreditNoteId(): ?string
@@ -167,6 +190,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Currency for the account in ISO 4217 three letter alpha code
+     *
      * @return string
      */
     public function getCurrency(): string
@@ -175,6 +200,11 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Reepay error state if failed: hard_declined or processing_error. A hard decline indicates a refund decline
+     *  by acquirer. A processing error indicates an error processing the refund either at Reepay, the acquirer,
+     *  or between Reepay and the acquirer
+     *
+     * @see ErrorStateEnum
      * @return string|null
      */
     public function getErrorState(): ?string
@@ -183,6 +213,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Refund id assigned by Reepay
+     *
      * @return string
      */
     public function getId(): string
@@ -191,6 +223,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice/charge handle
+     *
      * @return string
      */
     public function getInvoice(): string
@@ -199,6 +233,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Id of a possible settled transaction that has been refunded
+     *
      * @return string|null
      */
     public function getRefTransaction(): ?string
@@ -207,6 +243,10 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * The refund state either refunded, failed or processing. The processing state can only be returned
+     *  for asynchronous payment method (not card)
+     *
+     * @see RefundStateEnum
      * @return string
      */
     public function getState(): string
@@ -215,6 +255,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Transaction id assigned by Reepay
+     *
      * @return string
      */
     public function getTransaction(): string
@@ -223,6 +265,14 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Type of refund, either card, mpo, mobilepay, vipps, vipps_recurring, swish, viabill, anyday, manual,
+     *  applepay, googlepay, paypal, klarna_pay_now, klarna_pay_later, klarna_slice_it, klarna_direct_bank_transfer,
+     *  klarna_direct_debit, resurs, mobilepay_subscriptions, emv_token, bancomatpay, bcmc, blik, pp_blik_oc, giropay,
+     *  ideal, p24, sepa, trustly, eps, estonia_banks, latvia_banks, lithuania_banks, mb_way, multibanco, mybank,
+     *  payconiq, paysafecard, paysera, postfinance, satispay, twint, wechatpay, santander, or verkkopankki,
+     *  offline_cash, offline_bank_transfer, offline_other
+     *
+     * @see RefundTypeEnum
      * @return string
      */
     public function getType(): string
@@ -231,6 +281,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice accounting number
+     *
      * @param string|null $accountingNumber
      *
      * @return RefundModel
@@ -243,6 +295,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Acquirer message in case of error
+     *
      * @param string|null $acquirerMessage
      *
      * @return RefundModel
@@ -255,6 +309,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Refunded amount
+     *
      * @param int $amount
      *
      * @return RefundModel
@@ -267,6 +323,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * When the refund was created, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime $created
      *
      * @return RefundModel
@@ -279,6 +337,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Credit note id for successful refund
+     *
      * @param string|null $creditNoteId
      *
      * @return RefundModel
@@ -291,6 +351,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Currency for the account in ISO 4217 three letter alpha code
+     *
      * @param string $currency
      *
      * @return RefundModel
@@ -303,6 +365,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Reepay error code if failed
+     *
      * @param string|null $error
      *
      * @return RefundModel
@@ -315,6 +379,12 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Reepay error state if failed: hard_declined or processing_error. A hard decline indicates a refund decline
+     *  by acquirer. A processing error indicates an error processing the refund either at Reepay, the acquirer,
+     *  or between Reepay and the acquirer
+     *
+     * @see ErrorStateEnum
+     *
      * @param string|null $errorState
      *
      * @return RefundModel
@@ -327,6 +397,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Refund id assigned by Reepay
+     *
      * @param string $id
      *
      * @return RefundModel
@@ -339,6 +411,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Invoice/charge handle
+     *
      * @param string $invoice
      *
      * @return RefundModel
@@ -351,6 +425,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Id of a possible settled transaction that has been refunded
+     *
      * @param string|null $refTransaction
      *
      * @return RefundModel
@@ -375,6 +451,8 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Transaction id assigned by Reepay
+     *
      * @param string $transaction
      *
      * @return RefundModel
@@ -387,6 +465,15 @@ class RefundModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Type of refund, either card, mpo, mobilepay, vipps, vipps_recurring, swish, viabill, anyday, manual,
+     *  applepay, googlepay, paypal, klarna_pay_now, klarna_pay_later, klarna_slice_it, klarna_direct_bank_transfer,
+     *  klarna_direct_debit, resurs, mobilepay_subscriptions, emv_token, bancomatpay, bcmc, blik, pp_blik_oc, giropay,
+     *  ideal, p24, sepa, trustly, eps, estonia_banks, latvia_banks, lithuania_banks, mb_way, multibanco, mybank,
+     *  payconiq, paysafecard, paysera, postfinance, satispay, twint, wechatpay, santander, or verkkopankki,
+     *  offline_cash, offline_bank_transfer, offline_other
+     *
+     * @see RefundTypeEnum
+     *
      * @param string $type
      *
      * @return RefundModel

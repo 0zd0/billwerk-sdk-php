@@ -14,6 +14,8 @@ class PaymentMethodGetModel extends AbstractModel
     protected string $id;
 
     /**
+     * Payment method id
+     *
      * @return string
      */
     public function getId(): string
@@ -22,7 +24,10 @@ class PaymentMethodGetModel extends AbstractModel
     }
 
     /**
+     * Payment method id
+     *
      * @param string $id
+     *
      * @return self
      */
     public function setId(string $id): self

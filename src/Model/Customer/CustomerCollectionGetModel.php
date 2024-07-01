@@ -126,11 +126,15 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     protected ?string $vat = null;
 
     /**
+     * Contained in customer debtor id
+     *
      * @var int|null $debtorId
      */
     protected ?int $debtorId = null;
 
     /**
+     * Customer exact handle
+     *
      * @return string|null
      */
     public function getHandle(): ?string
@@ -139,6 +143,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer handle prefix
+     *
      * @return string|null
      */
     public function getHandlePrefix(): ?string
@@ -147,6 +153,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer handle contains
+     *
      * @return string|null
      */
     public function getHandleContains(): ?string
@@ -155,6 +163,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Search for name contained in first name concatenated with last name
+     *
      * @return string|null
      */
     public function getName(): ?string
@@ -163,6 +173,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer email
+     *
      * @return string|null
      */
     public function getEmail(): ?string
@@ -171,6 +183,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer email prefix
+     *
      * @return string|null
      */
     public function getEmailPrefix(): ?string
@@ -179,6 +193,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer first name
+     *
      * @return string|null
      */
     public function getFirstName(): ?string
@@ -187,6 +203,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer last name
+     *
      * @return string|null
      */
     public function getLastName(): ?string
@@ -195,6 +213,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer address
+     *
      * @return string|null
      */
     public function getAddress(): ?string
@@ -203,6 +223,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer address2
+     *
      * @return string|null
      */
     public function getAddress2(): ?string
@@ -211,6 +233,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer postal code
+     *
      * @return string|null
      */
     public function getPostalCode(): ?string
@@ -219,6 +243,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer city
+     *
      * @return string|null
      */
     public function getCity(): ?string
@@ -227,6 +253,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer country in ISO 3166-1 alpha-2
+     *
      * @return string|null
      */
     public function getCountry(): ?string
@@ -235,6 +263,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer phone
+     *
      * @return string|null
      */
     public function getPhone(): ?string
@@ -243,6 +273,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer company
+     *
      * @return string|null
      */
     public function getCompany(): ?string
@@ -251,6 +283,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer vat code
+     *
      * @return string|null
      */
     public function getVat(): ?string
@@ -259,6 +293,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer debtor id
+     *
      * @return int|null
      */
     public function getDebtorId(): ?int
@@ -267,6 +303,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer exact handle
+     *
      * @param string|null $handle
      *
      * @return self
@@ -279,6 +317,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer handle prefix
+     *
      * @param string|null $handlePrefix
      *
      * @return self
@@ -291,6 +331,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer handle contains
+     *
      * @param string|null $handleContains
      *
      * @return self
@@ -303,6 +345,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Search for name contained in first name concatenated with last name
+     *
      * @param string|null $name
      *
      * @return self
@@ -315,6 +359,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer email
+     *
      * @param string|null $email
      *
      * @return self
@@ -327,6 +373,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer email prefix
+     *
      * @param string|null $emailPrefix
      *
      * @return self
@@ -339,6 +387,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer first name
+     *
      * @param string|null $firstName
      *
      * @return self
@@ -351,6 +401,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer last name
+     *
      * @param string|null $lastName
      *
      * @return self
@@ -363,6 +415,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer address
+     *
      * @param string|null $address
      *
      * @return self
@@ -375,6 +429,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer address2
+     *
      * @param string|null $address2
      *
      * @return self
@@ -387,6 +443,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer postal code
+     *
      * @param string|null $postalCode
      *
      * @return self
@@ -399,6 +457,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer city
+     *
      * @param string|null $city
      *
      * @return self
@@ -411,6 +471,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Customer country in ISO 3166-1 alpha-2
+     *
      * @param string|null $country
      *
      * @return self
@@ -423,6 +485,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer phone
+     *
      * @param string|null $phone
      *
      * @return self
@@ -435,6 +499,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer company
+     *
      * @param string|null $company
      *
      * @return self
@@ -447,6 +513,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer vat code
+     *
      * @param string|null $vat
      *
      * @return self
@@ -459,6 +527,8 @@ class CustomerCollectionGetModel extends AbstractCollectionQueriesModel implemen
     }
 
     /**
+     * Contained in customer debtor id
+     *
      * @param int|null $debtorId
      *
      * @return self

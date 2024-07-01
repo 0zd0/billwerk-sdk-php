@@ -77,6 +77,9 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     protected ?string $senderDateOfBirth = null;
 
     /**
+     * The sender’s account number, i.e. an identification of the account being funded by the debit.
+     *  It can be an IBAN, a proprietary wallet number, a prepaid PAN, etc
+     *
      * @return string|null
      */
     public function getSenderAccountNumber(): ?string
@@ -85,6 +88,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s address (street name, house number, etc.)
+     *
      * @return string|null
      */
     public function getSenderAddress(): ?string
@@ -93,6 +98,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s city
+     *
      * @return string|null
      */
     public function getSenderCity(): ?string
@@ -101,6 +108,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s country in ISO 3166-1 alpha-2
+     *
      * @return string|null
      */
     public function getSenderCountry(): ?string
@@ -109,6 +118,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s date of birth in format yyyy-MM-dd
+     *
      * @return string|null
      */
     public function getSenderDateOfBirth(): ?string
@@ -117,6 +128,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s first name. Required only if 'sender_address' is provided
+     *
      * @return string|null
      */
     public function getSenderFirstName(): ?string
@@ -125,6 +138,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s last name. Required only if 'sender_address' is provided
+     *
      * @return string|null
      */
     public function getSenderLastName(): ?string
@@ -133,6 +148,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s postal code
+     *
      * @return string|null
      */
     public function getSenderPostalCode(): ?string
@@ -141,6 +158,9 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender's reference number. You must be able to uniquely identify the sender using this number.
+     *  Required if the merchant account’s Business Application Identifier (BAI) is Funds Disbursement (FD)
+     *
      * @return string|null
      */
     public function getSenderReference(): ?string
@@ -149,6 +169,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s state. Required for countries US and CA
+     *
      * @return string|null
      */
     public function getSenderState(): ?string
@@ -157,6 +179,9 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * The sender’s account number, i.e. an identification of the account being funded by the debit.
+     *  It can be an IBAN, a proprietary wallet number, a prepaid PAN, etc
+     *
      * @param string|null $senderAccountNumber
      *
      * @return self
@@ -169,6 +194,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s address (street name, house number, etc.)
+     *
      * @param string|null $senderAddress
      *
      * @return self
@@ -181,6 +208,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s city
+     *
      * @param string|null $senderCity
      *
      * @return self
@@ -193,6 +222,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s country in ISO 3166-1 alpha-2
+     *
      * @param string|null $senderCountry
      *
      * @return self
@@ -205,6 +236,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s date of birth in format yyyy-MM-dd
+     *
      * @param string|null $senderDateOfBirth
      *
      * @return self
@@ -217,6 +250,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s first name. Required only if 'sender_address' is provided
+     *
      * @param string|null $senderFirstName
      *
      * @return self
@@ -229,6 +264,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s last name. Required only if 'sender_address' is provided
+     *
      * @param string|null $senderLastName
      *
      * @return self
@@ -241,6 +278,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s postal code
+     *
      * @param string|null $senderPostalCode
      *
      * @return self
@@ -253,6 +292,9 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender's reference number. You must be able to uniquely identify the sender using this number.
+     *  Required if the merchant account’s Business Application Identifier (BAI) is Funds Disbursement (FD)
+     *
      * @param string|null $senderReference
      *
      * @return self
@@ -265,6 +307,8 @@ class AccountFundingInformationModel extends AbstractModel implements HasRequest
     }
 
     /**
+     * Sender’s state. Required for countries US and CA
+     *
      * @param string|null $senderState
      *
      * @return self

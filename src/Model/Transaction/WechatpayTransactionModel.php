@@ -12,6 +12,8 @@ class WechatpayTransactionModel extends AbstractTransactionModel
     protected ?string $wechatpayId = null;
 
     /**
+     * Wechatpay id
+     *
      * @return string|null
      */
     public function getWechatpayId(): ?string
@@ -20,6 +22,8 @@ class WechatpayTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Wechatpay id
+     *
      * @param string|null $wechatpayId
      *
      * @return self

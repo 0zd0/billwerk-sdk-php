@@ -115,11 +115,14 @@ class CreditNoteModel extends AbstractModel
     /**
      * When the credit note was created. A credit note is created when a non-charging
      * invoice is cancelled or refunded. Timestamp in ISO-8601 extended offset date-time format
+     *
      * @var DateTime|null $accountingCreatedDate
      */
     protected ?DateTime $accountingCreatedDate = null;
 
     /**
+     * Credit note id
+     *
      * @return string
      */
     public function getId(): string
@@ -128,6 +131,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Creation date for note, in ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -136,6 +141,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Customer handle
+     *
      * @return string
      */
     public function getCustomer(): string
@@ -144,6 +151,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Invoice credited by this note
+     *
      * @return string
      */
     public function getInvoice(): string
@@ -152,6 +161,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note amount
+     *
      * @return int
      */
     public function getAmount(): int
@@ -160,6 +171,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Subscription handle, will be null for a one-time customer invoice
+     *
      * @return string|null
      */
     public function getSubscription(): ?string
@@ -168,6 +181,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Url to credit note pdf
+     *
      * @return string|null
      */
     public function getDownloadUrl(): ?string
@@ -176,6 +191,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Customer debtor id
+     *
      * @return int|null
      */
     public function getDebtorId(): ?int
@@ -184,6 +201,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note accounting number
+     *
      * @return string|null
      */
     public function getAccountingNumber(): ?string
@@ -192,6 +211,9 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * When the credit note was created. A credit note is created when a non-charging
+     *  invoice is cancelled or refunded. Timestamp in ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getAccountingCreatedDate(): ?DateTime
@@ -200,6 +222,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note total amount excluding VAT calculated as summed amounts excl. vats for each credit note lines
+     *
      * @return int|null
      */
     public function getAmountExVat(): ?int
@@ -208,6 +232,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note vat amount calculated as rounded summed fractional vats for each credit note lines
+     *
      * @return int
      */
     public function getAmountVat(): int
@@ -216,6 +242,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit reference if the credit note relates to a subscription credit
+     *
      * @return string|null
      */
     public function getCredit(): ?string
@@ -224,6 +252,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note lines
+     *
      * @return array
      */
     public function getCreditNoteLines(): array
@@ -232,6 +262,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Refund transaction id if credit note has an associated refund
+     *
      * @return string|null
      */
     public function getTransaction(): ?string
@@ -240,6 +272,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note currency in ISO 4217 three letter alpha code
+     *
      * @return string
      */
     public function getCurrency(): string
@@ -248,6 +282,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note id
+     *
      * @param string $id
      *
      * @return self
@@ -260,6 +296,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note currency in ISO 4217 three letter alpha code
+     *
      * @param string $currency
      *
      * @return self
@@ -272,6 +310,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Creation date for note, in ISO-8601 extended offset date-time format
+     *
      * @param DateTime $created
      *
      * @return self
@@ -284,6 +324,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Customer handle
+     *
      * @param string $customer
      *
      * @return self
@@ -296,6 +338,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Invoice credited by this note
+     *
      * @param string $invoice
      *
      * @return self
@@ -308,6 +352,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note amount
+     *
      * @param int $amount
      *
      * @return self
@@ -320,6 +366,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Subscription handle, will be null for a one-time customer invoice
+     *
      * @param string|null $subscription
      *
      * @return self
@@ -332,6 +380,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Url to credit note pdf
+     *
      * @param string|null $downloadUrl
      *
      * @return self
@@ -344,6 +394,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Customer debtor id
+     *
      * @param int|null $debtorId
      *
      * @return self
@@ -356,6 +408,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note accounting number
+     *
      * @param string|null $accountingNumber
      *
      * @return self
@@ -368,6 +422,9 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * When the credit note was created. A credit note is created when a non-charging
+     *  invoice is cancelled or refunded. Timestamp in ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $accountingCreatedDate
      *
      * @return self
@@ -380,6 +437,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note total amount excluding VAT calculated as summed amounts excl. vats for each credit note lines
+     *
      * @param int|null $amountExVat
      *
      * @return self
@@ -392,6 +451,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note vat amount calculated as rounded summed fractional vats for each credit note lines
+     *
      * @param int $amountVat
      *
      * @return self
@@ -404,6 +465,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit reference if the credit note relates to a subscription credit
+     *
      * @param string|null $credit
      *
      * @return self
@@ -416,6 +479,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Credit note lines
+     *
      * @param array $creditNoteLines
      *
      * @return self
@@ -428,6 +493,8 @@ class CreditNoteModel extends AbstractModel
     }
 
     /**
+     * Refund transaction id if credit note has an associated refund
+     *
      * @param string|null $transaction
      *
      * @return self

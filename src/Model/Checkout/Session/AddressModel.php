@@ -57,6 +57,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     protected ?string $stateOrProvince = null;
 
     /**
+     * Address line 1
+     *
      * @return string|null
      */
     public function getAddress1(): ?string
@@ -65,6 +67,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Address line 2
+     *
      * @return string|null
      */
     public function getAddress2(): ?string
@@ -73,6 +77,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Postal code
+     *
      * @return string|null
      */
     public function getPostalCode(): ?string
@@ -81,6 +87,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * City
+     *
      * @return string|null
      */
     public function getCity(): ?string
@@ -89,6 +97,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Country in ISO 3166-1 alpha-2
+     *
      * @return string|null
      */
     public function getCountry(): ?string
@@ -97,6 +107,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * State or province. Should be in country subdivision code defined in ISO 3166-2
+     *
      * @return string|null
      */
     public function getStateOrProvince(): ?string
@@ -105,6 +117,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Address line 3
+     *
      * @return string|null
      */
     public function getAddress3(): ?string
@@ -113,6 +127,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Address line 1
+     *
      * @param string|null $address1
      *
      * @return self
@@ -125,6 +141,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Address line 2
+     *
      * @param string|null $address2
      *
      * @return self
@@ -137,6 +155,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Postal code
+     *
      * @param string|null $postalCode
      *
      * @return self
@@ -149,6 +169,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * City
+     *
      * @param string|null $city
      *
      * @return self
@@ -161,6 +183,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Country in ISO 3166-1 alpha-2
+     *
      * @param string|null $country
      *
      * @return self
@@ -173,6 +197,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Address line 3
+     *
      * @param string|null $address3
      *
      * @return self
@@ -185,6 +211,8 @@ class AddressModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * State or province. Should be in country subdivision code defined in ISO 3166-2
+     *
      * @param string|null $stateOrProvince
      *
      * @return self

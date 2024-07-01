@@ -12,6 +12,8 @@ class BlikTransactionModel extends AbstractTransactionModel
     protected ?string $blikId = null;
 
     /**
+     * Blik id
+     *
      * @return string|null
      */
     public function getBlikId(): ?string
@@ -20,6 +22,8 @@ class BlikTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Blik id
+     *
      * @param string|null $blikId
      *
      * @return self

@@ -210,6 +210,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     protected ?bool $accountFunding = null;
 
     /**
+     * Optional order text. Used in conjunction with amount. Ignored if order_lines is provided
+     *
      * @return string|null
      */
     public function getOrdertext(): ?string
@@ -218,6 +220,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Amount in the smallest unit. Either amount or order_lines must be provided if charge/invoice
+     *  does not already exists
+     *
      * @return int|null
      */
     public function getAmount(): ?int
@@ -226,6 +231,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Custom metadata
+     *
      * @return array|null
      */
     public function getMetadata(): ?array
@@ -234,6 +241,12 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Per account unique reference to charge/invoice. E.g. order id from own system. Multiple
+     *  payments can be attempted for the same handle but only one authorized or settled charge
+     *  can exist per handle. Max length 255 with allowable characters [a-zA-Z0-9_.-@]. It is
+     *  recommended to use a maximum of 20 characters as this will allow for the use of handle
+     *  as reference on bank statements without truncation
+     *
      * @return string
      */
     public function getHandle(): string
@@ -242,6 +255,12 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional idempotency key. Only one authorization or settle can be performed for the same
+     *  handle. If two create attempts are attempted and the first succeeds the second will fail
+     *  because charge is already settled or authorized. An idempotency key identifies uniquely
+     *  the request and multiple requests with the same key and handle will yield the same result.
+     *  In case of networking errors the same request with same key can safely be retried
+     *
      * @return string|null
      */
     public function getKey(): ?string
@@ -250,6 +269,10 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  The source for the payment. Either an existing payment method for the customer or a card token
+     *  ct_.... The existing payment method can either be referenced directly with id, e.g. ca_..., or
+     *  the keyword auto can be given to indicate that the newest active customer payment method should be used.
+     *
      * @return string
      */
     public function getSource(): string
@@ -258,6 +281,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional billing address
+     *
      * @return AddressModel|null
      */
     public function getBillingAddress(): ?AddressModel
@@ -266,6 +291,10 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Order lines for the charge. The order lines controls the amount. Only required if charge/invoice does not
+     *  already exist. If given for existing charge the order lines and amount are adjusted. A maximum of 100
+     *  order lines is allowed
+     *
      * @return array|null
      */
     public function getOrderLines(): ?array
@@ -274,6 +303,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional shipping address
+     *
      * @return AddressModel|null
      */
     public function getShippingAddress(): ?AddressModel
@@ -282,6 +313,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Create customer and subscription in an atomic operation
+     *
      * @return CustomerModel|null
      */
     public function getCustomer(): ?CustomerModel
@@ -290,6 +323,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional currency in ISO 4217 three letter alpha code. If not provided the account default
+     *  currency will be used. The currency of an existing charge or invoice cannot be changed
+     *
      * @return string|null
      */
     public function getCurrency(): ?string
@@ -298,6 +334,20 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional reference for the transaction at the acquirer. Notice the following about this argument:
+     *
+     *  1. It only works for some acquirers.
+     *
+     *  2. Acquirers may have rigid rules on the content of the acquirer reference.
+     *  Not complying to these rules can result in declined payments.
+     *
+     *  3. It is already possible to define custom acquirer reference using templating in the Reepay Administration.
+     *  Contact support for help. We highly recommend to only supply this argument if absolutely necessary,
+     *  and the templated default acquirer reference is not sufficient. Maximum length is 128,
+     *  but most acquirers require a maximum length of 22 characters.
+     *  Truncating will be applied if too long for specific acquirer.
+     *  Characters must match regex [\x20-\x7F]
+     *
      * @return string|null
      */
     public function getAcquirerReference(): ?string
@@ -306,6 +356,14 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional argument to define the text on bank statement. Notice the following about this argument: 1. It only
+     *  works for some acquirers. 2. Acquirers may have rigid rules on the content of the text on statement. Not
+     *  complying to these rules will result in declined payments. 3) It is already possible to define custom text
+     *  on statement using templating in the Reepay Administration. Contact support for help. We highly recommend
+     *  to only supply this argument if absolutely necessary, and the templated default text on statement is not
+     *  sufficient. Maximum length is 128, but most acquirers require a maximum length of 22 characters. Truncating
+     *  will be applied if too long for specific acquirer. Characters must match regex [\x20-\x7F]
+     *
      * @return string|null
      */
     public function getTextOnStatement(): ?string
@@ -314,6 +372,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Indicates that Account Funding Transaction (AFT) is requested.
+     *  It only can be used for instant settle (i.e. 'settle' = true)
+     *
      * @return bool|null
      */
     public function getAccountFunding(): ?bool
@@ -322,6 +383,10 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional sender information required for Account Funding Transaction (AFT).
+     *  If not provided when requesting account funding transaction with account_funding=true,
+     *  information will be gathered from invoice billing address and customer
+     *
      * @return AccountFundingInformationModel|null
      */
     public function getAccountFundingInformation(): ?AccountFundingInformationModel
@@ -330,6 +395,10 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  For payment methods that supports both synchronous and asynchronous handling this parameter can be used
+     *  force a specific handling. Asynchronous handling means that a pending state will be returned. The subsequent
+     *  state change can be registered by using webhooks. The default depends on the payment method
+     *
      * @return bool|null
      */
     public function getAsync(): ?bool
@@ -338,6 +407,11 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Customer reference. If charge does not already exist either this reference must be provided, a create
+     *  customer object must be provided or the source must be a payment method reference (e.g. ca_..) identifying
+     *  customer. Notice that customer cannot be changed for existing charge/invoice so if handle is provided it
+     *  must match the customer handle for existing customer
+     *
      * @return string|null
      */
     public function getCustomerHandle(): ?string
@@ -354,6 +428,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional reference given to the created payment method in case recurring argument is used to save payment
+     * method. Max length 64 with allowable characters [a-zA-Z0-9_.-@]
+     *
      * @return string|null
      */
     public function getPaymentMethodReference(): ?string
@@ -362,6 +439,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  If set and the source is a token for a payment method that supports recurring charging (e.g. credit card),
+     *  a recurring payment method is stored for the customer and a reference returned
+     *
      * @return bool|null
      */
     public function getRecurring(): ?bool
@@ -370,6 +450,10 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Whether or not to immediately settle the charge. If not settled immediately the charge will be authorized
+     *  and can later be settled. Normally this have to be done within 7 days. The default is not to settle the
+     *  charge immediately. Note that not all payment methods support immediate settle
+     *
      * @return bool|null
      */
     public function getSettle(): ?bool
@@ -378,6 +462,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  When used with a subscription invoice the subscription payment method will be updated. If the subscription
+     *  is pending the subscription will be activated with the payment method. The recurring argument is set to true
+     *
      * @return bool|null
      */
     public function getUsePmForSubscription(): ?bool
@@ -386,6 +473,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional order text. Used in conjunction with amount. Ignored if order_lines is provided
+     *
      * @param string|null $ordertext
      *
      * @return self
@@ -398,6 +487,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Amount in the smallest unit. Either amount or order_lines must be provided if charge/invoice
+     *  does not already exists
+     *
      * @param int|null $amount
      *
      * @return self
@@ -410,6 +502,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Custom metadata
+     *
      * @param array|null $metadata
      *
      * @return self
@@ -422,6 +516,12 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Per account unique reference to charge/invoice. E.g. order id from own system. Multiple
+     *  payments can be attempted for the same handle but only one authorized or settled charge
+     *  can exist per handle. Max length 255 with allowable characters [a-zA-Z0-9_.-@]. It is
+     *  recommended to use a maximum of 20 characters as this will allow for the use of handle
+     *  as reference on bank statements without truncation
+     *
      * @param string $handle
      *
      * @return self
@@ -434,6 +534,12 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional idempotency key. Only one authorization or settle can be performed for the same
+     *  handle. If two create attempts are attempted and the first succeeds the second will fail
+     *  because charge is already settled or authorized. An idempotency key identifies uniquely
+     *  the request and multiple requests with the same key and handle will yield the same result.
+     *  In case of networking errors the same request with same key can safely be retried
+     *
      * @param string|null $key
      *
      * @return self
@@ -446,6 +552,10 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  The source for the payment. Either an existing payment method for the customer or a card token
+     *  ct_.... The existing payment method can either be referenced directly with id, e.g. ca_..., or
+     *  the keyword auto can be given to indicate that the newest active customer payment method should be used.
+     *
      * @param string $source
      *
      * @return self
@@ -458,6 +568,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional billing address
+     *
      * @param AddressModel|null $billingAddress
      *
      * @return self
@@ -470,6 +582,10 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Order lines for the charge. The order lines controls the amount. Only required if charge/invoice does not
+     *  already exist. If given for existing charge the order lines and amount are adjusted. A maximum of 100
+     *  order lines is allowed
+     *
      * @param array|null $orderLines
      *
      * @return self
@@ -482,6 +598,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional shipping address
+     *
      * @param AddressModel|null $shippingAddress
      *
      * @return self
@@ -494,6 +612,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional currency in ISO 4217 three letter alpha code. If not provided the account default
+     *  currency will be used. The currency of an existing charge or invoice cannot be changed
+     *
      * @param string|null $currency
      *
      * @return self
@@ -506,6 +627,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Create customer and subscription in an atomic operation
+     *
      * @param CustomerModel|null $customer
      *
      * @return self
@@ -518,6 +641,20 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional reference for the transaction at the acquirer. Notice the following about this argument:
+     *
+     *  1. It only works for some acquirers.
+     *
+     *  2. Acquirers may have rigid rules on the content of the acquirer reference.
+     *  Not complying to these rules can result in declined payments.
+     *
+     *  3. It is already possible to define custom acquirer reference using templating in the Reepay Administration.
+     *  Contact support for help. We highly recommend to only supply this argument if absolutely necessary,
+     *  and the templated default acquirer reference is not sufficient. Maximum length is 128,
+     *  but most acquirers require a maximum length of 22 characters.
+     *  Truncating will be applied if too long for specific acquirer.
+     *  Characters must match regex [\x20-\x7F]
+     *
      * @param string|null $acquirerReference
      *
      * @return self
@@ -530,6 +667,10 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Whether or not to immediately settle the charge. If not settled immediately the charge will be authorized
+     *  and can later be settled. Normally this have to be done within 7 days. The default is not to settle the
+     *  charge immediately. Note that not all payment methods support immediate settle
+     *
      * @param bool|null $settle
      *
      * @return self
@@ -542,6 +683,14 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional argument to define the text on bank statement. Notice the following about this argument: 1. It only
+     *  works for some acquirers. 2. Acquirers may have rigid rules on the content of the text on statement. Not
+     *  complying to these rules will result in declined payments. 3) It is already possible to define custom text
+     *  on statement using templating in the Reepay Administration. Contact support for help. We highly recommend
+     *  to only supply this argument if absolutely necessary, and the templated default text on statement is not
+     *  sufficient. Maximum length is 128, but most acquirers require a maximum length of 22 characters. Truncating
+     *  will be applied if too long for specific acquirer. Characters must match regex [\x20-\x7F]
+     *
      * @param string|null $textOnStatement
      *
      * @return self
@@ -554,6 +703,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Indicates that Account Funding Transaction (AFT) is requested.
+     *  It only can be used for instant settle (i.e. 'settle' = true)
+     *
      * @param bool|null $accountFunding
      *
      * @return self
@@ -566,6 +718,10 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional sender information required for Account Funding Transaction (AFT).
+     *  If not provided when requesting account funding transaction with account_funding=true,
+     *  information will be gathered from invoice billing address and customer
+     *
      * @param AccountFundingInformationModel|null $accountFundingInformation
      *
      * @return self
@@ -578,6 +734,10 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  For payment methods that supports both synchronous and asynchronous handling this parameter can be used
+     *  force a specific handling. Asynchronous handling means that a pending state will be returned. The subsequent
+     *  state change can be registered by using webhooks. The default depends on the payment method
+     *
      * @param bool|null $async
      *
      * @return self
@@ -590,6 +750,11 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Customer reference. If charge does not already exist either this reference must be provided, a create
+     *  customer object must be provided or the source must be a payment method reference (e.g. ca_..) identifying
+     *  customer. Notice that customer cannot be changed for existing charge/invoice so if handle is provided it
+     *  must match the customer handle for existing customer
+     *
      * @param string|null $customerHandle
      *
      * @return self
@@ -602,6 +767,8 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Extra optional parameters that may be added for specific payment methods
+     *
      * @param ParametersModel|null $parameters
      *
      * @return self
@@ -614,6 +781,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  Optional reference given to the created payment method in case recurring argument is used to save payment
+     *  method. Max length 64 with allowable characters [a-zA-Z0-9_.-@]
+     *
      * @param string|null $paymentMethodReference
      *
      * @return self
@@ -626,6 +796,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  If set and the source is a token for a payment method that supports recurring charging (e.g. credit card),
+     *  a recurring payment method is stored for the customer and a reference returned
+     *
      * @param bool|null $recurring
      *
      * @return self
@@ -638,6 +811,9 @@ class ChargeCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     *  When used with a subscription invoice the subscription payment method will be updated. If the subscription
+     *  is pending the subscription will be activated with the payment method. The recurring argument is set to true
+     *
      * @param bool|null $usePmForSubscription
      *
      * @return self

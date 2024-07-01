@@ -2,6 +2,7 @@
 
 namespace Billwerk\Sdk\Model\PaymentMethod;
 
+use Billwerk\Sdk\Enum\PaymentMethodPaymentTypeEnum;
 use Billwerk\Sdk\Enum\PaymentMethodStateEnum;
 use Billwerk\Sdk\Model\AbstractModel;
 use Billwerk\Sdk\Model\HasIdInterface;
@@ -74,6 +75,7 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
      * Payment type for saved payment method, either: card, emv_token, vipps_recurring, applepay,
      * mobilepay_subscriptions, sepa, offline_cash, offline_bank_transfer or offline_other
      *
+     * @see PaymentMethodPaymentTypeEnum
      * @var string|null $paymentType
      */
     protected ?string $paymentType = null;
@@ -107,6 +109,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     protected ?OfflineMandateModel $offlineMandate = null;
 
     /**
+     * Card object in case of Apple Pay payment method
+     *
      * @return ApplePayModel|null
      */
     public function getApplePay(): ?ApplePayModel
@@ -125,6 +129,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Card object in case of Apple Pay payment method
+     *
      * @return CardModel|null
      */
     public function getCard(): ?CardModel
@@ -133,6 +139,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the payment method was created. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -141,6 +149,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Customer by handle
+     *
      * @return string
      */
     public function getCustomer(): string
@@ -149,6 +159,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the payment method failed. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime|null
      */
     public function getFailed(): ?DateTime
@@ -157,6 +169,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * MPS subscription object in case of MPS payment method
+     *
      * @return MpsSubscriptionModel|null
      */
     public function getMpsSubscription(): ?MpsSubscriptionModel
@@ -165,6 +179,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Offline mandate object in case of Offline payment method
+     *
      * @return OfflineMandateModel|null
      */
     public function getOfflineMandate(): ?OfflineMandateModel
@@ -173,6 +189,10 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Payment type for saved payment method, either: card, emv_token, vipps_recurring, applepay,
+     *  mobilepay_subscriptions, sepa, offline_cash, offline_bank_transfer or offline_other
+     *
+     * @see PaymentMethodPaymentTypeEnum
      * @return string|null
      */
     public function getPaymentType(): ?string
@@ -181,6 +201,10 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional reference provided when creating the payment method. For payment methods created
+     *  with Reepay Checkout the reference will correspond to the session id for the Checkout session
+     *  that created the payment method
+     *
      * @return string|null
      */
     public function getReference(): ?string
@@ -189,6 +213,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * SEPA mandate object in case of SEPA payment method
+     *
      * @return SepaMandateModel|null
      */
     public function getSepaMandate(): ?SepaMandateModel
@@ -197,6 +223,9 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * State of the payment method: active, inactivated, failed, pending or deleted
+     *
+     * @see PaymentMethodStateEnum
      * @return string
      */
     public function getState(): string
@@ -205,6 +234,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Vipps Recurring mandate object in case of Vipps Recurring payment method
+     *
      * @return array|null
      */
     public function getVippsRecurringMandate(): ?array
@@ -213,6 +244,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Card object in case of Apple Pay payment method
+     *
      * @param ApplePayModel|null $applePay
      *
      * @return PaymentMethodModel
@@ -225,6 +258,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Card object in case of Apple Pay payment method
+     *
      * @param CardModel|null $card
      *
      * @return PaymentMethodModel
@@ -237,6 +272,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the payment method was created. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime $created
      *
      * @return PaymentMethodModel
@@ -249,6 +286,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Customer by handle
+     *
      * @param string $customer
      *
      * @return PaymentMethodModel
@@ -261,6 +300,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the payment method failed. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime|null $failed
      *
      * @return PaymentMethodModel
@@ -273,6 +314,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Unique id for payment method
+     *
      * @param string $id
      *
      * @return PaymentMethodModel
@@ -285,6 +328,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * MPS subscription object in case of MPS payment method
+     *
      * @param MpsSubscriptionModel|null $mpsSubscription
      *
      * @return PaymentMethodModel
@@ -297,6 +342,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Offline mandate object in case of Offline payment method
+     *
      * @param OfflineMandateModel|null $offlineMandate
      *
      * @return PaymentMethodModel
@@ -309,6 +356,11 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Payment type for saved payment method, either: card, emv_token, vipps_recurring, applepay,
+     *  mobilepay_subscriptions, sepa, offline_cash, offline_bank_transfer or offline_other
+     *
+     * @see PaymentMethodPaymentTypeEnum
+     *
      * @param string|null $paymentType
      *
      * @return PaymentMethodModel
@@ -321,6 +373,10 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Optional reference provided when creating the payment method. For payment methods created
+     *  with Reepay Checkout the reference will correspond to the session id for the Checkout session
+     *  that created the payment method
+     *
      * @param string|null $reference
      *
      * @return PaymentMethodModel
@@ -333,6 +389,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * SEPA mandate object in case of SEPA payment method
+     *
      * @param SepaMandateModel|null $sepaMandate
      *
      * @return PaymentMethodModel
@@ -345,6 +403,10 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * State of the payment method: active, inactivated, failed, pending or deleted
+     *
+     * @see PaymentMethodStateEnum
+     *
      * @param string $state
      *
      * @return PaymentMethodModel
@@ -357,6 +419,8 @@ class PaymentMethodModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Vipps Recurring mandate object in case of Vipps Recurring payment method
+     *
      * @param array|null $vippsRecurringMandate
      *
      * @return PaymentMethodModel

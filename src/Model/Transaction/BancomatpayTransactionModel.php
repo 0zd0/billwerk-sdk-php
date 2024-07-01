@@ -12,6 +12,8 @@ class BancomatpayTransactionModel extends AbstractTransactionModel
     protected ?string $bancomatpayId = null;
 
     /**
+     * Bancomat Pay id
+     *
      * @return string|null
      */
     public function getBancomatpayId(): ?string
@@ -20,6 +22,8 @@ class BancomatpayTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Bancomat Pay id
+     *
      * @param string|null $bancomatpayId
      *
      * @return self

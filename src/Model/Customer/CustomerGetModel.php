@@ -14,6 +14,8 @@ class CustomerGetModel extends AbstractModel
     protected string $handle;
 
     /**
+     * Customer handle
+     *
      * @return string
      */
     public function getHandle(): string
@@ -22,6 +24,8 @@ class CustomerGetModel extends AbstractModel
     }
 
     /**
+     * Customer handle
+     *
      * @param string $handle
      *
      * @return self

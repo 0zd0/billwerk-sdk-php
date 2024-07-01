@@ -42,6 +42,8 @@ class KlarnaAgreementModel extends AbstractModel
     protected string $paymentType;
 
     /**
+     * Klarna password
+     *
      * @return string
      */
     public function getPassword(): string
@@ -50,6 +52,8 @@ class KlarnaAgreementModel extends AbstractModel
     }
 
     /**
+     * Klarna username
+     *
      * @return string
      */
     public function getUsername(): string
@@ -66,6 +70,9 @@ class KlarnaAgreementModel extends AbstractModel
     }
 
     /**
+     * Payment gateway payment type
+     *
+     * @see KlarnaAgreementPaymentTypeEnum
      * @return string
      */
     public function getPaymentType(): string
@@ -74,6 +81,8 @@ class KlarnaAgreementModel extends AbstractModel
     }
 
     /**
+     * Set of currencies supported by agreement. Each currency in ISO 4217 three letter alpha code
+     *
      * @return array
      */
     public function getCurrencies(): array
@@ -82,6 +91,8 @@ class KlarnaAgreementModel extends AbstractModel
     }
 
     /**
+     * Klarna password
+     *
      * @param string $password
      *
      * @return self
@@ -94,6 +105,8 @@ class KlarnaAgreementModel extends AbstractModel
     }
 
     /**
+     * Klarna username
+     *
      * @param string $username
      *
      * @return self
@@ -118,6 +131,10 @@ class KlarnaAgreementModel extends AbstractModel
     }
 
     /**
+     * Payment gateway payment type
+     *
+     * @see KlarnaAgreementPaymentTypeEnum
+     *
      * @param string $paymentType
      *
      * @return self
@@ -130,6 +147,8 @@ class KlarnaAgreementModel extends AbstractModel
     }
 
     /**
+     * Set of currencies supported by agreement. Each currency in ISO 4217 three letter alpha code
+     *
      * @param array $currencies
      *
      * @return self

@@ -39,6 +39,8 @@ class PayeverAgreementModel extends AbstractModel
     }
 
     /**
+     * Payever client secret
+     *
      * @return string|null
      */
     public function getClientSecret(): ?string
@@ -47,6 +49,8 @@ class PayeverAgreementModel extends AbstractModel
     }
 
     /**
+     * Payever client id
+     *
      * @return string|null
      */
     public function getClientId(): ?string
@@ -75,6 +79,8 @@ class PayeverAgreementModel extends AbstractModel
     }
 
     /**
+     * Payever client secret
+     *
      * @param string|null $clientSecret
      *
      * @return self
@@ -87,6 +93,8 @@ class PayeverAgreementModel extends AbstractModel
     }
 
     /**
+     * Payever client id
+     *
      * @param string|null $clientId
      *
      * @return self

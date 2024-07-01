@@ -21,6 +21,8 @@ class SessionModel extends AbstractModel
     protected string $url;
 
     /**
+     * Session url
+     *
      * @return string
      */
     public function getUrl(): string
@@ -29,6 +31,8 @@ class SessionModel extends AbstractModel
     }
 
     /**
+     * Session id
+     *
      * @return string
      */
     public function getId(): string
@@ -37,6 +41,8 @@ class SessionModel extends AbstractModel
     }
 
     /**
+     * Session id
+     *
      * @param string $id
      *
      * @return self
@@ -49,6 +55,8 @@ class SessionModel extends AbstractModel
     }
 
     /**
+     * Session url
+     *
      * @param string $url
      *
      * @return self

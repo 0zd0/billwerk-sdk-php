@@ -12,6 +12,8 @@ class P24TransactionModel extends AbstractTransactionModel
     protected ?string $p24Id = null;
 
     /**
+     * P24 id
+     *
      * @return string|null
      */
     public function getP24Id(): ?string
@@ -20,6 +22,8 @@ class P24TransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * P24 id
+     *
      * @param string|null $p24Id
      *
      * @return self

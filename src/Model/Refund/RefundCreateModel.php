@@ -48,6 +48,7 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
      * @var string|null $text
      */
     protected ?string $text = null;
+
     /**
      * Whether the amount is including VAT. Default true
      *
@@ -58,9 +59,10 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     /**
      * Refund credit note lines to give detailed information for credit note. Alternative to amount
      *
-     * @var NoteLineModel[] $note_lines
+     * @var NoteLineModel[] $noteLines
      */
-    protected ?array $note_lines = null;
+    protected ?array $noteLines = null;
+
     /**
      * Optional manual transfer. If given no refund will be performed on potential online settled
      * transaction like card transaction
@@ -68,6 +70,7 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
      * @var ManualTransferModel|null $manualTransfer
      */
     protected ?ManualTransferModel $manualTransfer = null;
+
     /**
      * Optional reference for the transaction at the acquirer. Notice the following about this argument:
      *
@@ -88,6 +91,8 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     protected ?string $acquirerReference = null;
 
     /**
+     * Optional vat for this refund
+     *
      * @return float|null
      */
     public function getVat(): ?float
@@ -96,6 +101,9 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional refund text to use on credit note. Used in conjunction with amount. Ignored
+     *  if note_lines is provided
+     *
      * @return string|null
      */
     public function getText(): ?string
@@ -104,6 +112,8 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Whether the amount is including VAT. Default true
+     *
      * @return bool|null
      */
     public function getAmountInclVat(): ?bool
@@ -112,6 +122,9 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional amount in the smallest unit for the account currency. Either amount or note_lines can
+     *  be provided, if neither is provided the full refundable amount is refunded
+     *
      * @return int|null
      */
     public function getAmount(): ?int
@@ -120,6 +133,8 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Handle or id for invoice/charge to refund
+     *
      * @return string
      */
     public function getInvoice(): string
@@ -128,6 +143,20 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional reference for the transaction at the acquirer. Notice the following about this argument:
+     *
+     *  1. It only works for some acquirers.
+     *
+     *  2. Acquirers may have rigid rules on the content of the acquirer reference.
+     *  Not complying to these rules can result in declined payments.
+     *
+     *  3. It is already possible to define custom acquirer reference using templating in the Reepay Administration.
+     *  Contact support for help. We highly recommend to only supply this argument if absolutely necessary,
+     *  and the templated default acquirer reference is not sufficient. Maximum length is 128,
+     *  but most acquirers require a maximum length of 22 characters.
+     *  Truncating will be applied if too long for specific acquirer.
+     *  Characters must match regex [\x20-\x7F]
+     *
      * @return string|null
      */
     public function getAcquirerReference(): ?string
@@ -136,6 +165,10 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional idempotency key. Only one refund can be performed for the same key. An idempotency key
+     *  identifies uniquely the request and multiple requests with the same key and invoice will yield
+     *  the same result. In case of networking errors the same request with same key can safely be retried
+     *
      * @return string|null
      */
     public function getKey(): ?string
@@ -144,6 +177,9 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional manual transfer. If given no refund will be performed on potential online settled
+     *  transaction like card transaction
+     *
      * @return ManualTransferModel|null
      */
     public function getManualTransfer(): ?ManualTransferModel
@@ -152,14 +188,18 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Refund credit note lines to give detailed information for credit note. Alternative to amount
+     *
      * @return array|null
      */
     public function getNoteLines(): ?array
     {
-        return $this->note_lines;
+        return $this->noteLines;
     }
 
     /**
+     * Optional vat for this refund
+     *
      * @param float|null $vat
      *
      * @return RefundCreateModel
@@ -172,6 +212,9 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional refund text to use on credit note. Used in conjunction with amount. Ignored
+     *  if note_lines is provided
+     *
      * @param string|null $text
      *
      * @return RefundCreateModel
@@ -184,6 +227,8 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Whether the amount is including VAT. Default true
+     *
      * @param bool|null $amountInclVat
      *
      * @return RefundCreateModel
@@ -196,6 +241,9 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional amount in the smallest unit for the account currency. Either amount or note_lines can
+     *  be provided, if neither is provided the full refundable amount is refunded
+     *
      * @param int|null $amount
      *
      * @return RefundCreateModel
@@ -208,6 +256,8 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Handle or id for invoice/charge to refund
+     *
      * @param string $invoice
      *
      * @return RefundCreateModel
@@ -220,6 +270,20 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional reference for the transaction at the acquirer. Notice the following about this argument:
+     *
+     *  1. It only works for some acquirers.
+     *
+     *  2. Acquirers may have rigid rules on the content of the acquirer reference.
+     *  Not complying to these rules can result in declined payments.
+     *
+     *  3. It is already possible to define custom acquirer reference using templating in the Reepay Administration.
+     *  Contact support for help. We highly recommend to only supply this argument if absolutely necessary,
+     *  and the templated default acquirer reference is not sufficient. Maximum length is 128,
+     *  but most acquirers require a maximum length of 22 characters.
+     *  Truncating will be applied if too long for specific acquirer.
+     *  Characters must match regex [\x20-\x7F]
+     *
      * @param string|null $acquirerReference
      *
      * @return RefundCreateModel
@@ -232,6 +296,10 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional idempotency key. Only one refund can be performed for the same key. An idempotency key
+     *  identifies uniquely the request and multiple requests with the same key and invoice will yield
+     *  the same result. In case of networking errors the same request with same key can safely be retried
+     *
      * @param string|null $key
      *
      * @return RefundCreateModel
@@ -244,6 +312,9 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
+     * Optional manual transfer. If given no refund will be performed on potential online settled
+     *  transaction like card transaction
+     *
      * @param ManualTransferModel|null $manualTransfer
      *
      * @return RefundCreateModel
@@ -256,13 +327,15 @@ class RefundCreateModel extends AbstractModel implements HasRequestApiInterface
     }
 
     /**
-     * @param NoteLineModel[]|null $note_lines
+     * Refund credit note lines to give detailed information for credit note. Alternative to amount
+     *
+     * @param NoteLineModel[]|null $noteLines
      *
      * @return RefundCreateModel
      */
-    public function setNoteLines(?array $note_lines): self
+    public function setNoteLines(?array $noteLines): self
     {
-        $this->note_lines = $note_lines;
+        $this->noteLines = $noteLines;
 
         return $this;
     }

@@ -65,6 +65,9 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     protected ?string $nextPageToken = null;
 
     /**
+     * Time range to (exclusive). Local date and time (according to account timezone) on the form
+     *  yyyy-MM-dd, yyyyMMdd, yyyy-MM-ddTHH:mm, yyyy-MM-ddTHH:mm:ss or yyyy-MM-ddTHH:mm:ss.SSS. Defaults to now
+     *
      * @return DateTime|null
      */
     public function getTo(): ?DateTime
@@ -73,6 +76,9 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Limit from to and interval back in time. E.g. one week. Will take precedence over from.
+     *  Defined in ISO 8601 duration. See https://en.wikipedia.org/wiki/ISO_8601#Durations
+     *
      * @return string|null
      */
     public function getInterval(): ?string
@@ -81,6 +87,8 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Page size between 10 and 100 (default 20)
+     *
      * @return int|null
      */
     public function getSize(): ?int
@@ -89,6 +97,10 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Optional range defining the date and time attribute used to limit the query and also defines the sorting.
+     *  The sorting is always descending. Each resource offers different range attributes. Each resource have a
+     *  default range if non is defined
+     *
      * @return string|null
      */
     public function getRange(): ?string
@@ -97,6 +109,9 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Used to get the next page if query results in multiple pages. Will be returned in response for
+     *  current page. The above parameters must be the same in all subsequent page requests
+     *
      * @return string|null
      */
     public function getNextPageToken(): ?string
@@ -105,6 +120,11 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Time range from (inclusive). Local date and time (according to account timezone) on the form
+     *  yyyy-MM-dd, yyyyMMdd, yyyy-MM-ddTHH:mm, yyyy-MM-ddTHH:mm:ss or yyyy-MM-ddTHH:mm:ss.SSS.
+     *  Default from if no interval is given depends on the query. If the query limits on relation
+     *  e.g. customer and/or subscription, the default from will be epoch 1970-01-01, otherwise one month before to
+     *
      * @return DateTime|null
      */
     public function getFrom(): ?DateTime
@@ -113,6 +133,8 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Page size between 10 and 100 (default 20)
+     *
      * @param int|null $size
      *
      * @return self
@@ -125,6 +147,10 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Optional range defining the date and time attribute used to limit the query and also defines the sorting.
+     *  The sorting is always descending. Each resource offers different range attributes. Each resource have a
+     *  default range if non is defined
+     *
      * @param string|null $range
      *
      * @return self
@@ -137,6 +163,9 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Used to get the next page if query results in multiple pages. Will be returned in response for
+     *  current page. The above parameters must be the same in all subsequent page requests
+     *
      * @param string|null $nextPageToken
      *
      * @return self
@@ -149,6 +178,11 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Time range from (inclusive). Local date and time (according to account timezone) on the form
+     *  yyyy-MM-dd, yyyyMMdd, yyyy-MM-ddTHH:mm, yyyy-MM-ddTHH:mm:ss or yyyy-MM-ddTHH:mm:ss.SSS.
+     *  Default from if no interval is given depends on the query. If the query limits on relation
+     *  e.g. customer and/or subscription, the default from will be epoch 1970-01-01, otherwise one month before to
+     *
      * @param DateTime|null $from
      *
      * @return self
@@ -161,6 +195,9 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Limit from to and interval back in time. E.g. one week. Will take precedence over from.
+     *  Defined in ISO 8601 duration. See https://en.wikipedia.org/wiki/ISO_8601#Durations
+     *
      * @param string|null $interval
      *
      * @return self
@@ -173,6 +210,9 @@ abstract class AbstractCollectionQueriesModel extends AbstractModel
     }
 
     /**
+     * Time range to (exclusive). Local date and time (according to account timezone) on the form
+     *  yyyy-MM-dd, yyyyMMdd, yyyy-MM-ddTHH:mm, yyyy-MM-ddTHH:mm:ss or yyyy-MM-ddTHH:mm:ss.SSS. Defaults to now
+     *
      * @param DateTime|null $to
      *
      * @return self

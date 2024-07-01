@@ -12,6 +12,8 @@ class PayseraTransactionModel extends AbstractTransactionModel
     protected ?string $payseraId = null;
 
     /**
+     * Paysera id
+     *
      * @return string|null
      */
     public function getPayseraId(): ?string
@@ -20,6 +22,8 @@ class PayseraTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Paysera id
+     *
      * @param string|null $payseraId
      *
      * @return self

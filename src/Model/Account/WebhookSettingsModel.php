@@ -62,9 +62,11 @@ class WebhookSettingsModel extends AbstractModel
      * @see WebhookEventTypeEnum
      * @var string[]|string|null
      */
-    protected $event_types = null;
+    protected $eventTypes = null;
 
     /**
+     * Number of requests to perform before alert email is sent, must be greater than or equal to four (1 hour)
+     *
      * @return int|null
      */
     public function getAlertCount(): ?int
@@ -73,6 +75,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Optional list of emails to send alert to if webhook fails
+     *
      * @return array|null
      */
     public function getAlertEmails(): ?array
@@ -81,14 +85,19 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     *  List of event types to receive. See https://optimize-docs.billwerk.com/reference/event for valid event types
+     *
+     * @see WebhookEventTypeEnum
      * @return string|string[]|null
      */
     public function getEventTypes()
     {
-        return $this->event_types;
+        return $this->eventTypes;
     }
 
     /**
+     * Optional HTTP Basic Auth password
+     *
      * @return string|null
      */
     public function getPassword(): ?string
@@ -97,6 +106,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Webhook secret used for signature
+     *
      * @return string
      */
     public function getSecret(): string
@@ -105,6 +116,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Webhook urls
+     *
      * @return array
      */
     public function getUrls(): array
@@ -113,6 +126,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Optional HTTP Basic Auth username
+     *
      * @return string|null
      */
     public function getUsername(): ?string
@@ -121,6 +136,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Webhook disabled
+     *
      * @return bool
      */
     public function getDisabled(): bool
@@ -129,6 +146,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Number of requests to perform before alert email is sent, must be greater than or equal to four (1 hour)
+     *
      * @param int|null $alertCount
      *
      * @return WebhookSettingsModel
@@ -141,6 +160,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Optional list of emails to send alert to if webhook fails
+     *
      * @param array|null $alertEmails
      *
      * @return WebhookSettingsModel
@@ -153,6 +174,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Webhook disabled
+     *
      * @param bool $disabled
      *
      * @return WebhookSettingsModel
@@ -165,16 +188,22 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
-     * @param string|string[]|null $event_types
+     *  List of event types to receive. See https://optimize-docs.billwerk.com/reference/event for valid event types
+     *
+     * @see WebhookEventTypeEnum
+     *
+     * @param string|string[]|null $eventTypes
      */
-    public function setEventTypes($event_types): self
+    public function setEventTypes($eventTypes): self
     {
-        $this->event_types = $event_types;
+        $this->eventTypes = $eventTypes;
 
         return $this;
     }
 
     /**
+     * Optional HTTP Basic Auth password
+     *
      * @param string|null $password
      *
      * @return WebhookSettingsModel
@@ -187,6 +216,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Webhook secret used for signature
+     *
      * @param string $secret
      *
      * @return WebhookSettingsModel
@@ -199,6 +230,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Webhook urls
+     *
      * @param array $urls
      *
      * @return WebhookSettingsModel
@@ -211,6 +244,8 @@ class WebhookSettingsModel extends AbstractModel
     }
 
     /**
+     * Optional HTTP Basic Auth username
+     *
      * @param string|null $username
      *
      * @return WebhookSettingsModel

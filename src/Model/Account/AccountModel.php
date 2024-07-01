@@ -165,6 +165,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     protected ?string $subscriptionInvoicePrefix = null;
 
     /**
+     * Status of the account one of the following test, live, closed
+     *
      * @return string
      */
     public function getState(): string
@@ -173,6 +175,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the account was created. In ISO-8601 extended offset date-time format
+     *
      * @return DateTime
      */
     public function getCreated(): DateTime
@@ -181,6 +185,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account address
+     *
      * @return string|null
      */
     public function getAddress(): ?string
@@ -189,6 +195,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account address2
+     *
      * @return string|null
      */
     public function getAddress2(): ?string
@@ -197,6 +205,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account city
+     *
      * @return string|null
      */
     public function getCity(): ?string
@@ -205,6 +215,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account country in ISO 3166-1 alpha-2. E.g. DK
+     *
      * @return string
      */
     public function getCountry(): string
@@ -213,6 +225,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Currency for the account in ISO 4217 three letter alpha code
+     *
      * @return string
      */
     public function getCurrency(): string
@@ -221,6 +235,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Vat to use as default for account
+     *
      * @return float
      */
     public function getDefaultVat(): float
@@ -229,6 +245,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account email
+     *
      * @return string|null
      */
     public function getEmail(): ?string
@@ -237,7 +255,9 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
-     * @return string
+     *  Per organisation unique handle for the account
+     *
+ * @return string
      */
     public function getHandle(): string
     {
@@ -245,6 +265,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account id assigned by Reepay
+     *
      * @return string
      */
     public function getId(): string
@@ -253,6 +275,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account locale on the form 'language_country'. E.g. da_DK. Most major locales are supported
+     *
      * @return string
      */
     public function getLocale(): string
@@ -261,6 +285,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account logo url
+     *
      * @return string|null
      */
     public function getLogo(): ?string
@@ -269,6 +295,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account name
+     *
      * @return string
      */
     public function getName(): string
@@ -277,6 +305,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     *  Organisation by subdomain
+ *
      * @return string
      */
     public function getOrganisation(): string
@@ -285,6 +315,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account phone
+     *
      * @return string|null
      */
     public function getPhone(): ?string
@@ -293,6 +325,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account postal code
+     *
      * @return string|null
      */
     public function getPostalCode(): ?string
@@ -301,6 +335,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Subscription invoice prefix
+     *
      * @return string|null
      */
     public function getSubscriptionInvoicePrefix(): ?string
@@ -309,6 +345,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account time zone ID as abbreviation or full name. E.g 'UTC' or 'Europe/Copenhagen'. See Wikipedia
+     *
      * @return string
      */
     public function getTimezone(): string
@@ -317,6 +355,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account vat number
+     *
      * @return string|null
      */
     public function getVat(): ?string
@@ -325,6 +365,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account website
+     *
      * @return string|null
      */
     public function getWebsite(): ?string
@@ -333,6 +375,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Status of the account one of the following test, live, closed
+     *
      * @param string $state
      */
     public function setState(string $state): void
@@ -341,6 +385,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account id assigned by Reepay
+     *
      * @param string $id
      *
      * @return AccountModel
@@ -353,6 +399,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Date when the account was created. In ISO-8601 extended offset date-time format
+     *
      * @param DateTime $created
      *
      * @return AccountModel
@@ -365,6 +413,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account address
+     *
      * @param string|null $address
      *
      * @return AccountModel
@@ -377,6 +427,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account address2
+     *
      * @param string|null $address2
      *
      * @return AccountModel
@@ -389,6 +441,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account city
+     *
      * @param string|null $city
      *
      * @return AccountModel
@@ -401,6 +455,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account country in ISO 3166-1 alpha-2. E.g. DK
+     *
      * @param string $country
      *
      * @return AccountModel
@@ -413,6 +469,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Currency for the account in ISO 4217 three letter alpha code
+     *
      * @param string $currency
      *
      * @return AccountModel
@@ -425,6 +483,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Vat to use as default for account
+     *
      * @param float $defaultVat
      *
      * @return AccountModel
@@ -437,6 +497,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account email
+     *
      * @param string|null $email
      *
      * @return AccountModel
@@ -449,6 +511,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Per organisation unique handle for the account
+     *
      * @param string $handle
      *
      * @return AccountModel
@@ -461,6 +525,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account locale on the form 'language_country'. E.g. da_DK. Most major locales are supported
+     *
      * @param string $locale
      *
      * @return AccountModel
@@ -473,6 +539,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account logo url
+     *
      * @param string|null $logo
      *
      * @return AccountModel
@@ -485,6 +553,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account name
+     *
      * @param string $name
      *
      * @return AccountModel
@@ -497,6 +567,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     *  Organisation by subdomain
+     *
      * @param string $organisation
      *
      * @return AccountModel
@@ -509,6 +581,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account phone
+     *
      * @param string|null $phone
      *
      * @return AccountModel
@@ -521,6 +595,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account postal code
+     *
      * @param string|null $postalCode
      *
      * @return AccountModel
@@ -533,6 +609,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Subscription invoice prefix
+     *
      * @param string|null $subscriptionInvoicePrefix
      *
      * @return AccountModel
@@ -545,6 +623,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account time zone ID as abbreviation or full name. E.g 'UTC' or 'Europe/Copenhagen'. See Wikipedia
+     *
      * @param string $timezone
      *
      * @return AccountModel
@@ -557,6 +637,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account vat number
+     *
      * @param string|null $vat
      *
      * @return AccountModel
@@ -569,6 +651,8 @@ class AccountModel extends AbstractModel implements HasIdInterface
     }
 
     /**
+     * Account website
+     *
      * @param string|null $website
      *
      * @return AccountModel

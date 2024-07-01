@@ -12,6 +12,8 @@ class ViabillTransactionModel extends AbstractTransactionModel
     protected ?string $viabillId = null;
 
     /**
+     * ViaBill id
+     *
      * @return string|null
      */
     public function getViabillId(): ?string
@@ -20,6 +22,8 @@ class ViabillTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * ViaBill id
+     *
      * @param string|null $viabillId
      *
      * @return self

@@ -12,6 +12,8 @@ class EpsTransactionModel extends AbstractTransactionModel
     protected ?string $epsId = null;
 
     /**
+     * Eps id
+     *
      * @return string|null
      */
     public function getEpsId(): ?string
@@ -20,6 +22,8 @@ class EpsTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Eps id
+     *
      * @param string|null $epsId
      *
      * @return self

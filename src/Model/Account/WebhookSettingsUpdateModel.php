@@ -7,7 +7,6 @@ use Billwerk\Sdk\Model\HasRequestApiInterface;
 
 class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiInterface
 {
-
     /**
      * Webhook urls
      *
@@ -59,6 +58,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     protected ?array $eventTypes = null;
 
     /**
+     * Number of requests to perform before alert email is sent, must be greater than or equal to four (1 hour)
+     *
      * @return int|null
      */
     public function getAlertCount(): ?int
@@ -67,6 +68,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Optional list of emails to send alert to if webhook fails
+     *
      * @return array|null
      */
     public function getAlertEmails(): ?array
@@ -75,6 +78,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Webhook disabled
+     *
      * @return bool|null
      */
     public function getDisabled(): ?bool
@@ -83,6 +88,9 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     *  List of event types to receive. See documentation for valid event types
+     *
+     * @see WebhookEventTypeEnum
      * @return array|null
      */
     public function getEventTypes(): ?array
@@ -91,6 +99,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Optional HTTP Basic Auth password
+     *
      * @return string|null
      */
     public function getPassword(): ?string
@@ -99,6 +109,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Webhook urls
+     *
      * @return array
      */
     public function getUrls(): array
@@ -107,6 +119,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Optional HTTP Basic Auth username
+     *
      * @return string|null
      */
     public function getUsername(): ?string
@@ -115,6 +129,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Number of requests to perform before alert email is sent, must be greater than or equal to four (1 hour)
+     *
      * @param int|null $alertCount
      *
      * @return self
@@ -127,6 +143,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Optional list of emails to send alert to if webhook fails
+     *
      * @param array|null $alertEmails
      *
      * @return self
@@ -139,6 +157,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Webhook disabled
+     *
      * @param bool $disabled
      *
      * @return self
@@ -151,6 +171,10 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     *  List of event types to receive. See documentation for valid event types
+     *
+     * @see WebhookEventTypeEnum
+     *
      * @param array|null $eventTypes
      *
      * @return self
@@ -163,6 +187,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Optional HTTP Basic Auth password
+     *
      * @param string|null $password
      *
      * @return self
@@ -175,6 +201,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Webhook urls
+     *
      * @param array $urls
      *
      * @return self
@@ -187,6 +215,8 @@ class WebhookSettingsUpdateModel extends AbstractModel implements HasRequestApiI
     }
 
     /**
+     * Optional HTTP Basic Auth username
+     *
      * @param string|null $username
      *
      * @return self

@@ -48,6 +48,8 @@ class PaypalAgreementModel extends AbstractModel
     }
 
     /**
+     * PayPal onboarding URL
+     *
      * @return string|null
      */
     public function getActionUrl(): ?string
@@ -56,6 +58,8 @@ class PaypalAgreementModel extends AbstractModel
     }
 
     /**
+     * PayPal client id
+     *
      * @return string
      */
     public function getClientId(): string
@@ -64,6 +68,8 @@ class PaypalAgreementModel extends AbstractModel
     }
 
     /**
+     * PayPal client secret
+     *
      * @return string
      */
     public function getClientSecret(): string
@@ -72,6 +78,8 @@ class PaypalAgreementModel extends AbstractModel
     }
 
     /**
+     * PayPal agreement version
+     *
      * @return int|null
      */
     public function getVersion(): ?int
@@ -92,6 +100,8 @@ class PaypalAgreementModel extends AbstractModel
     }
 
     /**
+     * PayPal onboarding URL
+     *
      * @param string|null $actionUrl
      *
      * @return self
@@ -104,6 +114,8 @@ class PaypalAgreementModel extends AbstractModel
     }
 
     /**
+     * PayPal client id
+     *
      * @param string $clientId
      *
      * @return self
@@ -116,6 +128,8 @@ class PaypalAgreementModel extends AbstractModel
     }
 
     /**
+     * PayPal client secret
+     *
      * @param string $clientSecret
      *
      * @return self
@@ -128,6 +142,8 @@ class PaypalAgreementModel extends AbstractModel
     }
 
     /**
+     * PayPal agreement version
+     *
      * @param int|null $version
      *
      * @return self

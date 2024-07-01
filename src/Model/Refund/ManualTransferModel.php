@@ -32,9 +32,11 @@ class ManualTransferModel extends AbstractModel
      * The refund method used for the offline manual transaction, allowable values:
      * cash, chargeback, bank_transfer, check, other
      *
+     * @see ManualTransactionMethodEnum
      * @var string $method
      */
     protected string $method;
+
     /**
      * When the manual transaction was performed on the form yyyy-MM-dd, yyyyMMdd,
      * yyyy-MM-ddTHH:mm and yyyy-MM-ddTHH:mm:ss
@@ -44,6 +46,10 @@ class ManualTransferModel extends AbstractModel
     protected DateTime $paymentDate;
 
     /**
+     * The refund method used for the offline manual transaction, allowable values:
+     *  cash, chargeback, bank_transfer, check, other
+     *
+     * @see ManualTransactionMethodEnum
      * @return string
      */
     public function getMethod(): string
@@ -52,6 +58,8 @@ class ManualTransferModel extends AbstractModel
     }
 
     /**
+     * Optional comment for manual transaction
+     *
      * @return string|null
      */
     public function getComment(): ?string
@@ -60,6 +68,9 @@ class ManualTransferModel extends AbstractModel
     }
 
     /**
+     * When the manual transaction was performed on the form yyyy-MM-dd, yyyyMMdd,
+     *  yyyy-MM-ddTHH:mm and yyyy-MM-ddTHH:mm:ss
+     *
      * @return DateTime
      */
     public function getPaymentDate(): DateTime
@@ -68,6 +79,8 @@ class ManualTransferModel extends AbstractModel
     }
 
     /**
+     * Optional reference for the manual transaction
+     *
      * @return string|null
      */
     public function getReference(): ?string
@@ -76,6 +89,8 @@ class ManualTransferModel extends AbstractModel
     }
 
     /**
+     * Optional comment for manual transaction
+     *
      * @param string|null $comment
      *
      * @return ManualTransferModel
@@ -88,6 +103,11 @@ class ManualTransferModel extends AbstractModel
     }
 
     /**
+     * The refund method used for the offline manual transaction, allowable values:
+     *  cash, chargeback, bank_transfer, check, other
+     *
+     * @see ManualTransactionMethodEnum
+     *
      * @param string $method
      *
      * @return ManualTransferModel
@@ -100,6 +120,9 @@ class ManualTransferModel extends AbstractModel
     }
 
     /**
+     * When the manual transaction was performed on the form yyyy-MM-dd, yyyyMMdd,
+     *  yyyy-MM-ddTHH:mm and yyyy-MM-ddTHH:mm:ss
+     *
      * @param DateTime $paymentDate
      *
      * @return ManualTransferModel
@@ -112,6 +135,8 @@ class ManualTransferModel extends AbstractModel
     }
 
     /**
+     * Optional reference for the manual transaction
+     *
      * @param string|null $reference
      *
      * @return ManualTransferModel

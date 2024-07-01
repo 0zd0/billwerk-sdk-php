@@ -7,11 +7,13 @@ class SatispayTransactionModel extends AbstractTransactionModel
     /**
      * Satispay id
      *
-     * @var string|null $anydayId
+     * @var string|null $satispayId
      */
     protected ?string $satispayId = null;
 
     /**
+     * Satispay id
+     *
      * @return string|null
      */
     public function getSatispayId(): ?string
@@ -20,6 +22,8 @@ class SatispayTransactionModel extends AbstractTransactionModel
     }
 
     /**
+     * Satispay id
+     *
      * @param string|null $satispayId
      *
      * @return self
