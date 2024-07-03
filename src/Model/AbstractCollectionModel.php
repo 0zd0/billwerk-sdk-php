@@ -151,7 +151,7 @@ abstract class AbstractCollectionModel extends AbstractModel
 
         $this->content = array_map(
             function ($item) use ($contentClass) {
-                return $contentClass::fromArray($item);
+                return is_array($item) ? $contentClass::fromArray($item) : $item;
             },
             $content
         );
